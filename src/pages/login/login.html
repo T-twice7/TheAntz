@@ -13,15 +13,15 @@
       <div class="theList">
         <ion-list no-lines>
           <ion-item>
-            <ion-label fixed>
-              <ion-icon ios="ios-person-outline" md="md-person" id="space"></ion-icon> Username</ion-label>
-            <ion-input type="text" value=""[(ngModel)]="obj.email"></ion-input>
+            <ion-label start>
+              <ion-icon ios="ios-person-outline" md="md-person" id="space"></ion-icon></ion-label>
+            <ion-input type="text" value=""[(ngModel)]="obj.email" placeholder="Username"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label fixed>
-              <ion-icon ios="ios-key-outline" md="md-key" id="space"></ion-icon> Password</ion-label>
-            <ion-input type="password" [(ngModel)]="obj.password"></ion-input>
+            <ion-label start>
+              <ion-icon ios="ios-key-outline" md="md-key" id="space"></ion-icon></ion-label>
+            <ion-input type="password" [(ngModel)]="obj.password" placeholder="Password"></ion-input>
           </ion-item>
           <p (click)="forgotpassword(obj)">Forgot password</p>
         </ion-list>

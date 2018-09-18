@@ -1,0 +1,24 @@
+page-splash {
+    p{
+        color: white;
+        animation: 1.5s slideInRight
+    }
+    .body{
+        background: linear-gradient(#0000003b, #000000), url('../../assets/imgs/BG.jpg');
+        height: 100%; 
+        background-size: cover; 
+        background-position: center;
+        animation: 1.2s fadeIn; 
+    }
+    .logo{
+        width: 100%;
+        max-width: 250px;
+        align-content: center;
+        margin-top: 50%
+    }
+    .theLogo{
+        text-align: center;
+    }
+
+
+}
