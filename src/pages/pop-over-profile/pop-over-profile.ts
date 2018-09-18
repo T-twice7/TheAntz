@@ -25,4 +25,6 @@ export class PopOverProfilePage {
   nextpage(){
     this.navCtrl.push(EditProfilePage);
   }
+ 
+
 }

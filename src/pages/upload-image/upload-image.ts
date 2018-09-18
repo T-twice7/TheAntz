@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the UploadImagePage page.
@@ -19,6 +20,7 @@ export class UploadImagePage {
   name;
   category;
   picDesc;
+  imageUrl:any;
   arr=[];
   constructor(public navCtrl: NavController, public navParams: NavParams,public art: StreetartzProvider,public view :ViewController) {
   }
@@ -43,11 +45,11 @@ export class UploadImagePage {
   }
   uploadPicture(){
     this.art.uploadPic(this.url,this.name).then(data =>{
-      console.log(data);
+      this.imageUrl = data;
        this.art.storeToDB(data, this.category, this.name).then(() =>{
          console.log('added to db');
-        //  this.navCtrl.push(GalleryPage);
-        // this.view.dismiss();
+        //  this.navCtrl.view(ProfilePage);
+     this.view.dismiss();
        },
       Error =>{
         console.log(Error)
