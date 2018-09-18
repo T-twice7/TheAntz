@@ -124,7 +124,22 @@ logout() {
       })
     })
   }
-  storeToDB(name, category, picName){
+  uploadProfilePic(pic) {
+    let loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      content: 'Please wait',
+      duration: 3000
+    });
+    return new Promise((accpt, rejc) => {
+      loading.present();
+      firebase.storage().ref(name).putString(pic, 'data_url').then(() => {
+        accpt(name);
+      }, Error => {
+        rejc(Error.message)
+      })
+    })
+  }
+  storeToDB(name, category, picName,description){
     return new Promise((accpt,rejc) =>{
       var storageRef = firebase.storage().ref(name);
       storageRef.getDownloadURL().then(url => {
@@ -135,7 +150,8 @@ logout() {
               downloadurl :link,
               name : picName,
               category: category,
-              uid:user.uid
+              uid:user.uid,
+              description:description
             });
             accpt('success');
       }, Error =>{
@@ -144,6 +160,24 @@ logout() {
         });
       })
     }
+    storeProfilePics(link){
+      return new Promise((accpt,rejc) =>{
+        var storageRef = firebase.storage().ref(name);
+        storageRef.getDownloadURL().then(url => {
+          console.log(url)
+          var user = firebase.auth().currentUser;
+          var link =  url;
+          firebase.database().ref('uploadPic/').push({
+                downloadurl :link,
+                uid:user.uid
+              });
+              accpt('success');
+        }, Error =>{
+          rejc(Error.message);
+          console.log(Error.message);
+          });
+        })
+      }
   viewPicGallery(){
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
