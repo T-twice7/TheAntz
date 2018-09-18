@@ -4,7 +4,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
-
+import { SignupPage } from '../pages/signup/signup';
 
 import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
@@ -14,7 +14,7 @@ import { ProfilePage } from '../pages/profile/profile';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ProfilePage;
+  rootPage: any = SignupPage;
 
   pages: Array<{title: string, component: any}>;
 

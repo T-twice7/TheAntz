@@ -1,12 +1,12 @@
-<ion-content>
+<ion-content style=" background-image: url('../../assets/imgs/BG.jpg'); background-size: cover;">
 
-  <div class="mtop"></div>
+  <!-- <div class="mtop"></div>
 
   <div class="everything">
 
     <div class="logo">
       <p style="color: white; text-shadow: 0px 0px 5px black">Welcome to</p>
-      <img src="../../assets/imgs/theLogo/ANTZ Logo.png" alt="">
+      <img src="../../assets/imgs/ANTZ Logo.png" alt="">
     </div>
 
     <div class="form">
@@ -46,7 +46,29 @@
          <p id="forgot"> Don't have an account?
           <b id="instruct"> Sign up</b></p>
         </button>
-  </div>
+  </div> -->
+  
 
+<div class="logo">
+    <p style="color: white; text-shadow: 0px 0px 5px black">Welcome to</p>
+    <img src="../../assets/imgs/ANTZ Logo.png" alt="">
+</div>
+<div class="items">
+    <ion-list no-lines>
+        <ion-item>
+          <ion-input type="email" placeholder="Email" value=""[(ngModel)]="obj.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" placeholder="Password" [(ngModel)]="obj.password"></ion-input>
+        </ion-item>
 
+      </ion-list>
+    <button ion-button full icon-only id="button">
+      Sign In
+    </button>
+    <p (click)="forgotpassword(obj)">Forgot password</p>
+</div>
+<ion-footer (click)="signup()">
+<p>Or <br> <b>Sign Up</b></p>
+  </ion-footer>
 </ion-content>

@@ -1,46 +1,104 @@
 page-signup {
-    .theList{
-        margin: 0 auto;
+    // .theList{
+    //     margin: 0 auto;
       
-        background: rgba(255, 255, 255, 0.836);
-    }
-    .content{
-        background: rgba(255, 0, 0, 0);
-        text-align: center;
-        padding-top: 10%;
-    }
-    button{
-        width: 70%;
-    }
-    .btn{
-        margin-top: -20px;
-    }
+    //     background: rgba(255, 255, 255, 0.836);
+    // }
+    // .content{
+    //     background: rgba(255, 0, 0, 0);
+    //     text-align: center;
+    //     padding-top: 10%;
+    // }
+    // button{
+    //     width: 70%;
+    // }
+    // .btn{
+    //     margin-top: -20px;
+    // }
 
-    .form{
-        box-shadow: 0px 0px 10px grey;
-        margin-top: 100px;
-        background: rgb(255, 255, 255);
-        width:90%;
-        margin: 0 auto;
-        padding-bottom: 30px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        border-radius: 20px;
+    // .form{
+    //     box-shadow: 0px 0px 10px grey;
+    //     margin-top: 100px;
+    //     background: rgb(255, 255, 255);
+    //     width:90%;
+    //     margin: 0 auto;
+    //     padding-bottom: 30px;
+    //     padding-left: 10px;
+    //     padding-right: 10px;
+    //     padding-top: 10px;
+    //     border-radius: 20px;
+    // }
+    // .logo{
+    //     padding-top: 15%;
+    //     width: 100px;
+    //     margin: 0 auto;
+    // }
+    // .bg{
+    //     z-index: -1;
+    //     width: 0px;
+    //     height: 0px;
+    //     border-top: 50vh solid #222;
+    //     border-bottom: 50vh solid #222;
+    //     border-left: 0vw solid orange;
+    //     border-right: 100vw solid rgb(239, 239, 239);
+    //     position: absolute;
+    // }
+
+    div.scroll-content{
+        background: linear-gradient(rgb(109, 29, 138),rgb(113,54,79));
     }
-    .logo{
-        padding-top: 15%;
-        width: 100px;
-        margin: 0 auto;
-    }
-    .bg{
-        z-index: -1;
-        width: 0px;
-        height: 0px;
-        border-top: 50vh solid #222;
-        border-bottom: 50vh solid #222;
-        border-left: 0vw solid orange;
-        border-right: 100vw solid rgb(239, 239, 239);
-        position: absolute;
+    
+        .logo{
+            display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+            img{
+                height: 20vh;
+            }
+        }
+        .items{
+        padding: 5%;
+        ion-item{
+        background-color: rgba(125, 68, 146, 0.301);
+        margin: 1px;
+        border-radius: 10px;
+        }
+        ion-label{
+            margin: 0%;
+            color: white
+        }
+        ion-input{
+            // color: black;
+            margin: 0%;
+            color: white
+        }
+        // ion-icon{
+        //     color: black;
+        // }
+        p{
+            color: white;
+            text-align: center;
+        }
+        }
+        #button{
+            box-shadow: 0 0 2px white;
+            background-color: rgba(255, 255, 255, 0.938);
+            color: rgb(126, 60, 151);
+            font-weight: bolder;
+        }
+    ion-footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(126, 60, 151);
+        p{
+            text-align: center;
+            color: white;
+            b{
+                font-size: 120%;
+            }
+        }
     }
 }

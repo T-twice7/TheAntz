@@ -1,50 +1,111 @@
 page-login {
-    .everything{
-        text-align: center;
-    }
+    // .everything{
+    //     text-align: center;
+    // }
 
-    .logo{
-        width: 150px;
-        margin: 0 auto;
-        padding-top: 10%;
+    // .logo{
+    //     width: 150px;
+    //     margin: 0 auto;
+    //     padding-top: 10%;
+    // }
+    // .theList{
+    //     width: 100%;
+    //     padding: 10px;
+    //     border-radius: 20px;
+    //     background: white;
+    //     box-shadow: 0px 0px 10px grey;
+    //     margin: 0 auto;
+    // }
+    // .btn{
+    //     width: 80%;
+    //     margin: 0 auto;
+    // }
+    // .form{
+    //     padding-top: 20%;
+    //     text-align: center;
+    //     width: 90%;
+    //     margin: 0 auto;
+    //     border-radius: 20px;
+    // }
+    // .ctrl{
+    //     margin-top: -30px;
+    // }
+    // .mtop{
+    //     z-index: -1;
+    //     width: 0px;
+    //     height: 0px;
+    //     border-top: 50vh solid #222;
+    //     border-bottom: 50vh solid #222;
+    //     border-left: 0vw solid orange;
+    //     border-right: 100vw solid rgb(239, 239, 239);
+    //     position: absolute;
+    // }
+    // #forgot{
+    //     text-shadow: 0px 0px 10px black;
+    // }
+    // #instruct{
+    //     color: red;
+    // }
+    div.scroll-content{
+        // rgb(113,54,79)
+        background: linear-gradient(rgb(126, 60, 151),rgb(113,54,79));
+        // rgb(111,238,221)
+        padding: 5%;
     }
-    .theList{
-        width: 100%;
-        padding: 10px;
-        border-radius: 20px;
-        background: white;
-        box-shadow: 0px 0px 10px grey;
-        margin: 0 auto;
+    
+        .logo{
+            display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+            img{
+                height: 25vh;
+            }
+        }
+        .items{
+            background-color: white;
+        padding-top: 5%;
+        box-shadow: 0 0 2px white;
+        border-radius: 15px;
+        ion-item{
+        background-color: white;
+        border-radius: 10px;
+        }
+        ion-input{
+            color: black;
+        }
+        ion-icon{
+            color: black;
+        }
+        p{
+            color: rgb(113,54,79);
+            text-align: center;
+            text-decoration: underline;
+        }
+        }
+        #button{
+            box-shadow: 0 0 1px black;
+            background-color: rgb(126, 60, 151);
+            color: white;
+        }
+    ion-footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.938);
+        height: 12vh;
+        box-shadow: 0 0 3px white;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        p{
+            text-align: center;
+            color: rgb(126, 60, 151);
+            font-weight: bolder;
+            font-size: 130%;
+            b{
+                font-size: 170%;
+            }
+        }
     }
-    .btn{
-        width: 80%;
-        margin: 0 auto;
-    }
-    .form{
-        padding-top: 20%;
-        text-align: center;
-        width: 90%;
-        margin: 0 auto;
-        border-radius: 20px;
-    }
-    .ctrl{
-        margin-top: -30px;
-    }
-    .mtop{
-        z-index: -1;
-        width: 0px;
-        height: 0px;
-        border-top: 50vh solid #222;
-        border-bottom: 50vh solid #222;
-        border-left: 0vw solid orange;
-        border-right: 100vw solid rgb(239, 239, 239);
-        position: absolute;
-    }
-    #forgot{
-        text-shadow: 0px 0px 10px black;
-    }
-    #instruct{
-        color: red;
-    }
-
 }
