@@ -24,10 +24,24 @@ export class StreetartzProvider {
 
   }
   logout() {
-    firebase.auth().signOut().then(function () {
-    }).catch(function (error) {
-    })
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+    loader.present();
+
+    return new Promise((resolve, reject) => {
+      firebase.auth().signOut().then(()=>{
+        
+        resolve()
+      } , (error)=>{
+        reject(error)
+        
+      });
+    });
+  
   }
+
   presentToast1() {
     const toast = this.toastCtrl.create({
       message: 'email or password doesnot match!',
@@ -216,4 +230,33 @@ export class StreetartzProvider {
       })
     })
   }
+  push(obj: obj) {
+    return new Promise((pass, fail) => {
+      firebase.database().ref("uploads").on('value', (data: any) => {
+        let uploads = data.val();
+        console.log(uploads);
+        var keys: any = Object.keys(uploads);
+        for (var j = 0; j < keys.length; j++) {
+          firebase.database().ref("uploads").on('value', (data2: any) => {
+            let uploads2 = data2.val();
+            console.log(uploads2);
+            var keys2: any = Object.keys(uploads2);
+            for (var i = 0; i < keys2.length; i++) {
+              var k = keys2[i];
+              if ( this.arr == uploads2[k].category){
+                let objt = {
+                  name: uploads2[k].name,
+                  category: uploads2[k].category,
+                  downloadurl: uploads2[k].downloadurl
+                }
+                this.arr.push(objt);
+                console.log(this.arr);
+              }
+            }
+          }),pass(this.arr);
+        }
+      })
+    })
+  }
+  
 }

@@ -3,6 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { obj } from '../../app/class';
 import { ProfilePage } from '../profile/profile';
+import { ViewPage } from '../view/view';
+import { LoginPage } from '../login/login';
+
+declare var firebase
+
 /**
  * Generated class for the CategoryPage page.
  *
@@ -21,6 +26,7 @@ export class CategoryPage {
   arr2 = [];
   uid: any;
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
 
   }
@@ -29,7 +35,7 @@ export class CategoryPage {
   }
   profile(obj: obj) {
     this.art.profile(this.obj).then((data) => {
-      this.navCtrl.push(ProfilePage, { obj: data });
+      this.navCtrl.push(ViewPage, { obj: data });
     })
   }
   typeOfArt() {
@@ -51,6 +57,18 @@ export class CategoryPage {
         }
       }
     })
+  }
+  push(obj: obj) {
+    this.art.profile(this.obj).then((data) => {
+      this.navCtrl.push(ViewPage, { obj: data });
+    })
+  }
+  logout() {
+
+   
+  this.art.logout().then(()=>{
+    this.navCtrl.push(LoginPage)
+  } , (error)=>{})
   }
 
 }

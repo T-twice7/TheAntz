@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { obj } from '../../app/class';
 /**
  * Generated class for the ViewPage page.
  *
@@ -15,7 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ViewPage {
 
+
+  obj;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+  ngOnInit() {
+    this.obj = this.navParams.get("obj");
+    console.log(this.obj);
   }
 
   ionViewDidLoad() {

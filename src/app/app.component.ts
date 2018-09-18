@@ -8,13 +8,14 @@ import { LoginPage } from '../pages/login/login';
 
 import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
+import { CategoryPage } from '../pages/category/category';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ProfilePage;
+  rootPage: any = CategoryPage;
 
   pages: Array<{title: string, component: any}>;
 
