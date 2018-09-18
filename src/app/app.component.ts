@@ -8,6 +8,8 @@ import { LoginPage } from '../pages/login/login';
 
 import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
+import { SplashPage } from '../pages/splash/splash';
+import { CategoryPage } from '../pages/category/category';
 @Component({
   templateUrl: 'app.html'
 })
