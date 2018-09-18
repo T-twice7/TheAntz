@@ -1,0 +1,46 @@
+page-signup {
+    .theList{
+        margin: 0 auto;
+      
+        background: rgba(255, 255, 255, 0.836);
+    }
+    .content{
+        background: rgba(255, 0, 0, 0);
+        text-align: center;
+        padding-top: 10%;
+    }
+    button{
+        width: 70%;
+    }
+    .btn{
+        margin-top: -20px;
+    }
+
+    .form{
+        box-shadow: 0px 0px 10px grey;
+        margin-top: 100px;
+        background: rgb(255, 255, 255);
+        width:90%;
+        margin: 0 auto;
+        padding-bottom: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        border-radius: 20px;
+    }
+    .logo{
+        padding-top: 15%;
+        width: 100px;
+        margin: 0 auto;
+    }
+    .bg{
+        z-index: -1;
+        width: 0px;
+        height: 0px;
+        border-top: 50vh solid #222;
+        border-bottom: 50vh solid #222;
+        border-left: 0vw solid orange;
+        border-right: 100vw solid rgb(239, 239, 239);
+        position: absolute;
+    }
+}

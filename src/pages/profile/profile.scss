@@ -1,0 +1,46 @@
+
+page-profile {
+    .home{
+        background: linear-gradient(#000000, #d4caca)
+    }
+.size{
+    font-size:5vh;
+    color: white;
+    font-weight: bolder;
+}
+#icon{
+    color: white;
+    font-size:6vh;
+}
+#icon2{
+    color: white;
+}
+img{
+    border-left: 7px inset white;
+    border-right: 2px outset black;
+    border-radius: 100%;
+    box-shadow: 0 0 5px black;
+    background-image: url('../../assets/person-icon.jpg');
+    background-size: cover;
+    height: 55vw;
+    width: 55vw;
+}
+#head{
+    color: white;
+}
+.list{
+    margin-top: 10%;
+    color: white;
+    text-align: center;
+    font-size: 110%;
+    font-family: 'Times New Roman', Times, serif;
+}
+#name{
+    font-size: 250%;
+    font-weight: bolder;
+}
+.size{
+    font-size:5vh;
+}
+
+}

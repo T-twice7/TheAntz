@@ -1,0 +1,60 @@
+<ion-header #head>
+  <ion-navbar color="dark">
+      <!-- <ion-grid>
+          <ion-row>
+              <ion-col no-padding>
+                  <button ion-button class="mnu" clear menuToggle>
+                      <ion-icon name="menu"></ion-icon>
+                  </button>
+              </ion-col>
+              <ion-col col-9>
+                  <ion-item no-borders>
+                      <ion-label>Category</ion-label>
+                      <ion-select [(ngModel)]="category" interface="action-sheet">
+                          <ion-option value="Photography">Photography</ion-option>
+                          <ion-option value="Sculpting">Sculpting</ion-option>
+                          <ion-option value="Painting">Painting</ion-option>
+                          <ion-option value="Architecture">Architecture</ion-option>
+                          <ion-option value="Drawing">Drawing</ion-option>
+                          <ion-option value="General">General</ion-option>
+                      </ion-select>
+                  </ion-item>
+              </ion-col>
+              <ion-col>
+                  <button ion-button icon-only clear color="light">
+                      <ion-icon name="search" (click)="next()"></ion-icon>
+                  </button>
+              </ion-col>
+          </ion-row>
+      </ion-grid> -->
+     
+      <div>
+          <ion-item no-borders>
+              <ion-label >Category</ion-label>
+              <ion-select [(ngModel)]="category">
+                  <ion-option value="Photography">Photography</ion-option>
+                  <ion-option value="Sculpting">Sculpting</ion-option>
+                  <ion-option value="Painting">Painting</ion-option>
+                  <ion-option value="Architecture">Architecture</ion-option>
+                  <ion-option value="Drawing">Drawing</ion-option>
+                  <ion-option value="General">General</ion-option>
+              </ion-select>
+          </ion-item>
+      </div>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="profile(obj)">
+              <ion-icon name="person" ></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngFor="let a of arr2">
+    <img [src]="a.downloadurl">
+</ion-list>
+<ion-fab  edge>
+    <button ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
+  </ion-fab>
+</ion-content>
