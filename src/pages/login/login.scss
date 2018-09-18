@@ -84,7 +84,7 @@ page-login {
         }
         }
         #button{
-            box-shadow: 0 0 1px black;
+            box-shadow: 0 0 2px rgb(113,54,79);
             background-color: rgb(126, 60, 151);
             color: white;
         }
@@ -96,16 +96,14 @@ page-login {
         background-color: rgba(255, 255, 255, 0.938);
         height: 12vh;
         box-shadow: 0 0 3px white;
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
         p{
             text-align: center;
             color: rgb(126, 60, 151);
             font-weight: bolder;
-            font-size: 130%;
-            b{
                 font-size: 170%;
-            }
+            
         }
     }
 }

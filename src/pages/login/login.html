@@ -63,12 +63,12 @@
         </ion-item>
 
       </ion-list>
-    <button ion-button full icon-only id="button">
+    <button ion-button full icon-only id="button" (click)="login()">
       Sign In
     </button>
     <p (click)="forgotpassword(obj)">Forgot password</p>
 </div>
 <ion-footer (click)="signup()">
-<p>Or <br> <b>Sign Up</b></p>
+<p>Sign Up</p>
   </ion-footer>
 </ion-content>
