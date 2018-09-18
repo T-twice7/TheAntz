@@ -27,11 +27,27 @@ export class StreetartzProvider {
     firebase.auth().signOut().then(() =>{
       let loading = this.loadingCtrl.create({
         spinner: 'bubbles',
-        content: 'signing out',
+        content: 'signing out.....',
         duration: 3000
       });
-    }).catch(function (error) {
+    }).catch((error)=>{
+      const alert = this.alertCtrl.create({
+        title: error.code,
+        subTitle: error.message,
+        buttons: [
+          {
+            text: 'ok',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+      console.log(error);
+ 
     })
+  
   }
   presentToast1() {
     const toast = this.toastCtrl.create({
@@ -45,7 +61,6 @@ export class StreetartzProvider {
       firebase.auth().signInWithEmailAndPassword(obj.email, obj.password).then((authenticatedUser) => {
         var user = firebase.auth().currentUser
         firebase.database().ref("profiles/" + user.uid).set(obj);
-        // this.navCtrl.setRoot(MainPage);
       }).catch((error) => {
         const alert = this.alertCtrl.create({
           title: error.code,
