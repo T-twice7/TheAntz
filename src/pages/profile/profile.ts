@@ -28,12 +28,13 @@ export class ProfilePage {
   uid: any;
   obj;
   name;
-
+  url = '../../assets/download.png';
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+    
   }
   ngOnInit() {
-    this.obj = this.navParams.get("obj");
-    console.log(this.obj);
+    // this.obj = this.navParams.get("obj");
+    // console.log(this.obj);
   }
 
   next() {
