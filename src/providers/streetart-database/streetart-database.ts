@@ -15,6 +15,7 @@ import firebase from 'firebase';
 */
 @Injectable()
 export class StreetartzProvider {
+  key: string;
   obj = {} as obj;
   arr = [];
   category;
@@ -252,21 +253,9 @@ export class StreetartzProvider {
     })
   }
   update(name,email){
-   var updateData = {
-     username: name,
-     email: email
-   };
+    let userID = firebase.auth().currentUser;
     return new Promise((pass,fail)=>{
-  //  firebase.database().ref("profiles/" + userID.uid + '/').update({name});
-  var newPostKey = firebase.database().ref().child('profiles').push().key;
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  var updates = {};
-  updates['/profiles/' + newPostKey] = updateData;
-  // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-  return firebase.database().ref().update(updates);
-
+   firebase.database().ref('profiles/'+ userID.uid).update({name:name,email:email});
     })
 
   }
