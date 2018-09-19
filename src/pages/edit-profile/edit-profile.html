@@ -14,5 +14,22 @@
 
 
 <ion-content padding>
-
+<img [src]="url">
+<ion-card>
+  <ion-item class="item item-trns text-center">
+    <input type="file" (change)="insertpic($event)">
+  </ion-item>
+</ion-card>
+<ion-list>
+    <ion-item>
+      <ion-label stacked>Name</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="name"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="update()">Save</button>
 </ion-content>

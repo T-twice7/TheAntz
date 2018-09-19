@@ -7,11 +7,6 @@
   <h1 id="head" align="center">Profile</h1>
   <div id="pic" align="center">
       <img [src]="url">
-    <ion-card>
-        <ion-item class="item item-trns text-center">
-          <input type="file" (change)="insertpic($event)">
-        </ion-item>
-      </ion-card>
   </div>
   <ion-list class="list" >
     <ion-item *ngFor="let item of obj">

@@ -27,41 +27,15 @@ export class ProfilePage {
   arr = [];
   uid: any;
   obj;
-  url='../../assets/beats.jpg' ;
   name;
-  imageUrl;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
   }
-  insertpic(event:any){
-    if (event.target.files && event.target.files[0]){
-      let reader = new FileReader();
-      reader.onload = (event:any) =>{
-        this.url = event.target.result;
-      }
-      reader.readAsDataURL(event.target.files[0]);
-      console.log(reader.onload);
-    }
 
-  }
-
- 
-  uploadPicture(){
-    this.art.uploadPic(this.url,this.name).then(data =>{
-      this.imageUrl = data;
-       this.art.storeProfilePics(data).then(() =>{
-         console.log('added to db');
-       },
-      Error =>{
-        console.log(Error)
-      })
-    }, Error =>{
-      console.log(Error )
-    })
-  }
   next() {
     this.navCtrl.push(CategoryPage);
   }
@@ -75,9 +49,9 @@ export class ProfilePage {
     popover.present();
   }
 
-  
-  getUid(){
-    this.art.getUserID().then(data =>{
+
+  getUid() {
+    this.art.getUserID().then(data => {
       this.uid = data
     })
   }
@@ -108,5 +82,5 @@ export class ProfilePage {
       console.log(Error)
     });
   }
- 
+
 }

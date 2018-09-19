@@ -23,15 +23,23 @@ export class StreetartzProvider {
     console.log('Hello StreetartzProvider Provider');
 
   }
-logout() {
-  return new Promise((resolve, reject) => {
-    firebase.auth().signOut().then(()=>{
-   resolve();
-    } , (error)=>{
-      reject(error)
-    })
-  })
-}
+  logout() {
+    const loader = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      content: 'signing out....',
+      duration: 3000
+    });
+    loader.present();
+    return new Promise((resolve, reject) => {
+      firebase.auth().signOut().then(()=>{
+        resolve()
+      } , (error)=>{
+        reject(error)
+ 
+      });
+    });
+ 
+  }
   presentToast1() {
     const toast = this.toastCtrl.create({
       message: 'email or password doesnot match!',
@@ -215,16 +223,6 @@ logout() {
     })
   }
 
-  deletePicture(key: any) {
-    return new Promise((accpt, rejc) => {
-      var user = firebase.auth().currentUser
-      firebase.database().ref("uploads/" + user.uid).child(key).remove().then(() => {
-      }, Error => {
-        rejc(Error.message);
-        console.log(Error.message);
-      });
-    })
-  }
   selectCategory(category) {
     return new Promise((pass, fail) => {
       firebase.database().ref("uploads").on('value', (data: any) => {
@@ -252,5 +250,24 @@ logout() {
         }
       })
     })
+  }
+  update(name,email){
+   var updateData = {
+     username: name,
+     email: email
+   };
+    return new Promise((pass,fail)=>{
+  //  firebase.database().ref("profiles/" + userID.uid + '/').update({name});
+  var newPostKey = firebase.database().ref().child('profiles').push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/profiles/' + newPostKey] = updateData;
+  // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+  return firebase.database().ref().update(updates);
+
+    })
+
   }
 }
