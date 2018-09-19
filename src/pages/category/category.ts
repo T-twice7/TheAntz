@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { obj } from '../../app/class';
 import { ProfilePage } from '../profile/profile';
+import { ViewPage } from '../view/view';
 /**
  * Generated class for the CategoryPage page.
  *
@@ -55,6 +56,14 @@ export class CategoryPage {
       }
     })
   }
+  //category TS\\
+
+
+push( b) {
+  console.log(b);
+  let details=this.arr2[b];
+  console.log(details);
+  this.navCtrl.push(ViewPage,{obj:details});
 
 }
-
+}

@@ -252,11 +252,48 @@ export class StreetartzProvider {
       })
     })
   }
-  update(name,email){
+  update(name,facebook,twitter,instagram){
     let userID = firebase.auth().currentUser;
     return new Promise((pass,fail)=>{
-   firebase.database().ref('profiles/'+ userID.uid).update({name:name,email:email});
+   firebase.database().ref('profiles/'+ userID.uid).update({name:name,twitter:twitter,facebook:facebook,instagram:instagram});
+   let loading = this.loadingCtrl.create({
+    spinner: 'bubbles',
+    content: 'Please wait',
+    duration: 3000
+  });
     })
 
   }
-}
+  //Provider\\
+
+  push(obj: obj) {
+
+    return new Promise((pass, fail) => {
+      firebase.database().ref("uploads").on('value', (data: any) => {
+        let uploads = data.val();
+        console.log(uploads);
+        var keys: any = Object.keys(uploads);
+        for (var j = 0; j < keys.length; j++) {
+          firebase.database().ref("uploads").on('value', (data2: any) => {
+            let uploads2 = data2.val();
+            console.log(uploads2);
+            var keys2: any = Object.keys(uploads2);
+            for (var i = 0; i < keys2.length; i++) {
+              var k = keys2[i];
+              if ( this.arr == uploads2[k].arr){
+                let objt = {
+                  name: uploads2[k].name,
+                  //category: uploads2[k].category,
+                  downloadurl: uploads2[k].downloadurl
+                }
+                this.arr.push(objt);
+                console.log(this.arr);
+              }
+            }
+          }),pass(this.arr);
+        }
+      })
+    })
+  }
+ 
+ }

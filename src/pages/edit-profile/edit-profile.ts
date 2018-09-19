@@ -18,6 +18,9 @@ export class EditProfilePage {
   obj;
   email: any;
   name: any;
+  facebook:any;
+  instagram:any;
+  twitter:any;
   url = '../../assets/download.png';
   imageUrl;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController) {
@@ -38,7 +41,7 @@ export class EditProfilePage {
     loader.present();
   }
   update() {
-    this.art.update(this.name,this.email).then((data) => {
+    this.art.update(this.name,this.facebook,this.instagram,this.twitter).then((data) => {
       this.presentLoading();
       console.log(data);
     })
