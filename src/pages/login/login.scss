@@ -49,7 +49,7 @@ page-login {
     div.scroll-content{
         // rgb(113,54,79)
         // margin-top: 10%;
-        background: linear-gradient(rgb(0,78,66) ,rgba(0, 78, 66, 0.726) );
+        background: linear-gradient(rgba(0, 78, 66, 0.267),rgb(0,78,66) );
         // rgb(111,238,221)
         padding: 5%;
     }
@@ -93,7 +93,7 @@ page-login {
         }
         #button{
             box-shadow: 0 0 2px rgb(42,165,153);
-            background-color: rgb(42,165,153);
+            // background-color: rgb(42,165,153);
             color:rgb(0,78,66);
             font-size: 120%;
             font-weight: bolder;

@@ -1,6 +1,7 @@
 page-signup {
+    animation: 1s slideInUp;
     div.scroll-content{
-        background: linear-gradient(rgba(0, 78, 66, 0.849) ,rgb(0,78,66));
+        background: linear-gradient(rgba(0, 78, 66, 0.267),rgb(0,78,66));
     }
     
         .logo{
@@ -37,7 +38,7 @@ page-signup {
         }
         #button{
             box-shadow: 0 0 2px rgb(34,232,181);
-            background-color: rgb(42,165,153);
+            // background-color: rgb(42,165,153);
             color: white ;
             font-weight: bolder;
         }
@@ -48,8 +49,9 @@ page-signup {
         justify-content: center;
         align-items: center;
         background-color: white;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+
         p{
             text-align: center;
             color: rgb(0,78,66) ;
