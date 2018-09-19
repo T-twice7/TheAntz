@@ -1,8 +1,9 @@
 <ion-header #head>
+
   <ion-navbar color="lightGreen">
       <div class="head">
-          <ion-item  color="secondary" >
-              <ion-label >Category</ion-label>
+          <ion-item  color="lightGreen" >
+              <ion-label id="cat">Category</ion-label>
               <ion-select [(ngModel)]="category">
                   <ion-option value="Photography">Photography</ion-option>
                   <ion-option value="Sculpting">Sculpting</ion-option>
@@ -14,7 +15,7 @@
           </ion-item>
       </div>
       <ion-buttons end>
-          <button ion-button color="secondary" icon-only (click)="profile(obj)">
+          <button ion-button color="light" icon-only (click)="profile(obj)">
               <ion-icon name="person" ></ion-icon>
           </button>
       </ion-buttons>
@@ -23,16 +24,31 @@
 
 
 <ion-content>
+                <ion-fab bottom right>
+                                <button color="secondary" icon-only ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
+                              </ion-fab>
         <div class="content">
                 <ion-grid>
                         <ion-row>
                                 <ion-col *ngFor="let a of arr2">
                                                 <img [src]="a.downloadurl">
+                                                
                 </ion-col>
+                <!-- <ion-col >
+                                <img src="../../assets/imgs/3.jpg">
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+</ion-col>
+<ion-col >
+                <img src="../../assets/imgs/3.jpg">
+                <ion-buttons>
+                        <button ion-button>
+                                Twice
+                        </button>
+                        </ion-buttons>
+</ion-col> -->
                          </ion-row>
                 </ion-grid>
-                                    <ion-fab bottom right>
-                                        <button color="secondary" icon-only ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
-                                      </ion-fab>
+
         </div>
 </ion-content>
