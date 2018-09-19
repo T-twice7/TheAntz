@@ -16,16 +16,32 @@ import { obj } from '../../app/class';
 export class ViewPage {
 
 
-  obj;
+  obj=this.navParams.get("obj");
+  name;
+  downloadurl;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  
+    this.obj = this.navParams.get("obj");
+    console.log("this is my index");
+    console.log(this.obj);
+
+    this.name=this.obj.name;
+
+   this.downloadurl=this.obj.downloadurl;
+
   }
   ngOnInit() {
-    this.obj = this.navParams.get("obj");
-    console.log(this.obj);
+
+   
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
+    console.log(this.obj);
+    console.log(this.obj.name);
+    
   }
+  
 
 }

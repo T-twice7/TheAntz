@@ -32,7 +32,7 @@
           <ion-item no-borders>
               <ion-label >Category</ion-label>
               <ion-select [(ngModel)]="category">
-                  <ion-option value="Photography">Photography</ion-option>
+                  <ion-option value="Photography" (click)="typeOfArt()">Photography</ion-option>
                   <ion-option value="Sculpting">Sculpting</ion-option>
                   <ion-option value="Painting">Painting</ion-option>
                   <ion-option value="Architecture">Architecture</ion-option>
@@ -51,14 +51,14 @@
 
 
 <ion-content padding>
-  <ion-list *ngFor="let a of arr2">
-    <img [src]="a.downloadurl">
+  <ion-list *ngFor="let a of arr2; let b= index">
+    <img [src]="a.downloadurl" (click)="push(b)">
 </ion-list>
 <ion-fab  edge>
     <button ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
   </ion-fab>
-  <img src="../../assets/imgs/logo.png" (click)="push()">
+ <!-- <img src="../../assets/imgs/logo.png" (click)="push()">-->
 
 
-  <button ion-button (click)="logout()">Logout</button>
+ 
 </ion-content>

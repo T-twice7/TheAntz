@@ -23,22 +23,30 @@ export class StreetartzProvider {
     console.log('Hello StreetartzProvider Provider');
 
   }
-  logout() {
-    const loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 3000
-    });
-    loader.present();
-
-    return new Promise((resolve, reject) => {
-      firebase.auth().signOut().then(()=>{
-        
-        resolve()
-      } , (error)=>{
-        reject(error)
-        
+  logout(){
+    firebase.auth().signOut().then(() =>{
+      let loading = this.loadingCtrl.create({
+        spinner: 'bubbles',
+        content: 'signing out.....',
+        duration: 3000
       });
-    });
+    }).catch((error)=>{
+      const alert = this.alertCtrl.create({
+        title: error.code,
+        subTitle: error.message,
+        buttons: [
+          {
+            text: 'ok',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+      console.log(error);
+ 
+    })
   
   }
 
@@ -54,7 +62,6 @@ export class StreetartzProvider {
       firebase.auth().signInWithEmailAndPassword(obj.email, obj.password).then((authenticatedUser) => {
         var user = firebase.auth().currentUser
         firebase.database().ref("profiles/" + user.uid).set(obj);
-        // this.navCtrl.setRoot(MainPage);
       }).catch((error) => {
         const alert = this.alertCtrl.create({
           title: error.code,
@@ -231,6 +238,7 @@ export class StreetartzProvider {
     })
   }
   push(obj: obj) {
+    
     return new Promise((pass, fail) => {
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
@@ -243,10 +251,10 @@ export class StreetartzProvider {
             var keys2: any = Object.keys(uploads2);
             for (var i = 0; i < keys2.length; i++) {
               var k = keys2[i];
-              if ( this.arr == uploads2[k].category){
+              if ( this.arr == uploads2[k].arr){
                 let objt = {
                   name: uploads2[k].name,
-                  category: uploads2[k].category,
+                  //category: uploads2[k].category,
                   downloadurl: uploads2[k].downloadurl
                 }
                 this.arr.push(objt);

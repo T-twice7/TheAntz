@@ -58,17 +58,19 @@ export class CategoryPage {
       }
     })
   }
-  push(obj: obj) {
-    this.art.profile(this.obj).then((data) => {
-      this.navCtrl.push(ViewPage, { obj: data });
-    })
-  }
-  logout() {
+  push( b) {
+    console.log(b);
 
-   
-  this.art.logout().then(()=>{
-    this.navCtrl.push(LoginPage)
-  } , (error)=>{})
+    let details=this.arr2[b];
+    console.log(details);
+    this.navCtrl.push(ViewPage,{obj:details});
+
+    // this.art.profile(this.obj).then((data) => {
+    //   
+      
+    // })
+    
+  
   }
 
 }

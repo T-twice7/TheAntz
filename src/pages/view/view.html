@@ -17,20 +17,20 @@
  <!-- <ion-icon name="close" class="size" (click)="next()"></ion-icon>
   <button ion-button><ion-icon name="more"></ion-icon></button>
 -->
-<h1 id="head" align="center">Profile</h1>
+<h1 id="head" align="center">View Profile</h1>
 
 
-<ion-list class="list" *ngFor="let item of obj" >
+<ion-list class="list"  >
   <ion-fab right>
       <ion-icon id="icon2" name="brush" ></ion-icon>
   </ion-fab>
-<p id="name">
-  {{item.name}}
-  </p>  
-<p>Email:
-  {{item.email}} 
-  </p>   
   
-  
+   <img [src]="downloadurl" >
+   
+    
+
+
+  <h2>{{name}}</h2>
+
 </ion-list>
 </ion-content>
