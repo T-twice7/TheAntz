@@ -6,13 +6,71 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>EditProfile</ion-title>
+  <ion-navbar color="secondary" >
+      <ion-buttons start>
+          <button ion-button icon-only>
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title >Edit Profile</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <ion-card id="Card">
+        <img src="../../assets/imgs/1.jpg" />
+      <ion-item id="itm">
+          <button ion-button clear>
+              <ion-icon name="reverse-camera"></ion-icon>
+            </button>
+        <h2>
+            Thando
+          </h2>
+      </ion-item>
+    </ion-card>
+  <div class="content">
+      <ion-list no-lines>
+          <ion-item  class="item">
+              <ion-label>
+                  <ion-icon name="mail"></ion-icon>
+                thando@g.com
+              </ion-label>
+               <!-- {{x.Surname}} -->
+            </ion-item>
+            
+         
+          <ion-item class="item">
+              <ion-label>
+                  <ion-icon name="call"></ion-icon>
+                0782543698
+                <!-- {{x.role}} -->
+              </ion-label>
+          </ion-item>
+            
+         
+          <ion-item class="item">
+              <ion-label>
+                  <ion-icon name="reverse-camera"></ion-icon>
+                @Twice_T
+                <!-- {{x.IDno}} -->
+              </ion-label>
+            </ion-item>
+           
+      
+          <ion-item class="item">
+              <ion-label>
+                  <ion-icon name="reverse-camera"></ion-icon>
+                  Developer
+                <!-- {{x.Cntx}} -->
+              </ion-label>
+              </ion-item>
+        </ion-list>
 
+  </div>
 </ion-content>

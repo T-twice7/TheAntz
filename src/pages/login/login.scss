@@ -1,51 +1,5 @@
 page-login {
-    // .everything{
-    //     text-align: center;
-    // }
-
-    // .logo{
-    //     width: 150px;
-    //     margin: 0 auto;
-    //     padding-top: 10%;
-    // }
-    // .theList{
-    //     width: 100%;
-    //     padding: 10px;
-    //     border-radius: 20px;
-    //     background: white;
-    //     box-shadow: 0px 0px 10px grey;
-    //     margin: 0 auto;
-    // }
-    // .btn{
-    //     width: 80%;
-    //     margin: 0 auto;
-    // }
-    // .form{
-    //     padding-top: 20%;
-    //     text-align: center;
-    //     width: 90%;
-    //     margin: 0 auto;
-    //     border-radius: 20px;
-    // }
-    // .ctrl{
-    //     margin-top: -30px;
-    // }
-    // .mtop{
-    //     z-index: -1;
-    //     width: 0px;
-    //     height: 0px;
-    //     border-top: 50vh solid #222;
-    //     border-bottom: 50vh solid #222;
-    //     border-left: 0vw solid orange;
-    //     border-right: 100vw solid rgb(239, 239, 239);
-    //     position: absolute;
-    // }
-    // #forgot{
-    //     text-shadow: 0px 0px 10px black;
-    // }
-    // #instruct{
-    //     color: red;
-    // }
+    background: linear-gradient(rgba(0, 78, 66, 0.267),rgb(0,78,66) );
     div.scroll-content{
         // rgb(113,54,79)
         // margin-top: 10%;
@@ -94,7 +48,6 @@ page-login {
         #button{
             box-shadow: 0 0 2px rgb(42,165,153);
             // background-color: rgb(42,165,153);
-            color:rgb(0,78,66);
             font-size: 120%;
             font-weight: bolder;
         }

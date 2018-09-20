@@ -1,27 +1,120 @@
+<ion-content class="home">
 
-<ion-content padding class="home">
-  <ion-icon name="close" class="size" (click)="next()"></ion-icon>
-  <button ion-button (click)="presentPopover()"><ion-icon name="more"></ion-icon></button>
-
-<h1 id="head" align="center">Profile</h1>
-<div id="pic" align="center"> 
-    <img />
-    <ion-fab right>
-      <ion-icon id="icon" name="aperture" ></ion-icon>
-  </ion-fab>
-</div>
-<ion-list class="list" *ngFor="let item of obj" >
-  <ion-fab right>
-      <ion-icon id="icon2" name="brush" ></ion-icon>
-  </ion-fab>
-<p id="name">
-  {{item.name}}
-  </p>  
-<p>Email:
-  {{item.email}} 
-  </p>   
-  <ion-icon name="add" (click)="upload()"></ion-icon>
-  <button ion-button>My gallery</button>
+  <div class="forFab">
+      <ion-fab top right clear class="moreFAB">
+      <button ion-fab mini clear class="moreFAB" color="secondary">
+        <ion-icon ios="ios-more" md="md-more"></ion-icon>
+      </button>
+      <ion-fab-list side="left">
+        <div class="cont">
+          <button class="edit" color="dark" ion-button clear (click)="nextpage()">Edit Profile</button>
+          <button class="signOut" color="dark" ion-button clear (click)="logout()">Sign Out</button>
+        </div>
   
-</ion-list>
-</ion-content>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+  
+  
+  
+    <div class="head">
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col>
+            <button color="light" ion-button icon-only (click)="dismissPage()" clear>
+              <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col align="center">
+            <h1 id="head">Profile</h1>
+          </ion-col>
+          <ion-col align="right">
+            <button ion-button color="light" icon-only clear (click)="presentPopover()">
+              <ion-icon ios="ios-more" md="md-more"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+  
+  
+      <div id="pic" align="center">
+        <div class="photo">
+          <div class="dp">
+            <img class="m" [src]="url">
+          </div>
+        </div>
+      </div>
+      <!-- ============================================== -->
+      <!-- <div class="card-background-page">
+          <ion-card>
+              <img src="img/card-saopaolo.png"/>
+              <div class="card-title">São Paulo</div>
+              <div class="card-subtitle">41 Listings</div>
+            </ion-card>
+      </div> -->
+  
+      <!-- ============================================== -->
+      <div class="list">
+        <div *ngFor="let item of obj">
+  
+          <h3>
+            {{item.name}}
+          </h3>
+          <p>{{item.email}}
+          </p>
+          <p>Instagram
+            <br> {{item.instagram}}
+          </p>
+          <p>Facebook
+            <br> {{item.facebook}}
+          </p>
+          <p>Twitter
+            <br> {{item.twitter}}
+          </p>
+        </div>
+  
+      </div>
+  
+  
+    </div>
+    <div class="split">
+      <ion-grid>
+        <ion-row id="divider">
+          <ion-col id="divider">My Gallery</ion-col>
+          <ion-col id="divider" align="right">
+            <button ion-button icon-only color="primary" class="btnIcon" (click)="upload()">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+      <!-- <ion-fab right>
+        <button ion-button icon-only class="addBtn" clear><ion-icon name="add"></ion-icon></button>
+      </ion-fab> -->
+    </div>
+  
+  
+    <!-- <button ion-button (click)="retreivePics()">My gallery</button> -->
+  
+    <!-- <ion-list>
+      <ion-item *ngFor="let a of list">
+        <img [src]="a.downloadurl">
+        <h2>{{a.name}}</h2>
+      </ion-item>
+    </ion-list> -->
+  
+    <div class="contents">
+      <ion-grid>
+  
+        <ion-row>
+          <ion-col *ngFor="let a of list">
+            <img [src]="a.downloadurl" alt="">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <ion-card>
+    </ion-card>
+  </ion-content>
