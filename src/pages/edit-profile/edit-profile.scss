@@ -1,31 +1,47 @@
 page-edit-profile {
-div.scroll-content{}
-    #Card{
-        // display: inline;
-        // position: absolute;
-        background-color: transparent;
-        border: none;
-        box-shadow: 0 0 1px white;
-        img{
-            // display: inline;
-            height: 30vh;
-            border-radius: 7px;
-            opacity: 0.7;
-        }
-        button{
-            // display: inline;
-            float: right;
-            font-size: 190%;
-        }
-        h2{
-            font-size: 190%;
-            text-align: center;
-            font-family: monospace;
-        }
-    }
+
+div.scroll-content{
+    // background-color: rgb(42,165,153);
+
+}
+#mark{
+    font-size: 310%;
+}
+  
 #itm{
+    margin: 0%;
     border: none;
     box-shadow: 0 0 1px white;
+    width: 85vw;
+    background-color: transparent;
+    img{
+        // display: inline;
+        margin: 0%;
+        height: 20vh;
+        width: 30vw;
+        border-radius: 100%;
+        // opacity: 0.7;
+        
+    }
+    .icon{
+        color: rgb(0,78,66);
+        margin: 0%;
+        float: right;
+        font-size: 290%;
+    }
+    h2{
+        color: black;
+        margin: 0%;
+        font-size: 190%;
+        text-align: center;
+        font-family: monospace;
+        font-weight: 900;
+        text-shadow: 0 2px 12px rgb(133, 133, 133);
+    }
+    p{
+        text-align: center;
+        color: black;
+    }
 }
     .Camera{
         display: inline;
@@ -36,7 +52,11 @@ div.scroll-content{}
     }
     .item{
         margin: 1%;
-        box-shadow: 0 0 1px black;
+        box-shadow: 0 0 1px rgb(156, 156, 156);
         width: 78.5vw;
+        // border-radius: 3px;
+        ion-icon{
+            color: rgb(42,165,153);
+        }
     }
 }

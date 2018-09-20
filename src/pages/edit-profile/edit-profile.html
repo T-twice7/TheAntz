@@ -14,8 +14,8 @@
         </ion-buttons>
     <ion-title >Edit Profile</ion-title>
     <ion-buttons end>
-        <button ion-button icon-only>
-          <ion-icon name="checkmark"></ion-icon>
+        <button ion-button icon-only >
+          <ion-icon name="checkmark" id="mark"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
@@ -23,24 +23,31 @@
 
 
 <ion-content>
-    <ion-card id="Card">
-        <img src="../../assets/imgs/1.jpg" />
-      <ion-item id="itm">
-          <button ion-button clear>
-              <ion-icon name="reverse-camera"></ion-icon>
-            </button>
-        <h2>
-            Thando
-          </h2>
-      </ion-item>
-    </ion-card>
+    
   <div class="content">
       <ion-list no-lines>
+          <ion-item id="itm">
+              <ion-thumbnail item-start>
+                <!-- <p> -->
+                  <img src="../../assets/imgs/1.jpg" />
+                  <sup>
+                  <!-- <button ion-button clear > -->
+                      <ion-icon class="icon" name="reverse-camera"></ion-icon>
+                    <!-- </button> -->
+                    </sup>
+                    <!-- </p> -->
+              </ion-thumbnail>
+              <h2>Thando</h2>
+              <p>Am a sketch artist</p>
+            </ion-item>
           <ion-item  class="item">
               <ion-label>
                   <ion-icon name="mail"></ion-icon>
                 thando@g.com
               </ion-label>
+              <ion-input type="email">
+                  
+              </ion-input>
                <!-- {{x.Surname}} -->
             </ion-item>
             
@@ -56,7 +63,7 @@
          
           <ion-item class="item">
               <ion-label>
-                  <ion-icon name="reverse-camera"></ion-icon>
+                  <ion-icon name="logo-twitter"></ion-icon>
                 @Twice_T
                 <!-- {{x.IDno}} -->
               </ion-label>
@@ -65,8 +72,8 @@
       
           <ion-item class="item">
               <ion-label>
-                  <ion-icon name="reverse-camera"></ion-icon>
-                  Developer
+                  <ion-icon name="logo-instagram"></ion-icon>
+                  Twice_Developer
                 <!-- {{x.Cntx}} -->
               </ion-label>
               </ion-item>
