@@ -21,9 +21,9 @@ export class CategoryPage {
   category;
   arr2 = [];
   uid: any;
-
+  list =[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
-
+    this.retreivePics()
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoryPage');
@@ -65,5 +65,10 @@ push( b) {
   console.log(details);
   this.navCtrl.push(ViewPage,{obj:details});
 
+}
+retreivePics(){
+  this.art.viewPicMain().then((data: any) =>{
+    this.list = data;
+  });
 }
 }

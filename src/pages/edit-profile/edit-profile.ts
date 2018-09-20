@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { LoadingController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -16,6 +17,7 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
+  arr =[];
   obj;
   email: any;
   name: any;
@@ -24,7 +26,7 @@ export class EditProfilePage {
   twitter:any;
   url = '../../assets/download.png';
   imageUrl;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -34,21 +36,10 @@ export class EditProfilePage {
   //   this.obj = this.navParams.get("obj");
   //   console.log(this.obj);
   // }
-  presentLoading() {
-    const loader = this.loadingCtrl.create({
-      content: "data updated...",
-      duration: 3000
-    });
-    loader.present();
-  }
-  update() {
+
+  update() { 
+    this.arr.length = 0;
     this.art.update(this.name,this.facebook,this.instagram,this.twitter).then((data) => {
-      const loader = this.loadingCtrl.create({
-        content: "data updated...",
-        duration: 3000
-      });
-      loader.present();
-      this.navCtrl.push(ProfilePage);
       console.log(data);
     })
   }
