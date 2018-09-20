@@ -16,7 +16,7 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'upload-image.html',
 })
 export class UploadImagePage {
-  url='../../assets/beats.jpg' ;
+  url='../../assets/default.jpg' ;
   name;
   category;
   imageUrl;
@@ -46,6 +46,7 @@ export class UploadImagePage {
   }
 
   uploadPicture(){
+    this.arr.length = 0;
     this.art.uploadPic(this.url,this.name).then(data =>{
       this.imageUrl = data;
        this.art.storeToDB(data, this.category, this.name,this.description).then(() =>{

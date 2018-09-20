@@ -10,6 +10,7 @@ import { PopOverProfilePage } from '../pop-over-profile/pop-over-profile';
 import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -22,19 +23,22 @@ declare var firebase;
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
   list = [];
   arr = [];
   uid: any;
-  obj;
+  obj=[];
   name;
-  url = '../../assets/download.png';
+  url = '../../assets/default.jpg';
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-    
+
+  }
+  ionViewDidLoad() {
+    this.retreivePics();
   }
   ngOnInit() {
-    // this.obj = this.navParams.get("obj");
-    // console.log(this.obj);
+    this.obj = this.navParams.get("obj");
+    console.log(this.obj);
   }
 
   next() {
@@ -83,5 +87,15 @@ export class ProfilePage {
       console.log(Error)
     });
   }
-
+  nextpage(){
+    this.navCtrl.push(EditProfilePage);
+  }
+  logout(){
+    this.art.logout().then(()=>{
+      this.navCtrl.push(LoginPage);
+    },(error)=>{})
+    }
+    dismissPage(){
+      this.navCtrl.pop();
+    }
 }

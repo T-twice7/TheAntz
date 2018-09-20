@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { LoadingController } from 'ionic-angular';
+import { ProfilePage } from '../profile/profile';
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -35,14 +36,19 @@ export class EditProfilePage {
   // }
   presentLoading() {
     const loader = this.loadingCtrl.create({
-      content: "Please wait...",
+      content: "data updated...",
       duration: 3000
     });
     loader.present();
   }
   update() {
     this.art.update(this.name,this.facebook,this.instagram,this.twitter).then((data) => {
-      this.presentLoading();
+      const loader = this.loadingCtrl.create({
+        content: "data updated...",
+        duration: 3000
+      });
+      loader.present();
+      this.navCtrl.push(ProfilePage);
       console.log(data);
     })
   }
@@ -59,17 +65,18 @@ export class EditProfilePage {
   }
 
 
-  uploadPicture() {
-    this.art.uploadPic(this.url, this.name).then(data => {
-      this.imageUrl = data;
-      this.art.storeProfilePics(data).then(() => {
-        console.log('added to db');
-      },
-        Error => {
-          console.log(Error)
-        })
-    }, Error => {
-      console.log(Error)
-    })
-  }
+  // uploadPicture() {
+  //   this.art.uploadProfilePic(this.url, this.name).then(data => {
+  //     this.imageUrl = data;
+  //     this.art.storeProfilePics(data,this.name).then(() => {
+  //       console.log('added to db'); 
+  //     },
+  //       Error => {
+  //         console.log(Error)
+  //       })
+  //   }, Error => {
+  //     console.log(Error)
+  //   })
+  
+  // }
 }
