@@ -95,6 +95,7 @@ export class StreetartzProvider {
     })
   }
   profile(obj: obj) {
+    this.arr.length= 0;
     return new Promise((pass, fail) => {
       let userID = firebase.auth().currentUser;
       firebase.database().ref("profiles/" + userID.uid).on('value', (data: any) => {
@@ -133,7 +134,7 @@ export class StreetartzProvider {
       })
     })
   }
-  uploadProfilePic(pic) {
+  uploadProfilePic(pic, name) {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: 'Please wait',
@@ -169,16 +170,17 @@ export class StreetartzProvider {
         });
       })
     }
-    storeProfilePics(link){
+    storeProfilePics(name,picName){
       return new Promise((accpt,rejc) =>{
         var storageRef = firebase.storage().ref(name);
         storageRef.getDownloadURL().then(url => {
           console.log(url)
           var user = firebase.auth().currentUser;
           var link =  url;
-          firebase.database().ref('uploadPic/').push({
+          firebase.database().ref('profiles/').push({
                 downloadurl :link,
-                uid:user.uid
+                uid:user.uid,
+                name:picName,
               });
               accpt('success');
         }, Error =>{
@@ -253,6 +255,7 @@ export class StreetartzProvider {
     })
   }
   update(name,facebook,twitter,instagram){
+    this.arr.length= 0;
     let userID = firebase.auth().currentUser;
     return new Promise((pass,fail)=>{
    firebase.database().ref('profiles/'+ userID.uid).update({name:name,twitter:twitter,facebook:facebook,instagram:instagram});

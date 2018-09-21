@@ -51,9 +51,8 @@
 
 
 <ion-content padding>
-  <ion-list *ngFor="let a of arr2">
+  <ion-list *ngFor="let a of arr2; let b = index">
         <img [src]="a.downloadurl" (click)="push(b)">
-
 </ion-list>
 <ion-fab  edge>
     <button ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
