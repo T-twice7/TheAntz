@@ -21,21 +21,29 @@
       </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-
 <ion-content>
                 <ion-fab bottom right>
-                                <button color="secondary" icon-only ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
+                                <button class="btnFab" color="secondary" icon-only ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
                               </ion-fab>
-        <div class="content">
                 <ion-grid>
-                        <ion-row>
-                                <ion-col *ngFor="let a of arr2">
-                                                <img [src]="a.downloadurl">
-                                                
-                </ion-col>
-                         </ion-row>
-                </ion-grid>
 
-        </div>
+                    <ion-row>
+        <ion-col class="col" col-6 *ngFor="let a of arr2" >
+                <!-- *ngFor="let a of arr2" -->
+                                <img [src]="a.downloadurl">
+                                
+                                 <!-- <img src="../../assets/imgs/2.jpg"> -->
+                                <ion-item>
+                          <button id="btn" ion-button clear item-start>
+                                <ion-icon id="icon" name="thumbs-up" ></ion-icon>  
+                            Like
+                          </button>
+                          <button ion-button clear item-end>
+                                <ion-icon name="mail-open" ></ion-icon>
+                              Comment
+                          </button>
+                        </ion-item>
+        </ion-col>
+                        </ion-row>
+                </ion-grid>
 </ion-content>

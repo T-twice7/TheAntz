@@ -7,7 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { CategoryPage } from '../pages/category/category';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
-
+import { SplashScreenPage } from '../pages/splash-screen/splash-screen';
 import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
 @Component({

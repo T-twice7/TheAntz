@@ -118,6 +118,7 @@ export class ProfilePage {
       console.log(Error )
     })
   }
+  
   next() {
     this.navCtrl.push(CategoryPage);
   }

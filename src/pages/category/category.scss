@@ -1,5 +1,7 @@
 page-category {
-    
+    div.scroll-content{
+        // background: linear-gradient(rgb(121, 199, 178) ,rgb(93, 155, 139) ); 
+    }
 ion-header{
     button{
         width: 15vw;
@@ -15,33 +17,28 @@ ion-header{
         }
 
     }
-
-    div.scroll-content{
-        // background: linear-gradient(rgb(121, 199, 178) ,rgb(93, 155, 139) ); 
+    #btn{
+        // background-color: aqua;
     }
-    .content{
-        ion-grid{
-            padding: 1%;
-            margin: 0%;
-        }
-        ion-row{
-            display: block;
-        }
-
-        ion-col{
-            display: inline;
-            padding: 0.3%;
-            margin: 0%;
-            img{
-                height: 40vw;
-                width: 47.7vw;
-                border-radius: 3px;
-                margin: 0%;
-            }
-        }
-        button{
-            box-shadow: 0 6px 12px rgb(56, 56, 56);
+    #icon{
+        color: aqua;
+    }
+    ion-grid{
+        margin: 0%;
+    }
+    ion-row{
+        margin: 0%;
+    }
+    ion-col{
+        margin: 0%;
+        ion-item{
+            box-shadow: 0 0 1px white;
         }
     }
-    
+    img{
+     border-radius: 5px;       
+    }
+    .btnFab{
+        box-shadow: 0 6px 12px rgb(56, 56, 56);
+    }
 }
