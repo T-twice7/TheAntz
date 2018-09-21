@@ -26,15 +26,15 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-
-
+    
+   
     firebase.initializeApp({
-      apiKey: "AIzaSyDXJsbuaNORuwbz2gdRBFi-kUQ1JDJKoMA",
-        authDomain: "street-artz-181f2.firebaseapp.com",
-        databaseURL: "https://street-artz-181f2.firebaseio.com",
-        projectId: "street-artz-181f2",
-        storageBucket: "street-artz-181f2.appspot.com",
-        messagingSenderId: "118526884863"
+      apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
+      authDomain: "streetartsdatabase.firebaseapp.com",
+      databaseURL: "https://streetartsdatabase.firebaseio.com",
+      projectId: "streetartsdatabase",
+      storageBucket: "streetartsdatabase.appspot.com",
+      messagingSenderId: "202504182684"
     })
 
   }

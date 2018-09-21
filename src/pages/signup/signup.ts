@@ -40,7 +40,7 @@ export class SignupPage {
   presentToast() {
 
     const toast = this.toastCtrl.create({
-      message: 'User registered successfully!',
+      message: 'successfully registered!',
       duration: 3000
     });
     toast.present();
