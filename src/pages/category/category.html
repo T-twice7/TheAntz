@@ -1,60 +1,54 @@
 <ion-header #head>
-  <ion-navbar color="dark">
-      <!-- <ion-grid>
-          <ion-row>
-              <ion-col no-padding>
-                  <button ion-button class="mnu" clear menuToggle>
-                      <ion-icon name="menu"></ion-icon>
-                  </button>
-              </ion-col>
-              <ion-col col-9>
-                  <ion-item no-borders>
-                      <ion-label>Category</ion-label>
-                      <ion-select [(ngModel)]="category" interface="action-sheet">
-                          <ion-option value="Photography">Photography</ion-option>
-                          <ion-option value="Sculpting">Sculpting</ion-option>
-                          <ion-option value="Painting">Painting</ion-option>
-                          <ion-option value="Architecture">Architecture</ion-option>
-                          <ion-option value="Drawing">Drawing</ion-option>
-                          <ion-option value="General">General</ion-option>
-                      </ion-select>
-                  </ion-item>
-              </ion-col>
-              <ion-col>
-                  <button ion-button icon-only clear color="light">
-                      <ion-icon name="search" (click)="next()"></ion-icon>
-                  </button>
-              </ion-col>
-          </ion-row>
-      </ion-grid> -->
-     
-      <div>
-          <ion-item no-borders>
-              <ion-label >Category</ion-label>
-              <ion-select [(ngModel)]="category">
-                  <ion-option value="Photography">Photography</ion-option>
-                  <ion-option value="Sculpting">Sculpting</ion-option>
-                  <ion-option value="Painting">Painting</ion-option>
-                  <ion-option value="Architecture">Architecture</ion-option>
-                  <ion-option value="Drawing">Drawing</ion-option>
-                  <ion-option value="General">General</ion-option>
-              </ion-select>
+    <ion-navbar color="dark">
+        <div>
+            <ion-item no-borders>
+                <ion-label >Category</ion-label>
+                <ion-select [(ngModel)]="category">
+                    <ion-option value="Photography">Photography</ion-option>
+                    <ion-option value="Sculpting">Sculpting</ion-option>
+                    <ion-option value="Painting">Painting</ion-option>
+                    <ion-option value="Architecture">Architecture</ion-option>
+                    <ion-option value="Drawing">Drawing</ion-option>
+                    <ion-option value="General">General</ion-option>
+                </ion-select>
+            </ion-item>
+        </div>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="profile(obj)">
+                <ion-icon name="person" ></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+   </ion-header>
+   <ion-content padding>
+    <ion-list *ngFor="let a of list">
+      <ion-card>
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="img/marty-avatar.png">
+            </ion-avatar>
+            <h2>{{a.name}}</h2>
+            <p>by {{a.username}}</p>
           </ion-item>
-      </div>
-      <ion-buttons end>
-          <button ion-button icon-only (click)="profile(obj)">
-              <ion-icon name="person" ></ion-icon>
-          </button>
-      </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content padding>
-  <ion-list *ngFor="let a of arr2; let b = index">
-        <img [src]="a.downloadurl" (click)="push(b)">
-</ion-list>
-<ion-fab  edge>
-    <button ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
-  </ion-fab>
-</ion-content>
+          <img [src]="a.downloadurl">
+          <ion-card-content>
+            <p>{{a.picDesc}}</p>
+          </ion-card-content>
+   
+          <ion-row>
+            <ion-col>
+              <button ion-button (click)="commentFunction(a.key)" icon-start clear small>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>12 Likes</div>
+              </button>
+            </ion-col>
+            <ion-col center text-center>
+              <button ion-button (click)="commentFunction(a.key)" icon-start clear small>
+                  <ion-icon name="text"></ion-icon>
+                  <div>4 Comments</div>
+                </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+   </ion-list>
+   </ion-content>
