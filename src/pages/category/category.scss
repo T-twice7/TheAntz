@@ -17,11 +17,12 @@ ion-header{
         }
 
     }
-    #btn{
-        // background-color: aqua;
-    }
-    #icon{
-        color: aqua;
+    #btns{
+        margin: 0%;
+        button{
+            margin: 0%;
+            padding: 0%;
+        }
     }
     ion-grid{
         margin: 0%;
@@ -30,8 +31,13 @@ ion-header{
         margin: 0%;
     }
     ion-col{
+        width: 45vw;
         margin: 0%;
+        box-shadow: 0 0 1px rgb(34, 32, 32);
+        border-radius: 5px;
         ion-item{
+            margin: 0%;
+            padding: 0%;
             box-shadow: 0 0 1px white;
         }
     }
@@ -40,5 +46,24 @@ ion-header{
     }
     .btnFab{
         box-shadow: 0 6px 12px rgb(56, 56, 56);
+    }
+    .list{
+        margin: 0%;
+            padding: 0%;
+        li{
+            // color: rgb(42,165,153);
+            list-style: none;
+            display: inline;
+            // font-size: 90%;
+        }
+    }
+
+    .iconLike{
+        color: rgb(0, 110, 255);
+        font-size: 140%;
+    }
+    .iconCMT{
+        font-size: 140%;
+        color: rgb(0,78,66);
     }
 }
