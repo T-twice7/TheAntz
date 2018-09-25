@@ -5,8 +5,7 @@ import { obj } from '../../app/class';
 import { ProfilePage } from '../profile/profile';
 import { ViewPage } from '../view/view';
 import { LoginPage } from '../login/login';
-
-declare var firebase
+import firebase from 'firebase';
 
 /**
  * Generated class for the CategoryPage page.
@@ -28,7 +27,6 @@ export class CategoryPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
-
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoryPage');

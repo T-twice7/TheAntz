@@ -6,6 +6,7 @@ import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import firebase from 'firebase';
+import { CategoryPage } from '../../pages/category/category';
 
 /*
   Generated class for the StreetartzProvider provider.
@@ -21,6 +22,7 @@ export class StreetartzProvider {
   keys = [];
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
+    this.getuserstate();
 
   }
   logout(){
@@ -80,11 +82,33 @@ export class StreetartzProvider {
       })
     })
   }
+
+  getuserstate(){
+   // let email = firebase.auth().currentUser;
+    //   console.log(email)
+    firebase.auth().onAuthStateChanged(function(userID) {
+      if (userID!=null) {
+        this.arr=1;
+        console.log(userID)
+        //this.rootpage=CategoryPage
+        // User is signed in.
+      } else {
+        // No user is signed in.
+        this.arr = 0;
+        console.log(userID)
+        //this.rootPage = LoginPage;
+      }
+    });
+  }
+
   login(email, password) {
     return new Promise((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(() => {
+        
         resolve();
 
+
+        return firebase.auth().signInWithEmailAndPassword(email, password);
       }).catch((error) => {
         const alert = this.alertCtrl.create({
           title: error.code,
@@ -116,10 +140,22 @@ export class StreetartzProvider {
 
   }
   forgotpassword(email) {
+    const alert = this.alertCtrl.create({
+      title: 'Forgot your?',
+      subTitle: 'Please your Email.',
+      buttons: ['OK']
+    });
+    alert.present();
+  
+    
     return new Promise((resolve, reject) => {
       firebase.auth().sendPasswordResetEmail(email);
       resolve();
+
+      
     })
+    
+    
   }
   uploadPic(pic, name) {
     let loading = this.loadingCtrl.create({

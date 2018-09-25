@@ -12,7 +12,8 @@ import { ProfilePage } from '../profile/profile';
 
 
 
-declare var firebase;
+
+import firebase from 'firebase';
 
 /**
  * Generated class for the LoginPage page.
@@ -44,22 +45,21 @@ export class LoginPage {
     modal.present();
   }
 
-  login(obj:obj) {
-    this.art.login(this.obj.email,this.obj.password ).then(()=>{
-     this.presentLoading();
-     this.navCtrl.setRoot(CategoryPage);
-    } , (error)=>{
-      console.log(error.message);
-      
-
-      const alert = this.alertCtrl.create({
-        title: 'Sign In Error!',
-        subTitle: error,
-        buttons: ['OK']
+  login(email,password) {
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then((result) => {
+      firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
+        if(user){
+        this.navCtrl.push(CategoryPage)
+        console.log(email);
+        } else {
+          console.log("User not found")
+        }
+      }).catch((ex) => {
+        console.log(ex)
       });
-      alert.present();
-
-    })
+    }).catch((ex) => {
+      console.log(ex)
+    });
   }
   presentLoading() {
     const loader = this.loadingCtrl.create({
@@ -75,6 +75,5 @@ forgotpassword(obj:obj){
 
   })
 }
-
 
 }

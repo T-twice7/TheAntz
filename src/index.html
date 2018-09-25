@@ -28,10 +28,25 @@
   </script>-->
 
   <link href="build/main.css" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
+      authDomain: "streetartsdatabase.firebaseapp.com",
+      databaseURL: "https://streetartsdatabase.firebaseio.com",
+      projectId: "streetartsdatabase",
+      storageBucket: "streetartsdatabase.appspot.com",
+      messagingSenderId: "202504182684"
+    };
+    firebase.initializeApp(config);
+  </script>
 
 </head>
 <body>
+    
 
+  
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
 

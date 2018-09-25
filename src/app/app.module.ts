@@ -5,7 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 
 import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
-
+import { FirebaseOptions } from '@firebase/app-types';
 
 import { MyApp } from './app.component';
 
@@ -20,6 +20,17 @@ import { UploadImagePage } from '../pages/upload-image/upload-image';
 import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
+import * as firebase from "firebase";
+
+
+firebase.initializeApp({
+  apiKey: "AIzaSyDXJsbuaNORuwbz2gdRBFi-kUQ1JDJKoMA",
+    authDomain: "street-artz-181f2.firebaseapp.com",
+    databaseURL: "https://street-artz-181f2.firebaseio.com",
+    projectId: "street-artz-181f2",
+    storageBucket: "street-artz-181f2.appspot.com",
+    messagingSenderId: "118526884863"
+})
 
 @NgModule({ 
   declarations: [
@@ -61,4 +72,6 @@ import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
     StreetartzProvider,
   ]
 })
-export class AppModule {}
+export class AppModule {
+  
+}
