@@ -105,19 +105,19 @@ export class ProfilePage {
   }
 
  
-  uploadPicture(){
-    this.art.uploadPic(this.url,this.name).then(data =>{
-      this.imageUrl = data;
-       this.art.storeProfilePics(data).then(() =>{
-         console.log('added to db');
-       },
-      Error =>{
-        console.log(Error)
-      })
-    }, Error =>{
-      console.log(Error )
-    })
-  }
+  // uploadPicture(){
+  //   this.art.uploadPic(this.url,this.name).then(data =>{
+  //     this.imageUrl = data;
+  //      this.art.storeProfilePics(data).then(() =>{
+  //        console.log('added to db');
+  //      },
+  //     Error =>{
+  //       console.log(Error)
+  //     })
+  //   }, Error =>{
+  //     console.log(Error )
+  //   })
+  // }
   
   next() {
     this.navCtrl.push(CategoryPage);

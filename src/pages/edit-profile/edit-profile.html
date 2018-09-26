@@ -7,70 +7,58 @@
 <ion-header>
 
   <ion-navbar color="secondary" >
-      <ion-buttons start>
-          <button ion-button icon-only>
-            <ion-icon name="close"></ion-icon>
-          </button>
-        </ion-buttons>
     <ion-title >Edit Profile</ion-title>
     <ion-buttons end>
-        <button ion-button icon-only >
+        <button ion-button icon-only (click)="uploadPicture1()" >
           <ion-icon name="checkmark" id="mark"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content class="card-background-page">
     
+    <ion-card>
+        <img id="pic" [src]="url"/>
+        <div class="card-title">
+          <img [src]="url"/>
+          <input id="file" type="file" (change)="insertpic($event)">
+        </div>
+        
+        
+      </ion-card>
   <div class="content">
       <ion-list no-lines>
-          <ion-item id="itm">
-              <ion-thumbnail item-start>
-                  <img src="../../assets/imgs/1.jpg" />
-                  <sup>
-                      <ion-icon class="icon" name="reverse-camera"></ion-icon>
-                    </sup>
-              </ion-thumbnail>
-              <h2>Thando</h2>
-              <p>Am a sketch artist</p>
-            </ion-item>
+            
           <ion-item  class="item">
               <ion-label>
-                  <ion-icon name="mail"></ion-icon>
-                thando@g.com
+                  <ion-icon name="person"></ion-icon>
               </ion-label>
-              <ion-input type="email">
-                  
-              </ion-input>
+              <ion-input type="text" value="" [(ngModel)]="name" placeholder="enter name"></ion-input>
             </ion-item>
             
-         
+            
           <ion-item class="item">
               <ion-label>
-                  <ion-icon name="call"></ion-icon>
-                0782543698
-                <!-- {{x.role}} -->
+                  <ion-icon name="logo-facebook"></ion-icon>
+                
               </ion-label>
-          </ion-item>
+              <ion-input type="text" [(ngModel)]="facebook" placeholder="facebook name"></ion-input>
+            </ion-item>
             
-         
           <ion-item class="item">
               <ion-label>
                   <ion-icon name="logo-twitter"></ion-icon>
-                @Twice_T
-                <!-- {{x.IDno}} -->
+                
               </ion-label>
+              <ion-input type="text" [(ngModel)]="twitter" placeholder="twitter name"></ion-input>
             </ion-item>
-           
-      
+            
           <ion-item class="item">
               <ion-label>
                   <ion-icon name="logo-instagram"></ion-icon>
-                  Twice_Developer
-                <!-- {{x.Cntx}} -->
               </ion-label>
-              </ion-item>
+              <ion-input type="text" [(ngModel)]="instagram" placeholder="instagram name"></ion-input>
+      </ion-item>
         </ion-list>
-
   </div>
 </ion-content>
