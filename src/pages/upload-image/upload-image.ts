@@ -24,6 +24,7 @@ export class UploadImagePage {
   description;
   constructor(public navCtrl: NavController, public navParams: NavParams,public art: StreetartzProvider,public view :ViewController) {
   }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadModalPage');
   }
@@ -34,25 +35,22 @@ export class UploadImagePage {
   // }
  
   insertvid(event:any){
-    if (event.target.files && event.target.files[0]){
-      let reader = new FileReader();
-      reader.onload = (event:any) =>{
-        this.url = event.target.result;
-      }
-      reader.readAsDataURL(event.target.files[0]);
-      console.log(reader.onload);
-    }
-
+      if (event.target.files && event.target.files[0]) {
+        let reader = new FileReader();
+        reader.onload = (event: any) => {
+          this.url = event.target.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+        console.log(reader.onload);
+      } 
   }
 
   uploadPicture(){
-    this.arr.length = 0;
     this.art.uploadPic(this.url,this.name).then(data =>{
       this.imageUrl = data;
        this.art.storeToDB(data, this.category, this.name,this.description).then(() =>{
          console.log('added to db');
-        //  this.navCtrl.view(ProfilePage);
-     this.view.dismiss();
+         this.navCtrl.push(ProfilePage);
        },
       Error =>{
         console.log(Error)
@@ -65,10 +63,4 @@ export class UploadImagePage {
     this.view.dismiss();
   }
 
- 
-
-  
-  
-  
- 
 }

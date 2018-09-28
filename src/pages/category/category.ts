@@ -4,6 +4,8 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { ProfilePage } from '../profile/profile';
 import { ViewPage } from '../view/view';
+import firebase from 'firebase';
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the CategoryPage page.
  *
@@ -18,14 +20,24 @@ import { ViewPage } from '../view/view';
 })
 export class CategoryPage {
   obj = {} as obj
-  category;
+  category:any;
   arr2 = [];
   uid: any;
   list =[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
- 
+  name;
+  username;
+  // public CValue:String;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public alertCtrl: AlertController) {
+    this.retreivePics();
   }
+
+  // onChange(CValue){
+  //   console.log(CValue);
+
+    
+  // }
   ionViewDidLoad() {
+
     this.retreivePics();
   }
   profile(obj: obj){
@@ -36,39 +48,38 @@ export class CategoryPage {
   nextpage(){
     this.navCtrl.push(ProfilePage);
   }
-  // typeOfArt() {
-  //   this.art.selectCategory(this.category).then((data) => {
-  //     // this.arr2.push(data);
-  //     // console.log(this.arr2);
-  //     var keys: any = Object.keys(data);
-  //     for (var i = 0; i < keys.length; i++) {
-  //       var k = keys[i];
-  //       if (this.category == data[k].category) {
-  //         let obj = {
-  //           category: data[k].category,
-  //           downloadurl: data[k].downloadurl,
-  //           name: data[k].name,
-  //           key: k
-  //         }
-  //         this.arr2.push(obj);
-  //         console.log(this.arr2);
-  //       }
-  //     }
-  //   })
-  // }
-  // category TS\\
+  typeOfArt() {
+    this.arr2.length = 0;
+    this.art.selectCategory(this.category).then((data) => {
+          var keys: any = Object.keys(data);
+          for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            if (this.category == data[k].category) {
+              let obj = {
+                category: data[k].category,
+                downloadurl: data[k].downloadurl,
+                name: data[k].name,
+                key: k
+              }
+              this.arr2.push(obj);
+              console.log(this.arr2);
+            }
+            
+            }
+          })
+        
+      }
+// push(b){
+//   console.log(b);
+//   let details=this.arr2[b];
+//   console.log(details);
+//   this.navCtrl.push(ViewPage,{obj:details});
 
-
-push( b) {
-  console.log(b);
-  let details=this.arr2[b];
-  console.log(details);
-  this.navCtrl.push(ViewPage,{obj:details});
-
-}
+// }
 retreivePics(){
-  this.art.viewPicMain().then((data: any) =>{
-    this.list = data;
+  this.arr2.length = 0;
+  this.art.viewPicMain(this.name,this.username).then((data: any) =>{
+  this.arr2 = data;
   });
 }
 }

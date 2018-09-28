@@ -11,13 +11,13 @@ import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import firebase from 'firebase';
 /**
  * Generated class for the ProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-declare var firebase;
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -30,16 +30,30 @@ export class ProfilePage implements OnInit {
   obj=[];
   name;
   url = '../../assets/default.jpg';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-    this.retreivePics();
+    this.retreivePics1(); 
   }
   ionViewDidLoad() {
-  
-    this.retreivePics1(); 
+ 
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        var id=firebase.auth().currentUser.uid;
+        console.log(id);
+        console.log("user signed in");
+        this.retreivePics();
+      
+    }else
+    {
+      console.log("user has not signed in")}
+      
+    });
+
   }
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
+   
   }
 
   next() {
@@ -55,7 +69,9 @@ export class ProfilePage implements OnInit {
     popover.present();
   }
 
-
+  nextpage1(){
+    this.navCtrl.push(CategoryPage);
+  }
   getUid() {
     this.art.getUserID().then(data => {
       this.uid = data
@@ -63,6 +79,7 @@ export class ProfilePage implements OnInit {
   }
 
   retreivePics() {
+    this.list.length = 0;
     this.getUid();
     this.art.viewPicGallery().then(data => {
       var loader = this.loadingCtrl.create({
@@ -89,7 +106,6 @@ export class ProfilePage implements OnInit {
     });
   }
   getUid1() {
-    this.arr.length =0;
     this.art.getUserID().then(data => {
       this.uid = data
     })
@@ -108,13 +124,19 @@ export class ProfilePage implements OnInit {
         var k = keys[i];
         if (this.uid == data[k].uid) {
           let obj = {
-            uid: data[k].uid,
-            downloadurl: data[k].downloadurl,
-            key: k
+          downloadurl: data[k].downloadurl
           }
           this.arr.push(obj);
         }
       }
+      // var keys: any = Object.keys(data);
+      // for (var i = 0; i < keys.length; i++) {
+      //   let profileref = firebase.database().ref(`profiles/${keys[i]}`).on('value', (data)=>{
+      //     this.arr.push(data.val());
+      //   });
+      
+      // }
+      console.log(this.arr);
       loader.dismiss();
     }, Error => {
       console.log(Error)

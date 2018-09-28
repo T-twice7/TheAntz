@@ -1,3 +1,75 @@
 page-category {
-
+  .card-background-page {
+      ion-card {
+        position: relative;
+      }
+      ion-grid{
+          margin: 0%;
+          padding: 0%;
+      }
+      ion-row{
+          margin: 0%;
+          padding: 0%;
+      }
+      ion-col{
+          position: relative;
+          margin: 0%;
+          // padding: 0%;
+      }
+      .card-title {
+          background: linear-gradient(rgba(0, 0, 0, 1),rgba(0, 0, 0, 0));
+          padding-left: 7px;
+        position: absolute;
+        text-shadow: 0 0 2px black;
+        top: 4%;
+        width: 45vw;
+        font-weight: bold;
+        color: white;
+      //   border-top-right-radius: 5px;
+      //   border-top-left-radius: 5px;
+        font-size: 100%;
+      }
+    img{
+      height: 20vh;
+      width: 45vw;
+    }
+      .card-subtitle {
+          background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 1));
+        font-size: 1.0em;
+        text-align: center;
+        position: absolute;
+        top: 80%;
+        width: 45vw;
+        color: #fff;
+        text-shadow: 0 0 2px black;
+      //   border-bottom-right-radius: 5px;
+      //   border-bottom-left-radius: 5px;
+      }
+        .list{
+      margin: 0%;
+          padding: 0%;
+      li{
+          list-style: none;
+          display: inline;
+          // font-size: 80%;
+      }
+  }
+  .iconLike{
+      padding-left: 10px;
+      float: left;
+      color: white;
+      text-shadow: 0 0 2px black;
+      // font-size: 140%;
+  }
+  .iconCMT{
+      padding-right: 10px;
+      float: right;
+      text-shadow: 0 0 2px black;
+      // font-size: 140%;
+      color: white;
+  }
+    }
+    .CatBar{
+        padding-right: 10px;
+    }
 }

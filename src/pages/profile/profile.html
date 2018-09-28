@@ -41,17 +41,15 @@
       <div id="pic" align="center">
         <div class="photo">
           <div class="dp">
-            <div *ngFor="let a of arr">
-                <img class="m" [src]="a.downloadurl">
+            <div *ngFor="let a of obj">
+                <img class="m" [src]="a.downloadurl">  
             </div>
           </div>
         </div>
       </div>
-  
+
       <div class="list">
         <div *ngFor="let item of obj">
-  
-  
           <ion-grid>
             <ion-row>
               <ion-col>
