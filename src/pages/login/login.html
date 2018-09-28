@@ -1,30 +1,31 @@
-<ion-content>
-
-  <div class="mtop"></div>
-
-  <div class="everything">
-
-    <div class="logo">
-      <p style="color: white; text-shadow: 0px 0px 5px black">Welcome to</p>
+<ion-content style=" background-image: url('../../assets/imgs/BG.jpg'); background-size: cover;">
+  <div class="logo">
+      <p >Welcome to</p>
       <img src="../../assets/imgs/theLogo/ANTZ Logo.png" alt="">
-    </div>
-
-    <div class="form">
-      <div class="theList">
-        <ion-list no-lines>
+  </div>
+  <div class="items" padding>
+      <ion-list no-lines>
           <ion-item>
+<<<<<<< HEAD
             <ion-label start>
               <ion-icon ios="ios-person-outline" md="md-person" id="space"></ion-icon></ion-label>
             <ion-input type="text" value=""[(ngModel)]="email" placeholder="Username"></ion-input>
+=======
+            <ion-input type="email" placeholder="Email" value=""[(ngModel)]="obj.email"></ion-input>
+>>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
           </ion-item>
-
           <ion-item>
+<<<<<<< HEAD
             <ion-label start>
               <ion-icon ios="ios-key-outline" md="md-key" id="space"></ion-icon></ion-label>
             <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+=======
+            <ion-input type="password" placeholder="Password" [(ngModel)]="obj.password"></ion-input>
+>>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
           </ion-item>
-          <p (click)="forgotpassword(obj)">Forgot password</p>
+  
         </ion-list>
+<<<<<<< HEAD
       </div>
       <div class="ctrl">
               <div class="btn">
@@ -46,7 +47,14 @@
          <p id="forgot"> Don't have an account?
           <b id="instruct"> Sign up</b></p>
         </button>
+=======
+      <button ion-button full icon-only id="button" color="secondary" (click)="login()">
+        Sign In
+      </button>
+      <p (click)="forgotpassword(obj)">Forgot password</p>
+>>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
   </div>
-
-
-</ion-content>
+  <ion-footer (click)="signup()">
+  <p>Sign Up</p>
+    </ion-footer>
+  </ion-content>

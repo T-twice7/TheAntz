@@ -16,12 +16,12 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'upload-image.html',
 })
 export class UploadImagePage {
-  url;
+  url='../../assets/default.jpg' ;
   name;
   category;
-  picDesc;
-  imageUrl:any;
+  imageUrl;
   arr=[];
+  description;
   constructor(public navCtrl: NavController, public navParams: NavParams,public art: StreetartzProvider,public view :ViewController) {
   }
   ionViewDidLoad() {
@@ -42,11 +42,14 @@ export class UploadImagePage {
       reader.readAsDataURL(event.target.files[0]);
       console.log(reader.onload);
     }
+
   }
+
   uploadPicture(){
+    this.arr.length = 0;
     this.art.uploadPic(this.url,this.name).then(data =>{
       this.imageUrl = data;
-       this.art.storeToDB(data, this.category, this.name).then(() =>{
+       this.art.storeToDB(data, this.category, this.name,this.description).then(() =>{
          console.log('added to db');
         //  this.navCtrl.view(ProfilePage);
      this.view.dismiss();
@@ -61,5 +64,11 @@ export class UploadImagePage {
   dismiss(){
     this.view.dismiss();
   }
+
+ 
+
+  
+  
+  
  
 }

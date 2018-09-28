@@ -22,7 +22,9 @@ import { ArrayType } from '@angular/compiler/src/output/output_ast';
 })
 export class MyApp {
 
-  rootPage: any= SplashPage ;
+  rootPage: any = SplashPage;
+
+  
 
   pages: Array<{ title: string, component: any }>;
 
@@ -31,7 +33,6 @@ export class MyApp {
     //this.initializeApp(); 
 
     // used for an example of ngFor and navigation
-
 
   }
 

@@ -13,6 +13,8 @@ import { obj } from '../../app/class';
   selector: 'page-view',
   templateUrl: 'view.html',
 })
+//viewpage Ts\\
+
 export class ViewPage {
 
 
@@ -20,6 +22,7 @@ export class ViewPage {
   name;
   downloadurl;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+<<<<<<< HEAD
   
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
@@ -34,14 +37,36 @@ export class ViewPage {
 
    
 
+=======
+ 
+    this.obj = this.navParams.get("obj");
+    console.log("this is my index");
+    console.log(this.obj);
+    this.name=this.obj.name;
+   this.downloadurl=this.obj.downloadurl;
+ 
+>>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
   }
-
+  ngOnInit() {
+ 
+ 
+ 
+  }
+ 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
     console.log(this.obj.name);
+<<<<<<< HEAD
     
   }
   
 
 }
+=======
+ 
+  }
+ 
+ 
+ }
+>>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
