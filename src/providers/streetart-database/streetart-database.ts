@@ -21,7 +21,7 @@ export class StreetartzProvider {
   arr = [];
   category;
   keys = [];
-  list = [];
+  arr2 = [];
   data = [];
   url;
   img: any;
@@ -123,7 +123,6 @@ export class StreetartzProvider {
       content: 'Please wait',
       duration: 3000
     });
-
     const toast = this.toastCtrl.create({
       message: 'Ur image has been added!',
       duration: 3000
@@ -139,7 +138,6 @@ export class StreetartzProvider {
     })
   }
   storeToDB(name, category, picName, description) {
-    this.arr.length = 0;
     return new Promise((accpt, rejc) => {
       var storageRef = firebase.storage().ref(name);
       storageRef.getDownloadURL().then(url => {
@@ -349,7 +347,7 @@ export class StreetartzProvider {
     })
   }
   viewPicMain(name, username) {
-    this.list.length = 0;
+    this.arr2.length = 0;
     // let loading = this.loadingCtrl.create({
     //   spinner: 'bubbles',
     //   content: 'Please wait',
@@ -358,18 +356,15 @@ export class StreetartzProvider {
     return new Promise((accpt, rejc) => {
       // loading.present();
       firebase.database().ref("uploads").on("value", (data: any) => {
+        this.arr2.length =0;
         var data = data.val();
-
         var keys1: any = Object.keys(data);
         console.log(keys1.length);
         for (var i = 0; i < keys1.length; i++) {
           var keys1: any = Object.keys(data);
           var k = keys1[i];
           var chckId = data[k].uid;
-          if (data == null) {
-            this.list = null;
-          }
-          else {
+    
             let obj = {
               uid: data[k].uid,
               category: data[k].category,
@@ -383,12 +378,12 @@ export class StreetartzProvider {
             this.viewProfileMain(chckId).then((profileData: any) => {
               obj.username = profileData.name
               obj.email = profileData.email
-              this.list.push(obj);
+              this.arr2.push(obj);
             });
-          }
+          
         
-        console.log(this.list);
-        accpt(this.list);
+        console.log(this.arr2);
+        accpt(this.arr2);
         // loading.present();
         }
       }, Error => {

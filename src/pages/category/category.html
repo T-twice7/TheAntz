@@ -2,7 +2,7 @@
   <ion-navbar color="secondary">
     <div class="head">
       <ion-item class="CatBar" color="secondary">
-        <ion-label id="cat">Category</ion-label>
+        <ion-label >Category</ion-label>
         <ion-select [(ngModel)]="category">
           <ion-option value="Photography">Photography</ion-option>
           <ion-option value="Sculpting">Sculpting</ion-option>
@@ -21,26 +21,15 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="card-background-page">
-    <ion-fab bottom >
-        <button ion-fab mini (click)="typeOfArt()"><ion-icon name="code-working"></ion-icon></button>
-      </ion-fab>
-  <ion-grid>
-    <ion-row>
+  <ion-fab bottom>
+    <button ion-fab mini (click)="typeOfArt()">
+      <ion-icon name="code-working"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-grid no-padding>
+    <ion-row no-padding>
       <ion-col class="col" col-6 *ngFor="let a of arr2">
-        <img [src]="a.downloadurl" />
-        <!-- <div class="card-title">{{a.name}}</div> -->
-        <!-- <div class="card-subtitle">
-          <ul class="list">
-            <li (click)="commentFunction(a.key)" class="iconLike">
-              <ion-icon class="iconLike" name="thumbs-up"></ion-icon>
-              12
-            </li>
-            <li (click)="commentFunction(a.key)" class="iconCMT">
-              <ion-icon class="iconCMT" name="text"></ion-icon>
-              4
-            </li>
-          </ul>
-        </div> -->
+        <img [src]="a.downloadurl">
       </ion-col>
     </ion-row>
   </ion-grid>

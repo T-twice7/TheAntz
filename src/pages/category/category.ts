@@ -40,6 +40,7 @@ export class CategoryPage {
 
     this.retreivePics();
   }
+  
   profile(obj: obj){
     this.art.profile(this.obj).then((data) => {
       this.navCtrl.push(ProfilePage, { obj: data });
@@ -69,13 +70,6 @@ export class CategoryPage {
           })
         
       }
-// push(b){
-//   console.log(b);
-//   let details=this.arr2[b];
-//   console.log(details);
-//   this.navCtrl.push(ViewPage,{obj:details});
-
-// }
 retreivePics(){
   this.arr2.length = 0;
   this.art.viewPicMain(this.name,this.username).then((data: any) =>{

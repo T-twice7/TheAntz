@@ -23,7 +23,7 @@ import firebase from 'firebase';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage  {
   list = [];
   arr = [];
   uid: any;
@@ -57,12 +57,11 @@ export class ProfilePage implements OnInit {
   }
 
   next() {
-    this.navCtrl.push(CategoryPage);
+    this.navCtrl.push(EditProfilePage);
   }
 
   upload() {
-    const modal = this.modalCtrl.create(UploadImagePage);
-    modal.present();
+   this.navCtrl.push(UploadImagePage);
   }
   presentPopover() {
     const popover = this.popoverCtrl.create(PopOverProfilePage);
@@ -152,7 +151,7 @@ export class ProfilePage implements OnInit {
       this.navCtrl.push(LoginPage);
     },(error)=>{})
     }
-    dismissPage(){
-      this.navCtrl.pop();
-    }
+    // dismissPage(){
+    //   this.navCtrl.pop();
+    // }
 }

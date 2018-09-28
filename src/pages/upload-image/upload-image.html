@@ -9,7 +9,7 @@
       <label for="in">
           <ion-icon ios="ios-image" md="md-image" id="ico"></ion-icon>
       </label>
-      <input class="inpe" type="file" id="in" (change)="insertvid($event)">
+      <input type="file" (change)="insertvid($event)">
     </div>
     <div class="preview">
       <img [src]="url" class="uploaded">

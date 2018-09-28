@@ -37,6 +37,7 @@ export class UploadImagePage {
   insertvid(event:any){
       if (event.target.files && event.target.files[0]) {
         let reader = new FileReader();
+
         reader.onload = (event: any) => {
           this.url = event.target.result;
         }
@@ -48,7 +49,7 @@ export class UploadImagePage {
   uploadPicture(){
     this.art.uploadPic(this.url,this.name).then(data =>{
       this.imageUrl = data;
-       this.art.storeToDB(data, this.category, this.name,this.description).then(() =>{
+       this.art.storeToDB(data, this.category,this.name,this.description).then(() =>{
          console.log('added to db');
          this.navCtrl.push(ProfilePage);
        },
