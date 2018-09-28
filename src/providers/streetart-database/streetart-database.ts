@@ -22,11 +22,11 @@ export class StreetartzProvider {
   keys = [];
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
-    this.getuserstate();
+   // this.getuserstate();
 
   }
   logout(){
-    firebase.auth().signOut().then(() =>{
+    firebase.auth().signOut().then((data) =>{
       let loading = this.loadingCtrl.create({
         spinner: 'bubbles',
         content: 'signing out.....',
@@ -83,28 +83,49 @@ export class StreetartzProvider {
     })
   }
 
-  getuserstate(){
-   // let email = firebase.auth().currentUser;
-    //   console.log(email)
-    firebase.auth().onAuthStateChanged(function(userID) {
-      if (userID!=null) {
-        this.arr=1;
-        console.log(userID)
-        //this.rootpage=CategoryPage
-        // User is signed in.
-      } else {
-        // No user is signed in.
-        this.arr = 0;
-        console.log(userID)
-        //this.rootPage = LoginPage;
-      }
-    });
+  getuserstate(email, password){
+
+    
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+    
+
+    if (email!=null) {
+           this.arr=1;
+           console.log(email)
+           //this.rootpage=CategoryPage
+           // User is signed in.
+         } else {
+           // No user is signed in.
+           this.arr = 1;
+           console.log(email)
+           //this.rootPage = LoginPage;
+         }
+
+    
+    
+    // New sign-in will be persisted with session persistence.
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+    
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+
   }
 
   login(email, password) {
     return new Promise((resolve, reject) => {
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(() => {
-        
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then((data) => {
+        if(data){
+console.log("logged in")
+        }else{
+console.log("not logged in");
+
+
+        }
         resolve();
 
 

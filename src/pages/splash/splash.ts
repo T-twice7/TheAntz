@@ -27,8 +27,11 @@ export class SplashPage {
 
   nextpage(){
   let timer = setInterval(()=>{
+    
     this.navCtrl.setRoot(LoginPage);
     clearInterval(timer)
   },3000)
   }
+
+  
 }

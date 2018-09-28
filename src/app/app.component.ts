@@ -15,6 +15,7 @@ import { SplashPage } from '../pages/splash/splash';
 
 import { CategoryPage } from '../pages/category/category';
 import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
+import { ArrayType } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,19 +28,31 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public art: StreetartzProvider) {
  
-    this.initializeApp(); 
+    //this.initializeApp(); 
 
     // used for an example of ngFor and navigation
 
 
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide()
+  initializeApp(user) {
+  
+       firebase.auth().onAuthStateChanged((user) => {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+       
+        if (user) {
+          // User is signed in.
+          this.rootPage = CategoryPage
+          this.firebase= 1
+          console.log(user)
+        } else {
+          // No user is signed in.
+          this.rootPage = LoginPage
+          this.firebase= 0
+          console.log(user)
+        }
+      });
 
       
 

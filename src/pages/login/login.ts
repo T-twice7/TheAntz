@@ -35,11 +35,25 @@ export class LoginPage {
   obj = {} as obj;
   errMsg;
   constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController, public viewCtrl: ViewController,public art: StreetartzProvider,public loadingCtrl: LoadingController) {
+
+    
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-    
-  }
+  //   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then((result) => {
+
+  //     if(result){
+  //       console.log("yes")
+  //       this.navCtrl.setRoot('LoginPage');
+  //     }else{
+  //       console.log("CategoryPage");
+  //       this.navCtrl.setRoot('LoginPage');
+        
+  //     }
+
+  //   });
+   }
   signup(){
     const modal = this.modalCtrl.create(SignupPage);
     modal.present();
