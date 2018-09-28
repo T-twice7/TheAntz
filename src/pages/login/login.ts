@@ -68,13 +68,13 @@ export class LoginPage {
     });
     loader.present();
   }
-forgotpassword(obj:obj){
-  this.art.forgotpassword(this.obj.email).then(()=>{
-    alert("Check your email")
-  } , (error)=>{
+// forgotpassword(obj:obj){
+//   this.art.forgotpassword(this.obj.email).then(()=>{
+//     alert("Check your email")
+//   } , (error)=>{
 
-  })
-}
+//   })
+// }
 
 
 }

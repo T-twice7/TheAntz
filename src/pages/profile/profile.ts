@@ -9,6 +9,8 @@ import { PopoverController } from 'ionic-angular';
 import { PopOverProfilePage } from '../pop-over-profile/pop-over-profile';
 import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -25,18 +27,21 @@ export class ProfilePage implements OnInit {
   list = [];
   arr = [];
   uid: any;
-  obj;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
+  obj=[];
+  name;
+  url = '../../assets/default.jpg';
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+    this.retreivePics();
   }
-
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad ProfilePage');
-
-  // }
+  ionViewDidLoad() {
+  
+    this.retreivePics1(); 
+  }
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
   }
+
   next() {
     this.navCtrl.push(CategoryPage);
   }
@@ -49,30 +54,14 @@ export class ProfilePage implements OnInit {
     const popover = this.popoverCtrl.create(PopOverProfilePage);
     popover.present();
   }
-  remove(key) {
-    var loader = this.loadingCtrl.create({
-      content: "please wait...",
-      duration: 3000
-    });
 
-    this.art.deletePicture(key).then(authData => {
-      loader.dismiss();
-      this.list = undefined;
-    }, err => {
-      loader.dismiss();
-      let toast = this.toastCtrl.create({
-        message: err,
-        duration: 300,
-        position: 'top'
-      });
-      toast.present();
-    });
-  }
-  getUid(){
-    this.art.getUserID().then(data =>{
+
+  getUid() {
+    this.art.getUserID().then(data => {
       this.uid = data
     })
   }
+
   retreivePics() {
     this.getUid();
     this.art.viewPicGallery().then(data => {
@@ -99,5 +88,49 @@ export class ProfilePage implements OnInit {
       console.log(Error)
     });
   }
- 
+  getUid1() {
+    this.arr.length =0;
+    this.art.getUserID().then(data => {
+      this.uid = data
+    })
+  }
+
+  retreivePics1() {
+    this.arr.length = 0;
+    this.getUid1();
+    this.art.viewPicGallery1().then(data => {
+      var loader = this.loadingCtrl.create({
+        content: "please wait...",
+        duration: 6000
+      });
+      var keys: any = Object.keys(data);
+      for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        if (this.uid == data[k].uid) {
+          let obj = {
+            uid: data[k].uid,
+            downloadurl: data[k].downloadurl,
+            key: k
+          }
+          this.arr.push(obj);
+        }
+      }
+      loader.dismiss();
+    }, Error => {
+      console.log(Error)
+    });
+  }
+
+  
+  nextpage(){
+    this.navCtrl.push(EditProfilePage);
+  }
+  logout(){
+    this.art.logout().then(()=>{
+      this.navCtrl.push(LoginPage);
+    },(error)=>{})
+    }
+    dismissPage(){
+      this.navCtrl.pop();
+    }
 }
