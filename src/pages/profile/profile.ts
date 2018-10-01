@@ -4,7 +4,7 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { CategoryPage } from '../category/category';
 import { UploadImagePage } from '../upload-image/upload-image';
-import { ModalController, ViewController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { PopOverProfilePage } from '../pop-over-profile/pop-over-profile';
 import { LoadingController } from 'ionic-angular';
@@ -23,31 +23,20 @@ import firebase from 'firebase';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage  {
+export class ProfilePage implements OnInit{
   list = [];
   arr = [];
   uid: any;
+  uid1: any;
   obj=[];
   name;
-  url = '../../assets/default.jpg';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
     this.retreivePics1(); 
+    this.retreivePics();
   }
+
   ionViewDidLoad() {
- 
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        var id=firebase.auth().currentUser.uid;
-        console.log(id);
-        console.log("user signed in");
-        this.retreivePics();
-      
-    }else
-    {
-      console.log("user has not signed in")}
-      
-    });
 
   }
   ngOnInit() {
@@ -69,7 +58,7 @@ export class ProfilePage  {
   }
 
   nextpage1(){
-    this.navCtrl.push(CategoryPage);
+    this.navCtrl.setRoot(CategoryPage);
   }
   getUid() {
     this.art.getUserID().then(data => {
@@ -106,7 +95,7 @@ export class ProfilePage  {
   }
   getUid1() {
     this.art.getUserID().then(data => {
-      this.uid = data
+      this.uid1 = data
     })
   }
 
@@ -122,19 +111,13 @@ export class ProfilePage  {
       for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
         if (this.uid == data[k].uid) {
-          let obj = {
+          let objt = {
           downloadurl: data[k].downloadurl
           }
-          this.arr.push(obj);
+          this.arr.push(objt);
+          console.log()
         }
       }
-      // var keys: any = Object.keys(data);
-      // for (var i = 0; i < keys.length; i++) {
-      //   let profileref = firebase.database().ref(`profiles/${keys[i]}`).on('value', (data)=>{
-      //     this.arr.push(data.val());
-      //   });
-      
-      // }
       console.log(this.arr);
       loader.dismiss();
     }, Error => {
@@ -151,7 +134,7 @@ export class ProfilePage  {
       this.navCtrl.push(LoginPage);
     },(error)=>{})
     }
-    // dismissPage(){
-    //   this.navCtrl.pop();
-    // }
+    dismissPage(){
+      this.navCtrl.pop();
+    }
 }

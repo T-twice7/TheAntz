@@ -26,19 +26,16 @@ export class CategoryPage {
   list =[];
   name;
   username;
-  // public CValue:String;
+  test :string='';
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public alertCtrl: AlertController) {
     this.retreivePics();
   }
-
-  // onChange(CValue){
-  //   console.log(CValue);
-
-    
-  // }
+ test1(event:any){
+this.test = event.target.value;
+console.log(event);
+ }
   ionViewDidLoad() {
-
-    this.retreivePics();
+    
   }
   
   profile(obj: obj){
@@ -63,7 +60,7 @@ export class CategoryPage {
                 key: k
               }
               this.arr2.push(obj);
-              console.log(this.arr2);
+              console.log(this.category);
             }
             
             }

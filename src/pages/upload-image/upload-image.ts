@@ -28,12 +28,7 @@ export class UploadImagePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadModalPage');
   }
-  // viewImage(){
-  //   this.art.viewPic().then((data)=>{
-  //     console.log(data);
-  //   })
-  // }
- 
+
   insertvid(event:any){
       if (event.target.files && event.target.files[0]) {
         let reader = new FileReader();
