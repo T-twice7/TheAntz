@@ -16,6 +16,9 @@ import { CategoryPage } from '../../pages/category/category';
 */
 @Injectable()
 export class StreetartzProvider {
+  selectCategory(arg0: any): any {
+    throw new Error("Method not implemented.");
+  }
   key: string;
   obj = {} as obj;
   arr = [];

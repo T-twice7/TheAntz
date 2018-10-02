@@ -36,48 +36,40 @@ export class CategoryPage {
   nextpage(){
     this.navCtrl.push(ProfilePage);
   }
-  // typeOfArt() {
-  //   this.art.selectCategory(this.category).then((data) => {
-  //     // this.arr2.push(data);
-  //     // console.log(this.arr2);
-  //     var keys: any = Object.keys(data);
-  //     for (var i = 0; i < keys.length; i++) {
-  //       var k = keys[i];
-  //       if (this.category == data[k].category) {
-  //         let obj = {
-  //           category: data[k].category,
-  //           downloadurl: data[k].downloadurl,
-  //           name: data[k].name,
-  //           key: k
-  //         }
-  //         this.arr2.push(obj);
-  //         console.log(this.arr2);
-  //       }
-  //     }
-  //   })
-  // }
+// typeOfArt() {
+//   this.art.selectCategory(this.category).then((data) => {
+//     this.arr2.push(data);
+//     // console.log(this.arr2);
+//     var keys: any = Object.keys(data);
+//     for (var i = 0; i < keys.length; i++) {
+//       var k = keys[i];
+//       if (this.category == data[k].category) {
+//         let obj = {
+//           category: data[k].category,
+//           downloadurl: data[k].downloadurl,
+//           name: data[k].name,
+//           key: k
+//         }
+//         this.arr2.push(obj);
+//         console.log(this.arr2);
+//       }
+//     }
+//   })
+// }
   // category TS\\
 
 
-// push( b) {
-//   console.log(b);
-  //let details=this.arr2[b];
-  //console.log(details);
-  //this.navCtrl.push(ViewPage,{obj:details});
-
-//}
+push( b) {
+  console.log(b);
+let details=this.arr2[b];
+console.log(details);
+this.navCtrl.push(ViewPage,{obj:details});
+}
 retreivePics(){
   this.art.viewPicMain().then((data: any) =>{
     this.list = data;
   });
 }
 
-push( b) {
-  console.log(b);
-
-  let details=this.arr2[b];
-  console.log(details);
-  this.navCtrl.push(ViewPage,{obj:details});
-}
 
 }
