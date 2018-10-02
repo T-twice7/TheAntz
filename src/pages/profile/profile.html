@@ -1,57 +1,26 @@
-<ion-content class="home">
 
-    <div class="forFab">
-      <ion-fab top right clear class="moreFAB">
-        <button ion-fab mini clear class="moreFAB" color="secondary">
-          <ion-icon ios="ios-more" md="md-more"></ion-icon>
-        </button>
-        <ion-fab-list side="left">
-          <div class="cont">
-            <button class="edit" color="dark" ion-button clear (click)="nextpage()">Edit Profile</button>
-            <button class="signOut" color="dark" ion-button clear (click)="logout()">Sign Out</button>
-          </div>
-  
-        </ion-fab-list>
-      </ion-fab>
-    </div>
-  
-  
-  
+  <ion-header transparent>
+      <ion-toolbar color="secondary" >
+          <ion-buttons end>
+              <button ion-button clear class="moveBtn" (click)="nextpage1()"><ion-icon name="arrow-back"></ion-icon></button>
+              <button ion-button (click)="logout()">logout</button>
+            </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  <ion-content class="home">
     <div class="head">
-      <ion-grid no-padding>
-        <ion-row>
-          <ion-col>
-            <button color="light" ion-button icon-only (click)="dismissPage()" clear>
-              <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col align="center">
-            <h1 id="head">Profile</h1>
-          </ion-col>
-          <ion-col align="right">
-            <button ion-button color="light" icon-only clear (click)="presentPopover()">
-              <ion-icon ios="ios-more" md="md-more"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  
-  
-  
+      <br>
       <div id="pic" align="center">
         <div class="photo">
           <div class="dp">
-            <div *ngFor="let a of arr">
-                <img class="m" [src]="a.downloadurl">
+            <div *ngFor="let a of obj">
+              <img class="m"  [src]="a.downloadurl">
             </div>
           </div>
         </div>
       </div>
-  
       <div class="list">
         <div *ngFor="let item of obj">
-  
-  
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -79,37 +48,27 @@
               </ion-row>
             </ion-grid>
           </div>
-  
         </div>
-  
       </div>
-  
-  
+  <button ion-button clear class=size (click)="next()"><ion-icon clear ios="ios-create" md="md-create"></ion-icon></button>
     </div>
     <div class="split">
       <ion-grid>
         <ion-row id="divider">
-          <ion-col id="divider">My Gallery</ion-col>
+          <ion-col id="divider">Uploads</ion-col>
           <ion-col id="divider" align="right">
             <button ion-button icon-only color="primary" class="btnIcon" (click)="upload()">
               <ion-icon name="add"></ion-icon>
             </button>
           </ion-col>
         </ion-row>
-      </ion-grid>
-  
-  
+      </ion-grid> 
     </div>
-  
-  
-  
     <div class="contents">
-  
-  
       <ion-grid>
         <ion-row class="gal">
-          <ion-col *ngFor="let a of list" col-6>
-            <img class="image" [src]="a.downloadurl" alt="">
+          <ion-col *ngFor="let b of list" col-6>
+            <img class="image" [src]="b.downloadurl" alt="">
           </ion-col>
         </ion-row>
       </ion-grid>

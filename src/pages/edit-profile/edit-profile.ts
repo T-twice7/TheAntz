@@ -29,20 +29,15 @@ export class EditProfilePage {
   imageUrl:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
   }
-
+  nexpage(){
+  this.navCtrl.setRoot(ProfilePage);
+}
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
   }
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
-  }
-
-  update() { 
-    this.arr.length = 0;
-    this.art.update(this.name,this.facebook,this.instagram,this.twitter,this.file).then((data) => {
-   console.log(data);
-    })
   }
   insertpic(event: any) {
     if (event.target.files && event.target.files[0]) {
@@ -55,19 +50,22 @@ export class EditProfilePage {
     }
 
   }
-
-
-  uploadPicture() {
-    this.art.uploadProfilePic(this.url, this.name).then(data => {
-        this.art.storeToDB1(this.url).then(() => {
-          console.log('added to db'); 
-        },
-          Error => {
-            console.log(Error)
-          })
+  uploadPicture(){
+   this.arr.length =0;
+    this.art.uploadProfilePic(this.url,this.name).then(data =>{
+      this.imageUrl = data;
+       this.art.storeToDB1(this.name).then(() =>{
+         console.log('added to db');
+         this.art.update(this.name,this.facebook,this.instagram,this.twitter).then((data) => {
+          console.log(data);
+           })
+       },
+      Error =>{
+        console.log(Error)
       })
-  
-  
+    }, Error =>{
+      console.log(Error )
+    })
   }
-
+  
 }

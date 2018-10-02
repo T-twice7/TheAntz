@@ -4,58 +4,62 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { CategoryPage } from '../category/category';
 import { UploadImagePage } from '../upload-image/upload-image';
-import { ModalController, ViewController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { PopOverProfilePage } from '../pop-over-profile/pop-over-profile';
 import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import firebase from 'firebase';
 /**
  * Generated class for the ProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-declare var firebase;
 @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage implements OnInit{
   list = [];
   arr = [];
   uid: any;
+  uid1: any;
   obj=[];
   name;
-  url = '../../assets/default.jpg';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+    this.retreivePics1(); 
     this.retreivePics();
   }
+
   ionViewDidLoad() {
-  
-    this.retreivePics1(); 
+
   }
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
+   
   }
 
   next() {
-    this.navCtrl.push(CategoryPage);
+    this.navCtrl.push(EditProfilePage);
   }
 
   upload() {
-    const modal = this.modalCtrl.create(UploadImagePage);
-    modal.present();
+   this.navCtrl.push(UploadImagePage);
   }
   presentPopover() {
     const popover = this.popoverCtrl.create(PopOverProfilePage);
     popover.present();
   }
 
-
+  nextpage1(){
+    this.navCtrl.setRoot(CategoryPage);
+  }
   getUid() {
     this.art.getUserID().then(data => {
       this.uid = data
@@ -63,6 +67,7 @@ export class ProfilePage implements OnInit {
   }
 
   retreivePics() {
+    this.list.length = 0;
     this.getUid();
     this.art.viewPicGallery().then(data => {
       var loader = this.loadingCtrl.create({
@@ -89,9 +94,8 @@ export class ProfilePage implements OnInit {
     });
   }
   getUid1() {
-    this.arr.length =0;
     this.art.getUserID().then(data => {
-      this.uid = data
+      this.uid1 = data
     })
   }
 
@@ -107,14 +111,14 @@ export class ProfilePage implements OnInit {
       for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
         if (this.uid == data[k].uid) {
-          let obj = {
-            uid: data[k].uid,
-            downloadurl: data[k].downloadurl,
-            key: k
+          let objt = {
+          downloadurl: data[k].downloadurl
           }
-          this.arr.push(obj);
+          this.arr.push(objt);
+          console.log()
         }
       }
+      console.log(this.arr);
       loader.dismiss();
     }, Error => {
       console.log(Error)
