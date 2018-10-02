@@ -1,4 +1,7 @@
 page-login {
+
+    @media screen and (max-width: 414px){
+        
     .container{
         background: linear-gradient(#010e1fea,#010e1f),
         url('../../assets/imgs/BG.jpg')
@@ -69,6 +72,7 @@ page-login {
         margin: 0 auto;
         height: 30px;
         color: #323787;
+        text-transform: capitalize;
     }
     .forgot{
         color:#fab335;
@@ -76,6 +80,7 @@ page-login {
     p{
         text-align: center;
         color: white
+    }
     }
 }
 
