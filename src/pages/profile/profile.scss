@@ -4,10 +4,10 @@ page-profile {
             color: white;
         }
         ion-navbar {
-            box-shadow: 0 2px 10px #323787;
+            box-shadow: 0 2px 10px #011127;
         }
         ion-header{
-             box-shadow: 0 2px 10px #323787;
+             box-shadow: 0 2px 10px #011127;
         }
         .outline{
             text-align: center
@@ -44,13 +44,13 @@ page-profile {
         .moreFAB{
             margin-top: -12px;
             margin-right: -12px;
-            box-shadow: 0px 3px 5px rgb(35,39,127);
+            box-shadow: 0px 3px 5px #011127;
         }
         p, h3{
             text-align: center;
         }
         .head{
-            background: #323787;
+            background: #011127;
             height:60%;
         }
         .list{
@@ -86,11 +86,11 @@ page-profile {
             padding-bottom: 10px;
         }
         .split{
-            border-bottom: 1px solid #323787;
+            border-bottom: 1px solid #011127;
             height: 30px;
-            background: #323787;
+            background: #011127;
             color: white;
-            box-shadow: inset 0px 5px 1px #323787;
+            box-shadow: inset 0px 5px 1px #011127;
         }
         .btnIcon{
             height: 40px;
@@ -191,8 +191,8 @@ page-profile {
         }
     }
     .size{
-        font-size:3.5vh;
-        margin-top:-10%;
+        text-align: center;
+        z-index: 1;
     }
     .moveBtn{
      margin-right:250px;

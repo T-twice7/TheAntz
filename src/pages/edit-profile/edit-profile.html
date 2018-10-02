@@ -9,21 +9,13 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="card-background-page">
-    <ion-card>
-        <img id="pic" [src]="url"/>
-        <div class="card-title">
-          <img [src]="url">
-          <div class="buttoon">
-              <label for="in">
-                  <ion-icon ios="ios-image" md="md-image" id="ico"></ion-icon>
-              </label>
-              <input  id="in" class="inpe" type="file" (change)="insertpic($event)">
-          </div>
-          
-        </div>
-        
-        
-      </ion-card>
+        <ion-card>
+                <img id="pic">
+                <div class="card-title">
+                  <img [src]="url"/>
+                  <input id="file" type="file" (change)="insertpic($event)">
+                </div> 
+              </ion-card>
   <div class="content">
       <ion-list no-lines>
             

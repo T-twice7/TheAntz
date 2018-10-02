@@ -1,9 +1,9 @@
 <ion-header #head>
   <ion-navbar color="secondary">
     <div class="head">
-      <ion-item class="CatBar" color="primary">
-        <ion-label >Category</ion-label>
-        <ion-select [(ngModel)]="category">
+      <ion-item class="CatBar" color="light">
+        <ion-label style="color:goldenrod">Category</ion-label>
+        <ion-select [(ngModel)]="category"  (ionChange)="typeOfArt()">
           <ion-option value="Photography">Photography</ion-option>
           <ion-option value="Sculpting">Sculpting</ion-option>
           <ion-option value="Painting">Painting</ion-option>
@@ -14,18 +14,13 @@
       </ion-item>
     </div>
     <ion-buttons end>
-      <button ion-button color="light" icon-only (click)="profile(obj)">
+      <button ion-button color="primary" icon-only (click)="profile(obj)">
         <ion-icon name="person"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="card-background-page">
-  <ion-fab bottom>
-    <button ion-fab mini (click)="typeOfArt()">
-      <ion-icon name="code-working"></ion-icon>
-    </button>
-  </ion-fab>
   <ion-grid no-padding>
     <ion-row no-padding>
       <ion-col class="col" col-6 *ngFor="let a of arr2">

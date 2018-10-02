@@ -24,9 +24,13 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <h3>
-                  {{item.name}}
-                </h3>
+              
+                  <ion-buttons class="size" >
+                    {{item.name}}
+                      <button ion-button icon-only clear (click)="next()"><ion-icon clear ios="ios-create" md="md-create"></ion-icon></button>
+                  </ion-buttons>
+              
+                
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -50,7 +54,6 @@
           </div>
         </div>
       </div>
-  <button ion-button clear class=size (click)="next()"><ion-icon clear ios="ios-create" md="md-create"></ion-icon></button>
     </div>
     <div class="split">
       <ion-grid>

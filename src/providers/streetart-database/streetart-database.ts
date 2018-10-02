@@ -25,7 +25,7 @@ export class StreetartzProvider {
   data = [];
   url;
   PicUrl;
-  downloadurl:any
+  downloadurl: any
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
 
@@ -57,33 +57,33 @@ export class StreetartzProvider {
     return firebase.auth().createUserWithEmailAndPassword(obj.email, obj.password).then((newUser) => {
       firebase.auth().signInWithEmailAndPassword(obj.email, obj.password).then((authenticatedUser) => {
         var user = firebase.auth().currentUser
-         firebase.database().ref("profiles/" + user.uid).set({
-        name:name,
-        email:obj.email,
-        password:obj.password,
-        twitter:"",
-        facebook:"",
-        instagram:"",
-        downloadurl:'../../assets/download.png'
+        firebase.database().ref("profiles/" + user.uid).set({
+          name: name,
+          email: obj.email,
+          password: obj.password,
+          twitter: "",
+          facebook: "",
+          instagram: "",
+          downloadurl: '../../assets/download.png'
+        })
+
       })
-    
-    })
-      }).catch((error) => {
-        const alert = this.alertCtrl.create({
-          title: error.code,
-          subTitle: error.message,
-          buttons: [
-            {
-              text: 'ok',
-              handler: data => {
-                console.log('Cancel clicked');
-              }
+    }).catch((error) => {
+      const alert = this.alertCtrl.create({
+        title: error.code,
+        subTitle: error.message,
+        buttons: [
+          {
+            text: 'ok',
+            handler: data => {
+              console.log('Cancel clicked');
             }
-          ]
-        });
-        alert.present();
-        console.log(error);
-      })
+          }
+        ]
+      });
+      alert.present();
+      console.log(error);
+    })
 
   }
 
@@ -91,7 +91,6 @@ export class StreetartzProvider {
     return new Promise((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
         resolve();
-
       }).catch((error) => {
         const alert = this.alertCtrl.create({
           title: error.code,
@@ -125,27 +124,27 @@ export class StreetartzProvider {
   }
   forgotpassword(email) {
     console.log(email)
-     return new Promise((resolve, reject) => {
-       if (email!=null) {
-         const alert = this.alertCtrl.create({
-           title: 'Forgot your password?',
-           subTitle: 'Please check your Email.',
-           buttons: ['OK']
-         });
-         alert.present();
-   
-           firebase.auth().sendPasswordResetEmail(email);
-           resolve()  
-          } 
-          else if (email == undefined || email == null){
-           const alert = this.alertCtrl.create({
-             subTitle: 'Please enter your Email.',
-             buttons: ['OK']
-           });
-           alert.present();
-          }
-         })
-   }
+    return new Promise((resolve, reject) => {
+      if (email != null) {
+        const alert = this.alertCtrl.create({
+          title: 'Forgot your password?',
+          subTitle: 'Please check your Email.',
+          buttons: ['OK']
+        });
+        alert.present();
+
+        firebase.auth().sendPasswordResetEmail(email);
+        resolve()
+      }
+      else if (email == undefined || email == null) {
+        const alert = this.alertCtrl.create({
+          subTitle: 'Please enter your Email.',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+    })
+  }
   uploadPic(pic, name) {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
@@ -318,6 +317,15 @@ export class StreetartzProvider {
             this.arr.push(obj);
             console.log(this.arr);
           }
+          else if (this.arr == null || this.arr == undefined) {
+            this.arr = null;
+            const alert = this.alertCtrl.create({
+              subTitle: 'No pictures are uploaded yet',
+              buttons: ['OK']
+            });
+            alert.present();
+            console.log(this.arr);
+          }
         }
       }), pass(this.arr);
 
@@ -382,7 +390,7 @@ export class StreetartzProvider {
     return new Promise((accpt, rejc) => {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var data = data.val();
-        if( data == null){
+        if (data == null) {
           this.arr2 = null;
           const alert = this.alertCtrl.create({
             subTitle: 'No pictures are uploaded yet',
@@ -390,35 +398,34 @@ export class StreetartzProvider {
           });
           alert.present();
         }
-        else
-    {
-        var keys1: any = Object.keys(data);
-        console.log(keys1.length);
-        for (var i = 0; i < keys1.length; i++) {
-          this.arr2.length = 0;
+        else {
           var keys1: any = Object.keys(data);
-          var k = keys1[i];
-          var chckId = data[k].uid;
+          console.log(keys1.length);
+          for (var i = 0; i < keys1.length; i++) {
+            this.arr2.length = 0;
+            var keys1: any = Object.keys(data);
+            var k = keys1[i];
+            var chckId = data[k].uid;
 
-          let obj = {
-            uid: data[k].uid,
-            category: data[k].category,
-            downloadurl: data[k].downloadurl,
-            name: data[k].name,
-            username: "",
-            email: "",
-            key: k
+            let obj = {
+              uid: data[k].uid,
+              category: data[k].category,
+              downloadurl: data[k].downloadurl,
+              name: data[k].name,
+              username: "",
+              email: "",
+              key: k
+            }
+
+            this.viewProfileMain(chckId).then((profileData: any) => {
+              obj.username = profileData.name
+              obj.email = profileData.email
+              this.arr2.push(obj);
+            });
+            accpt(this.arr2);
+            this.arr2.length = 0;
           }
-
-          this.viewProfileMain(chckId).then((profileData: any) => {
-            obj.username = profileData.name
-            obj.email = profileData.email
-            this.arr2.push(obj);
-          });
-          accpt(this.arr2);
-          this.arr2.length = 0;
         }
-      }
       }, Error => {
         rejc(Error.message)
       })
