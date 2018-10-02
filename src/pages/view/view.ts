@@ -22,30 +22,15 @@ export class ViewPage {
   name;
   downloadurl;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-<<<<<<< HEAD
-  
-    this.obj = this.navParams.get("obj");
-    console.log("this is my index");
-    console.log(this.obj);
-
-    this.name=this.obj.name;
-
-   this.downloadurl=this.obj.downloadurl;
-
-  }
-  ngOnInit() {
-
-   
-
-=======
  
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
     console.log(this.obj);
+ 
     this.name=this.obj.name;
+ 
    this.downloadurl=this.obj.downloadurl;
  
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
   }
   ngOnInit() {
  
@@ -57,16 +42,8 @@ export class ViewPage {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
     console.log(this.obj.name);
-<<<<<<< HEAD
-    
-  }
-  
-
-}
-=======
  
   }
  
  
  }
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1

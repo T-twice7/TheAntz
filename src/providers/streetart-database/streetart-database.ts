@@ -158,22 +158,33 @@ console.log("not logged in");
 
   }
   forgotpassword(email) {
-    const alert = this.alertCtrl.create({
-      title: 'Forgot your?',
-      subTitle: 'Please your Email.',
-      buttons: ['OK']
-    });
-    alert.present();
-  
-    
+   console.log(email)
     return new Promise((resolve, reject) => {
-      firebase.auth().sendPasswordResetEmail(email);
-      resolve();
-
+      if (email!=null) {
+        const alert = this.alertCtrl.create({
+          title: 'Forgot your?',
+          subTitle: 'Please check your Email.',
+          buttons: ['OK']
+        });
+        alert.present();
+  
+          firebase.auth().sendPasswordResetEmail(email);
+          resolve()  
+     
       
-    })
+          
+         } 
+         else if (email == undefined || email == null){
+          const alert = this.alertCtrl.create({
+            title: 'Forg ot your?',
+            subTitle: 'Please enter your Email.',
+            buttons: ['OK']
+          });
+          alert.present();
+         }
+
     
-    
+        })
   }
   uploadPic(pic, name) {
     let loading = this.loadingCtrl.create({
@@ -429,7 +440,7 @@ console.log("not logged in");
                 let objt = {
                   name: uploads2[k].name,
                   //category: uploads2[k].category,
-                  downloadurl: uploads2[k].downloadurl
+                  downloadurl: uploads[k].downloadurl
                 }
                 this.arr.push(objt);
                 console.log(this.arr);

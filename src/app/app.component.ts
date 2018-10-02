@@ -15,54 +15,44 @@ import { SplashPage } from '../pages/splash/splash';
 
 import { CategoryPage } from '../pages/category/category';
 import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
-import { ArrayType } from '@angular/compiler/src/output/output_ast';
+import { ArrayType } from '@angular/compiler/src/output/output_ast'
+import { UploadedPage } from '../pages/uploaded/uploaded';
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-
-  rootPage: any = SplashPage;
-
+  @ViewChild(Nav) nav: Nav;
+  rootPage: any = CategoryPage  ;
   
-
-  pages: Array<{ title: string, component: any }>;
+  pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public art: StreetartzProvider) {
- 
-    //this.initializeApp(); 
-
+    this.initializeApp();
     // used for an example of ngFor and navigation
+    
 
+  firebase.initializeApp({
+    apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
+    authDomain: "streetartsdatabase.firebaseapp.com",
+    databaseURL: "https://streetartsdatabase.firebaseio.com",
+    projectId: "streetartsdatabase",
+    storageBucket: "streetartsdatabase.appspot.com",
+    messagingSenderId: "202504182684"
+  })
   }
-
-  initializeApp(user) {
-  
-       firebase.auth().onAuthStateChanged((user) => {
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  .then(function() {
-       
-        if (user) {
-          // User is signed in.
-          this.rootPage = CategoryPage
-          this.firebase= 1
-          console.log(user)
-        } else {
-          // No user is signed in.
-          this.rootPage = LoginPage
-          this.firebase= 0
-          console.log(user)
-        }
-      });
-
-      
-
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
-
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-   
+    this.nav.setRoot(page.component);
   }
 }

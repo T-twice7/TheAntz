@@ -5,6 +5,8 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { ToastController } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
+import { UploadedPage } from '../uploaded/uploaded';
+
 
 @IonicPage()
 @Component({
@@ -28,7 +30,7 @@ export class SignupPage {
       this.art.register(this.obj);
       console.log(this.obj);
       this.presentToast();
-      this.navCtrl.setRoot(CategoryPage); 
+      this.navCtrl.setRoot(UploadedPage); 
   }
       
   }

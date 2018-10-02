@@ -4,12 +4,6 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { ProfilePage } from '../profile/profile';
 import { ViewPage } from '../view/view';
-<<<<<<< HEAD
-import { LoginPage } from '../login/login';
-import firebase from 'firebase';
-
-=======
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
 /**
  * Generated class for the CategoryPage page.
  *
@@ -27,15 +21,9 @@ export class CategoryPage {
   category;
   arr2 = [];
   uid: any;
-<<<<<<< HEAD
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
-=======
   list =[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
  
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
   }
   ionViewDidLoad() {
     this.retreivePics();
@@ -48,22 +36,6 @@ export class CategoryPage {
   nextpage(){
     this.navCtrl.push(ProfilePage);
   }
-<<<<<<< HEAD
-  push( b) {
-    console.log(b);
-
-    let details=this.arr2[b];
-    console.log(details);
-    this.navCtrl.push(ViewPage,{obj:details});
-
-    // this.art.profile(this.obj).then((data) => {
-    //   
-      
-    // })
-    
-  
-  }
-=======
   // typeOfArt() {
   //   this.art.selectCategory(this.category).then((data) => {
   //     // this.arr2.push(data);
@@ -85,19 +57,27 @@ export class CategoryPage {
   //   })
   // }
   // category TS\\
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
 
 
-push( b) {
-  console.log(b);
-  let details=this.arr2[b];
-  console.log(details);
-  this.navCtrl.push(ViewPage,{obj:details});
+// push( b) {
+//   console.log(b);
+  //let details=this.arr2[b];
+  //console.log(details);
+  //this.navCtrl.push(ViewPage,{obj:details});
 
-}
+//}
 retreivePics(){
   this.art.viewPicMain().then((data: any) =>{
     this.list = data;
   });
 }
+
+push( b) {
+  console.log(b);
+
+  let details=this.arr2[b];
+  console.log(details);
+  this.navCtrl.push(ViewPage,{obj:details});
+}
+
 }

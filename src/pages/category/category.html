@@ -21,7 +21,7 @@
     </ion-navbar>
    </ion-header>
    <ion-content padding>
-    <ion-list *ngFor="let a of list">
+    <ion-list *ngFor="let a of list" (click)="push(a.downloadurl)">
       <ion-card>
           <ion-item>
             <ion-avatar item-start>
@@ -49,45 +49,6 @@
                 </button>
             </ion-col>
           </ion-row>
-<<<<<<< HEAD
-      </ion-grid> -->
-     
-      <div>
-          <ion-item no-borders>
-              <ion-label >Category</ion-label>
-              <ion-select [(ngModel)]="category">
-                  <ion-option value="Photography" (click)="typeOfArt()">Photography</ion-option>
-                  <ion-option value="Sculpting">Sculpting</ion-option>
-                  <ion-option value="Painting">Painting</ion-option>
-                  <ion-option value="Architecture">Architecture</ion-option>
-                  <ion-option value="Drawing">Drawing</ion-option>
-                  <ion-option value="General">General</ion-option>
-              </ion-select>
-          </ion-item>
-      </div>
-      <ion-buttons end>
-          <button ion-button icon-only (click)="profile(obj)">
-              <ion-icon name="person" ></ion-icon>
-          </button>
-      </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content padding>
-  <ion-list *ngFor="let a of arr2; let b= index">
-    <img [src]="a.downloadurl" (click)="push(b)">
-</ion-list>
-<ion-fab  edge>
-    <button ion-fab mini (click)="typeOfArt()"><ion-icon name="add" ></ion-icon></button>
-  </ion-fab>
- <!-- <img src="../../assets/imgs/logo.png" (click)="push()">-->
-
-
- 
-</ion-content>
-=======
         </ion-card>
    </ion-list>
    </ion-content>
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1

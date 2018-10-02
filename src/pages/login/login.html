@@ -6,53 +6,17 @@
   <div class="items" padding>
       <ion-list no-lines>
           <ion-item>
-<<<<<<< HEAD
-            <ion-label start>
-              <ion-icon ios="ios-person-outline" md="md-person" id="space"></ion-icon></ion-label>
-            <ion-input type="text" value=""[(ngModel)]="email" placeholder="Username"></ion-input>
-=======
             <ion-input type="email" placeholder="Email" value=""[(ngModel)]="obj.email"></ion-input>
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
           </ion-item>
           <ion-item>
-<<<<<<< HEAD
-            <ion-label start>
-              <ion-icon ios="ios-key-outline" md="md-key" id="space"></ion-icon></ion-label>
-            <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
-=======
             <ion-input type="password" placeholder="Password" [(ngModel)]="obj.password"></ion-input>
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
           </ion-item>
   
         </ion-list>
-<<<<<<< HEAD
-      </div>
-      <div class="ctrl">
-              <div class="btn">
-        <button color="darker" ion-button round icon-only block (click)="login(email,password)">
-          SIGN IN
-        </button>
-      </div>
-      </div>
-
-
-    </div>
-
-
-
-  </div>
-
-  <div class="btn2">
-      <button clear color="light" ion-button full (click)="signup()">
-         <p id="forgot"> Don't have an account?
-          <b id="instruct"> Sign up</b></p>
-        </button>
-=======
       <button ion-button full icon-only id="button" color="secondary" (click)="login()">
         Sign In
       </button>
       <p (click)="forgotpassword(obj)">Forgot password</p>
->>>>>>> 649a5449bb98b0e2092511ecab455bc80dbebac1
   </div>
   <ion-footer (click)="signup()">
   <p>Sign Up</p>

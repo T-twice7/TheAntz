@@ -14,6 +14,7 @@ import { ProfilePage } from '../profile/profile';
 
 
 import firebase from 'firebase';
+import { UploadedPage } from '../uploaded/uploaded';
 
 /**
  * Generated class for the LoginPage page.
@@ -63,7 +64,7 @@ export class LoginPage {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then((result) => {
       firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
         if(user){
-        this.navCtrl.push(CategoryPage)
+        this.navCtrl.push(UploadedPage)
         console.log(email);
         } else {
           console.log("User not found")
@@ -82,12 +83,12 @@ export class LoginPage {
     });
     loader.present();
   }
-// forgotpassword(obj:obj){
-//   this.art.forgotpassword(this.obj.email).then(()=>{
-//     alert("Check your email")
-//   } , (error)=>{
-
-//   })
-// }
+forgotpassword(obj:obj){
+  this.art.forgotpassword(this.obj.email).then(()=>{
+   // alert("Check your email")
+  } , (error)=>{
+   
+  })
+}
 
 }

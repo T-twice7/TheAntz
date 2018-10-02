@@ -21,16 +21,18 @@ import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
 import * as firebase from "firebase";
+import { UploadedPage } from '../pages/uploaded/uploaded';
 
 
-firebase.initializeApp({
-  apiKey: "AIzaSyDXJsbuaNORuwbz2gdRBFi-kUQ1JDJKoMA",
-    authDomain: "street-artz-181f2.firebaseapp.com",
-    databaseURL: "https://street-artz-181f2.firebaseio.com",
-    projectId: "street-artz-181f2",
-    storageBucket: "street-artz-181f2.appspot.com",
-    messagingSenderId: "118526884863"
-})
+//
+//firebase.initializeApp({
+//  apiKey: "AIzaSyDXJsbuaNORuwbz2gdRBFi-kUQ1JDJKoMA",
+//    authDomain: "street-artz-181f2.firebaseapp.com",
+//    databaseURL: "https://street-artz-181f2.firebaseio.com",
+//    projectId: "street-artz-181f2",
+//    storageBucket: "street-artz-181f2.appspot.com",
+//    messagingSenderId: "118526884863"
+//})
 
 @NgModule({ 
   declarations: [
@@ -43,7 +45,8 @@ firebase.initializeApp({
     UploadImagePage,
     ViewPage,
     EditProfilePage,
-    PopOverProfilePage
+    PopOverProfilePage,
+    UploadedPage
  
   ],
   imports: [
@@ -62,6 +65,7 @@ firebase.initializeApp({
     ViewPage,
     EditProfilePage,
     PopOverProfilePage,
+    UploadedPage
 
  
   ],
