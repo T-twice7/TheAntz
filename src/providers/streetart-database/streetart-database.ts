@@ -25,7 +25,7 @@ export class StreetartzProvider {
   data = [];
   url;
   PicUrl;
-  downloadurl: any
+  ProfilePic:any
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
 
@@ -317,15 +317,8 @@ export class StreetartzProvider {
             this.arr.push(obj);
             console.log(this.arr);
           }
-          else if (this.arr == null || this.arr == undefined) {
-            this.arr = null;
-            const alert = this.alertCtrl.create({
-              subTitle: 'No pictures are uploaded yet',
-              buttons: ['OK']
-            });
-            alert.present();
-            console.log(this.arr);
-          }
+
+
         }
       }), pass(this.arr);
 
@@ -423,7 +416,7 @@ export class StreetartzProvider {
               this.arr2.push(obj);
             });
             accpt(this.arr2);
-            this.arr2.length = 0;
+            console.log(this.arr2);
           }
         }
       }, Error => {
@@ -434,9 +427,10 @@ export class StreetartzProvider {
 
   viewProfileMain(userid: string) {
     return new Promise((accpt, rejc) => {
-      firebase.database().ref("profiles/").on("value", (data: any) => {
+      firebase.database().ref("profiles/" + userid).on("value", (data: any) => {
         var a = data.val();
         accpt(a);
+        console.log(a);
       }, Error => {
         rejc(Error.message)
       })

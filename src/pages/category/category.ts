@@ -27,11 +27,11 @@ export class CategoryPage {
   list = [];
   name;
   username;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController,public loadingCtrl: LoadingController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.retreivePics();
   }
- 
+
   ionViewDidLoad() {
 
   }
@@ -60,7 +60,7 @@ export class CategoryPage {
           this.arr2.push(obj);
           console.log(this.category);
         }
-    
+
       }
     })
 

@@ -2,7 +2,7 @@
   <ion-header transparent>
       <ion-toolbar color="secondary" >
           <ion-buttons end>
-              <button ion-button clear class="moveBtn" (click)="nextpage1()"><ion-icon name="arrow-back"></ion-icon></button>
+              <button ion-button clear  (click)="nextpage1()"><ion-icon name="arrow-back"></ion-icon></button>
               <button ion-button (click)="logout()">logout</button>
             </ion-buttons>
       </ion-toolbar>
@@ -27,7 +27,7 @@
               
                   <ion-buttons class="size" >
                     {{item.name}}
-                      <button ion-button icon-only clear (click)="next()"><ion-icon clear ios="ios-create" md="md-create"></ion-icon></button>
+                      <button ion-button icon-only clear (click)="EditProfile()"><ion-icon clear ios="ios-create" md="md-create"></ion-icon></button>
                   </ion-buttons>
               
                 

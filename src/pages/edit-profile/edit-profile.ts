@@ -53,7 +53,6 @@ export class EditProfilePage {
   uploadPicture(){
    this.arr.length =0;
     this.art.uploadProfilePic(this.url,this.name).then(data =>{
-      this.imageUrl = data;
        this.art.storeToDB1(this.name).then(() =>{
          console.log('added to db');
          this.art.update(this.name,this.facebook,this.instagram,this.twitter).then((data) => {
