@@ -3,7 +3,7 @@ page-login {
     @media screen and (max-width: 414px){
         
     .container{
-        background: linear-gradient(#010e1fea,#010e1f),
+        background: linear-gradient(rgba(1, 17, 39, 0.562),rgba(1, 17, 39, 0.9)),
         url('../../assets/imgs/BG.jpg')
         ;
         background-position: bottom;
@@ -12,19 +12,20 @@ page-login {
     }
     .everything{
         // border: 2px solid red;
-        padding-top: 50%;
-        transform: translateY(-5%);
+        padding-top: 40%;
+        transform: translateY(-10%);
         // background: green;
         height: 100%;
         z-index: -1;
         max-width:550;
     }
     img{
-        height: 100px;
+        height: 150px;
     }
     .logo{
         // margin-bottom: 30px;
         text-align: center;
+
        
     }
     .items{

@@ -1,31 +1,76 @@
-<!--
-  Generated template for the ViewPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>View</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-  <!-- <ion-icon name="close" class="size" (click)="next()"></ion-icon>
-   <button ion-button><ion-icon name="more"></ion-icon></button>
-  -->
-  <h1 id="head" align="center">View Profile</h1>
-  
-  
-  <ion-list class="list"  >
-   <ion-fab right>
-       <ion-icon id="icon2" name="brush" ></ion-icon>
-   </ion-fab>
-    <img [src]="downloadurl" >
-   <h2>{{name}}</h2>
-  
-  </ion-list>
-  </ion-content>
+<ion-content>
+  <ion-fab top left>
+    <button ion-button clear icon-only color="light" (click)="GoBackToCategory()">
+      <ion-icon class="ico" name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+  <!-- <div class="head">
+    <img class="chosenImage" src="{{downloadurl}}" alt="">
+  </div> -->
+  <div class="post">
+    <img class="postedIMG" src="{{downloadurl}}"/>
+    <ion-item color="light" class="arter" no-lines>
+      <ion-avatar item-start>
+        <img src="{{downloadurl1}}" />
+      </ion-avatar>
+      <h2 class="artistName">{{name}}</h2>
+    </ion-item>
+    <div class="title">
+     
+        <h4 class="caption">Caption Text</h4>
+      <p class="statements">
+        This is the short description of the photograph above. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
+        eos?
+      </p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <button ion-button clear>12 likes</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button clear>500 comments</button>
+          </ion-col>
+                  <ion-fab right class="cart">
+              <button ion-fab mini>
+                <img class="pay" src="../../assets/icon/basket.svg" alt="">
+              </button>
+            </ion-fab>    
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <div>
+    <ion-list *ngFor="let a of arr2">
+        <ion-card>
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="{{a.url}}" >
+              </ion-avatar>
+              <h2>{{a.name}}</h2>
+              <p>November 5, 1955</p>
+            </ion-item>
+            <ion-card-content>
+              <p>{{a.comment}}</p>
+            </ion-card-content>
+            <ion-row>
+              <ion-col>
+                <button ion-button icon-start clear small>
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>0</div>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+    </ion-list> 
+  </div>
+</ion-content>
+<ion-footer no-padding>
+  <ion-toolbar>
+    <ion-item class="footItem" no-lines>
+      <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
+      <button ion-button class="sendBtn" item-end icon-only large (click)="sendComment()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

@@ -11,10 +11,11 @@
             <ion-input type="password" placeholder="Password" [(ngModel)]="obj.password"></ion-input>
           </div>
         </ion-list>
-        <p class="forgot" (click)="forgotpassword(obj)">Forgot password?</p>
         <button ion-button block id="button" color="primary" (click)="login()">
           Sign In
         </button>
+        <br><br>
+        <p class="forgot" (click)="forgotpassword(obj)">Forgot password?</p>
       </div>
       <p>Don't have an account?
         <b (click)="signup()" class="forgot">Sign Up</b>
