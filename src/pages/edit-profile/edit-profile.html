@@ -13,7 +13,7 @@
                 <img id="pic">
                 <div class="card-title">
                   <img [src]="url"/>
-                  <input id="file" type="file" (change)="insertpic($event)">
+                  <input id="file" type="file" accept="image/*" (change)="insertpic($event)">
                 </div> 
               </ion-card>
   <div class="content">
@@ -29,26 +29,30 @@
             
           <ion-item class="item">
               <ion-label>
-                  <ion-icon name="logo-facebook"></ion-icon>
+                  <ion-icon name="mail"></ion-icon>
                 
               </ion-label>
-              <ion-input type="text" [(ngModel)]="facebook" placeholder="facebook name"></ion-input>
+              <ion-input type="email" value="" [(ngModel)]="email" placeholder="Email"></ion-input>
             </ion-item>
             
           <ion-item class="item">
               <ion-label>
-                  <ion-icon name="logo-twitter"></ion-icon>
+                  <ion-icon name="call"></ion-icon>
                 
               </ion-label>
-              <ion-input type="text" [(ngModel)]="twitter" placeholder="twitter name"></ion-input>
+              <ion-input type="number" value="" [(ngModel)]="contact" max="10" placeholder="Mobile"></ion-input>
             </ion-item>
             
           <ion-item class="item">
               <ion-label>
-                  <ion-icon name="logo-instagram"></ion-icon>
+                  <ion-icon name="body"></ion-icon>
               </ion-label>
-              <ion-input type="text" [(ngModel)]="instagram" placeholder="instagram name"></ion-input>
+              <ion-input type="text" value="" [(ngModel)]="skill" maxlength="20" placeholder="(e.g photographer)"></ion-input>
       </ion-item>
+        <div class="item">
+                    <ion-textarea type="text" value=""  [(ngModel)]="bio" placeholder="Bio"></ion-textarea>
+        </div>
+
         </ion-list>
   </div>
 </ion-content>

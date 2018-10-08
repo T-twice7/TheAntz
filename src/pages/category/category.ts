@@ -27,11 +27,11 @@ export class CategoryPage {
   list = [];
   name;
   username;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController,public loadingCtrl: LoadingController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.retreivePics();
   }
- 
+
   ionViewDidLoad() {
 
   }
@@ -55,12 +55,13 @@ export class CategoryPage {
             category: data[k].category,
             downloadurl: data[k].downloadurl,
             name: data[k].name,
-            key: k
+            key: k,
           }
           this.arr2.push(obj);
+          console.log(this.arr2);
           console.log(this.category);
         }
-    
+
       }
     })
 
@@ -70,5 +71,17 @@ export class CategoryPage {
     this.art.viewPicMain(this.name, this.username).then((data: any) => {
       this.arr2 = data;
     });
+  }
+
+  pushArtistDetails(pic, name, key,url) {
+    let obj = {
+      name: name,
+      pic: pic,
+      key: key,
+      url:url
+   
+    }
+    this.navCtrl.push(ViewPage, { obj: obj });
+    console.log(obj);
   }
 }

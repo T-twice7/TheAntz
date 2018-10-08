@@ -1,22 +1,25 @@
 <ion-content class="container">
-    <div class="everything">
-      <div class="logo">
-        <img src="../../assets/imgs/theLogo/ANTZ Logo.png" alt="">
-      </div>
-      <div class="items">
-        <ion-list no-lines>
-          <div class="textFields">
-            <ion-input type="text" placeholder="Full Name" [(ngModel)]="obj.name"></ion-input>
-            <ion-input type="email" placeholder="Email" [(ngModel)]="obj.email"></ion-input>
-            <ion-input type="password" placeholder="Password (min 6 char)" [(ngModel)]="obj.password"></ion-input>
-            <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="obj.confirmPassword"></ion-input>
-          </div>
-        </ion-list>
-        <button id="button" ion-button block (click)="signUp()">
-          Sign Up
-        </button>
-      </div>
-      <br>
-      <p class="forgot" (click)="dismiss()">Go back</p>
+  <div>
+    <button ion-button class="backBTN" icon-only (click)="dismiss()" clear>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </div>
+  <div class="everything">
+    <div class="logo">
+      <img src="../../assets/imgs/theLogo/ANTZ Logo.png" alt="">
     </div>
-  </ion-content>
+    <div class="items">
+      <ion-list no-lines>
+        <div class="textFields">
+          <ion-input type="text" placeholder="Full Name" [(ngModel)]="obj.name"></ion-input>
+          <ion-input type="email" placeholder="Email" [(ngModel)]="obj.email"></ion-input>
+          <ion-input type="password" placeholder="Password (min 6 char)" [(ngModel)]="obj.password"></ion-input>
+        </div>
+      </ion-list>
+      <button id="button" ion-button block (click)="signUp()">
+        Sign Up
+      </button>
+    </div>
+    <br>
+  </div>
+</ion-content>

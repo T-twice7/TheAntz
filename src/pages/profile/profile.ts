@@ -23,41 +23,41 @@ import firebase from 'firebase';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage implements OnInit{
+export class ProfilePage implements OnInit {
   list = [];
   arr = [];
   uid: any;
   uid1: any;
-  obj=[];
+  obj;
   name;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-    
+    this.retreivePics1();
     this.retreivePics();
   }
 
   ionViewDidLoad() {
-    this.retreivePics1(); 
+    
   }
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
-   
+  
   }
 
-  next() {
+EditProfile() {
     this.navCtrl.push(EditProfilePage);
   }
 
   upload() {
-   this.navCtrl.push(UploadImagePage);
+    this.navCtrl.push(UploadImagePage);
   }
   presentPopover() {
     const popover = this.popoverCtrl.create(PopOverProfilePage);
     popover.present();
   }
 
-  nextpage1(){
+  nextpage1() {
     this.navCtrl.setRoot(CategoryPage);
   }
   getUid() {
@@ -100,7 +100,7 @@ export class ProfilePage implements OnInit{
   }
 
   retreivePics1() {
-    // this.arr.length = 0;
+    this.arr.length = 0;
     this.getUid1();
     this.art.viewPicGallery1().then(data => {
       var loader = this.loadingCtrl.create({
@@ -112,7 +112,7 @@ export class ProfilePage implements OnInit{
         var k = keys[i];
         if (this.uid == data[k].uid) {
           let objt = {
-          downloadurl: data[k].downloadurl
+            downloadurl: data[k].downloadurl
           }
           this.arr.push(objt);
           console.log()
@@ -125,16 +125,16 @@ export class ProfilePage implements OnInit{
     });
   }
 
-  
-  nextpage(){
+
+  nextpage() {
     this.navCtrl.push(EditProfilePage);
   }
-  logout(){
-    this.art.logout().then(()=>{
+  logout() {
+    this.art.logout().then(() => {
       this.navCtrl.push(LoginPage);
-    },(error)=>{})
-    }
-    dismissPage(){
-      this.navCtrl.pop();
-    }
+    }, (error) => { })
+  }
+  dismissPage() {
+    this.navCtrl.pop();
+  }
 }

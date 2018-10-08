@@ -8,7 +8,7 @@ import { StreetartzProvider } from '../providers/streetart-database/streetart-da
 
 
 import { MyApp } from './app.component';
-
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { SplashPage } from '../pages/splash/splash';
@@ -37,7 +37,8 @@ import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
   ],
   imports: [
     BrowserModule, HttpClientModule ,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

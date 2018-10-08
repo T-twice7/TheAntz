@@ -25,6 +25,9 @@ export class EditProfilePage {
   instagram:any;
   twitter:any;
   file;
+  bio;
+  contact;
+  skill;
   url = '../../assets/download.png';
   imageUrl:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
@@ -53,10 +56,9 @@ export class EditProfilePage {
   uploadPicture(){
    this.arr.length =0;
     this.art.uploadProfilePic(this.url,this.name).then(data =>{
-      this.imageUrl = data;
        this.art.storeToDB1(this.name).then(() =>{
          console.log('added to db');
-         this.art.update(this.name,this.facebook,this.instagram,this.twitter).then((data) => {
+         this.art.update(this.name,this.email,this.contact,this.skill,this.bio).then((data) => {
           console.log(data);
            })
        },

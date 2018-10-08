@@ -43,9 +43,9 @@ export class UploadImagePage {
 
   uploadPicture(){
     this.art.uploadPic(this.url,this.name).then(data =>{
-      this.imageUrl = data;
        this.art.storeToDB(data, this.category,this.name,this.description).then(() =>{
          console.log('added to db');
+        //  this.navCtrl.push(ProfilePage);
        },
       Error =>{
         console.log(Error)

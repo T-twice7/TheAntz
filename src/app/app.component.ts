@@ -10,6 +10,10 @@ import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
 import { SplashPage } from '../pages/splash/splash';
 import { CategoryPage } from '../pages/category/category';
+import { ViewPage } from '../pages/view/view';import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { viewParentEl } from '@angular/core/src/view/util';
+''
+
 @Component({
   templateUrl: 'app.html'
 })
