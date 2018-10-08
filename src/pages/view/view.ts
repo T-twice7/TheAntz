@@ -61,7 +61,7 @@ export class ViewPage {
     this.art.comments(this.obj.key, this.comment).then((data) => {
       this.art.addNumComments(this.obj.key,this.comments);
       console.log(data);
-      // this.comments.length =0;
+      // this.Comments.length =0;
       this.arr2.length = 0;
       this.view();
     })
