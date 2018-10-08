@@ -548,5 +548,16 @@ export class StreetartzProvider {
     firebase.database().ref('uploads/'+ key).update({comments: num});
     console.log("comment number added");
   }
+
+  likes(key: any) {
+    var user = firebase.auth().currentUser;
+    return new Promise((accpt, rejc) => {
+      firebase.database().ref('comments/' + key).push({
+        uid: user.uid,
+      })
+      accpt('success');
+    });
+
+  }
 }
 
