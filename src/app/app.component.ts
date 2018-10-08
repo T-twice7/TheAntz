@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {  ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-// import { SplashScreenPage } from '../pages/splash-screen/splash-screen';
+// import { SplashPage } from '../pages/splash/splash';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
@@ -24,7 +24,7 @@ export class MyApp {
 
 
 
-  rootPage: any = LoginPage;
+  rootPage: any = SplashPage;
 
 
 
