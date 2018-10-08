@@ -30,6 +30,8 @@ export class StreetartzProvider {
   name;
   url;
   username;
+  emailComposer;
+  email;
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
 
@@ -351,7 +353,7 @@ export class StreetartzProvider {
 
     })
   }
-  update(name, contact, skill, bio, email) {
+  update(name, email, skill, contact, bio) {
     this.arr.length = 0;
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
@@ -367,14 +369,16 @@ export class StreetartzProvider {
       var user = firebase.auth().currentUser
       firebase.database().ref('profiles/' + user.uid).update({
         name: name,
-        contact: contact,
+        email:email,
         skill: skill,
-        bio: bio,
-        email: email
+        contact:contact,
+        bio:bio
       });
       toast.present();
     })
 
+
+  
   }
 
   push(obj: obj) {
@@ -453,10 +457,10 @@ export class StreetartzProvider {
               obj.username = profileData.name
               obj.email = profileData.email
               obj.url = profileData.downloadurl
-              this.arr.push(obj);
+              this.arr2.push(obj);
             });
-            accpt(this.arr);
-            console.log(this.arr);
+            accpt(this.arr2);
+            console.log(this.arr2);
             this.storeImgur(data[keys1[0]].downloadurl);
             console.log(data[keys1[0]].downloadurl);
           }
