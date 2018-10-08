@@ -46,6 +46,7 @@ export class ViewPage {
     this.keys2 = this.obj.key;
     this.downloadurl1 = this.obj.url
     this.comments = this.obj.comments
+    this.email = this.obj.email
     this.view();
 
     this.emailComposer.isAvailable().then((available: boolean) => {
@@ -64,8 +65,8 @@ export class ViewPage {
 
   BuyArt() {
     let email = {
-      to: 'max@mustermann.de',
-      cc: 'erika@mustermann.de',
+      to: this.email,
+      cc: 'janetzango@gmail.com',
       bcc: ['john@doe.com', 'jane@doe.com'],
       attachments: [
         'file://img/logo.png',
