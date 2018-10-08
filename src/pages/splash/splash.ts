@@ -30,7 +30,7 @@ export class SplashPage {
     
     this.navCtrl.setRoot(LoginPage);
     clearInterval(timer)
-  },3000)
+  },8000)
   }
 
   

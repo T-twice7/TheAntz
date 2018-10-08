@@ -18,6 +18,9 @@ import { StreetartzProvider } from '../providers/streetart-database/streetart-da
 import { ArrayType } from '@angular/compiler/src/output/output_ast'
 
 
+import { ViewPage } from '../pages/view/view';import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { viewParentEl } from '@angular/core/src/view/util';
+''
 
 @Component({
   templateUrl: 'app.html'
