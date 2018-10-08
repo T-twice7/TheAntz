@@ -549,15 +549,50 @@ export class StreetartzProvider {
     console.log("comment number added");
   }
 
+
+  viewLikes(key: any) {
+    this.keyArr.length = 0;
+    return new Promise((accpt, rejc) => {
+      var user = firebase.auth().currentUser
+      firebase.database().ref("likes/" + key).on("value", (data: any) => {
+        var CommentDetails = data.val();
+        var keys1: any = Object.keys(CommentDetails);
+        console.log(CommentDetails);
+        for (var i = 0; i < keys1.length; i++) {
+          var key = keys1[i];
+          var chckId = CommentDetails[key].uid;
+          let obj = {
+            likes: CommentDetails[key].likes,
+            uid: user.uid,
+          }
+          this.keyArr.push(obj);
+          console.log(this.url)
+         accpt(this.keyArr); 
+        }
+      }, Error => {
+        rejc(Error.message)
+      })
+
+    })
+  }
+ 
   likes(key: any) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
-      firebase.database().ref('comments/' + key).push({
+      firebase.database().ref('likes/' + key).push({
         uid: user.uid,
       })
       accpt('success');
     });
 
   }
+
+  addNumlikes(key, numLikes){
+    var num =  numLikes  + 1;
+    firebase.database().ref('uploads/'+ key).update({comments: num});
+    console.log("comment number added");
+  }
+
+  
 }
 
