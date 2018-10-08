@@ -416,7 +416,7 @@ export class StreetartzProvider {
     })
   }
   viewPicMain(name, username) {
-    this.arr2.length = 0;
+    this.arr.length = 0;
     return new Promise((accpt, rejc) => {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var data = data.val();
@@ -453,10 +453,10 @@ export class StreetartzProvider {
               obj.username = profileData.name
               obj.email = profileData.email
               obj.url = profileData.downloadurl
-              this.arr2.push(obj);
+              this.arr.push(obj);
             });
-            accpt(this.arr2);
-            console.log(this.arr2);
+            accpt(this.arr);
+            console.log(this.arr);
             this.storeImgur(data[keys1[0]].downloadurl);
             console.log(data[keys1[0]].downloadurl);
           }
