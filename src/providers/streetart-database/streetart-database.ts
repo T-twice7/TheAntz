@@ -313,15 +313,17 @@ export class StreetartzProvider {
   }
   selectCategory(category) {
     return new Promise((pass, fail) => {
-      this.arr.length = 0;
+      this.arr2.length = 0;
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
         console.log(uploads);
         var keys2: any = Object.keys(uploads);
         for (var i = 0; i < keys2.length; i++) {
+
           var k = keys2[i];
           var chckId = uploads[k].uid;
           if (category == uploads[k].category) {
+            this.arr2.length = 0;
             let obj = {
               uid: uploads[k].uid,
               name: uploads[k].name,
@@ -330,21 +332,21 @@ export class StreetartzProvider {
               url: this.url,
               username: ""
             }
-            this.arr.push(obj);
+            // this.arr2.push(obj);
             // console.log(this.url);
-
+            this.arr2.push(obj);
             this.viewProfileMain(chckId).then((profileData: any) => {
               obj.username = profileData.name
               obj.url = profileData.downloadurl
-              this.arr.push(obj);
+             
             });
-            pass(this.arr);
-            console.log(this.arr);
+            pass(this.arr2);
+            console.log(this.arr2);
           }
 
 
         }
-      }), pass(this.arr);
+      }), pass(this.arr2);
 
 
     })
@@ -396,7 +398,9 @@ export class StreetartzProvider {
                     name: uploads2[k].name,
                     key: keys2,
                     downloadurl: uploads2[k].downloadurl,
-                    url: uploads2[k].downloadurl
+                    url: uploads2[k].downloadurl,
+                    comments: data[k].comments,
+                    description: data[k].description,
                   }
                   this.arr.push(objt);
                   console.log(this.arr);
@@ -435,12 +439,14 @@ export class StreetartzProvider {
             let obj = {
               uid: data[k].uid,
               category: data[k].category,
+              comments: data[k].comments,
               downloadurl: data[k].downloadurl,
               name: data[k].name,
               username: "",
               email: "",
               key: k,
               url: this.url
+              
             }
 
             this.viewProfileMain(chckId).then((profileData: any) => {
@@ -521,27 +527,10 @@ export class StreetartzProvider {
 
     })
   }
-  countComments(key: string) {
-    return new Promise((accpt, rejc) => {
-      firebase.database().ref("comments/" + key).on("value", (data: any) => {
-        var a = data.val();
-        var keys1: any = Object.keys(data);
-        for (var i = 0; i < keys1.length; i++) {
-          var x = keys1[i];
-          console.log(data[x].picID);
-          console.log(key);
-          if (data[x].picID == key) {
-            this.countComment += 1;
-          }
-        }
-        console.log(this.countComment);
-        accpt(this.countComment);
-      }, Error => {
-        rejc(Error.message)
-      })
-    })
+  addNumComments(key, numComments){
+    var num =  numComments  + 1;
+    firebase.database().ref('uploads/'+ key).update({comments: num});
+    console.log("comment number added");
   }
-
-
 }
 

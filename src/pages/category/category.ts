@@ -27,7 +27,7 @@ export class CategoryPage {
   list = [];
   name;
   username;
-
+  comments;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.retreivePics();
   }
@@ -70,18 +70,18 @@ export class CategoryPage {
   }
   retreivePics() {
     this.arr2.length = 0;
-    this.art.viewPicMain(this.name, this.username).then((data: any) => {
+    this.art.viewPicMain(this.name,this.username).then((data: any) => {
       this.arr2 = data;
     });
   }
 
-  pushArtistDetails(pic, name, key,url) {
+  pushArtistDetails(pic, name, key,url,comments) {
     let obj = {
       name: name,
       pic: pic,
       key: key,
-      url:url
-   
+      url:url,
+      comments:comments
     }
     this.navCtrl.push(ViewPage, { obj: obj });
     console.log(obj);
