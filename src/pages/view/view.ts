@@ -42,14 +42,14 @@ export class ViewPage {
     this.keys2 = this.obj.key;
     this.downloadurl1 = this.obj.url
     this.downloadurl3 = this.obj.url
-
+    this.view();
 
 
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
-    this.view();
+ 
   //  this.count();
   }
   GoBackToCategory() {
@@ -76,7 +76,7 @@ export class ViewPage {
           username: data[key].username,
         }
         this.arr2.push(obj);
-        console.log(this.arr2);
+        console.log(this.url);
       }
     })
 
