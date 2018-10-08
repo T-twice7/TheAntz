@@ -1,88 +1,222 @@
-page-upload-image {
-    ion-input{
-        // border: 1px solid rgb(0,78,66);
-}               
-#in{   
-    width: 100%; 
-    height: 100%;                
-}
-    ion-textarea{
-        border-top: 1px solid rgb(0,78,66);
+page-category {
+
+    .Caps-Lock{
+        text-transform: capitalize;
+    }
+
+    .smaller{
+        font-size: 11px;
+    }
+    .artist-name{
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .details{
+        margin: 0 auto;
+        width: 49vw;
         background: white;
-        padding: 10px;
-        }
-    .texts{
-        background: white;
+        height: 50px;
+        margin-top: -4%;
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        box-shadow: 0 5px 10px grey;
+        box-shadow: inset 0 -3px 5px grey;
+        z-index: 1;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        // margin: 0 auto;
     }
-    .container{
-        background: linear-gradient(rgba(0, 0, 0, 0),rgb(48, 44, 44));
+    // .theImg{
+    //     height: 29vh;
+    //     width: 53vw;
+    //     padding-left: 2px;
+    //     padding-right: 2px;
+    //     object-fit: center;
+      
+    //   }
+    .theImg{
+        height: 29vh;
+        max-height: 300px;
+        width: 53vw;
+        padding-left: 2px;
+        padding-right: 2px;
+        margin-top:5px;
+        object-fit: cover;
+        z-index: 1;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        // box-shadow: 0 -2px 5px grey;
+        box-shadow: inset 0 0px 5px grey;
     }
-    .uploaded{
-        width: 150px;
-        height:  150px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.596);
+    .shift{
+        height: 5px;
     }
-    
-    .inp{
-        opacity: 1;
+    .col{
+        // text-align: center;
+        border: 2px solid white;
+    }
+
+    #gotoTop{
         width: 30px;
+        height: 30px;
+        border-radius: 40px;
     }
-    .inpe{
-        display: none;
+    ion-grid{
+        margin: 0%;
+        padding: 0%;
+        width: 100%;
+        max-width: 550px;
     }
-    @media screen and (min-width: 350px){
-           @media screen and (max-width: 380px){
- 
-                .preview{
-                   
-                    width: 150px;
-                    height:  150px;
-                    margin: 0 auto;
-                    position: relative;
-                    
-                }
-                .buttoon{
-                    font-size: 20px;
-                    position: absolute;
-                    background: white;
-                    width: 50px;
-                    height: 50px;
-                    text-align: center;
-                    border-radius: 50px;
-                    // margin-top: -35px;
-                    top:29%;
-                    left: 60%;
-                    z-index: 1;
-                    transform: translateY(-30%);
-                    color:white;
-                    box-shadow: 0px 1px 5px black;
-                    transition: 300ms
-                }
-                .buttoon:active{
-                    font-size: 20px;
-                    position: absolute;
-                    background: white;
-                    width: 50px;
-                    height: 50px;
-                    text-align: center;
-                    border-radius: 50px;
-                    // margin-top: -35px;
-                    top:29%;
-                    left: 60%;
-                    z-index: 1;
-                    transform: translateY(-30%);
-                    color:white;
-                    box-shadow: 0px 1px 5px black;
-                }
-                #ico{
-                    position: relative;
-                    top: 50%;
-                    transform: translateY(-50%)
-                }
+    ion-row{
+        margin: 0%;
+        padding: 5px;
+    }
+    ion-col{
+        margin: 0%;
+        // border: 2px solid green;
+    }
+    #images{
+        height: 29vh;
+        max-height: 300px;
+        width: 53vw;
+        padding-left: 2px;
+        padding-right: 2px;
+        // box-shadow: 0 0 4px grey;
+        object-fit: cover;
+    }
+    .person{
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+    }
+    .CatBar{
+        padding-right: 10px;
+        // border-radius:100px;
+        width: 100%;
+        // opacity:0.6;
+    }
+    #start{
+        transition: 700ms;
+           
+    }
+    a{
+        text-decoration: none;
+        font-size: 20px;
+        padding-top: 5px;
+    }
+
+    .dp{
+        height: auto;
+        width: 35px;
+        border-radius:50%;
+    }
+    @media screen and (min-width: 550px){
+        .smaller{
+            font-size: 11px;
         }
-    }
-    @media screen and (min-width: 300px){
-        @media screen and (max-width: 349px){
+        .artist-name{
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .details{
+            margin: 0 auto;
+            width: 49vw;
+            max-width: 271px;
+            background: white;
+            height: 50px;
+            margin-top: -4%;
+            padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            box-shadow: 0 5px 10px grey;
+            box-shadow: inset 0 -3px 5px grey;
+            z-index: 1;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            // margin: 0 auto;
+        }
+
+        .theImg{
+            height: 29vh;
+            max-height: 300px;
+            width: 53vw;
+            padding-left: 2px;
+            padding-right: 2px;
+            margin-top:5px;
+            object-fit: cover;
+            z-index: 1;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            // box-shadow: 0 -2px 5px grey;
+            box-shadow: inset 0 0px 5px grey;
+        }
+        .shift{
+            height: 5px;
+        }
+        .col{
+            // text-align: center;
+            border: 2px solid white;
+        }
+    
+        #gotoTop{
+            width: 30px;
+            height: 30px;
+            border-radius: 40px;
+        }
+        ion-grid{
+            margin: 0%;
+            padding: 0%;
+            width: 100%;
+            max-width: 550px;
+        }
+        ion-row{
+            margin: 0%;
+            padding: 5px;
+        }
+        ion-col{
+            margin: 0%;
+            // border: 20px solid green;
+        }
+        #images{
+            height: 29vh;
+            max-height: 300px;
+            width: 53vw;
+            padding-left: 2px;
+            padding-right: 2px;
+            // box-shadow: 0 0 4px grey;
+            object-fit: cover;
+        }
+        .person{
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+        }
+        .CatBar{
+            padding-right: 10px;
+            // border-radius:100px;
+            width: 100%;
+            // opacity:0.6;
+        }
+        #start{
+            transition: 700ms;
+               
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            padding-top: 5px;
+        }
+    
+        .dp{
+            height: auto;
+            width: 35px;
+            border-radius:50%;
         }
     }
 }
+
+
+
+

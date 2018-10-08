@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the SplashScreenPage page.
+ * Generated class for the CommentsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-splash-screen',
-  templateUrl: 'splash-screen.html',
+  selector: 'page-comments',
+  templateUrl: 'comments.html',
 })
-export class SplashScreenPage {
+export class CommentsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SplashScreenPage');
+    console.log('ionViewDidLoad CommentsPage');
   }
 
 }

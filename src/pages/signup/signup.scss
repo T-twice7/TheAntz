@@ -4,7 +4,7 @@ page-signup {
         z-index: 1;
     }
     .container{
-        background: linear-gradient(#010e1fb2,#010e1f),
+        background: linear-gradient(rgba(1, 17, 39, 0.562),rgba(1, 17, 39, 0.9)),
         url('../../assets/imgs/BG.jpg')
         ;
         background-position: bottom;
@@ -13,7 +13,7 @@ page-signup {
     }
     .everything{
         // border: 2px solid red;
-        padding-top: 10%;
+        padding-top: 35%;
         transform: translateY(-5%);
         // background: green;
         height: 80%;
@@ -21,7 +21,7 @@ page-signup {
         max-width:550;
     }
     img{
-        height: 30vh;
+        height: 150px;
     }
     .logo{
         // margin-bottom: 30px;
@@ -29,7 +29,6 @@ page-signup {
     }
     .items{
         // background: white;
-        // top: 10vh;
         width: 95%;
         margin: 0 auto;
         border-radius: 10px;
@@ -61,7 +60,6 @@ page-signup {
     }
     
     .textFields{
-        // top: 10vh;
         width: 90%;
         max-width: 450px;
         // border: 2px solid red;

@@ -21,16 +21,11 @@ export class SignupPage {
     console.log('ionViewDidLoad SignupPage');
   }
 
-  signUp(obj: obj) {
-  if(this.obj.password != this.obj.confirmPassword) {
-      this.presentToast1();
-  } else { 
+  signUp(obj: obj) { 
       this.art.register(this.obj);
       console.log(this.obj);
       this.presentToast();
-      this.navCtrl.setRoot(CategoryPage); 
-  }
-      
+      this.navCtrl.setRoot(CategoryPage);     
   }
 
   dismiss() {
@@ -40,7 +35,7 @@ export class SignupPage {
   presentToast() {
 
     const toast = this.toastCtrl.create({
-      message: 'User registered successfully!',
+      message: 'successfully registered!',
       duration: 3000
     });
     toast.present();
