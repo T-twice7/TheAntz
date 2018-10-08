@@ -30,6 +30,8 @@ export class StreetartzProvider {
   name;
   url;
   username;
+  emailComposer;
+  email;
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
 
@@ -351,7 +353,7 @@ export class StreetartzProvider {
 
     })
   }
-  update(name, contact, skill, bio, email) {
+  update(name, email, skill, contact, bio) {
     this.arr.length = 0;
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
@@ -367,14 +369,16 @@ export class StreetartzProvider {
       var user = firebase.auth().currentUser
       firebase.database().ref('profiles/' + user.uid).update({
         name: name,
-        contact: contact,
+        email:email,
         skill: skill,
-        bio: bio,
-        email: email
+        contact:contact,
+        bio:bio
       });
       toast.present();
     })
 
+
+  
   }
 
   push(obj: obj) {
@@ -393,18 +397,29 @@ export class StreetartzProvider {
               var keys2: any = Object.keys(uploads2);
               for (var i = 0; i < keys2.length; i++) {
                 var k = keys2[i];
+                var chckId = data[k].uid;
                 if (this.arr == uploads2[k].arr) {
-                  let objt = {
+                  let obj = {
                     name: uploads2[k].name,
                     key: keys2,
                     downloadurl: uploads2[k].downloadurl,
                     url: uploads2[k].downloadurl,
                     comments: data[k].comments,
                     description: data[k].description,
+                    email:data[k].email
                   }
-                  this.arr.push(objt);
+                  this.arr.push(obj);
                   console.log(this.arr);
+
+                  this.viewProfileMain(chckId).then((profileData: any) => {
+                    obj.email = profileData.email
+                  
+                    // this.arr2.push(obj);
+                  });
                 }
+
+             
+                pass(this.arr);
               }
 
               this.storeImgur(data[keys2[0]].downloadurl);
@@ -445,7 +460,8 @@ export class StreetartzProvider {
               username: "",
               email: "",
               key: k,
-              url: this.url
+              url: this.url,
+              
               
             }
 
@@ -453,10 +469,10 @@ export class StreetartzProvider {
               obj.username = profileData.name
               obj.email = profileData.email
               obj.url = profileData.downloadurl
-              this.arr.push(obj);
+              this.arr2.push(obj);
             });
-            accpt(this.arr);
-            console.log(this.arr);
+            accpt(this.arr2);
+            console.log(this.arr2);
             this.storeImgur(data[keys1[0]].downloadurl);
             console.log(data[keys1[0]].downloadurl);
           }

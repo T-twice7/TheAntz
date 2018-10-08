@@ -75,13 +75,14 @@ export class CategoryPage {
     });
   }
 
-  pushArtistDetails(pic, name, key,url,comments) {
+  pushArtistDetails(pic, name, key,url,comments,email) {
     let obj = {
       name: name,
       pic: pic,
       key: key,
       url:url,
-      comments:comments
+      comments:comments,
+      email:email
     }
     this.navCtrl.push(ViewPage, { obj: obj });
     console.log(obj);

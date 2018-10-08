@@ -1,6 +1,6 @@
 <ion-header transparent>
   <ion-toolbar color="secondary">
-      <button ion-button (click)="GoBackToCategory()"></button>
+      <button ion-button clear color="light" icon-only (click)="GoBackToCategory()"><ion-icon name="arrow-back"></ion-icon></button>
     <ion-buttons end>
       <button ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -32,7 +32,7 @@
                   <p class="Caps-Lock"><b class="artist-name">{{item.name}}</b></p>
                   <!-- bio is mixed up with skill, please fix -->
                   <p class="Caps-Lock">{{item.bio}}</p>
-                  <p>{{item.contact}}</p>
+                  <p class="lowerCase">{{item.contact}}</p>
                   <p class="Caps-Lock"> {{item.skill}}</p>
 
                  
