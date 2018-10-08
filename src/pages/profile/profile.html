@@ -5,25 +5,28 @@
         <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title></ion-title>
+    <ion-title>Sithembiso Leonard Luvuno</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content #pageTop>
   <ion-fab bottom right>
     <button ion-fab mini>
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
   <div class="head" id="top">
-    <ion-grid *ngFor="let item of obj">
+    <!-- *ngFor="let item of obj" -->
+    <ion-grid>
       <ion-row>
-        <ion-col col-5 *ngFor="let a of obj">
+        <!-- *ngFor="let a of obj" -->
+        <ion-col col-5>
           <div class="profile-picture">
-            <img class="DP" [src]="a.downloadurl" alt="">
+            <!-- [src]="a.downloadurl" -->
+            <img class="DP" src="../../assets/imgs/BG.jpg" alt="" imageViewer>
           </div>
         </ion-col>
         <ion-col>
-          <p>Sithembiso Leonard Luvuno</p>
+
           <p>Photographer</p>
           <p>spaz@gmail.com</p>
           <p>0813917127</p>
@@ -31,10 +34,33 @@
       </ion-row>
     </ion-grid>
   </div>
-  <div *ngFor="let item of obj">
+  <!-- *ngFor="let item of obj" -->
+  <div>
     <div class="bio" padding>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea possimus vitae dolores numquam veniam ab, quis magnam quod ut
-    alias. Molestias saepe ex magnam dicta unde? Explicabo molestiae sunt consequuntur!
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea possimus vitae dolores numquam veniam ab, quis magnam quod ut
+      alias. Molestias saepe ex magnam dicta unde? Explicabo molestiae sunt consequuntur!
     </div>
   </div>
+  <div class="photos">
+    <ion-grid no-padding>
+      <ion-row no-padding>
+        <ion-col class="cols" col-6>
+          <img class="theImg" src="../../assets/imgs/letsC.jpg" imageViewer>
+        </ion-col>
+        <ion-col class="cols" col-6>
+          <img class="theImg" src="../../assets/imgs/letsC.jpg" imageViewer>
+        </ion-col>
+        <ion-col class="cols" col-6>
+          <img class="theImg" src="../../assets/imgs/letsC.jpg" imageViewer>
+        </ion-col>
+        <ion-col class="cols" col-6>
+          <img class="theImg" src="../../assets/imgs/letsC.jpg" imageViewer>
+        </ion-col>
+        <ion-col class="cols" col-6>
+          <img class="theImg" src="../../assets/imgs/letsC.jpg" imageViewer>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
 </ion-content>
