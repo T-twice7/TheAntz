@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { CategoryPage } from '../category/category';
+CategoryPage
 /**
  * Generated class for the UploadedPage page.
  *
@@ -21,5 +22,7 @@ export class UploadedPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadedPage');
   }
-
+  dismiss(){
+    this.navCtrl.setRoot(CategoryPage);
+  }
 }

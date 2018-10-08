@@ -4,6 +4,9 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { ProfilePage } from '../profile/profile';
 import { ViewPage } from '../view/view';
+import * as firebase from 'firebase';
+
+
 /**
  * Generated class for the CategoryPage page.
  *
@@ -22,8 +25,20 @@ export class CategoryPage {
   arr2 = [];
   uid: any;
   list =[];
+  key;
+  color = "primary";
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
  
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        console.log("UID: " + user.uid)
+      } else {
+        // No user is signed in.
+        console.log("Nothing Found!")
+      }
+    });
+
   }
   ionViewDidLoad() {
     this.retreivePics();
@@ -59,16 +74,73 @@ export class CategoryPage {
   // category TS\\
 
 
-push( b) {
-  console.log(b);
-let details=this.arr2[b];
-console.log(details);
-this.navCtrl.push(ViewPage,{obj:details});
+push(pic , name , picDesc
+) {
+
+  let obj = {
+    name:name ,
+    pic:pic ,
+    picDesc:picDesc
+  }
+
+
+//this.navCtrl.push(ViewPage,{obj:obj});
+
+
 }
+
+
 retreivePics(){
   this.art.viewPicMain().then((data: any) =>{
     this.list = data;
   });
+}
+//  likePic=function(keyIndex){
+//   var user = firebase.auth().currentUser;
+//    this.uid.likePic('likes' + this.art).then(() =>{
+//      if (this.art[keyIndex].color == 'grey'){
+//        this.art.addNumOfLikes(this.art[keyIndex].name, this.art[keyIndex].key, this.art[keyIndex].likes).then (data =>{
+//          this.ionViewDidLoad();
+//          console.log(data);
+//        })
+//      }
+//    else if (this.arr2[keyIndex].color == 'primary'){
+//           this.art.removeLike(this.art[keyIndex].name, this.art[keyIndex].key, this.art[keyIndex].likes).then (data =>{
+//            this.ionViewDidLoad();
+//           })
+//        }
+//  else{
+//   this.art.addNumOfLikes(this.art[keyIndex].name, this.art[keyIndex].key, this.art[keyIndex].likes).then (data =>{
+//   this.ionViewDidLoad();
+
+//   })
+//  }
+//   })
+//  }
+
+likePic(key){
+
+  let 
+ user = firebase.auth().currentUser;
+ console.log(key)
+  this.art.likePic(key).then((data: any) =>{
+    if (this.art[key]){
+             this.art.addNumOfLikes(this.art[key].name, this.art[key].key, this.art[key].likes).then (data =>{
+               this.ionViewDidLoad();
+               console.log(data);
+             })
+    
+    
+    console.log(data);
+            }
+            else{
+                this.art.addNumOfLikes(this.art[key], this.art[key].key, this.art[key].likes).then (data =>{
+                this.ionViewDidLoad();
+              
+                })
+               }
+            
+})
 }
 
 

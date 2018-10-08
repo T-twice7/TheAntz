@@ -21,7 +21,7 @@
     </ion-navbar>
    </ion-header>
    <ion-content padding>
-    <ion-list *ngFor="let a of list" (click)="push(a.downloadurl)">
+    <ion-list *ngFor="let a of list" (click)="push(a.downloadurl , a.name , a.picDesc)">
       <ion-card>
           <ion-item>
             <ion-avatar item-start>
@@ -32,14 +32,14 @@
           </ion-item>
           <img [src]="a.downloadurl">
           <ion-card-content>
-            <p>{{a.picDesc}}</p>
+            <p>{{a.description}}</p>
           </ion-card-content>
    
           <ion-row>
             <ion-col>
-              <button ion-button (click)="commentFunction(a.key)" icon-start clear small>
+              <button ion-button (click)="likePic(a.key)" icon-start clear small>
                 <ion-icon name="thumbs-up"></ion-icon>
-                <div>12 Likes</div>
+              <div>{{a.key}} Likes</div>
               </button>
             </ion-col>
             <ion-col center text-center>

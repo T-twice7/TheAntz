@@ -7,6 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 import { CategoryPage } from '../../pages/category/category';
+import { AbstractClassPart } from '@angular/compiler/src/output/output_ast';
 
 /*
   Generated class for the StreetartzProvider provider.
@@ -16,6 +17,13 @@ import { CategoryPage } from '../../pages/category/category';
 */
 @Injectable()
 export class StreetartzProvider {
+  [x: string]: any;
+  // database = firebase.database();
+
+
+  currentUserID;
+
+
   selectCategory(arg0: any): any {
     throw new Error("Method not implemented.");
   }
@@ -30,7 +38,7 @@ export class StreetartzProvider {
   img: any;
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
-   // this.getuserstate();
+    // this.getuserstate();
 
   }
   logout() {
@@ -82,46 +90,46 @@ export class StreetartzProvider {
     })
   }
 
-  getuserstate(email, password){
+  getuserstate(email, password) {
 
-    
+
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  .then(function() {
-    
+      .then(function () {
 
-    if (email!=null) {
-           this.arr=1;
-           console.log(email)
-           //this.rootpage=CategoryPage
-           // User is signed in.
-         } else {
-           // No user is signed in.
-           this.arr = 1;
-           console.log(email)
-           //this.rootPage = LoginPage;
-         }
 
-    
-    
-    // New sign-in will be persisted with session persistence.
-    return firebase.auth().signInWithEmailAndPassword(email, password);
-    
-  })
-  .catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
+        if (email != null) {
+          this.arr = 1;
+          console.log(email)
+          //this.rootpage=CategoryPage
+          // User is signed in.
+        } else {
+          // No user is signed in.
+          this.arr = 1;
+          console.log(email)
+          //this.rootPage = LoginPage;
+        }
+
+
+
+        // New sign-in will be persisted with session persistence.
+        return firebase.auth().signInWithEmailAndPassword(email, password);
+
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+      });
 
   }
 
   login(email, password) {
     return new Promise((resolve, reject) => {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then((data) => {
-        if(data){
-console.log("logged in")
-        }else{
-console.log("not logged in");
+        if (data) {
+          console.log("logged in")
+        } else {
+          console.log("not logged in");
 
 
         }
@@ -161,33 +169,33 @@ console.log("not logged in");
 
   }
   forgotpassword(email) {
-   console.log(email)
+    console.log(email)
     return new Promise((resolve, reject) => {
-      if (email!=null) {
+      if (email != null) {
         const alert = this.alertCtrl.create({
           title: 'Forgot your?',
           subTitle: 'Please check your Email.',
           buttons: ['OK']
         });
         alert.present();
-  
-          firebase.auth().sendPasswordResetEmail(email);
-          resolve()  
-     
-      
-          
-         } 
-         else if (email == undefined || email == null){
-          const alert = this.alertCtrl.create({
-            title: 'Forg ot your?',
-            subTitle: 'Please enter your Email.',
-            buttons: ['OK']
-          });
-          alert.present();
-         }
 
-    
-        })
+        firebase.auth().sendPasswordResetEmail(email);
+        resolve()
+
+
+
+      }
+      else if (email == undefined || email == null) {
+        const alert = this.alertCtrl.create({
+          title: 'Forg ot your?',
+          subTitle: 'Please enter your Email.',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+
+
+    })
   }
   uploadPic(pic, name) {
     let loading = this.loadingCtrl.create({
@@ -253,7 +261,7 @@ console.log("not logged in");
     })
   }
   storeToDB1(name) {
-    this.arr.length =0;
+    this.arr.length = 0;
     return new Promise((accpt, rejc) => {
       var storageRef = firebase.storage().ref(name);
       storageRef.getDownloadURL().then(url => {
@@ -271,7 +279,7 @@ console.log("not logged in");
       });
     })
   }
-  storeImgur(url){
+  storeImgur(url) {
     this.url = url;
   }
 
@@ -296,7 +304,7 @@ console.log("not logged in");
       })
     })
   }
-  
+
   viewPicGallery1() {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
@@ -376,7 +384,7 @@ console.log("not logged in");
   //     })
   //   })
   // }
-  update(name, facebook, twitter, instagram,img) {
+  update(name, facebook, twitter, instagram, img) {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: 'Please wait',
@@ -390,7 +398,7 @@ console.log("not logged in");
     return new Promise((pass, fail) => {
       this.arr.length = 0;
       var user = firebase.auth().currentUser
-      firebase.database().ref('profiles/' + user.uid).update({ name: name, twitter: twitter, facebook: facebook, instagram: instagram ,img:img});
+      firebase.database().ref('profiles/' + user.uid).update({ name: name, twitter: twitter, facebook: facebook, instagram: instagram, img: img });
       toast.present();
     })
 
@@ -426,7 +434,7 @@ console.log("not logged in");
   //   })
   // }
   push(obj: obj) {
-    
+
     return new Promise((pass, fail) => {
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
@@ -439,75 +447,173 @@ console.log("not logged in");
             var keys2: any = Object.keys(uploads2);
             for (var i = 0; i < keys2.length; i++) {
               var k = keys2[i];
-              if ( this.arr == uploads2[k].arr){
+              if (this.arr == uploads2[k].arr) {
                 let objt = {
                   name: uploads2[k].name,
+                  picDesc: uploads2[k].picDesc,
                   //category: uploads2[k].category,
                   downloadurl: uploads[k].downloadurl
+                  
                 }
                 this.arr.push(objt);
                 console.log(this.arr);
               }
             }
-          }),pass(this.arr);
+          }), pass(this.arr);
         }
       })
     })
   }
-  
-  viewPicMain(){
+
+  viewPicMain() {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: 'Please wait',
       duration: 3000
     });
-  return new Promise((accpt,rejc) =>{
-    loading.present();
-    firebase.database().ref("uploads").on("value", (data: any) => {
-    var data = data.val();
-    var keys1: any = Object.keys(data);
-      console.log(keys1.length);
-      for (var i = 0; i < keys1.length ; i++){
+    return new Promise((accpt, rejc) => {
+      loading.present();
+      firebase.database().ref("uploads").on("value", (data: any) => {
+        var data = data.val();
         var keys1: any = Object.keys(data);
-        var k = keys1[i];
-        var chckId = data[k].uid;
- 
-        let obj = {
-          uid:data[k].uid,
-          category: data[k].category,
-          downloadurl:data[k].downloadurl,
-          name:data[k].name,
-          picDesc:data[k].picDesc,
-          username : "",
-          email: "",
-          key:k
-      }
- 
-        this.viewProfileMain(chckId).then((profileData : any) =>{
-          obj.username = profileData.name
-          obj.email = profileData.email
-          this.list.push(obj);
-        });
-      }
- 
-    accpt(this.list);
-    loading.present();
-  }, Error =>{
-    rejc(Error.message)
-  })
-  })
-  }
- 
-  viewProfileMain(userid : string){
-    return new Promise((accpt,rejc) =>{
-    firebase.database().ref("profiles/"+ userid).on("value", (data: any) => {
-    var a = data.val();
-    accpt(a);
-  }, Error =>{
-    rejc(Error.message)
-  })
-  })
-  }
-  
+        console.log(keys1.length);
+        for (var i = 0; i < keys1.length; i++) {
+          var keys1: any = Object.keys(data);
+          var k = keys1[i];
+          var chckId = data[k].uid;
 
-}
+          let obj = {
+            uid: data[k].uid,
+            category: data[k].category,
+            downloadurl: data[k].downloadurl,
+            name: data[k].name,
+            picDesc: data[k].picDesc,
+            username: "",
+            email: "",
+            key: k
+          }
+
+          this.viewProfileMain(chckId).then((profileData: any) => {
+            obj.username = profileData.name
+            obj.email = profileData.email
+            this.list.push(obj);
+          });
+        }
+
+        accpt(this.list);
+        console.log(this.list)
+        loading.present();
+      }, Error => {
+        rejc(Error.message)
+      })
+    })
+  }
+
+  viewProfileMain(userid: string) {
+    return new Promise((accpt, rejc) => {
+      firebase.database().ref("profiles/" + userid).on("value", (data: any) => {
+        var a = data.val();
+        accpt(a);
+        console.log(a);
+      }, Error => {
+        rejc(Error.message)
+      })
+    })
+  }
+
+  // likePic(key){
+  //   return new Promise ((accpt, rej) =>{
+  //     this.currentUserID.ref('likes/' + key).push({
+  //       username : this.currentUserID
+  //     })
+  //     accpt('liked')
+  //   })
+
+  // }
+
+  // addNumOfLikes(username, key, num){
+  //   num =  num  + 1;
+  //   return new Promise ((accpt, rej) =>{
+  //     this.database.ref('uploads/' + username + '/' + key).update({likes: num});
+  //     accpt('like added')
+  //   })
+  // }
+
+  // removeLike(username, key, num){
+  //   num =  num  - 1;
+  //   return new Promise ((accpt, rej) =>{
+  //     this.database.ref('uploads/' + username + '/' + key).update({likes: num});
+  //     this.database.ref('likes/' + key).remove();
+  //     accpt('like removed')
+  //   })
+  // }
+
+  likePic(key: any) {
+    var user = firebase.auth().currentUser;
+    return new Promise((accpt, rejc) => {
+      firebase.database().ref('likes/' + key).push({
+        uid: user.uid,
+       
+      })
+      accpt('liked')
+    })
+  }
+
+  viewLikes(key) {
+    this.list = [];
+ 
+    return new Promise((accpt, rejc) => {
+      firebase.database().ref("likes/").on("value", (data: any) => {
+        var a = data.val();
+        var user = firebase.auth().currentUser;
+        if (a == null) {
+          firebase.database().ref('likes/' + user.uid).push({
+            picID: key,
+            uid: user.uid
+          });
+        } else {
+
+          var keys1: any = Object.keys(data);
+          for (var i = 0; i < keys1.length; i++) {
+            var k = keys1[i];
+            let obj = {
+
+              picID: data[k].picID,
+              uid: data[k].uid,
+              key: k
+            }
+            this.list.push(obj);
+          }
+
+          for (var x = 0; x < this.list.length; x++) {
+            if (this.list[x].uid == user.uid && this.list[x].uid == user.uid) {
+              firebase.database().ref("uploads/" + user.uid).child(key).remove().then(() => {
+              })
+            }
+          }
+
+
+
+        }
+      })
+      })
+    }
+      addNumOfLikes(user, key, num){
+          num =  num  + 1;
+          return new Promise ((accpt, rej) =>{
+            this.database.ref('uploads/' + user + '/' + key).update({likes: num});
+            accpt('like added')
+          })
+        }
+      
+        removeLike(user, key, num){
+          num =  num  - 1;
+          return new Promise ((accpt, rej) =>{
+            this.database.ref('uploads/' + user + '/' + key).update({likes: num});
+            this.database.ref('likes/' + key).remove();
+            accpt('like removed')
+          })
+        }
+    
+  }
+

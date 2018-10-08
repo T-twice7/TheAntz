@@ -21,6 +21,8 @@ export class ViewPage {
   obj=this.navParams.get("obj");
   name;
   downloadurl;
+  picDesc;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
  
     this.obj = this.navParams.get("obj");
@@ -29,7 +31,14 @@ export class ViewPage {
  
     this.name=this.obj.name;
  
-   this.downloadurl=this.obj.downloadurl;
+   this.downloadurl=this.obj.pic;
+
+   this.name  = this.obj.name 
+
+   this.picDesc  = this.obj.picDesc
+
+   
+
  
   }
   ngOnInit() {
@@ -41,7 +50,7 @@ export class ViewPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
-    console.log(this.obj.name);
+   // console.log(this.obj.art);
  
   }
  

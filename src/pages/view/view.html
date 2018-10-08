@@ -13,23 +13,24 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-icon name="close" class="size" (click)="next()"></ion-icon>
-   <button ion-button><ion-icon name="more"></ion-icon></button>
-  -->
-  <h1 id="head" align="center">View Profile</h1>
-  
-  
-  <ion-list class="list"  >
-   <ion-fab right>
-       <ion-icon id="icon2" name="brush" ></ion-icon>
-   </ion-fab>
-  
-    <img [src]="downloadurl" >
-  
-  
-  
-  
-   <h2>{{name}}</h2>
-  
-  </ion-list>
-  </ion-content>
+<!-- <ion-icon name="close" class="size" (click)="next()"></ion-icon>
+ <button ion-button><ion-icon name="more"></ion-icon></button>
+-->
+<h1 id="head" align="center">View Profile</h1>
+
+
+<ion-list class="list"  >
+ <ion-fab right>
+     <ion-icon id="icon2" name="brush" ></ion-icon>
+ </ion-fab>
+
+  <img src="{{downloadurl}}" >
+
+
+
+
+ <h2>{{name}}</h2>
+<h2>{{key}}</h2>
+
+</ion-list>
+</ion-content>

@@ -16,7 +16,7 @@ import { SplashPage } from '../pages/splash/splash';
 import { CategoryPage } from '../pages/category/category';
 import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
 import { ArrayType } from '@angular/compiler/src/output/output_ast'
-import { UploadedPage } from '../pages/uploaded/uploaded';
+
 
 
 @Component({
@@ -24,7 +24,7 @@ import { UploadedPage } from '../pages/uploaded/uploaded';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = CategoryPage  ;
+  rootPage: any = LoginPage  ;
   
   pages: Array<{title: string, component: any}>;
 
