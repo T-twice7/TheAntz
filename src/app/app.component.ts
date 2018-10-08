@@ -5,21 +5,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreenPage } from '../pages/splash-screen/splash-screen';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
-
-
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
-
+import { SignupPage } from '../pages/signup/signup';
 import { CategoryPage } from '../pages/category/category';
+import { UploadImagePage } from '../pages/upload-image/upload-image';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = CategoryPage;
-
-  
+  rootPage: any = UploadImagePage;
 
   pages: Array<{title: string, component: any}>;
 
