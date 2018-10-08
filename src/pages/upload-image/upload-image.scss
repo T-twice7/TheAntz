@@ -3,26 +3,28 @@ page-upload-image {
         // background: linear-gradient(rgb(1, 15, 41),rgb(1, 15, 41));
         display: block;
     }
+    .inpe{
+        display: none;
+    }
    
     .card-background-page {
-        padding-left: 8vw;
-        // top: 7%;
         ion-card {
             
             position: relative;
             background-color: transparent;
-            margin: 0%;
+            margin: 0 auto;
           text-align: center;
-          height: 30vh;
-          width: 75vw;
+          height: 22vh;
+          width:40vw;
         }
         img{
-            height: 30vh;
-            width: 75vw; 
+            height: 22vh;
+          width:40vw;
+            margin: 0 auto;
         }
       label{
-          top:83%;
-          left: 88%;
+          top:78.5%;
+          left: 78.5%;
           font-size: 5vh;
           text-shadow: 0 0 1px white;
           position: absolute;
@@ -239,6 +241,7 @@ page-upload-image {
                 //    border-bottom-left-radius: 50px;
             }
             ion-textarea{
+                
                 margin: 0%;
                 background: linear-gradient(rgb(0, 21, 44));
                 box-shadow: 0 0 3px white;
@@ -274,23 +277,23 @@ page-upload-image {
              color: white;
            }
            .card-background-page {
-            padding-left: 11vw;
+            // padding-left: 11vw;
             ion-card {
                 // margin-left: 10%;
                 position: relative;
                 background-color: transparent;
-                margin: 0%;
+                margin: 0 auto;
               text-align: center;
-              height: 40vh;
-              width: 75vw;
+              height: 25vh;
+              width: 45vw;
             }
             img{
-                height: 40vh;
-                width: 75vw; 
+                height: 25vh;
+              width: 45vw; 
             }
           label{
-              top: 86%;
-              left: 88%;
+              top: 78%;
+              left: 80.5%;
               position: absolute;
               margin: 0%;
               font-size: 5.5vh;
