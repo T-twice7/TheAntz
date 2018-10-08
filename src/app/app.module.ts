@@ -20,6 +20,7 @@ import { UploadImagePage } from '../pages/upload-image/upload-image';
 import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @NgModule({ 
   declarations: [
@@ -59,7 +60,7 @@ import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StreetartzProvider,
+    StreetartzProvider,EmailComposer
   ]
 })
 export class AppModule {}
