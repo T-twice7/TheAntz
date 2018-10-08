@@ -1,4 +1,8 @@
 page-view {
+    .Caps-Lock{
+        text-transform: capitalize;
+      
+    }
     ion-input{
         border: 2px solid red;
         padding-left: 10px;
