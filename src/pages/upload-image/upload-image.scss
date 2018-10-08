@@ -1,6 +1,6 @@
 page-upload-image {
     div.scroll-content{
-        background: linear-gradient(rgb(1, 15, 41),rgb(1, 15, 41));
+        // background: linear-gradient(rgb(1, 15, 41),rgb(1, 15, 41));
         display: block;
     }
    
@@ -230,16 +230,17 @@ page-upload-image {
                    color: rgb(231, 161, 68);
                }
                ion-item{
-                   margin: 1%;
+                   margin: 0%;
                    box-shadow:inset 0 0 3px rgb(8, 39, 75);
+                   background: linear-gradient(white,rgb(189, 185, 185));
                 //    border-top-left-radius: 50px;
                 //    border-top-right-radius:50px;
                 //    border-bottom-right-radius:50px;
                 //    border-bottom-left-radius: 50px;
             }
             ion-textarea{
-                margin: 1%;
-                // background: linear-gradient(rgb(8, 39, 75),rgba(1, 20, 41, 0.89));
+                margin: 0%;
+                background: linear-gradient(white,rgb(189, 185, 185));
                 box-shadow: 0 0 3px rgb(8, 39, 75);
                 // background-color: #010e1f;
                 color: rgb(231, 161, 68);
@@ -280,15 +281,15 @@ page-upload-image {
                 background-color: transparent;
                 margin: 0%;
               text-align: center;
-              height: 30vh;
+              height: 40vh;
               width: 75vw;
             }
             img{
-                height: 30vh;
+                height: 40vh;
                 width: 75vw; 
             }
           label{
-              top: 82%;
+              top: 86%;
               left: 88%;
               position: absolute;
               margin: 0%;
@@ -331,7 +332,7 @@ page-upload-image {
 
                    margin: 0%;
                 height: 7vh;
-                   box-shadow:inset 0 0 3px rgb(8, 39, 75);
+                   box-shadow:inset 0 0 2px black;
                    background: linear-gradient(white,rgb(189, 185, 185));
                 // border-top-left-radius: 50px;
                 // border-top-right-radius:50px;
@@ -342,7 +343,7 @@ page-upload-image {
                 margin: 0%;
                 font-size: 2vh;
                 height: 9vh;
-                   box-shadow:inset 0 0 3px rgb(8, 39, 75);
+                   box-shadow:inset 0 0 2px black;
                    background: linear-gradient(white,rgb(189, 185, 185));
                    color: rgb(212, 144, 54);
                }
@@ -358,7 +359,7 @@ page-upload-image {
                 width: 60vw;
                 margin-left: 18.5vw;
                 font-size: 2vh;
-                box-shadow: 0 0 3px black;
+                
             }
         }
     }

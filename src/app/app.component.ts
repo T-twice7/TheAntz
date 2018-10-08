@@ -22,7 +22,7 @@ import { UploadImagePage } from '../pages/upload-image/upload-image';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = UploadImagePage;
 
   
 
