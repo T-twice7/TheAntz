@@ -39,7 +39,7 @@ export class ViewPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
-    console.log(this.obj);
+    console.log(this.email);
 
     this.name = this.obj.name;
     this.downloadurl = this.obj.pic;
@@ -65,8 +65,8 @@ export class ViewPage {
 
   BuyArt() {
     let email = {
-      to: this.email,
-      cc: 'janetzango@gmail.com',
+      to: this.obj.email,
+      cc: 'theantz39@gmail.com',
       bcc: ['john@doe.com', 'jane@doe.com'],
       attachments: [
         'file://img/logo.png',
