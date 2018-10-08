@@ -41,7 +41,6 @@ export class ViewPage {
     this.downloadurl = this.obj.pic;
     this.keys2 = this.obj.key;
     this.downloadurl1 = this.obj.url
-    this.downloadurl3 = this.obj.url
     this.view();
 
 
@@ -65,18 +64,19 @@ export class ViewPage {
 
   view() {
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
-      var keys1: any = Object.keys(data);
       console.log(data)
+      var keys1: any = Object.keys(data);
       for (var i = 0; i < keys1.length; i++) {
         var key = keys1[i];
         let obj = {
           comment:data[key].comment,
           uid: data[key].uid,
-          url: data[key].downloadurl,
+          downloadurl: data[key].url,
           username: data[key].username,
+          date:data[key].date
         }
         this.arr2.push(obj);
-        console.log(this.url);
+        console.log(data);
       }
     })
 
