@@ -28,19 +28,20 @@
               </ion-col>
               <ion-col>
                 <div class="personal-details">
-                  <p class="Caps-Lock">
-                    <b class="artist-name">{{item.name}}</b>
-                    {{item.contact}} {{item.skill}} {{item.email}} email
-                    <br> skill
-                    <br> contact
-                  </p>
+                  <p class="Caps-Lock"><b class="artist-name">{{item.name}}</b></p>
+                  <!-- bio is mixed up with skill, please fix -->
+                  <p class="Caps-Lock">{{item.bio}}</p>
+                  <p>{{item.contact}}</p>
+                  <p class="Caps-Lock"> {{item.skill}}</p>
+
+                 
                 </div>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <div class="bio">
-                  <br> {{item.bio}}
+                  {{item.email}}
                 </div>
               </ion-col>
             </ion-row>
