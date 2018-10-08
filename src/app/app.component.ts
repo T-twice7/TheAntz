@@ -21,7 +21,7 @@ import { viewParentEl } from '@angular/core/src/view/util';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = CategoryPage;
+  rootPage: any = SplashPage;
 
   
 
