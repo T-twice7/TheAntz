@@ -1,43 +1,58 @@
-<!--
-  Generated template for the EditProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>EditProfile</ion-title>
+  <ion-navbar color="secondary" >
+    <ion-title >Edit Profile</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="uploadPicture()" >
+          <ion-icon name="checkmark" id="mark"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
-
 </ion-header>
+<ion-content class="card-background-page">
+        <ion-card>
+                <img id="pic">
+                <div class="card-title">
+                  <img [src]="url"/>
+                  <input id="file" type="file" accept="image/*" (change)="insertpic($event)">
+                </div> 
+              </ion-card>
+  <div class="content">
+      <ion-list no-lines>
+            
+          <ion-item  class="item">
+              <ion-label>
+                  <ion-icon name="person"></ion-icon>
+              </ion-label>
+              <ion-input type="text" value="" [(ngModel)]="name" placeholder="enter name"></ion-input>
+            </ion-item>
+            
+            
+          <ion-item class="item">
+              <ion-label>
+                  <ion-icon name="mail"></ion-icon>
+                
+              </ion-label>
+              <ion-input type="email" value="" [(ngModel)]="email" placeholder="Email"></ion-input>
+            </ion-item>
+            
+          <ion-item class="item">
+              <ion-label>
+                  <ion-icon name="call"></ion-icon>
+                
+              </ion-label>
+              <ion-input type="number" value="" [(ngModel)]="contact" max="10" placeholder="Mobile"></ion-input>
+            </ion-item>
+            
+          <ion-item class="item">
+              <ion-label>
+                  <ion-icon name="body"></ion-icon>
+              </ion-label>
+              <ion-input type="text" value="" [(ngModel)]="skill" maxlength="20" placeholder="(e.g photographer)"></ion-input>
+      </ion-item>
+        <div class="item">
+                    <ion-textarea type="text" value=""  [(ngModel)]="bio" placeholder="Bio"></ion-textarea>
+        </div>
 
-
-<ion-content padding>
-<img [src]="url">
-<ion-card>
-  <ion-item class="item item-trns text-center">
-    <input type="file" (change)="insertpic($event)">
-  </ion-item>
-</ion-card>
-<ion-list>
-    <ion-item>
-      <ion-label stacked>Name</ion-label>
-      <ion-input type="text" value="" [(ngModel)]="name"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label stacked>Facebook</ion-label>
-      <ion-input type="text" [(ngModel)]="facebook"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Instagram</ion-label>
-      <ion-input type="text" [(ngModel)]="instagram"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Twitter</ion-label>
-      <ion-input type="text" [(ngModel)]="twitter"></ion-input>
-    </ion-item>
-  </ion-list>
-  <button ion-button (click)="update()">Save</button>
+        </ion-list>
+  </div>
 </ion-content>
