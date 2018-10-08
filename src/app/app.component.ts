@@ -2,15 +2,19 @@ import { Component } from '@angular/core';
 import {  ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreenPage } from '../pages/splash-screen/splash-screen';
+// import { SplashScreenPage } from '../pages/splash-screen/splash-screen';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
-import { SignupPage } from '../pages/signup/signup';
+import { SplashPage } from '../pages/splash/splash';
 import { CategoryPage } from '../pages/category/category';
+import { ViewPage } from '../pages/view/view';
+// import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { viewParentEl } from '@angular/core/src/view/util';
 import { UploadImagePage } from '../pages/upload-image/upload-image';
+''
 
 @Component({
   templateUrl: 'app.html'
@@ -19,6 +23,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = UploadImagePage;
+
+  
 
   pages: Array<{title: string, component: any}>;
 

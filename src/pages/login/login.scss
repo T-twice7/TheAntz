@@ -1,31 +1,32 @@
 page-login {
+
+    @media screen and (max-width: 414px){
+        
     .container{
-        background: linear-gradient(#010e1fb2,#010e1f),
+        background: linear-gradient(rgba(1, 17, 39, 0.562),rgba(1, 17, 39, 0.9)),
         url('../../assets/imgs/BG.jpg')
         ;
         background-position: bottom;
         // background-size:cover;
-        height: 100%;
-        background-position: fixed;
-        transition: 5s;
+        
     }
     .everything{
         // border: 2px solid red;
-        padding-top: 30%;
-        transform: translateY(-5%);
+        padding-top: 40%;
+        transform: translateY(-10%);
         // background: green;
         height: 100%;
         z-index: -1;
         max-width:550;
     }
     img{
-        // height: 100px;
-        height: 25vh;
+        height: 150px;
     }
     .logo{
         // margin-bottom: 30px;
         text-align: center;
-        // height: 12vh;
+
+       
     }
     .items{
         // background: white;
@@ -50,7 +51,7 @@ page-login {
         padding-left: 5px;
         padding-right: 5px;
         text-align: center;
-        transition: 50ms;
+        transition: 300ms;
     }
     ion-input:active{
         background: rgba(0, 0, 0, 0);
@@ -81,4 +82,6 @@ page-login {
         text-align: center;
         color: white
     }
+    }
 }
+

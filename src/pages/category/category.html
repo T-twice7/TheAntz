@@ -1,10 +1,10 @@
 <ion-header #head>
-
   <ion-navbar color="secondary">
     <div class="head">
-      <ion-item class="CatBar" color="primary">
-        <ion-label id="cat">Choose category</ion-label>
-        <ion-select [(ngModel)]="category">
+      <ion-item class="CatBar" color="secondary">
+        <ion-label>Select</ion-label>
+        <ion-select [(ngModel)]="category" (ionChange)="typeOfArt()">
+
           <ion-option value="Photography">Photography</ion-option>
           <ion-option value="Sculpting">Sculpting</ion-option>
           <ion-option value="Painting">Painting</ion-option>
@@ -15,32 +15,31 @@
       </ion-item>
     </div>
     <ion-buttons end>
-      <button ion-button color="light" icon-only (click)="profile(obj)">
-        <ion-icon name="person" color="primary"></ion-icon>
+      <button outline round class="person" ion-button color="primary" icon-only (click)="profile(obj)">
+        <ion-icon name="person"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-<ion-content class="card-background-page ">
-                <ion-grid>
-                    <ion-row>
-        <ion-col class="col" col-6 *ngFor="let a of arr2" >
-          <img [src]="a.downloadurl"/>
-            
-          <!-- <div class="card-title">{{a.name}}</div> -->
-          <!-- <div class="card-subtitle"><ul class="list">
-               <li (click)="commentFunction(a.key)" class="iconLike">
-                    <ion-icon class="iconLike" name="thumbs-up"></ion-icon>
-                    12
-            </li>
-            <li (click)="commentFunction(a.key)" class="iconCMT">
-                    <ion-icon class="iconCMT"  name="text"></ion-icon>
-                    4 
-            </li>
-              </ul></div> -->
-                         </ion-col>
-                        </ion-row>
-                </ion-grid>
-  
+<ion-content class="card-background-page">
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <ion-col class="col" col-6 *ngFor="let a of arr2" (click)="pushArtistDetails(a.downloadurl,a.username, a.key,a.url)">
+        <img class="theImg" [src]="a.downloadurl">
+        <br>
+        <div class="detail">
+          <!-- {{a.name}} by
+          <br> {{a.username}}
+             -->
+            <ion-item class="details" no-padding no-lines>
+              <ion-avatar item-start>
+                <img class="dp" src="{{a.url}}" alt="DP">
+              </ion-avatar>
+             {{a.name}} 
+             <p> by {{a.username}}</p>
+            </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

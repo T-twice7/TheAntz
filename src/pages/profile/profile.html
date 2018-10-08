@@ -1,120 +1,72 @@
-<ion-content class="home">
-
-  <div class="forFab">
-      <ion-fab top right clear class="moreFAB">
-      <button ion-fab mini clear class="moreFAB" color="secondary">
-        <ion-icon ios="ios-more" md="md-more"></ion-icon>
+<ion-header transparent #head>
+  <ion-navbar color="secondary">
+    <ion-buttons end>
+      <button ion-button (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
       </button>
-      <ion-fab-list side="left">
-        <div class="cont">
-          <button class="edit" color="dark" ion-button clear (click)="nextpage()">Edit Profile</button>
-          <button class="signOut" color="dark" ion-button clear (click)="logout()">Sign Out</button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #popoverContent class="home">
+  <ion-fab bottom right>
+    <button ion-button mini icon-only color="primary" class="btnIcon" (click)="upload()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <div class="head" id="start">
+    <div id="pic" align="center">
+      <div class="photo">
+        <div class="dp">
+          <ion-grid *ngFor="let item of obj">
+            <ion-row>
+              <ion-col col-5 class="displayPhoto">
+                <div *ngFor="let a of obj">
+                  <img class="m" [src]="a.downloadurl">
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="personal-details">
+                  <p class="Caps-Lock">
+                    <b class="artist-name">{{item.name}}</b>
+                    <br>{{item.contact}}
+                    <br> {{item.skill}}
+                    <br> {{item.bio}}
+                  </p>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <div class="bio">
+                  BIO
+                  <br> {{item.email}}
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </div>
-  
-      </ion-fab-list>
-    </ion-fab>
+      </div>
+    </div>
+    <div class="list">
+    </div>
   </div>
-  
-  
-  
-    <div class="head">
-      <ion-grid no-padding>
-        <ion-row>
-          <ion-col>
-            <button color="light" ion-button icon-only (click)="dismissPage()" clear>
-              <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col align="center">
-            <h1 id="head">Profile</h1>
-          </ion-col>
-          <ion-col align="right">
-            <button ion-button color="light" icon-only clear (click)="presentPopover()">
-              <ion-icon ios="ios-more" md="md-more"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  
-  
-  
-      <div id="pic" align="center">
-        <div class="photo">
-          <div class="dp">
-            <img class="m" [src]="url">
-          </div>
-        </div>
-      </div>
-      <!-- ============================================== -->
-      <!-- <div class="card-background-page">
-          <ion-card>
-              <img src="img/card-saopaolo.png"/>
-              <div class="card-title">São Paulo</div>
-              <div class="card-subtitle">41 Listings</div>
-            </ion-card>
-      </div> -->
-  
-      <!-- ============================================== -->
-      <div class="list">
-        <div *ngFor="let item of obj">
-  
-          <h3>
-            {{item.name}}
-          </h3>
-          <p>{{item.email}}
-          </p>
-          <p>Instagram
-            <br> {{item.instagram}}
-          </p>
-          <p>Facebook
-            <br> {{item.facebook}}
-          </p>
-          <p>Twitter
-            <br> {{item.twitter}}
-          </p>
-        </div>
-  
-      </div>
-  
-  
-    </div>
-    <div class="split">
-      <ion-grid>
-        <ion-row id="divider">
-          <ion-col id="divider">My Gallery</ion-col>
-          <ion-col id="divider" align="right">
-            <button ion-button icon-only color="primary" class="btnIcon" (click)="upload()">
-              <ion-icon name="add"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  
-      <!-- <ion-fab right>
-        <button ion-button icon-only class="addBtn" clear><ion-icon name="add"></ion-icon></button>
-      </ion-fab> -->
-    </div>
-  
-  
-    <!-- <button ion-button (click)="retreivePics()">My gallery</button> -->
-  
-    <!-- <ion-list>
-      <ion-item *ngFor="let a of list">
-        <img [src]="a.downloadurl">
-        <h2>{{a.name}}</h2>
-      </ion-item>
-    </ion-list> -->
-  
-    <div class="contents">
-      <ion-grid>
-  
-        <ion-row>
-          <ion-col *ngFor="let a of list">
-            <img [src]="a.downloadurl" alt="">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    <ion-card>
-    </ion-card>
-  </ion-content>
+  <div class="split">
+    <b class="uploads">UPLOADS</b>
+  </div>
+  <div class="contents">
+    <ion-grid>
+      <ion-row class="gal">
+        <ion-col *ngFor="let a of list" col-6>
+          <img class="image" [src]="a.downloadurl" imageViewer alt="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-fab bottom left>
+    <button id="gotoTop" ion-button color="light">
+      <a href="#head">^</a>
+    </button>
+  </ion-fab>
+</ion-content>
