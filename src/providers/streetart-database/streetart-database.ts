@@ -325,7 +325,7 @@ export class StreetartzProvider {
               name: uploads[k].name,
               category: uploads[k].category,
               downloadurl: uploads[k].downloadurl,
-  
+
             }
             this.arr.push(obj);
             console.log(this.url);
@@ -429,7 +429,7 @@ export class StreetartzProvider {
               username: "",
               email: "",
               key: k,
-              url:this.url
+              url: this.url
             }
 
             this.viewProfileMain(chckId).then((profileData: any) => {
@@ -439,7 +439,7 @@ export class StreetartzProvider {
               this.arr2.push(obj);
             });
             accpt(this.arr2);
-            console.log(this.url);
+            console.log(this.arr2);
             this.storeImgur(data[keys1[0]].downloadurl);
             console.log(data[keys1[0]].downloadurl);
           }
@@ -468,7 +468,6 @@ export class StreetartzProvider {
         comment: comment,
         uid: user.uid,
         url: this.url
-     
       })
       accpt('success');
     });
@@ -484,15 +483,22 @@ export class StreetartzProvider {
         console.log(CommentDetails);
         for (var i = 0; i < keys1.length; i++) {
           var key = keys1[i];
+          var chckId = CommentDetails[key].uid;
           let obj = {
             comment: CommentDetails[key].comment,
             uid: user.uid,
             url: this.url,
-            username:""
+            username: ""
           }
-          this.keyArr.push(obj);
-          console.log(this.url)
+          // this.keyArr.push(obj);
+          // console.log(this.url)
           accpt(this.keyArr);
+          this.viewProfileMain(chckId).then((profileData: any) => {
+            obj.url = profileData.downloadurl
+            obj.username = profileData.name
+            this.keyArr.push(obj);
+            console.log(this.keyArr);
+          });
         }
       }, Error => {
         rejc(Error.message)
@@ -521,56 +527,56 @@ export class StreetartzProvider {
     })
   }
 
-  likePic(key: any) {
-    var user = firebase.auth().currentUser;
-    return new Promise((accpt, rejc) => {
-      firebase.database().ref('likes/' + key).push({
-        uid: user.uid,
+  // likePic(key: any) {
+  //   var user = firebase.auth().currentUser;
+  //   return new Promise((accpt, rejc) => {
+  //     firebase.database().ref('likes/' + key).push({
+  //       uid: user.uid,
 
-      });
+  //     });
 
-    })
-  }
+  //   })
+  // }
 
-  viewLikes(key: string) {
-    this.list = [];
+  // viewLikes(key: string) {
+  //   this.list = [];
 
-    return new Promise((accpt, rejc) => {
-      firebase.database().ref("likes/").on("value", (data: any) => {
-        var a = data.val();
-        var user = firebase.auth().currentUser;
-        if (a == null) {
-          firebase.database().ref('likes/' + user.uid).push({
-            picID: key,
-            uid: user.uid
-          });
-        } else {
+  //   return new Promise((accpt, rejc) => {
+  //     firebase.database().ref("likes/").on("value", (data: any) => {
+  //       var a = data.val();
+  //       var user = firebase.auth().currentUser;
+  //       if (a == null) {
+  //         firebase.database().ref('likes/' + user.uid).push({
+  //           picID: key,
+  //           uid: user.uid
+  //         });
+  //       } else {
 
-          var keys1: any = Object.keys(data);
-          for (var i = 0; i < keys1.length; i++) {
-            var k = keys1[i];
-            let obj = {
+  //         var keys1: any = Object.keys(data);
+  //         for (var i = 0; i < keys1.length; i++) {
+  //           var k = keys1[i];
+  //           let obj = {
 
-              picID: data[k].picID,
-              uid: data[k].uid,
-              key: k
-            }
-            this.list.push(obj);
-          }
+  //             picID: data[k].picID,
+  //             uid: data[k].uid,
+  //             key: k
+  //           }
+  //           this.list.push(obj);
+  //         }
 
-          for (var x = 0; x < this.list.length; x++) {
-            if (this.list[x].uid == user.uid && this.list[x].uid == user.uid) {
-              firebase.database().ref("uploads/" + user.uid).child(key).remove().then(() => {
-              })
-            }
-          }
+  //         for (var x = 0; x < this.list.length; x++) {
+  //           if (this.list[x].uid == user.uid && this.list[x].uid == user.uid) {
+  //             firebase.database().ref("uploads/" + user.uid).child(key).remove().then(() => {
+  //             })
+  //           }
+  //         }
 
 
 
-        }
-      })
-    })
-  }
+  //       }
+  //     })
+  //   })
+  // }
   //    likePic(){
   //   var user = firebase.auth().currentUser;
   //   console.log(user.uid)

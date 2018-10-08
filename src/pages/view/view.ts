@@ -24,6 +24,7 @@ export class ViewPage {
   downloadurl;
   description;
   downloadurl1;
+  downloadurl3;
   keys2;
   arr = [];
   arr2=[];
@@ -40,7 +41,7 @@ export class ViewPage {
     this.downloadurl = this.obj.pic;
     this.keys2 = this.obj.key;
     this.downloadurl1 = this.obj.url
-
+    this.downloadurl3 = this.obj.url
 
 
 
@@ -71,8 +72,8 @@ export class ViewPage {
         let obj = {
           comment:data[key].comment,
           uid: data[key].uid,
-          url: data[key].url
-          
+          url: data[key].downloadurl,
+          username: data[key].username,
         }
         this.arr2.push(obj);
         console.log(this.arr2);
