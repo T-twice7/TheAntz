@@ -56,6 +56,8 @@ export class CategoryPage {
             downloadurl: data[k].downloadurl,
             name: data[k].name,
             key: k,
+            url: data[k].url,
+            username: data[k].username,
           }
           this.arr2.push(obj);
           console.log(this.arr2);
