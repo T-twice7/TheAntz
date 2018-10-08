@@ -32,8 +32,8 @@ export class ProfilePage implements OnInit {
   name;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-    // this.retreivePics1();
-    // this.retreivePics();
+    this.retreivePics1();
+    this.retreivePics();
   }
 
   ionViewDidLoad() {
