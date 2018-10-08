@@ -1,12 +1,13 @@
-<ion-header transparent #head>
-  <ion-navbar color="secondary">
+<ion-header transparent>
+  <ion-toolbar color="secondary">
+      <button ion-button (click)="GoBackToCategory()"></button>
     <ion-buttons end>
       <button ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title></ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content #popoverContent class="home">
@@ -15,7 +16,7 @@
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-  <div class="head" id="start">
+  <div class="head" id="start" #head>
     <div id="pic" align="center">
       <div class="photo">
         <div class="dp">
@@ -23,25 +24,25 @@
             <ion-row>
               <ion-col col-5 class="displayPhoto">
                 <div *ngFor="let a of obj">
-                  <img class="m" [src]="a.downloadurl">
+                  <img class="m" [src]="a.downloadurl" imageViewer>
                 </div>
               </ion-col>
               <ion-col>
                 <div class="personal-details">
-                  <p class="Caps-Lock">
-                    <b class="artist-name">{{item.name}}</b>
-                    <br>{{item.contact}}
-                    <br> {{item.skill}}
-                    <br> {{item.bio}}
-                  </p>
+                  <p class="Caps-Lock"><b class="artist-name">{{item.name}}</b></p>
+                  <!-- bio is mixed up with skill, please fix -->
+                  <p class="Caps-Lock">{{item.bio}}</p>
+                  <p>{{item.contact}}</p>
+                  <p class="Caps-Lock"> {{item.skill}}</p>
+
+                 
                 </div>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <div class="bio">
-                  BIO
-                  <br> {{item.email}}
+                  {{item.email}}
                 </div>
               </ion-col>
             </ion-row>
@@ -53,7 +54,7 @@
     </div>
   </div>
   <div class="split">
-    <b class="uploads">UPLOADS</b>
+    <b class="uploads" id="theHead">UPLOADS</b>
   </div>
   <div class="contents">
     <ion-grid>
@@ -66,7 +67,7 @@
   </div>
   <ion-fab bottom left>
     <button id="gotoTop" ion-button color="light">
-      <a href="#head">^</a>
+      <a href="#theHead">^</a>
     </button>
   </ion-fab>
 </ion-content>

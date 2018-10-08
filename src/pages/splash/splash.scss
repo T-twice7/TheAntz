@@ -14,7 +14,8 @@ page-splash {
         width: 100%;
         max-width: 250px;
         align-content: center;
-        margin-top: 50%
+        margin-top: 50%;
+        animation: 4s fadeIn; 
     }
     .theLogo{
         text-align: center;

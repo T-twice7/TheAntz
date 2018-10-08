@@ -28,7 +28,7 @@
             <button ion-button clear>12 likes</button>
           </ion-col>
           <ion-col>
-            <button ion-button clear>500 comments</button>
+            <button ion-button clear>{{comments}} comments</button>
           </ion-col>
                   <ion-fab right class="cart">
               <button ion-fab mini>
@@ -44,10 +44,10 @@
         <ion-card>
             <ion-item>
               <ion-avatar item-start>
-                <img src="{{a.url}}">
+          <img [src]="a.downloadurl">
               </ion-avatar>
               <h2>{{a.username}}</h2>
-              <p>November 5, 1955</p>
+              <p>{{a.date}}</p>
             </ion-item>
             <ion-card-content>
               <p>{{a.comment}}</p>
@@ -68,7 +68,7 @@
   <ion-toolbar>
     <ion-item class="footItem" no-lines>
       <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
-      <button ion-button class="sendBtn" item-end icon-only large (click)="sendComment()">
+      <button ion-button class="sendBtn" item-end icon-only large (click)="sendComment(comment.value)">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-item>

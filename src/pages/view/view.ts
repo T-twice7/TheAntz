@@ -27,10 +27,13 @@ export class ViewPage {
   downloadurl3;
   keys2;
   arr = [];
-  arr2=[];
-  uid:any
-  PicUrl:any;
+  arr2 = [];
+  uid: any
+  PicUrl: any;
   url;
+  numComments;
+  Comments=[];
+  comments;
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
     this.obj = this.navParams.get("obj");
@@ -41,7 +44,7 @@ export class ViewPage {
     this.downloadurl = this.obj.pic;
     this.keys2 = this.obj.key;
     this.downloadurl1 = this.obj.url
-    this.downloadurl3 = this.obj.url
+    this.comments = this.obj.comments
     this.view();
 
 
@@ -49,41 +52,39 @@ export class ViewPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
- 
-  //  this.count();
+
   }
   GoBackToCategory() {
     this.navCtrl.pop();
   }
-  sendComment() {
+  sendComment(comment) {
     this.art.comments(this.obj.key, this.comment).then((data) => {
+      this.art.addNumComments(this.obj.key,this.comments);
       console.log(data);
-    this.arr2.length = 0;
+      // this.Comments.length =0;
+      this.arr2.length = 0;
       this.view();
     })
   }
 
   view() {
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
-      var keys1: any = Object.keys(data);
       console.log(data)
+      var keys1: any = Object.keys(data);
       for (var i = 0; i < keys1.length; i++) {
         var key = keys1[i];
         let obj = {
-          comment:data[key].comment,
+          comment: data[key].comment,
           uid: data[key].uid,
-          url: data[key].downloadurl,
+          downloadurl: data[key].url,
           username: data[key].username,
+          date: data[key].date
         }
         this.arr2.push(obj);
-        console.log(this.url);
+        console.log(data);
       }
     })
 
   }
- count(){
-   this.art.countComments(this.obj.key).then((data)=>{
-   console.log(data);
-   })
- }
+
 }
