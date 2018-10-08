@@ -44,10 +44,10 @@
         <ion-card>
             <ion-item>
               <ion-avatar item-start>
-                <img src="{{a.url}}">
+          <img [src]="a.downloadurl">
               </ion-avatar>
               <h2>{{a.username}}</h2>
-              <p>November 5, 1955</p>
+              <p>{{a.date}}</p>
             </ion-item>
             <ion-card-content>
               <p>{{a.comment}}</p>
