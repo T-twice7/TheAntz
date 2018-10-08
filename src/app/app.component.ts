@@ -24,7 +24,7 @@ export class MyApp {
 
 
 
-  rootPage: any = UploadImagePage;
+  rootPage: any = LoginPage;
 
 
 
