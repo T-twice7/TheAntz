@@ -86,6 +86,7 @@ EditProfile() {
             key: k
           }
           this.list.push(obj);
+          console
         }
       }
       loader.dismiss();
@@ -108,7 +109,6 @@ EditProfile() {
         duration: 6000
       });
       var keys: any = Object.keys(data);
-      console.log(keys)
       for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
         if (this.uid == data[k].uid) {
@@ -119,7 +119,6 @@ EditProfile() {
           console.log(this.arr)
         }
       }
-      console.log(this.arr);
       loader.dismiss();
     }, Error => {
       console.log(Error)

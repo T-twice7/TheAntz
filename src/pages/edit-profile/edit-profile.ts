@@ -16,14 +16,11 @@ import { ToastController } from 'ionic-angular';
   selector: 'page-edit-profile',
   templateUrl: 'edit-profile.html',
 })
-export class EditProfilePage {
+export class EditProfilePage implements OnInit  {
   arr =[];
   obj;
   email: any;
   name: any;
-  facebook:any;
-  instagram:any;
-  twitter:any;
   file;
   bio;
   contact;
@@ -41,6 +38,7 @@ export class EditProfilePage {
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
+
   }
   insertpic(event: any) {
     if (event.target.files && event.target.files[0]) {
@@ -59,6 +57,8 @@ export class EditProfilePage {
        this.art.storeToDB1(this.name).then(() =>{
          console.log('added to db');
          this.art.update(this.name,this.email,this.contact,this.bio).then((data) => {
+           this.arr.push(data);
+           this.arr.length = 0;
           console.log(data);
            })
       

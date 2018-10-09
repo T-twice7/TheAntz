@@ -520,7 +520,7 @@ export class StreetartzProvider {
   comments(key: any, comment: any) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
-      var day = moment().format();
+      var day = moment().format("MMM Do YY");     
       firebase.database().ref('comments/' + key).push({
         comment: comment,
         uid: user.uid,
@@ -607,15 +607,6 @@ export class StreetartzProvider {
 
     })
   }
-  // addNumLikes(key, numLikes: number) {
-  //   firebase.database().ref('likes/' + key).on('value', (data) => {
-  //     console.log(data.val());
-  //     let elements = Object.keys(data.val());
-  //     numLikes = elements.length;
-  //     console.log(numLikes);
-  //   })
-  //   numLikes++;
-  //   return numLikes;
-  // }
+
 }
 
