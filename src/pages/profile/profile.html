@@ -1,6 +1,6 @@
 <ion-header transparent>
   <ion-toolbar color="secondary">
-      <button ion-button (click)="GoBackToCategory()"></button>
+      <button ion-button clear color="light" icon-only (click)="GoBackToCategory()"><ion-icon name="arrow-back"></ion-icon></button>
     <ion-buttons end>
       <button ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -29,19 +29,20 @@
               </ion-col>
               <ion-col>
                 <div class="personal-details">
-                  <p class="Caps-Lock">
-                    <b class="artist-name">{{item.name}}</b>
-                    {{item.contact}} {{item.skill}} {{item.email}} email
-                    <br> skill
-                    <br> contact
-                  </p>
+                  <p class="Caps-Lock"><b class="artist-name">{{item.name}}</b></p>
+                  <!-- bio is mixed up with skill, please fix -->
+                  <p class="Caps-Lock">{{item.bio}}</p>
+                  <p class="lowerCase">{{item.contact}}</p>
+                  <p class="Caps-Lock"> {{item.skill}}</p>
+
+                 
                 </div>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <div class="bio">
-                  <br> {{item.bio}}
+                  {{item.email}}
                 </div>
               </ion-col>
             </ion-row>
@@ -66,7 +67,7 @@
   </div>
   <ion-fab bottom left>
     <button id="gotoTop" ion-button color="light">
-      <a href="#theHead">^</a>
+      <ion-icon name="arrow-back"></ion-icon>
     </button>
   </ion-fab>
 </ion-content>
