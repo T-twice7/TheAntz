@@ -58,7 +58,7 @@ export class EditProfilePage {
     this.art.uploadProfilePic(this.url,this.name).then(data =>{
        this.art.storeToDB1(this.name).then(() =>{
          console.log('added to db');
-         this.art.update(this.name,this.email,this.skill,this.contact,this.bio).then((data) => {
+         this.art.update(this.name,this.email,this.contact,this.bio).then((data) => {
           console.log(data);
            })
       
