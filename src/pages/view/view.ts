@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { obj } from '../../app/class';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
-
+import * as firebase from 'firebase';
 /**
  * Generated class for the ViewPage page.
  *
@@ -31,8 +31,13 @@ export class ViewPage {
   uid:any
   PicUrl:any;
   url;
+  num;
+  likes;
+  color = "primary";
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
+
+    
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
     console.log(this.obj);
@@ -86,4 +91,49 @@ export class ViewPage {
    console.log(data);
    })
  }
+
+ sendLikes() { 
+  this.art.likes(this.obj.key).then((data) => {
+    this.art.addNumlikes(this.obj.key,this.likes,this.num);
+    console.log(data);
+    // this.arr2.length = 0;
+    // this.view();
+  })
+}
+ 
+
+
+// like(key){
+//   this.art.likeVideo(this.likes[key].key).then(() =>{
+//     if (this.likes[key]){
+//       this.art.addNumOfLikes(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
+//         this.ionViewDidLoad();
+//       })
+//     }
+//   else if (this.PicUrl[key]){
+//          this.art.removeLike(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
+//           this.ionViewDidLoad();
+//          })
+//       }
+// else{
+//  this.art.addNumOfLikes(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
+//  this.ionViewDidLoad();
+//  })
+// }
+//  })
+// }
+
+// likesPic(key) {
+
+//   let
+//    user = firebase.auth().currentUser;
+//   this.art.likesPic(this.obj.key, this.likes).then((data) => {
+//     this.art.addNumlikes(this.likes.key, this.likes);
+//     console.log(key);
+//     // this.Comments.length =0;
+//     this.arr2.length = 0;
+//     this.view();
+//   })
+// }
+
 }

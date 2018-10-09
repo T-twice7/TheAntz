@@ -201,7 +201,7 @@ export class StreetartzProvider {
       }
       else if (email == undefined || email == null) {
         const alert = this.alertCtrl.create({
-          title: 'Forg ot your?',
+          title: 'Forgot your?',
           subTitle: 'Please enter your Email.',
           buttons: ['OK']
         });
@@ -524,12 +524,12 @@ export class StreetartzProvider {
               key: k,
               url: this.url
             }
-
+            this.arr2.push(obj);
             this.viewProfileMain(chckId).then((profileData: any) => {
               obj.username = profileData.name
               obj.email = profileData.email
               obj.url = profileData.downloadurl
-              this.arr2.push(obj);
+          
             });
             accpt(this.arr2);
             console.log(this.arr2);
@@ -631,52 +631,133 @@ export class StreetartzProvider {
   //   })
   // }
 
-  // viewLikes(key: string) {
-  //   this.list = [];
+  // // viewLikes(key: string) {
+  // //   this.list = [];
 
-  //   return new Promise((accpt, rejc) => {
-  //     firebase.database().ref("likes/").on("value", (data: any) => {
-  //       var a = data.val();
-  //       var user = firebase.auth().currentUser;
-  //       if (a == null) {
-  //         firebase.database().ref('likes/' + user.uid).push({
-  //           picID: key,
-  //           uid: user.uid
-  //         });
-  //       } else {
+  // //   return new Promise((accpt, rejc) => {
+  // //     firebase.database().ref("likes/").on("value", (data: any) => {
+  // //       var a = data.val();
+  // //       var user = firebase.auth().currentUser;
+  // //       if (a == null) {
+  // //         firebase.database().ref('likes/' + user.uid).push({
+  // //           picID: key,
+  // //           uid: user.uid
+  // //         });
+  // //       } else {
 
-  //         var keys1: any = Object.keys(data);
-  //         for (var i = 0; i < keys1.length; i++) {
-  //           var k = keys1[i];
-  //           let obj = {
+  // //         var keys1: any = Object.keys(data);
+  // //         for (var i = 0; i < keys1.length; i++) {
+  // //           var k = keys1[i];
+  // //           let obj = {
 
-  //             picID: data[k].picID,
-  //             uid: data[k].uid,
-  //             key: k
-  //           }
-  //           this.list.push(obj);
-  //         }
+  // //             picID: data[k].picID,
+  // //             uid: data[k].uid,
+  // //             key: k
+  // //           }
+  // //           this.list.push(obj);
+  // //         }
 
-  //         for (var x = 0; x < this.list.length; x++) {
-  //           if (this.list[x].uid == user.uid && this.list[x].uid == user.uid) {
-  //             firebase.database().ref("uploads/" + user.uid).child(key).remove().then(() => {
-  //             })
-  //           }
-  //         }
+  // //         for (var x = 0; x < this.list.length; x++) {
+  // //           if (this.list[x].uid == user.uid && this.list[x].uid == user.uid) {
+  // //             firebase.database().ref("uploads/" + user.uid).child(key).remove().then(() => {
+  // //             })
+  // //           }
+  // //         }
 
 
 
-  //       }
+  // //       }
+  // //     })
+  // //   })
+  // // }
+  // //    likePic(){
+  // //   var user = firebase.auth().currentUser;
+  // //   console.log(user.uid)
+  // //   this.art.likePic(this.key).then((data: any) =>{
+
+  // //     console.log(data);
+  // //   });
+  // // }
+
+  // likes(key){
+  //   return new Promise ((accpt, rej) =>{
+  //   firebase.auth().currentUser
+  //     this.firebase.ref('likes/' + key ).push({
+        
+  //       username : this.currentUserID
   //     })
+  //     accpt('liked')
+  //   })
+  
+  // }
+  
+  // addNumOfLikes(username, key, num){
+  //   num =  num  + 1;
+  //   return new Promise ((accpt, rej) =>{
+  //     this.database.ref('uploads/' + username + '/' + key).update({likes: num});
+  //     accpt('like added')
   //   })
   // }
-  //    likePic(){
-  //   var user = firebase.auth().currentUser;
-  //   console.log(user.uid)
-  //   this.art.likePic(this.key).then((data: any) =>{
-
-  //     console.log(data);
-  //   });
+  
+  // removeLike(username, key, num){
+  //   num =  num  - 1;
+  //   return new Promise ((accpt, rej) =>{
+  //     this.database.ref('uploads/' + username + '/' + key).update({likes: num});
+  //     this.database.ref('likes/' + key).remove();
+  //     accpt('like removed')
+  //   })
   // }
+  // likesPic(key, likes: any) {
+  //   var user = firebase.auth().currentUser;
+  //   return new Promise((accpt, rejc) => {
+  //     firebase.database().ref('likes/' + key).push({
+  //       likes: likes,
+  //       uid: user.uid,
+  //       url: this.url
+  //     })
+  //     accpt('success');
+  //   });
+
+  // }
+  // addNumlikes(key, numLikes){
+  //   var num =  numLikes  + 1;
+  //   firebase.database().ref('likes/'+ key).update({likes: num});
+  //   console.log("likes number added");
+  // }
+
+
+  likes(key: any) {
+    var user = firebase.auth().currentUser;
+    return new Promise((accpt, rejc) => {
+      firebase.database().ref('likes/' + key).push({
+        uid: user.uid,
+      })
+      accpt('success');
+    });
+  }
+
+  addNumlikes(key, numLikes,num) {
+    return new Promise ((accpt, rej) =>{
+      firebase.database().ref('uploads/' + '/' +key).update({ likes: num }).then(res => {
+        var num = numLikes + 1;
+        console.log(num);
+      });
+      accpt('like added')
+  })
+  
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

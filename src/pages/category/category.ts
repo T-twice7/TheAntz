@@ -40,7 +40,7 @@ export class CategoryPage {
         console.log("Nothing Found!")
       }
     });
-
+    this.retreivePics() 
   }
 
   ionViewDidLoad() {

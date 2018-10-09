@@ -38,7 +38,15 @@ export class LoginPage {
   constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController, public viewCtrl: ViewController,public art: StreetartzProvider,public loadingCtrl: LoadingController) {
 
     
-
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        console.log("UID: " + user.uid)
+      } else {
+        // No user is signed in.
+        console.log("Nothing Found!")
+      }
+    })
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');

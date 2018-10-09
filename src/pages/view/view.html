@@ -24,8 +24,11 @@
       </p>
       <ion-grid>
         <ion-row>
-          <ion-col col-3>
-            <button ion-button clear>12 likes</button>
+          <ion-col>
+            <button ion-button icon-start clear small (click)="sendLikes()">
+              <ion-icon name="thumbs-up"></ion-icon>
+              <!-- <div>{{a.likes}} Likes</div> -->
+            </button>
           </ion-col>
           <ion-col>
             <button ion-button clear>500 comments</button>
