@@ -340,7 +340,7 @@ export class StreetartzProvider {
             this.viewProfileMain(chckId).then((profileData: any) => {
               obj.username = profileData.name
               obj.url = profileData.downloadurl
-             
+
             });
             pass(this.arr2);
             console.log(this.arr2);
@@ -369,16 +369,16 @@ export class StreetartzProvider {
       var user = firebase.auth().currentUser
       firebase.database().ref('profiles/' + user.uid).update({
         name: name,
-        email:email,
+        email: email,
         skill: skill,
-        contact:contact,
-        bio:bio
+        contact: contact,
+        bio: bio
       });
       toast.present();
     })
 
 
-  
+
   }
 
   push(obj: obj) {
@@ -406,19 +406,19 @@ export class StreetartzProvider {
                     url: uploads2[k].downloadurl,
                     comments: data[k].comments,
                     description: data[k].description,
-                    email:data[k].email
+                    email: data[k].email
                   }
                   this.arr.push(obj);
                   console.log(this.arr);
 
                   this.viewProfileMain(chckId).then((profileData: any) => {
                     obj.email = profileData.email
-                  
+
                     // this.arr2.push(obj);
                   });
                 }
 
-             
+
                 pass(this.arr);
               }
 
@@ -461,8 +461,8 @@ export class StreetartzProvider {
               email: "",
               key: k,
               url: this.url,
-              
-              
+
+
             }
 
             this.viewProfileMain(chckId).then((profileData: any) => {
@@ -501,7 +501,7 @@ export class StreetartzProvider {
       firebase.database().ref('comments/' + key).push({
         comment: comment,
         uid: user.uid,
-        date : day,
+        date: day,
         url: this.url
       })
       accpt('success');
@@ -524,7 +524,7 @@ export class StreetartzProvider {
             comment: CommentDetails[key].comment,
             uid: user.uid,
             url: this.url,
-            date : day,
+            date: day,
             username: ""
           }
           // this.keyArr.push(obj);
@@ -543,9 +543,9 @@ export class StreetartzProvider {
 
     })
   }
-  addNumComments(key, numComments){
-    var num =  numComments  + 1;
-    firebase.database().ref('uploads/'+ key).update({comments: num});
+  addNumComments(key, numComments) {
+    var num = numComments + 1;
+    firebase.database().ref('uploads/' + key).update({ comments: num });
     console.log("comment number added");
   }
 
@@ -560,14 +560,13 @@ export class StreetartzProvider {
         console.log(CommentDetails);
         for (var i = 0; i < keys1.length; i++) {
           var key = keys1[i];
-          var chckId = CommentDetails[key].uid;
           let obj = {
             likes: CommentDetails[key].likes,
             uid: user.uid,
           }
           this.keyArr.push(obj);
           console.log(this.url)
-         accpt(this.keyArr); 
+          accpt(this.keyArr);
         }
       }, Error => {
         rejc(Error.message)
@@ -575,7 +574,7 @@ export class StreetartzProvider {
 
     })
   }
- 
+
   likes(key: any) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
@@ -584,15 +583,17 @@ export class StreetartzProvider {
       })
       accpt('success');
     });
-
   }
 
-  addNumlikes(key, numLikes){
-    var num =  numLikes  + 1;
-    firebase.database().ref('uploads/'+ key).update({comments: num});
-    console.log("comment number added");
-  }
-
+  addNumlikes(key, numLikes) {
+    var num = numLikes + 1;
+    return new Promise ((accpt, rej) =>{
+      firebase.database().ref('uploads/' + key).update({ likes: num }).then(res => {
+        
+      });
+      accpt('like added')
+  })
   
+  }
 }
 

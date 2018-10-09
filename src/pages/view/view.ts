@@ -35,6 +35,7 @@ export class ViewPage {
   Comments = [];
   email;
   comments;
+  likes;
   like;
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
@@ -79,11 +80,7 @@ export class ViewPage {
       body: 'How are you? Nice greetings from Leipzig',
       isHtml: true
     };
-
     this.emailComposer.open(email);
-    // this.art.sendEmail(email);
-    // Send a text message using default options
-
   }
 
   GoBackToCategory() {
@@ -93,7 +90,6 @@ export class ViewPage {
     this.art.comments(this.obj.key, this.comment).then((data) => {
       this.art.addNumComments(this.obj.key, this.comments);
       console.log(data);
-      // this.Comments.length =0;
       this.arr2.length = 0;
       this.view();
     })
@@ -118,15 +114,12 @@ export class ViewPage {
     })
 
   }
-
-
-  sendLikes(like) {
+  sendLikes(like) { 
     this.art.likes(this.obj.key).then((data) => {
-      this.art.addNumComments(this.obj.key,this.like);
+      // this.art.addNumlikes(this.obj.key,this.likes);
       console.log(data);
-      // this.Comments.length =0;
-      this.arr2.length = 0;
-      this.view();
+      // this.arr2.length = 0;
+      // this.view();
     })
   }
 }
