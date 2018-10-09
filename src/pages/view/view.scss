@@ -1,4 +1,12 @@
 page-view {
+    .Caps-Lock{
+        text-transform: capitalize;
+      
+    }
+    #Location{
+        color: grey;
+        font-size: 12px;
+    }
     ion-input{
         border: 2px solid red;
         padding-left: 10px;
@@ -14,6 +22,9 @@ page-view {
     .statements{
         padding-left: 10px;
         padding-right: 10px;
+        font-size: 12px;
+
+
     }
     .post{
         box-shadow: 0 2px  5px grey;
@@ -27,6 +38,7 @@ page-view {
     .caption{
         padding-left: 10px;
         padding-right: 10px;
+        font-size: 14px;
     }
     .artistName{
         text-transform: capitalize;
