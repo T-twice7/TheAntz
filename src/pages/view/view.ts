@@ -35,6 +35,7 @@ export class ViewPage {
   Comments = [];
   email;
   comments;
+  like;
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
@@ -118,4 +119,14 @@ export class ViewPage {
 
   }
 
+
+  sendLikes(like) {
+    this.art.likes(this.obj.key).then((data) => {
+      this.art.addNumComments(this.obj.key,this.like);
+      console.log(data);
+      // this.Comments.length =0;
+      this.arr2.length = 0;
+      this.view();
+    })
+  }
 }
