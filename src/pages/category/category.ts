@@ -58,6 +58,7 @@ export class CategoryPage {
             key: k,
             url: data[k].url,
             username: data[k].username,
+            email:data[k].email
           }
           this.arr2.push(obj);
           console.log(this.arr2);
@@ -75,14 +76,16 @@ export class CategoryPage {
     });
   }
 
-  pushArtistDetails(pic, name, key,url,comments,email) {
+  pushArtistDetails(pic, name, key,url,comments,email,username,description) {
     let obj = {
       name: name,
       pic: pic,
       key: key,
       url:url,
       comments:comments,
-      email:email
+      email:email,
+      username:username,
+      description:description
     }
     this.navCtrl.push(ViewPage, { obj: obj });
     console.log(obj);

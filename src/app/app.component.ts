@@ -4,7 +4,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
-
+import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
 
 import firebase from 'firebase';
 import { ProfilePage } from '../pages/profile/profile';
@@ -24,26 +24,22 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-
-
-  
-
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public art: StreetartzProvider) {
+    art.checkstate().then((data:any)=>{
+      if (data ==1){
+        this.rootPage = CategoryPage;
+      }
+      else {
+        this.rootPage = SplashPage
+      }
+     })
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    
    
-    firebase.initializeApp({
-      apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
-      authDomain: "streetartsdatabase.firebaseapp.com",
-      databaseURL: "https://streetartsdatabase.firebaseio.com",
-      projectId: "streetartsdatabase",
-      storageBucket: "streetartsdatabase.appspot.com",
-      messagingSenderId: "202504182684"
-    })
+ 
 
   }
 

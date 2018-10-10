@@ -31,24 +31,32 @@ export class ViewPage {
   uid: any
   PicUrl: any;
   url;
+  num;
   numComments;
   Comments = [];
   email;
   comments;
+  likes;
   like;
+  username;
+  commentsLeng;
+  LikesLeng;
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
     console.log(this.email);
 
-    this.name = this.obj.name;
+    this.username = this.obj.username;
     this.downloadurl = this.obj.pic;
     this.keys2 = this.obj.key;
     this.downloadurl1 = this.obj.url
     this.comments = this.obj.comments
     this.email = this.obj.email
+    this.name = this.obj.name
+    this.description=this.obj.description
     this.view();
+    // this.viewLikes(); 
 
     this.emailComposer.isAvailable().then((available: boolean) => {
       if (available) {
@@ -79,11 +87,7 @@ export class ViewPage {
       body: 'How are you? Nice greetings from Leipzig',
       isHtml: true
     };
-
     this.emailComposer.open(email);
-    // this.art.sendEmail(email);
-    // Send a text message using default options
-
   }
 
   GoBackToCategory() {
@@ -91,12 +95,14 @@ export class ViewPage {
   }
   sendComment(comment) {
     this.art.comments(this.obj.key, this.comment).then((data) => {
-      this.art.addNumComments(this.obj.key, this.comments);
+      this.arr2.push(data);
+     console.log(this.arr2)
+      let commentslength = this.art.addNumComments(this.obj.key, this.comments);
       console.log(data);
-      // this.Comments.length =0;
       this.arr2.length = 0;
       this.view();
     })
+    // console.log(this.arr2.length);
   }
 
   view() {
@@ -113,20 +119,16 @@ export class ViewPage {
           date: data[key].date
         }
         this.arr2.push(obj);
-        console.log(data);
+        console.log(this.arr2);
       }
+      console.log("janet");
+      this.commentsLeng=this.arr2.length;
+      console.log(this.commentsLeng);
     })
 
+  
   }
 
 
-  sendLikes(like) {
-    this.art.likes(this.obj.key).then((data) => {
-      this.art.addNumComments(this.obj.key,this.like);
-      console.log(data);
-      // this.Comments.length =0;
-      this.arr2.length = 0;
-      this.view();
-    })
-  }
+
 }

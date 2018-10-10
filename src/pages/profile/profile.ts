@@ -42,9 +42,8 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
-  
   }
-
+ 
 EditProfile() {
     this.navCtrl.push(EditProfilePage);
   }
@@ -86,6 +85,7 @@ EditProfile() {
             key: k
           }
           this.list.push(obj);
+          console
         }
       }
       loader.dismiss();
@@ -115,10 +115,9 @@ EditProfile() {
             downloadurl: data[k].downloadurl
           }
           this.arr.push(objt);
-          console.log()
+          console.log(this.arr)
         }
       }
-      console.log(this.arr);
       loader.dismiss();
     }, Error => {
       console.log(Error)
@@ -137,4 +136,5 @@ EditProfile() {
   dismissPage() {
     this.navCtrl.pop();
   }
+  
 }

@@ -18,22 +18,17 @@
     </ion-item>
     <div class="title">
      
-        <h4 class="caption">Caption Text</h4>
+        <h4 class="caption">{{username}}</h4>
       <p class="statements">
-        This is the short description of the photograph above. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-        eos?
+       {{description}}
       </p>
       <ion-grid>
         <ion-row>
           <ion-col col-3>
-
-            <button ion-button clear>{{likes}} likes</button>
-
-            <button class="statements" ion-button clear>12 Likes</button>
-
+            <button class="statements" ion-button clear (click)="sendLikes()"> Likes</button>
           </ion-col>
           <ion-col>
-            <button ion-button class="statements" clear>{{comments}}  Comments</button>
+            <button ion-button class="statements" clear>{{commentsLeng}} Comments</button>
           </ion-col>
                   <ion-fab right class="cart">
               <button ion-fab mini (click)="BuyArt()">
@@ -59,7 +54,7 @@
             </ion-card-content>
             <ion-row>
               <ion-col>
-                <button ion-button icon-start clear small  (click)="sendLikes(like.value)">
+                <button ion-button icon-start clear small >
                   <ion-icon name="thumbs-up"></ion-icon>
                   <div>0</div>
                 </button>
