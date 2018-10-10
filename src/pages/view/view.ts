@@ -41,6 +41,8 @@ export class ViewPage {
   username;
   commentsLeng;
   LikesLeng;
+  location;
+  price
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
@@ -55,6 +57,9 @@ export class ViewPage {
     this.email = this.obj.email
     this.name = this.obj.name
     this.description=this.obj.description
+    this.location =this.obj.location
+    this.price =this.obj.price
+    this.likes = this.obj.likes
     this.view();
     // this.viewLikes(); 
 
@@ -76,16 +81,12 @@ export class ViewPage {
     let email = {
       to: this.obj.email,
       cc: 'theantz39@gmail.com',
-      bcc: ['john@doe.com', 'jane@doe.com'],
       attachments: [
-        'file://img/logo.png',
-        'res://icon.png',
-        'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-        'file://README.pdf'
+        this.obj.pic
       ],
-      subject: 'Cordova Icons',
-      body: 'How are you? Nice greetings from Leipzig',
-      isHtml: true
+      subject: this.obj.username,
+      body: 'How are you?',
+      // isHtml: true
     };
     this.emailComposer.open(email);
   }

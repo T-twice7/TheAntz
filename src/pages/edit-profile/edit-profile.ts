@@ -58,9 +58,11 @@ export class EditProfilePage implements OnInit  {
          console.log('added to db');
          this.art.update(this.name,this.email,this.contact,this.bio).then((data) => {
            this.arr.push(data);
+          
            this.arr.length = 0;
           console.log(data);
            })
+           this.navCtrl.push(ProfilePage);
        },
       Error =>{
         console.log(Error)

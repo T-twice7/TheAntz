@@ -29,18 +29,18 @@ export class CategoryPage {
   username;
   comments;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    // this.retreivePics();
+    this.retreivePics();
   }
 
   ionViewDidLoad() {
 
   }
 
- profile(obj:obj) {
-    this.art.profile(this.obj).then((data) => {
-      this.navCtrl.push(ProfilePage, { obj: data });
-    })
-  }
+//  profile(obj:obj) {
+//     this.art.profile(this.obj).then((data) => {
+//       this.navCtrl.push(ProfilePage, { obj: data });
+//     })
+//   }
   nextpage() {
     this.navCtrl.push(ProfilePage);
   }
@@ -76,7 +76,7 @@ export class CategoryPage {
     });
   }
 
-  pushArtistDetails(pic, name, key,url,comments,email,username,description) {
+  pushArtistDetails(pic, name, key,url,comments,email,username,description,location,price,likes) {
     let obj = {
       name: name,
       pic: pic,
@@ -85,7 +85,10 @@ export class CategoryPage {
       comments:comments,
       email:email,
       username:username,
-      description:description
+      description:description,
+      location:location,
+      price:price,
+      likes:likes
     }
     this.navCtrl.push(ViewPage, { obj: obj });
     console.log(obj);

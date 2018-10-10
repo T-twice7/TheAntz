@@ -122,6 +122,11 @@ page-view {
     .artistAvatar{
         background: rgba(255, 0, 0, 0)
     }
+    .price{
+        text-align: right;
+        color:white;
+       
+    }
     @media screen and (max-width: 320px){
         .postedIMG{
             width: 100%

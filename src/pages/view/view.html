@@ -14,10 +14,10 @@
         <img src="{{downloadurl1}}" />
       </ion-avatar>
       <h2 class="artistName">{{name}}</h2>
-      <p id="Location"><ion-icon ios="ios-pin" md="md-pin"></ion-icon> Johannesburg</p>
+      <p id="Location"><ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
+      <p class="price">R{{price}}</p>
     </ion-item>
     <div class="title">
-     
         <h4 class="caption">{{username}}</h4>
       <p class="statements">
        {{description}}
@@ -25,7 +25,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-3>
-            <button class="statements" ion-button clear (click)="sendLikes()"> Likes</button>
+            <button class="statements" ion-button clear> {{likes}} Likes</button>
           </ion-col>
           <ion-col>
             <button ion-button class="statements" clear>{{commentsLeng}} Comments</button>
