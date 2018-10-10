@@ -5,6 +5,9 @@ page-profile {
     .Caps-Lock{
         text-transform: capitalize;
     }
+    .lowerCase{
+        text-transform: lowercase;
+    }
     a{
         text-decoration: none;
         font-size: 20px;
@@ -14,12 +17,13 @@ page-profile {
         width: 30px;
         height: 30px;
         border-radius: 40px;
+        transform: rotate(90deg)
     }
     .bio{
         padding: 20px;
         color: white;
         font-size: 11px;
-        border-top: 0.5px solid white;
+        // border-top: 0.5px solid white;
         width: 100%;
     }
     .displayPhoto{
@@ -27,6 +31,7 @@ page-profile {
         // border-right: 1px solid white;
         padding-right: 16px;
     }
+    
     @media screen and (max-width: 414px){
         .icons{
             height: 20px;
@@ -50,12 +55,15 @@ page-profile {
         .contents{
             margin: 0 auto;
         }
+    
         .social{
             margin: 0 auto;
             // border: 2px solid red;
             width: 300px;
             text-align: center;
         }
+    
+    
         .image{
             width: 200px;
             height: 170px;
@@ -105,6 +113,8 @@ page-profile {
             border-radius: 150px;
             margin-right: -30px;
             object-fit: cover;
+            text-align: right;
+            display: block;
         }
         .addBtn{
             height: 20px;
@@ -123,26 +133,31 @@ page-profile {
             height: 50px;
             border-radius: 50px;
         }
+    
         .head{
-            box-shadow: 0px 30px 5px black;
+            box-shadow: 0px 0px 10px black;
             padding-bottom: 10px;
         }
         .split{
-            border: 2px saturate($color: #000000, $amount: 1) solid deepskyblue;
+            // border: 2px  solid deepskyblue;
             height: 30px;
-            background: #eee;
+            background: rgb(255, 255, 255);
             color: black;
             text-align: center;
             padding-top: 5px;
             // box-shadow: inset 0px 5px 1px rgb(0,78,66);
         }
+    
         .btnIcon{
             height: 40px;
             width: 40px;
             border-radius: 50px;
             border-left: 1px solid grey;
             margin-top: 0px;
+    
         }
+    
+    
         // ion-col{
         //     border:2px solid red;
         // }
@@ -154,7 +169,9 @@ page-profile {
             color: white;
             // border: 2px solid blue
         }
+    
     }
+    
     @media screen and (min-width: 415px){
         .icons{
             height: 20px;
@@ -179,15 +196,19 @@ page-profile {
             padding-top: 15px;
             margin: 0 auto;
         }
+    
         .social{
             margin: 0 auto;
             // border: 2px solid red;
             width: 300px;
             text-align: center;
         }
+    
+    
         .image{
             width: 100%;
             height: 100%;
+    
       
             max-width: 750px;
             // max-height: 250px;
@@ -234,6 +255,7 @@ page-profile {
             height: 150px;
             width: 150px;
             border-radius: 150px;
+            float: right;
         }
         .addBtn{
             height: 20px;
@@ -252,6 +274,7 @@ page-profile {
             height: 50px;
             border-radius: 50px;
         }
+    
         .head{
             box-shadow: 0px 30px 5px black;
             padding-bottom: 10px;
@@ -265,16 +288,24 @@ page-profile {
             padding-top: 5px;
             // box-shadow: inset 0px 5px 1px rgb(0,78,66);
         }
+    
         .btnIcon{
             height: 50px;
             width: 50px;
             border-radius: 50px;
             border-left: 1px solid grey;
             margin-top: 0px;
+    
         }
         ion-grid{
             width: 100%;
             max-width: 750px;
         }
+    
     }
+    
+    
     }
+    
+    
+    

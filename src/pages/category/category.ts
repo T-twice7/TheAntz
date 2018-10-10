@@ -25,26 +25,14 @@ export class CategoryPage {
   arr2 = [];
   uid: any;
   username;
+  comments;
   name;
-  list =[];
-  key;
-  color = "primary";
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
- 
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        console.log("UID: " + user.uid)
-      } else {
-        // No user is signed in.
-        console.log("Nothing Found!")
-      }
-    });
-    this.retreivePics() 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+  
   }
 
   ionViewDidLoad() {
-
+    this.retreivePics();
   }
 
   profile(obj: obj) {
@@ -67,10 +55,13 @@ export class CategoryPage {
             downloadurl: data[k].downloadurl,
             name: data[k].name,
             key: k,
+            url: data[k].url,
+            username: data[k].username,
+            likes : data[k].likes
           }
           this.arr2.push(obj);
-          console.log(this.arr2);
           console.log(this.category);
+          console.log(obj);
         }
 
       }
@@ -79,21 +70,27 @@ export class CategoryPage {
   }
   retreivePics() {
     this.arr2.length = 0;
-    this.art.viewPicMain(this.name, this.username).then((data: any) => {
+    this.art.viewPicMain(this.name,this.username).then((data: any) => {
       this.arr2 = data;
+      console.log(this.arr2)
     });
   }
 
-  pushArtistDetails(pic, name, key,url) {
+  pushArtistDetails(pic, name, key,url,comments,email, likes) {
+
+    console.log(key)
+
+
     let obj = {
       name: name,
       pic: pic,
       key: key,
-      url:url
-   
+      url:url,
+      comments:comments,
+      email:email,
+      likes : likes
     }
     this.navCtrl.push(ViewPage, { obj: obj });
-    console.log(obj);
   }
 }
 

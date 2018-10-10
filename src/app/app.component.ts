@@ -14,36 +14,46 @@ import { ProfilePage } from '../pages/profile/profile';
 import { SplashPage } from '../pages/splash/splash';
 
 import { CategoryPage } from '../pages/category/category';
-import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
-import { ArrayType } from '@angular/compiler/src/output/output_ast'
-
-
-import { ViewPage } from '../pages/view/view';import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { ViewPage } from '../pages/view/view';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { viewParentEl } from '@angular/core/src/view/util';
-''
+import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
+
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = LoginPage  ;
-  
+
+
+  rootPage: any = CategoryPage  ;
+   
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public art: StreetartzProvider) {
+   
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+       
+        console.log("UID: " + user.uid)
+      } else {
+        // No user is signed in.
+        console.log("Nothing Found!")
+        this.rootPage= LoginPage
+      }
+    })
+
+   
     this.initializeApp();
     // used for an example of ngFor and navigation
     
 
-  firebase.initializeApp({
-    apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
-    authDomain: "streetartsdatabase.firebaseapp.com",
-    databaseURL: "https://streetartsdatabase.firebaseio.com",
-    projectId: "streetartsdatabase",
-    storageBucket: "streetartsdatabase.appspot.com",
-    messagingSenderId: "202504182684"
-  })
+ 
   }
   initializeApp() {
     this.platform.ready().then(() => {

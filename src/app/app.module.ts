@@ -20,19 +20,19 @@ import { UploadImagePage } from '../pages/upload-image/upload-image';
 import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
-import * as firebase from "firebase";
+import { EmailComposer } from '@ionic-native/email-composer';
 import { UploadedPage } from '../pages/uploaded/uploaded';
+import * as firebase from 'firebase';
 
 
-//
-//firebase.initializeApp({
-//  apiKey: "AIzaSyDXJsbuaNORuwbz2gdRBFi-kUQ1JDJKoMA",
-//    authDomain: "street-artz-181f2.firebaseapp.com",
-//    databaseURL: "https://street-artz-181f2.firebaseio.com",
-//    projectId: "street-artz-181f2",
-//    storageBucket: "street-artz-181f2.appspot.com",
-//    messagingSenderId: "118526884863"
-//})
+firebase.initializeApp({
+  apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
+  authDomain: "streetartsdatabase.firebaseapp.com",
+  databaseURL: "https://streetartsdatabase.firebaseio.com",
+  projectId: "streetartsdatabase",
+  storageBucket: "streetartsdatabase.appspot.com",
+  messagingSenderId: "202504182684"
+})
 
 @NgModule({ 
   declarations: [
@@ -74,7 +74,7 @@ import { UploadedPage } from '../pages/uploaded/uploaded';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StreetartzProvider,
+    StreetartzProvider,EmailComposer
   ]
 })
 export class AppModule {

@@ -57,7 +57,7 @@ EditProfile() {
     popover.present();
   }
 
-  nextpage1() {
+ GoBackToCategory(){
     this.navCtrl.setRoot(CategoryPage);
   }
   getUid() {

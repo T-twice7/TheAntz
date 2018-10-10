@@ -1,4 +1,16 @@
 page-category {
+    .Caps-Lock{
+        text-transform: capitalize;
+    }
+    #gotoTop{
+        width: 30px;
+        height: 30px;
+        border-radius: 40px;
+        transform: rotate(90deg)
+    }
+    #User{
+        font-weight: bold;
+    }
     .smaller{
         font-size: 11px;
     }
@@ -131,14 +143,7 @@ page-category {
             border-bottom-right-radius: 10px;
             // margin: 0 auto;
         }
-        // .theImg{
-        //     height: 29vh;
-        //     width: 53vw;
-        //     padding-left: 2px;
-        //     padding-right: 2px;
-        //     object-fit: center;
-          
-        //   }
+
         .theImg{
             height: 29vh;
             max-height: 300px;

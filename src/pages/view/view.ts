@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { obj } from '../../app/class';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
+import { EmailComposer } from '@ionic-native/email-composer';
 import * as firebase from 'firebase';
 /**
  * Generated class for the ViewPage page.
@@ -25,115 +26,132 @@ export class ViewPage {
   description;
   downloadurl1;
   downloadurl3;
-  keys2;
+  key;
   arr = [];
-  arr2=[];
-  uid:any
-  PicUrl:any;
+  arr2 = [];
+  uid: any
+  PicUrl: any;
   url;
-  num;
-  likes;
-  color = "primary";
-  obj = this.navParams.get("obj");
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
-
-    
+  numComments;
+  Comments = [];
+  email;
+  comments;
+  like;
+  obj: any;
+  numlikes;
+  viewlike;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
-    console.log(this.obj);
+    console.log(this.email);
 
     this.name = this.obj.name;
     this.downloadurl = this.obj.pic;
-    this.keys2 = this.obj.key;
+    this.key = this.obj.key;
     this.downloadurl1 = this.obj.url
-    this.downloadurl3 = this.obj.url
+    this.comments = this.obj.comments
+    this.email = this.obj.email
+    this.numlikes =  this.obj.likes;
 
-
+    this.emailComposer.isAvailable().then((available: boolean) => {
+      if (available) {
+        console.log(available);
+      }
+    });
 
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
-    this.view();
-  //  this.count();
+
   }
+
+  BuyArt() {
+    let email = {
+      to: this.obj.email,
+      cc: 'theantz39@gmail.com',
+      bcc: ['john@doe.com', 'jane@doe.com'],
+      attachments: [
+        'file://img/logo.png',
+        'res://icon.png',
+        'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
+        'file://README.pdf'
+      ],
+      subject: 'Cordova Icons',
+      body: 'How are you? Nice greetings from Leipzig',
+      isHtml: true
+    };
+
+    this.emailComposer.open(email);
+    // this.art.sendEmail(email);
+    // Send a text message using default options
+
+  }
+
   GoBackToCategory() {
     this.navCtrl.pop();
   }
-  sendComment() {
+  sendComment(comment) {
     this.art.comments(this.obj.key, this.comment).then((data) => {
+      this.art.addNumComments(this.obj.key, this.comments);
       console.log(data);
-    this.arr2.length = 0;
+      // this.Comments.length =0;
+      this.arr2.length = 0;
       this.view();
     })
   }
 
   view() {
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
-      var keys1: any = Object.keys(data);
       console.log(data)
+      var keys1: any = Object.keys(data);
       for (var i = 0; i < keys1.length; i++) {
         var key = keys1[i];
         let obj = {
-          comment:data[key].comment,
+          comment: data[key].comment,
           uid: data[key].uid,
-          url: data[key].downloadurl,
+          downloadurl: data[key].url,
           username: data[key].username,
+          date: data[key].date
         }
         this.arr2.push(obj);
-        console.log(this.arr2);
+        console.log(data);
       }
     })
 
   }
- count(){
-   this.art.countComments(this.obj.key).then((data)=>{
-   console.log(data);
+
+
+  likePic(key) {
+    this.art.likePic(this.obj.key).then((data: any) => {
+       this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+   this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+     
    })
- }
-
- sendLikes() { 
-  this.art.likes(this.obj.key).then((data) => {
-    this.art.addNumlikes(this.obj.key,this.likes,this.num);
-    console.log(data);
-    // this.arr2.length = 0;
-    // this.view();
+    })
   })
+  this.numlikes++;
+
+  }
 }
- 
 
 
-// like(key){
-//   this.art.likeVideo(this.likes[key].key).then(() =>{
-//     if (this.likes[key]){
-//       this.art.addNumOfLikes(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
-//         this.ionViewDidLoad();
-//       })
-//     }
-//   else if (this.PicUrl[key]){
-//          this.art.removeLike(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
-//           this.ionViewDidLoad();
-//          })
-//       }
+
+
+
+
+
+//   else if  (this.PicUrl[key]){
+//     let user = firebase.auth().currentUser;
+//     this.art.removeLike(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
+//      this.ionViewDidLoad();
+//      console.log(key)
+//     })
+//  }
 // else{
-//  this.art.addNumOfLikes(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
-//  this.ionViewDidLoad();
-//  })
-// }
-//  })
-// }
-
-// likesPic(key) {
-
-//   let
-//    user = firebase.auth().currentUser;
-//   this.art.likesPic(this.obj.key, this.likes).then((data) => {
-//     this.art.addNumlikes(this.likes.key, this.likes);
-//     console.log(key);
-//     // this.Comments.length =0;
-//     this.arr2.length = 0;
-//     this.view();
-//   })
-// }
-
-}
+//   let user = firebase.auth().currentUser;
+// this.art.addNumOfLikes(this.key.name, this.key.key, this.PicUrl.key.likes).then (data =>{
+// this.ionViewDidLoad();
+// console.log(key)
+// })

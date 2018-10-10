@@ -31,13 +31,13 @@ import { UploadedPage } from '../uploaded/uploaded';
 
 
 export class LoginPage {
-  email: any;
+  email: any; 
   password: any;
   obj = {} as obj;
   errMsg;
   constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController, public viewCtrl: ViewController,public art: StreetartzProvider,public loadingCtrl: LoadingController) {
 
-    
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.

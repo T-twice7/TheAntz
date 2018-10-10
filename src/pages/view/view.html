@@ -14,6 +14,7 @@
         <img src="{{downloadurl1}}" />
       </ion-avatar>
       <h2 class="artistName">{{name}}</h2>
+      <p id="Location"><ion-icon ios="ios-pin" md="md-pin"></ion-icon> Johannesburg</p>
     </ion-item>
     <div class="title">
      
@@ -24,17 +25,18 @@
       </p>
       <ion-grid>
         <ion-row>
-          <ion-col>
-            <button ion-button icon-start clear small (click)="sendLikes()">
-              <ion-icon name="thumbs-up"></ion-icon>
-              <!-- <div>{{a.likes}} Likes</div> -->
-            </button>
+          <ion-col col-3>
+
+            <button ion-button clear (click)="likePic()" >{{like}} likes</button>
+
+            <button class="statements" ion-button clear>12 Likes</button>
+
           </ion-col>
           <ion-col>
-            <button ion-button clear>500 comments</button>
+            <button ion-button class="statements" clear>{{comments}}  Comments</button>
           </ion-col>
                   <ion-fab right class="cart">
-              <button ion-fab mini>
+              <button ion-fab mini (click)="BuyArt()">
                 <img class="pay" src="../../assets/icon/basket.svg" alt="">
               </button>
             </ion-fab>    
@@ -47,17 +49,17 @@
         <ion-card>
             <ion-item>
               <ion-avatar item-start>
-                <img src="{{a.url}}">
+          <img [src]="a.downloadurl">
               </ion-avatar>
-              <h2>{{a.username}}</h2>
-              <p>November 5, 1955</p>
+              <h2 class="Caps-Lock">{{a.username}}</h2>
+              <p>{{a.date}}</p>
             </ion-item>
             <ion-card-content>
               <p>{{a.comment}}</p>
             </ion-card-content>
             <ion-row>
               <ion-col>
-                <button ion-button icon-start clear small>
+                <button ion-button icon-start clear small  (click)="sendLikes(like.value)">
                   <ion-icon name="thumbs-up"></ion-icon>
                   <div>0</div>
                 </button>
@@ -71,7 +73,7 @@
   <ion-toolbar>
     <ion-item class="footItem" no-lines>
       <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
-      <button ion-button class="sendBtn" item-end icon-only large (click)="sendComment()">
+      <button ion-button class="sendBtn" item-end icon-only large (click)="sendComment(comment.value)">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-item>
