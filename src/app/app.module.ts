@@ -21,6 +21,20 @@ import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
 import { EmailComposer } from '@ionic-native/email-composer';
+import firebase from 'firebase';
+
+
+
+
+  
+firebase.initializeApp({
+  apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
+  authDomain: "streetartsdatabase.firebaseapp.com",
+  databaseURL: "https://streetartsdatabase.firebaseio.com",
+  projectId: "streetartsdatabase",
+  storageBucket: "streetartsdatabase.appspot.com",
+  messagingSenderId: "202504182684"
+})
 
 @NgModule({ 
   declarations: [

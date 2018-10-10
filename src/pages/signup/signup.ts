@@ -5,6 +5,7 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { ToastController } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
+import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,7 @@ import { CategoryPage } from '../category/category';
 export class SignupPage {
 
   obj = {} as obj;
-  constructor(public viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, public modalCtrl: ModalController) {
+  constructor(public viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
 
   }
   ionViewDidLoad() {
@@ -24,28 +25,18 @@ export class SignupPage {
   signUp(obj: obj) { 
       this.art.register(this.obj);
       console.log(this.obj);
-      this.presentToast();
+      this.presentLoading();
       this.navCtrl.setRoot(CategoryPage);     
   }
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
-
-  presentToast() {
-
-    const toast = this.toastCtrl.create({
-      message: 'successfully registered!',
-      duration: 3000
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "signing in....",
+      duration: 4000
     });
-    toast.present();
-  }
-
-  presentToast1(){
-    const toast = this.toastCtrl.create({
-      message: 'Password doesnot Match!',
-      duration: 3000
-    });
-    toast.present();
+    loader.present();
   }
 }

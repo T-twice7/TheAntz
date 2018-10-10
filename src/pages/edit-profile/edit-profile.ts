@@ -61,7 +61,6 @@ export class EditProfilePage implements OnInit  {
            this.arr.length = 0;
           console.log(data);
            })
-      
        },
       Error =>{
         console.log(Error)

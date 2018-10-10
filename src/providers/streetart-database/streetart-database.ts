@@ -32,9 +32,28 @@ export class StreetartzProvider {
   username;
   emailComposer;
   email;
+  condition;
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
 
+  }
+  checkstate(){
+    return new Promise((resolve, reject)=>{
+    firebase.auth().onAuthStateChanged((user)=>
+     {
+      if (user != null) {
+       // alert('user signed in')
+       this.condition = 1
+ 
+      } else {
+ 
+        this.condition = 0
+       // alert('no user signed in')
+      }
+      resolve(this.condition)
+    })
+ 
+  })
   }
   logout() {
     const loader = this.loadingCtrl.create({
@@ -97,7 +116,7 @@ export class StreetartzProvider {
         resolve();
       }).catch((error) => {
         const alert = this.alertCtrl.create({
-          title: error.code,
+          // title: error.code,
           subTitle: error.message,
           buttons: [
             {

@@ -42,9 +42,8 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.obj = this.navParams.get("obj");
     console.log(this.obj);
-  
   }
-
+ 
 EditProfile() {
     this.navCtrl.push(EditProfilePage);
   }
