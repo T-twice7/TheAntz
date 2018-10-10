@@ -40,8 +40,7 @@ export class LoginPage {
 
   }
   signup() {
-    const modal = this.modalCtrl.create(SignupPage);
-    modal.present();
+  this.navCtrl.setRoot(SignupPage);
   }
 
   login(obj: obj) {

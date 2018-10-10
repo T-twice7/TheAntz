@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, NavParams,ViewController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { obj } from '../../app/class';
@@ -15,29 +15,35 @@ import { LoadingController } from 'ionic-angular';
 export class SignupPage {
 
   obj = {} as obj;
-  constructor(public viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
 
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
-  signUp(obj: obj) {
+  signUp() {
     this.art.register(this.obj).then(() => {
       this.presentLoading();
       this.navCtrl.setRoot(CategoryPage);
-      this.presentLoading();
+      this.presentLoading1();
     }, (error) => {
       console.log(error.message);
     })
-
   }
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.navCtrl.setRoot(LoginPage);
   }
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: "signing in....",
       duration: 4000
+    });
+    loader.present();
+  }
+  presentLoading1() {
+    const loader = this.loadingCtrl.create({
+      content: "loading....",
+      duration: 5000
     });
     loader.present();
   }

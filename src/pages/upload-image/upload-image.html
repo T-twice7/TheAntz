@@ -1,35 +1,43 @@
-<ion-content class="content" padding style="background-image: url('../../assets/imgs/BG.jpg');background-size: cover;" >
+<ion-content class="content" padding style="background-image: url('../../assets/imgs/BG.jpg');background-size: cover;">
   <div>
     <button ion-button clear color="light" icon-only (click)="dismiss()">
       <ion-icon name="close"></ion-icon>
     </button>
   </div>
   <div class="card-background-page">
-      <ion-card>
-          <img [src]="url"/>
-          <label for="in" class="input">
-              <ion-icon name="camera"></ion-icon>
-          </label>
-          <input class="inpe" type="file" id="in" accept="image/*" capture="camera" (change)="insertvid($event)">
-       </ion-card>       
+    <ion-card>
+      <img [src]="url" />
+      <label for="in" class="input">
+        <ion-icon name="camera"></ion-icon>
+      </label>
+      <input class="inpe" type="file" id="in" accept="image/*" capture="camera" (change)="insertvid($event)">
+    </ion-card>
   </div>
-<div class="section">
-  <ion-item no-borders>
-    <ion-label>What is your art?</ion-label>
-    <ion-select [(ngModel)]="category">
-      <ion-option value="Photography">Photography</ion-option>
-      <ion-option value="Sculpting">Sculpting</ion-option>
-      <ion-option value="Painting">Painting</ion-option>
-      <ion-option value="Architecture">Architecture</ion-option>
-      <ion-option value="Drawing">Drawing</ion-option>
-      <ion-option value="General">General</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Art name</ion-label>
-    <ion-input type="text" [(ngModel)]="name"></ion-input>
-  </ion-item>
+  <div class="section">
+    <ion-item no-borders>
+      <ion-label>What is your art?</ion-label>
+      <ion-select [(ngModel)]="category">
+        <ion-option value="Photography">Photography</ion-option>
+        <ion-option value="Sculpting">Sculpting</ion-option>
+        <ion-option value="Painting">Painting</ion-option>
+        <ion-option value="Architecture">Architecture</ion-option>
+        <ion-option value="Drawing">Drawing</ion-option>
+        <ion-option value="General">General</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Art name</ion-label>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>location</ion-label>
+      <ion-input type="text" [(ngModel)]="location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>price</ion-label>
+      <ion-input type="text" [(ngModel)]="price"></ion-input>
+    </ion-item>
     <ion-textarea type="text" maxlength="150" placeholder="Tell more about your art" [(ngModel)]="description" rows="3" cols="50"></ion-textarea>
-</div>
+  </div>
   <button class="btn" ion-button full color="primary" (click)="uploadPicture()">Upload your work</button>
 </ion-content>

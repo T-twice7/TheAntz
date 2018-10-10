@@ -29,14 +29,14 @@ export class CategoryPage {
   username;
   comments;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    this.retreivePics();
+    // this.retreivePics();
   }
 
   ionViewDidLoad() {
 
   }
 
-  profile(obj: obj) {
+ profile(obj:obj) {
     this.art.profile(this.obj).then((data) => {
       this.navCtrl.push(ProfilePage, { obj: data });
     })
