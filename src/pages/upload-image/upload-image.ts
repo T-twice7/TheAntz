@@ -22,6 +22,8 @@ export class UploadImagePage {
   imageUrl;
   arr=[];
   description;
+  location;
+  price;
   constructor(public navCtrl: NavController, public navParams: NavParams,public art: StreetartzProvider,public view :ViewController) {
   }
   
@@ -43,9 +45,9 @@ export class UploadImagePage {
 
   uploadPicture(){
     this.art.uploadPic(this.url,this.name).then(data =>{
-       this.art.storeToDB(data, this.category,this.name,this.description).then(() =>{
+       this.art.storeToDB(data, this.category,this.name,this.description,this.location,this.price).then(() =>{
          console.log('added to db');
-        //  this.navCtrl.push(ProfilePage);
+         this.navCtrl.push(ProfilePage);
        },
       Error =>{
         console.log(Error)

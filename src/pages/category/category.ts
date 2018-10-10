@@ -36,7 +36,7 @@ export class CategoryPage {
 
   }
 
-  profile(obj: obj) {
+ profile(obj:obj) {
     this.art.profile(this.obj).then((data) => {
       this.navCtrl.push(ProfilePage, { obj: data });
     })

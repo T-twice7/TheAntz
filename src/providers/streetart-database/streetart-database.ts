@@ -42,17 +42,14 @@ export class StreetartzProvider {
     firebase.auth().onAuthStateChanged((user)=>
      {
       if (user != null) {
-       // alert('user signed in')
+
        this.condition = 1
  
       } else {
- 
         this.condition = 0
-       // alert('no user signed in')
       }
       resolve(this.condition)
     })
- 
   })
   }
   logout() {
@@ -123,7 +120,7 @@ export class StreetartzProvider {
       })
     })
   }
-  profile(obj: obj) {
+  profile(obj:obj) {
     this.arr.length = 0;
     return new Promise((pass, fail) => {
       let userID = firebase.auth().currentUser;
@@ -216,7 +213,7 @@ export class StreetartzProvider {
       })
     })
   }
-  storeToDB(name, category, picName, description) {
+  storeToDB(name, category, picName, description,location,price) {
     return new Promise((accpt, rejc) => {
       var storageRef = firebase.storage().ref(name);
       storageRef.getDownloadURL().then(url => {
@@ -228,7 +225,9 @@ export class StreetartzProvider {
           name: picName,
           category: category,
           uid: user.uid,
-          description: description
+          description: description,
+          location: location,
+          price: price
         });
         accpt('success');
       }, Error => {

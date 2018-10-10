@@ -23,7 +23,7 @@ import firebase from 'firebase';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage {
   list = [];
   arr = [];
   uid: any;
@@ -44,6 +44,13 @@ export class ProfilePage implements OnInit {
     console.log(this.obj);
   }
  
+  // profile() {
+  //   this.art.profile(this.obj).then((data) => {
+  //     this.navCtrl.push(ProfilePage, { obj: data });
+  //   })
+  // }
+
+
 EditProfile() {
     this.navCtrl.push(EditProfilePage);
   }
