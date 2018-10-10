@@ -72,15 +72,9 @@ export class StreetartzProvider {
     });
 
   }
-  presentToast1() {
-    const toast = this.toastCtrl.create({
-      message: 'email or password doesnot match!',
-      duration: 3000
-    });
-  }
   register(obj: obj) {
     return firebase.auth().createUserWithEmailAndPassword(obj.email, obj.password).then((newUser) => {
-      firebase.auth().signInWithEmailAndPassword(obj.email, obj.password).then((authenticatedUser) => {
+      // firebase.auth().signInWithEmailAndPassword(obj.email, obj.password).then((authenticatedUser) => {
         var user = firebase.auth().currentUser
         firebase.database().ref("profiles/" + user.uid).set({
           name: obj.name,
@@ -90,10 +84,10 @@ export class StreetartzProvider {
           downloadurl: '../../assets/download.png',
           bio: "You have not yet inserted a description about your skills and abilities, update profile to get started.",
         })
-      })
+      // })
     }).catch((error) => {
       const alert = this.alertCtrl.create({
-        title: error.code,
+        // title: error.code,
         subTitle: error.message,
         buttons: [
           {

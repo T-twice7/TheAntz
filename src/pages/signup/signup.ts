@@ -21,14 +21,16 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
-
-  signUp(obj: obj) { 
-      this.art.register(this.obj);
-      console.log(this.obj);
+  signUp(obj: obj) {
+    this.art.register(this.obj).then(() => {
       this.presentLoading();
-      this.navCtrl.setRoot(CategoryPage);     
-  }
+      this.navCtrl.setRoot(CategoryPage);
+      this.presentLoading();
+    }, (error) => {
+      console.log(error.message);
+    })
 
+  }
   dismiss() {
     this.viewCtrl.dismiss();
   }

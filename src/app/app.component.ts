@@ -32,7 +32,6 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public art: StreetartzProvider) {
     art.checkstate().then((data:any)=>{
-
       if (data ==1){
         this.rootPage = CategoryPage;
       }
