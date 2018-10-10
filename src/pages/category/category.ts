@@ -29,7 +29,7 @@ export class CategoryPage {
   username;
   comments;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    this.retreivePics();
+    // this.retreivePics();
   }
 
   ionViewDidLoad() {
