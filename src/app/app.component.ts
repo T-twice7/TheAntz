@@ -22,7 +22,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
 
-  rootPage: any = CategoryPage;
+  rootPage: any = LoginPage;
 
 
 
