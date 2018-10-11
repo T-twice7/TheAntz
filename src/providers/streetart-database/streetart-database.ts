@@ -618,7 +618,7 @@ export class StreetartzProvider {
             uid: user.uid,
           }
           this.keyArr.push(obj);
-          console.log(this.url)
+          console.log(this.keyArr)
          accpt(this.keyArr); 
         }
       }, Error => {
@@ -649,10 +649,10 @@ export class StreetartzProvider {
     })
   }
   
-  removeLike(username, key, num){
+  removeLike(key, num){
     num =  num  - 1;
     return new Promise ((accpt, rej) =>{
-      this.database.ref('uploads/' + username + '/' + key).push({likes: num});
+      this.database.ref('uploads/' + key).push({likes: num});
       this.database.ref('likes/' + key).remove();
       accpt('like removed')
     })

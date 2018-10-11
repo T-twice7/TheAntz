@@ -40,6 +40,7 @@ export class ViewPage {
   obj: any;
   numlikes;
   viewlike;
+  removelike;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
@@ -47,11 +48,13 @@ export class ViewPage {
 
     this.name = this.obj.name;
     this.downloadurl = this.obj.pic;
+    this.uid = this.obj.uid;
     this.key = this.obj.key;
     this.downloadurl1 = this.obj.url
     this.comments = this.obj.comments
     this.email = this.obj.email
     this.numlikes =  this.obj.likes;
+    this.removelike= this.obj.likes;
 
     this.emailComposer.isAvailable().then((available: boolean) => {
       if (available) {
@@ -124,16 +127,28 @@ export class ViewPage {
 
 
   likePic(key) {
-    this.art.likePic(this.obj.key).then((data: any) => {
-       this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
-   this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
-     
-   })
-    })
-  })
-  this.numlikes++;
 
+  if (this.obj.key) {
+    this.art.likePic(this.obj.key).then((data: any) => {
+      this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+  this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+    
+  })
+   })
+   this.numlikes++;
+   console.log(this.obj.name)
+ })
+
+
+ }
+ else if (key.obj) {
+   this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
+
+   })
+   
+ }
   }
+  
 }
 
 
