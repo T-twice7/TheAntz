@@ -41,7 +41,7 @@ export class ProfilePage implements OnInit {
   }
   ngOnInit() {
     this.art.profile().then((data) => {
-      this.arr.length =0
+      this.arr.length = 0
       var keys: any = Object.keys(data);
       for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
@@ -57,7 +57,7 @@ export class ProfilePage implements OnInit {
         console.log(this.arr);
       }
     })
-  
+
   }
 
   EditProfile() {
@@ -153,6 +153,12 @@ export class ProfilePage implements OnInit {
   }
   dismissPage() {
     this.navCtrl.pop();
+  }
+
+  removeImage(key) {
+    this.art.RemoveUploadedPicture(key);
+    console.log(key);
+    this.retreivePics() 
   }
 
 }
