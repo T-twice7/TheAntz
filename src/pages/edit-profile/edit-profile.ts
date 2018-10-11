@@ -25,9 +25,13 @@ export class EditProfilePage implements OnInit  {
   bio;
   contact;
   skill;
+  uid;
+  uid1;
+  downloadurl;
   url = '../../assets/download.png';
   imageUrl:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
+    this.retreivePics1();
   }
   nexpage(){
   this.navCtrl.setRoot(ProfilePage);
@@ -36,9 +40,25 @@ export class EditProfilePage implements OnInit  {
     console.log('ionViewDidLoad EditProfilePage');
   }
   ngOnInit() {
-
-
+    this.art.profile().then((data) => {
+      this.arr.length = 0
+      var keys: any = Object.keys(data);
+      for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        let obj = {
+          downloadurl: data[k].downloadurl,
+          name: data[k].name,
+          key: k,
+          email: data[k].email,
+          bio: data[k].bio,
+          contact: data[k].contact
+        }
+        this.arr.push(obj)
+        console.log(this.arr);
+      }
+    })
   }
+
   insertpic(event: any) {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
@@ -69,6 +89,35 @@ export class EditProfilePage implements OnInit  {
     }, Error =>{
       console.log(Error )
     })
+  }
+  getUid1() {
+    this.art.getUserID().then(data => {
+      this.uid1 = data
+    })
+  }
+  retreivePics1() {
+    this.arr.length = 0;
+    this.getUid1();
+    this.art.viewPicGallery1().then(data => {
+      var loader = this.loadingCtrl.create({
+        content: "please wait...",
+        duration: 6000
+      });
+      var keys: any = Object.keys(data);
+      for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        if (this.uid == data[k].uid) {
+          let objt = {
+            downloadurl: data[k].downloadurl
+          }
+          this.arr.push(objt);
+          console.log(this.arr)
+        }
+      }
+      loader.dismiss();
+    }, Error => {
+      console.log(Error)
+    });
   }
   
 }

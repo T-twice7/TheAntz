@@ -37,7 +37,7 @@ export class ProfilePage implements OnInit {
   }
 
   ionViewDidLoad() {
-
+  
   }
   ngOnInit() {
     this.art.profile().then((data) => {
@@ -158,7 +158,7 @@ export class ProfilePage implements OnInit {
   removeImage(key) {
     this.art.RemoveUploadedPicture(key);
     console.log(key);
-    this.retreivePics() 
+    this.retreivePics();
   }
 
 }
