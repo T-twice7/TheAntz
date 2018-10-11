@@ -46,13 +46,15 @@
       
 
     
-        <ion-input class="theItem" placeholder="Artwork Name"  type="text" [(ngModel)]="name" maxlength="30"></ion-input>
+        <ion-input class="theItem" placeholder="Artwork Name" [(ngModel)]="name" type="text" maxlength="30"></ion-input>
       <br>
         <ion-input class="theItem" placeholder="Location" type="text" [(ngModel)]="location" maxlength="20" row="4"></ion-input>
       <br>
-        <ion-input class="theItem" placeholder="Price (R)" type="number"  [(ngModel)]="price"  max="2"></ion-input>
+        <ion-input class="theItem" placeholder="Price (R)" [(ngModel)]="price" type="number" max="2"></ion-input>
       <br>
-        <ion-textarea placeholder="Art Description (max 150)" class="theItem" type="text" [(ngModel)]="description" maxlength="150" row="4"></ion-textarea>
-    </ion-list>
+        <ion-textarea placeholder="Art Description (max 150)" [(ngModel)]="description" class="theItem" type="text" maxlength="150" row="4"></ion-textarea>
+      </div>
+      </ion-list>
+
     <button class="uploadBtn" ion-button full color="primary" (click)="uploadPicture()">Upload Artwork</button>
   </div>
