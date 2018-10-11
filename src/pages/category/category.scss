@@ -1,4 +1,11 @@
 page-category {
+
+    ion-scroll[scrollY]{
+white-space: nowrap;
+.col{
+    display: inline-block;
+}
+    }
     .Caps-Lock{
         text-transform: capitalize;
     }

@@ -7,6 +7,7 @@ import { ViewPage } from '../view/view';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+
 /**
  * Generated class for the CategoryPage page.
  *

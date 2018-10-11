@@ -108,13 +108,15 @@ page-view {
         height: 40px;
         border-radius: 50px;
         font-size: 12px;
+        margin-top: 0px;
     }
     #commentTXT{
         border: 1px solid grey;
         height: 40px;
         // padding-top: -10px;
         border-radius: 40px;
-        width: 50%;
+        width: 100%;
+
     }
     ion-footer {
         &.footer-md::before {

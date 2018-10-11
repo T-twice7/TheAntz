@@ -30,7 +30,7 @@ export class ProfilePage implements OnInit {
   uid1: any;
   obj;
   name;
-
+  details;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
     this.retreivePics1();
     this.retreivePics();
@@ -40,7 +40,7 @@ export class ProfilePage implements OnInit {
   
   }
   ngOnInit() {
-    this.art.profile().then((data) => {
+    this.art.profile(this.details).then((data) => {
       this.arr.length = 0
       var keys: any = Object.keys(data);
       for (var i = 0; i < keys.length; i++) {
