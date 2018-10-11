@@ -23,7 +23,7 @@ import firebase from 'firebase';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
   list = [];
   arr = [];
   uid: any;
@@ -37,21 +37,30 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
-    
+
   }
   ngOnInit() {
-    this.obj = this.navParams.get("obj");
-    console.log(this.obj);
+    this.art.profile().then((data) => {
+      this.arr.length =0
+      var keys: any = Object.keys(data);
+      for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        let obj = {
+          downloadurl: data[k].downloadurl,
+          name: data[k].name,
+          key: k,
+          email: data[k].email,
+          bio: data[k].bio,
+          contact: data[k].contact
+        }
+        this.arr.push(obj)
+        console.log(this.arr);
+      }
+    })
+  
   }
- 
-  // profile() {
-  //   this.art.profile(this.obj).then((data) => {
-  //     this.navCtrl.push(ProfilePage, { obj: data });
-  //   })
-  // }
 
-
-EditProfile() {
+  EditProfile() {
     this.navCtrl.push(EditProfilePage);
   }
 
@@ -63,7 +72,7 @@ EditProfile() {
     popover.present();
   }
 
- GoBackToCategory(){
+  GoBackToCategory() {
     this.navCtrl.setRoot(CategoryPage);
   }
   getUid() {
@@ -88,6 +97,8 @@ EditProfile() {
             uid: data[k].uid,
             category: data[k].category,
             downloadurl: data[k].downloadurl,
+            location: data[k].location,
+            price: data[k].price,
             name: data[k].name,
             key: k
           }
@@ -143,5 +154,5 @@ EditProfile() {
   dismissPage() {
     this.navCtrl.pop();
   }
-  
+
 }

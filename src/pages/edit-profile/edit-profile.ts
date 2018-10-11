@@ -36,8 +36,7 @@ export class EditProfilePage implements OnInit  {
     console.log('ionViewDidLoad EditProfilePage');
   }
   ngOnInit() {
-    this.obj = this.navParams.get("obj");
-    console.log(this.obj);
+
 
   }
   insertpic(event: any) {
@@ -58,9 +57,11 @@ export class EditProfilePage implements OnInit  {
          console.log('added to db');
          this.art.update(this.name,this.email,this.contact,this.bio).then((data) => {
            this.arr.push(data);
+          
            this.arr.length = 0;
           console.log(data);
            })
+           this.navCtrl.push(ProfilePage);
        },
       Error =>{
         console.log(Error)
