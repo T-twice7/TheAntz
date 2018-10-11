@@ -41,7 +41,7 @@
             <ion-option value="General">General</ion-option>
           </ion-select>
         </ion-item>
-      </div>
+    
       <br>
       
 
@@ -53,7 +53,9 @@
         <ion-input class="theItem" placeholder="Price (R)" [(ngModel)]="price" type="number" max="2"></ion-input>
       <br>
         <ion-textarea placeholder="Art Description (max 150)" class="theItem" type="text" maxlength="150" row="4"></ion-textarea>
-    </ion-list>
+      </div>
+      </ion-list>
+
     <button class="uploadBtn" ion-button full color="primary" (click)="uploadPicture()">Upload Artwork</button>
   </div>
 </ion-content>
