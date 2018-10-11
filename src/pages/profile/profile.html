@@ -1,6 +1,8 @@
 <ion-header transparent>
   <ion-toolbar color="secondary">
-      <button ion-button clear color="light" icon-only (click)="GoBackToCategory()"><ion-icon name="arrow-back"></ion-icon></button>
+    <button ion-button clear color="light" icon-only (click)="GoBackToCategory()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
     <ion-buttons end>
       <button ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -29,9 +31,11 @@
               </ion-col>
               <ion-col>
                 <div class="personal-details">
-                  <p class="Caps-Lock"><b class="artist-name">{{item.name}}</b></p>
+                  <p class="Caps-Lock">
+                    <b class="artist-name">{{item.name}}</b>
+                  </p>
                   <p class="lowerCase">{{item.email}}</p>
-                  <p>{{item.contact}}</p>        
+                  <p>{{item.contact}}</p>
                 </div>
               </ion-col>
             </ion-row>
@@ -46,19 +50,20 @@
         </div>
       </div>
     </div>
-    <div class="list">
-    </div>
+ 
+  <div class="list">
+  </div>
   </div>
   <div class="split">
     <b class="uploads" id="theHead">My ArtWork</b>
   </div>
   <div class="contents">
-  
+
     <ion-grid>
       <ion-row class="gal">
         <ion-col *ngFor="let a of list" col-6>
           <div class="remover" (click)="removeImage(a.key)">
-              <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+            <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
           </div>
           <img class="image" [src]="a.downloadurl" imageViewer alt="">
         </ion-col>
