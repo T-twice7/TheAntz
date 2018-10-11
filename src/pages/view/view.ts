@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { obj } from '../../app/class';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { CategoryPage } from '../category/category';
 /**
  * Generated class for the ViewPage page.
  *
@@ -95,7 +96,7 @@ export class ViewPage {
   }
 
   GoBackToCategory() {
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(CategoryPage);
   }
   // sendComment(comment) {
   //   this.art.comments(this.obj.key, this.comment).then((data) => {

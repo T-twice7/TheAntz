@@ -188,8 +188,8 @@ export class StreetartzProvider {
           description: description,
           location: location,
           price: price,
-          likes:0,
-          comments:0
+          likes: 0,
+          comments: 0
         });
         accpt('success');
       }, Error => {
@@ -382,7 +382,7 @@ export class StreetartzProvider {
       toast.present();
     })
   }
- 
+
   push(obj: obj) {
     return new Promise((pass, fail) => {
       firebase.database().ref("uploads").on('value', (data: any) => {
@@ -553,10 +553,10 @@ export class StreetartzProvider {
   //   return numComments;
   // }
 
-  addNumOfComments(key, numComments){
-    numComments =  numComments  + 1;
-    return new Promise ((accpt, rej) =>{
-      firebase.database().ref('uploads/' + key).update({comments: numComments});
+  addNumOfComments(key, numComments) {
+    numComments = numComments + 1;
+    return new Promise((accpt, rej) => {
+      firebase.database().ref('uploads/' + key).update({ comments: numComments });
       accpt('comment added')
     })
   }
@@ -590,7 +590,7 @@ export class StreetartzProvider {
           }
           this.keyArr.push(obj);
           console.log(like[key].likes)
-         accpt(this.keyArr); 
+          accpt(this.keyArr);
         }
       }, Error => {
         rejc(Error.message)
@@ -598,23 +598,23 @@ export class StreetartzProvider {
 
     })
   }
-  addNumOfLikes(key, num){
-    num =  num  + 1;
-    return new Promise ((accpt, rej) =>{
-      firebase.database().ref('uploads/' + key).update({likes: num});
+  addNumOfLikes(key, num) {
+    num = num + 1;
+    return new Promise((accpt, rej) => {
+      firebase.database().ref('uploads/' + key).update({ likes: num });
       accpt('like added')
     })
   }
 
 
-  RemoveUploadedPicture(key){
-    return new Promise ((accpt, rej) =>{
-      this.arr.length =0;
-    firebase.database().ref('uploads/' + key ).remove();
-    console.log(key)
-    accpt('image deleted')
-  })
+  RemoveUploadedPicture(key) {
+    return new Promise((accpt, rej) => {
+      this.arr.length = 0;
+      firebase.database().ref('uploads/' + key).remove();
+      console.log(key)
+      accpt('image deleted')
+    })
   }
- 
+
 }
 
