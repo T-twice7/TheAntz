@@ -41,6 +41,11 @@ export class ViewPage {
   username;
   commentsLeng;
   LikesLeng;
+  location;
+  numlikes;
+  viewComments;
+  viewlike
+  price
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
@@ -51,10 +56,13 @@ export class ViewPage {
     this.downloadurl = this.obj.pic;
     this.keys2 = this.obj.key;
     this.downloadurl1 = this.obj.url
-    this.comments = this.obj.comments
+    this.numComments = this.obj.comments
     this.email = this.obj.email
     this.name = this.obj.name
     this.description=this.obj.description
+    this.location =this.obj.location
+    this.price =this.obj.price
+    this.numlikes = this.obj.likes
     this.view();
     // this.viewLikes(); 
 
@@ -76,16 +84,12 @@ export class ViewPage {
     let email = {
       to: this.obj.email,
       cc: 'theantz39@gmail.com',
-      bcc: ['john@doe.com', 'jane@doe.com'],
       attachments: [
-        'file://img/logo.png',
-        'res://icon.png',
-        'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-        'file://README.pdf'
+        this.obj.pic
       ],
-      subject: 'Cordova Icons',
-      body: 'How are you? Nice greetings from Leipzig',
-      isHtml: true
+      subject: this.obj.username,
+      body: 'How are you?',
+      // isHtml: true
     };
     this.emailComposer.open(email);
   }
@@ -93,17 +97,17 @@ export class ViewPage {
   GoBackToCategory() {
     this.navCtrl.pop();
   }
-  sendComment(comment) {
-    this.art.comments(this.obj.key, this.comment).then((data) => {
-      this.arr2.push(data);
-     console.log(this.arr2)
-      let commentslength = this.art.addNumComments(this.obj.key, this.comments);
-      console.log(data);
-      this.arr2.length = 0;
-      this.view();
-    })
-    // console.log(this.arr2.length);
-  }
+  // sendComment(comment) {
+  //   this.art.comments(this.obj.key, this.comment).then((data) => {
+  //     this.arr2.push(data);
+  //    console.log(this.arr2)
+  //     let commentslength = this.art.addNumComments(this.obj.key, this.comments);
+  //     console.log(data);
+  //     this.arr2.length = 0;
+  //     this.view();
+  //   })
+  //   console.log(this.arr2.length);
+  // }
 
   view() {
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
@@ -128,7 +132,29 @@ export class ViewPage {
 
   
   }
+  likePic(key) {
+    this.art.likePic(this.obj.key).then((data: any) => {
+       this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+   this.art.viewLikes(this.obj.key, this.viewlike).then (data =>{
+     
+   })
+    })
+    this.numlikes++;
+    console.log(this.numlikes)
+  }) 
+}
 
-
+CommentPic(key) {
+  this.art.comments(this.obj.key,this.comment).then((data: any) => {
+     this.art.addNumOfComments(this.obj.key, this.numComments).then (data =>{
+ this.art.viewComments(this.obj.key, this.viewComments).then (data =>{
+  this.arr2.length = 0;
+      this.view();
+ })
+  })
+  this.numComments++;
+  console.log(this.numComments)
+}) 
+}
 
 }

@@ -37,20 +37,19 @@ export class StreetartzProvider {
     console.log('Hello StreetartzProvider Provider');
 
   }
-  checkstate(){
-    return new Promise((resolve, reject)=>{
-    firebase.auth().onAuthStateChanged((user)=>
-     {
-      if (user != null) {
+  checkstate() {
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user != null) {
 
-       this.condition = 1
- 
-      } else {
-        this.condition = 0
-      }
-      resolve(this.condition)
+          this.condition = 1
+
+        } else {
+          this.condition = 0
+        }
+        resolve(this.condition)
+      })
     })
-  })
   }
   logout() {
     const loader = this.loadingCtrl.create({
@@ -71,15 +70,15 @@ export class StreetartzProvider {
   }
   register(obj: obj) {
     return firebase.auth().createUserWithEmailAndPassword(obj.email, obj.password).then((newUser) => {
-        var user = firebase.auth().currentUser
-        firebase.database().ref("profiles/" + user.uid).set({
-          name: obj.name,
-          email: obj.email,
-          password: obj.password,
-          contact: "",
-          downloadurl: '../../assets/download.png',
-          bio: "You have not yet inserted a description about your skills and abilities, update profile to get started.",
-        })
+      var user = firebase.auth().currentUser
+      firebase.database().ref("profiles/" + user.uid).set({
+        name: obj.name,
+        email: obj.email,
+        password: obj.password,
+        contact: "",
+        downloadurl: '../../assets/download.png',
+        bio: "You have not yet inserted a description about your skills and abilities, update profile to get started.",
+      })
     }).catch((error) => {
       const alert = this.alertCtrl.create({
         subTitle: error.message,
@@ -120,7 +119,7 @@ export class StreetartzProvider {
       })
     })
   }
-  profile(obj:obj) {
+  profile() {
     this.arr.length = 0;
     return new Promise((pass, fail) => {
       let userID = firebase.auth().currentUser;
@@ -132,43 +131,6 @@ export class StreetartzProvider {
       pass(this.arr);
     })
 
-  }
-  pushUpdateDeatils(obj: obj) {
-    return new Promise((pass, fail) => {
-      firebase.database().ref("profiles").on('value', (data: any) => {
-        let uploads = data.val();
-        console.log(uploads);
-        if (data == null) {
-
-        }
-        else {
-          var keys: any = Object.keys(uploads);
-          for (var j = 0; j < keys.length; j++) {
-            firebase.database().ref("profiles").on('value', (data2: any) => {
-              let uploads2 = data2.val();
-              console.log(uploads2);
-              var keys2: any = Object.keys(uploads2);
-              for (var i = 0; i < keys2.length; i++) {
-                var k = keys2[i];
-                if (this.arr == uploads[k].arr) {
-                  let obj = {
-                    name: uploads[k].name,
-                    key: keys2,
-                    downloadurl: uploads[k].downloadurl,
-                    contact: uploads[k].contact,
-                    bio: uploads[k].bio,
-                    email: uploads[k].email,
-                  }      
-                }
-                console.log(this.arr);
-              }
-              this.storeImgur(data[keys2[0]].downloadurl);
-              console.log(data[keys2[0]].downloadurl);
-            }), pass(this.arr);
-          }
-        }
-      })
-    })
   }
   forgotpassword(email) {
     console.log(email)
@@ -213,7 +175,7 @@ export class StreetartzProvider {
       })
     })
   }
-  storeToDB(name, category, picName, description,location,price) {
+  storeToDB(name, category, picName, description, location, price) {
     return new Promise((accpt, rejc) => {
       var storageRef = firebase.storage().ref(name);
       storageRef.getDownloadURL().then(url => {
@@ -227,7 +189,9 @@ export class StreetartzProvider {
           uid: user.uid,
           description: description,
           location: location,
-          price: price
+          price: price,
+          likes:0,
+          comments:0
         });
         accpt('success');
       }, Error => {
@@ -374,6 +338,8 @@ export class StreetartzProvider {
               name: uploads[k].name,
               category: uploads[k].category,
               downloadurl: uploads[k].downloadurl,
+              location: uploads[k].location,
+              price: uploads[k].price,
               url: this.url,
               username: "",
               email: uploads[k].email
@@ -418,7 +384,7 @@ export class StreetartzProvider {
       toast.present();
     })
   }
-
+ 
   push(obj: obj) {
     return new Promise((pass, fail) => {
       firebase.database().ref("uploads").on('value', (data: any) => {
@@ -445,7 +411,10 @@ export class StreetartzProvider {
                     url: uploads[k].downloadurl,
                     comments: uploads[k].comments,
                     description: uploads[k].description,
+                    location: uploads[k].location,
+                    price: uploads[k].price,
                     email: uploads[k].email,
+                    likes: data[k].likes,
                     username: uploads[k].username
                   }
                   this.arr.push(obj);
@@ -491,6 +460,9 @@ export class StreetartzProvider {
               comments: data[k].comments,
               downloadurl: data[k].downloadurl,
               description: data[k].description,
+              location: data[k].location,
+              price: data[k].price,
+              likes: data[k].likes,
               name: data[k].name,
               username: "",
               email: "",
@@ -529,7 +501,7 @@ export class StreetartzProvider {
   comments(key: any, comment: any) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
-      var day = moment().format("MMM Do YY");     
+      var day = moment().format("MMM Do YY");
       firebase.database().ref('comments/' + key).push({
         comment: comment,
         uid: user.uid,
@@ -572,43 +544,55 @@ export class StreetartzProvider {
 
     })
   }
-  addNumComments(key, numComments: number) {
-    firebase.database().ref('comments/' + key).on('value', (data) => {
-      console.log(data.val());
-      let elements = Object.keys(data.val());
-      numComments = elements.length;
-      console.log(numComments);
+  // addNumComments(key, numComments: number) {
+  //   firebase.database().ref('comments/' + key).on('value', (data) => {
+  //     console.log(data.val());
+  //     let elements = Object.keys(data.val());
+  //     numComments = elements.length;
+  //     console.log(numComments);
+  //   })
+  //   numComments++;
+  //   return numComments;
+  // }
+
+  addNumOfComments(key, numComments){
+    numComments =  numComments  + 1;
+    return new Promise ((accpt, rej) =>{
+      firebase.database().ref('uploads/' + key).update({comments: numComments});
+      accpt('comment added')
     })
-    numComments++;
-    return numComments;
   }
 
-  likes(key: any, num: any) {
+  likePic(key) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
-      firebase.database().ref('uploads/' + key).update({
-        uid: user.uid,
-      })
+      firebase.database().ref('likes/' + key).push(
+        {
+          user_id: firebase.auth().currentUser.uid
+        }
+      )
       accpt('success');
     });
 
   }
-  viewLikes(key: any) {
+  viewLikes(key, viewLikes) {
     this.keyArr.length = 0;
     return new Promise((accpt, rejc) => {
       var user = firebase.auth().currentUser
-      firebase.database().ref("uploads/" + key).on("value", (data: any) => {
-        var CommentDetails = data.val();
-        var keys1: any = Object.keys(CommentDetails);
-        console.log(CommentDetails);
+      firebase.database().ref("likes/" + key).on("value", (data: any) => {
+        var like = data.val();
+        var keys1: any = Object.keys(like);
+        console.log(like);
         for (var i = 0; i < keys1.length; i++) {
           var key = keys1[i];
+          var chckId = like[key].uid;
           let obj = {
+            likes: like[key].likes,
             uid: user.uid,
           }
           this.keyArr.push(obj);
-          console.log(this.keyArr)
-          accpt(this.keyArr);
+          console.log(like[key].likes)
+         accpt(this.keyArr); 
         }
       }, Error => {
         rejc(Error.message)
@@ -616,6 +600,18 @@ export class StreetartzProvider {
 
     })
   }
+  addNumOfLikes(key, num){
+    num =  num  + 1;
+    return new Promise ((accpt, rej) =>{
+      firebase.database().ref('uploads/' + key).update({likes: num});
+      accpt('like added')
+    })
+  }
 
+
+  // RemoveUploadedPicture(key){
+  //   firebase.database().ref('uploads/' + key ).remove()
+  // }
+ 
 }
 

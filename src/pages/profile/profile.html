@@ -20,11 +20,11 @@
     <div id="pic" align="center">
       <div class="photo">
         <div class="dp">
-          <ion-grid *ngFor="let item of obj">
+          <ion-grid *ngFor="let item of arr">
             <ion-row>
               <ion-col col-5 class="displayPhoto">
-                <div *ngFor="let a of obj">
-                  <img class="m" [src]="a.downloadurl" imageViewer>
+                <div>
+                  <img class="m" [src]="item.downloadurl" imageViewer>
                 </div>
               </ion-col>
               <ion-col>
@@ -53,6 +53,7 @@
     <b class="uploads" id="theHead">My ArtWork</b>
   </div>
   <div class="contents">
+  
     <ion-grid>
       <ion-row class="gal">
         <ion-col *ngFor="let a of list" col-6>
