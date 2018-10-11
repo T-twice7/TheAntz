@@ -7,6 +7,7 @@ import { ModalController, ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
 import { ProfilePage } from '../profile/profile';
+import { ForgotPasswordPage } from'../forgot-password/forgot-password'
 
 
 
@@ -67,13 +68,10 @@ export class LoginPage {
     });
     loader.present();
   }
-  forgotpassword(obj: obj) {
-    this.art.forgotpassword(this.obj.email).then(() => {
-      alert("Check your email")
-    }, (error) => {
-
-    })
+  forgotpassword(){
+    this.navCtrl.push(ForgotPasswordPage)
   }
+
 
 
 }

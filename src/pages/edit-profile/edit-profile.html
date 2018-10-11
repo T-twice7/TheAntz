@@ -1,6 +1,11 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar color="secondary" >
       <ion-title >Edit Profile</ion-title>
+      <ion-buttons start>
+        <button ion-button icon-only (click)="nexpage()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
       <ion-buttons end>
           <button ion-button icon-only (click)="uploadPicture()" >
             <ion-icon name="checkmark" id="mark"></ion-icon>
@@ -42,9 +47,40 @@
                 <ion-input type="number" [value]="a.contact" [(ngModel)]="contact" max="10" placeholder="Mobile"></ion-input>
               </ion-item>
           <div class="item">
-                      <ion-textarea type="text" [value]="a.bio"  [(ngModel)]="bio" placeholder="Bio"></ion-textarea>
+                      <ion-textarea type="text"  [(ngModel)]="bio" placeholder="Bio"></ion-textarea>
           </div>
   
           </ion-list>
     </div>
-  </ion-content>
+  </ion-content> -->
+
+
+
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons start>
+      <button ion-button clear icon-only>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button clear icon-only>
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+  <br>
+  <br>
+  <div class="image">
+    <div class="insert">
+      <label for="file" class="cam"><ion-icon name="camera"></ion-icon></label>
+      <input type="file" id="file" accept="image/*">
+    </div>
+    <img class="preview" [src]="url" alt="" imageViewer>
+  </div>
+
+</ion-content>

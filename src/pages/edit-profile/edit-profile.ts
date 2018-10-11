@@ -35,7 +35,7 @@ export class EditProfilePage implements OnInit  {
   }
   nexpage(){
   this.navCtrl.setRoot(ProfilePage);
-}
+  }
   ionViewDidLoad() {
     this.retreivePics1();
   }
