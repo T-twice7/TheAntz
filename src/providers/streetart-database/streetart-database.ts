@@ -137,13 +137,6 @@ export class StreetartzProvider {
     console.log(email)
     return new Promise((resolve, reject) => {
       if (email != null) {
-        const alert = this.alertCtrl.create({
-          title: 'Forgot your password?',
-          subTitle: 'Please check your Email.',
-          buttons: ['OK']
-        });
-        alert.present();
-
         firebase.auth().sendPasswordResetEmail(email);
         resolve()
       }
