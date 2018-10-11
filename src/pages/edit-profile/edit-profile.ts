@@ -36,8 +36,7 @@ export class EditProfilePage implements OnInit  {
     console.log('ionViewDidLoad EditProfilePage');
   }
   ngOnInit() {
-    this.obj = this.navParams.get("obj");
-    console.log(this.obj);
+
 
   }
   insertpic(event: any) {

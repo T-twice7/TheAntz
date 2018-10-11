@@ -40,10 +40,6 @@ export class ProfilePage implements OnInit {
 
   }
   ngOnInit() {
-    // this.obj = this.navParams.get("obj");
-    // console.log(this.obj);
-
-    //  profile(obj:obj) {
     this.art.profile().then((data) => {
       this.arr.length =0
       var keys: any = Object.keys(data);
@@ -61,7 +57,7 @@ export class ProfilePage implements OnInit {
         console.log(this.arr);
       }
     })
-    //   }
+  
   }
 
   EditProfile() {

@@ -25,10 +25,10 @@
       <ion-grid>
         <ion-row>
           <ion-col col-3>
-            <button class="statements" ion-button clear> {{likes}} Likes</button>
+            <button class="statements" ion-button clear (click)="likePic()"> {{numlikes}} Likes</button>
           </ion-col>
           <ion-col>
-            <button ion-button class="statements" clear>{{commentsLeng}} Comments</button>
+            <button ion-button class="statements" clear>{{numComments}} Comments</button>
           </ion-col>
                   <ion-fab right class="cart">
               <button ion-fab mini (click)="BuyArt()">
@@ -68,7 +68,7 @@
   <ion-toolbar>
     <ion-item class="footItem" no-lines>
       <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
-      <button ion-button class="sendBtn" item-end icon-only large (click)="sendComment(comment.value)">
+      <button ion-button class="sendBtn" item-end icon-only large (click)="CommentPic(numComments)">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-item>
