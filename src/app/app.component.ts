@@ -23,19 +23,19 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
 
-  rootPage: any = UploadImagePage;
+  rootPage: any ;;
 
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public art: StreetartzProvider) {
-    // art.checkstate().then((data:any)=>{
-    //   if (data ==1){
-    //     this.rootPage = CategoryPage;
-    //   }
-    //   else {
-    //     this.rootPage = SplashPage
-    //   }
-    //  })
+    art.checkstate().then((data:any)=>{
+      if (data ==1){
+        this.rootPage = CategoryPage;
+      }
+      else {
+        this.rootPage = SplashPage
+      }
+     })
     this.initializeApp();
 
     // used for an example of ngFor and navigation

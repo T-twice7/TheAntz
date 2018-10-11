@@ -69,6 +69,7 @@ export class CategoryPage {
     this.arr2.length = 0;
     this.art.viewPicMain(this.name,this.username).then((data: any) => {
       this.arr2 = data;
+      console.log(this.arr2);
     });
   }
 
