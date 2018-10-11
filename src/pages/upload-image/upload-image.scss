@@ -30,7 +30,7 @@ page-upload-image {
             width: 35px;
             height: 35px;
             color: white;
-            border-radius: 30px;
+            // border-radius: 30px;
             background: #ffa200;
             position: absolute;
             margin-left: 145px;
@@ -41,6 +41,7 @@ page-upload-image {
             padding-left: 10px;
             background: #011127;
             color: #fab335;
+            
         }
         .preview{
             width: 180px;
@@ -60,7 +61,7 @@ page-upload-image {
             font-size: 25px;
         }
         .cat{
-            border: 1px solid grey;
+            // border: 1px solid grey;
             margin-top: 10px;
             width: 100%;
             max-width: 500px;
@@ -75,8 +76,17 @@ page-upload-image {
             width: 20px;
             font-size: 15px;
         }
+        .uploadBtn{
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
 
-        @media screen and (min-width: 480px){
+
+        @media screen and (min-width: 550px){
+            .container{
+                background: linear-gradient(#011127, #01112700);
+            }
             .container{
                 padding-top: 50%;
             }
