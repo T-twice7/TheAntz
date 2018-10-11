@@ -30,8 +30,8 @@
               <ion-col>
                 <div class="personal-details">
                   <p class="Caps-Lock"><b class="artist-name">{{item.name}}</b></p>
-                  <p class="Caps-Lock">{{item.email}}</p>
-                  <p class="lowerCase">{{item.contact}}</p>        
+                  <p class="lowerCase">{{item.email}}</p>
+                  <p>{{item.contact}}</p>        
                 </div>
               </ion-col>
             </ion-row>
@@ -57,7 +57,9 @@
     <ion-grid>
       <ion-row class="gal">
         <ion-col *ngFor="let a of list" col-6>
-          <button ion-button (click)="removeImage(a.key)">remove</button>
+          <div class="remover" (click)="removeImage(a.key)">
+              <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+          </div>
           <img class="image" [src]="a.downloadurl" imageViewer alt="">
         </ion-col>
       </ion-row>
