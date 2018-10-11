@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { ProfilePage } from '../profile/profile';
-
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the UploadImagePage page.
  *
@@ -24,7 +24,7 @@ export class UploadImagePage {
   description;
   location;
   price;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public art: StreetartzProvider,public view :ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public art: StreetartzProvider,public view :ViewController,public alertCtrl: AlertController) {
   }
   
   ionViewDidLoad() {
@@ -44,20 +44,38 @@ export class UploadImagePage {
   }
 
   uploadPicture(){
-    this.art.uploadPic(this.url,this.name).then(data =>{
-       this.art.storeToDB(data, this.category,this.name,this.description,this.location,this.price).then(() =>{
-         console.log('added to db');
-         this.navCtrl.push(ProfilePage);
-       },
-      Error =>{
-        console.log(Error)
-      })
-    }, Error =>{
-      console.log(Error )
-    })
-  }
-  dismiss(){
-    this.view.dismiss();
-  }
+    if(this.category != null || this.category != undefined){
+      this.art.uploadPic(this.url,this.name).then(data =>{
+        this.art.storeToDB(data, this.category,this.name,this.description,this.location,this.price).then(() =>{
+          console.log('added to db');
+          this.navCtrl.push(ProfilePage);
+        },
+       Error =>{
+         console.log(Error)
+       })
+     }, Error =>{
+       console.log(Error )
+     })
+   }
+   else{
+    const confirm = this.alertCtrl.create({
+      message: 'Please select a category for your image',
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+      ]
+    });
+    confirm.present();
+   }
+    }
+    
 
+    dismiss(){
+      this.view.dismiss();
+    }
 }
+   

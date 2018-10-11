@@ -4,23 +4,21 @@
       <ion-icon class="ico" name="arrow-back"></ion-icon>
     </button>
   </ion-fab>
-  <!-- <div class="head">
-    <img class="chosenImage" src="{{downloadurl}}" alt="">
-  </div> -->
   <div class="post">
-    <img class="postedIMG" src="{{downloadurl}}"/>
+    <img class="postedIMG" src="{{downloadurl}}" />
     <ion-item color="light" class="arter" no-lines>
       <ion-avatar item-start>
         <img src="{{downloadurl1}}" />
       </ion-avatar>
       <h2 class="artistName">{{name}}</h2>
-      <p id="Location"><ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
+      <p id="Location">
+        <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
       <p class="price">R{{price}}</p>
     </ion-item>
     <div class="title">
-        <h4 class="caption">{{username}}</h4>
+      <h4 class="caption">{{username}}</h4>
       <p class="statements">
-       {{description}}
+        {{description}}
       </p>
       <ion-grid>
         <ion-row>
@@ -30,38 +28,38 @@
           <ion-col>
             <button ion-button class="statements" clear>{{numComments}} Comments</button>
           </ion-col>
-                  <ion-fab right class="cart">
-              <button ion-fab mini (click)="BuyArt()">
-                <img class="pay" src="../../assets/icon/basket.svg" alt="">
-              </button>
-            </ion-fab>    
+          <ion-fab right class="cart">
+            <button ion-fab mini (click)="BuyArt()">
+              <img class="pay" src="../../assets/icon/basket.svg" alt="">
+            </button>
+          </ion-fab>
         </ion-row>
       </ion-grid>
     </div>
   </div>
   <div>
     <ion-list *ngFor="let a of arr2">
-        <ion-card>
-            <ion-item>
-              <ion-avatar item-start>
-          <img [src]="a.downloadurl">
-              </ion-avatar>
-              <h2 class="Caps-Lock">{{a.username}}</h2>
-              <p>{{a.date}}</p>
-            </ion-item>
-            <ion-card-content>
-              <p>{{a.comment}}</p>
-            </ion-card-content>
-            <ion-row>
-              <ion-col>
-                <button ion-button icon-start clear small >
-                  <ion-icon name="thumbs-up"></ion-icon>
-                  <div>0</div>
-                </button>
-              </ion-col>
-            </ion-row>
-          </ion-card>
-    </ion-list> 
+      <ion-card>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="a.downloadurl">
+          </ion-avatar>
+          <h2 class="Caps-Lock">{{a.username}}</h2>
+          <p>{{a.date}}</p>
+        </ion-item>
+        <ion-card-content>
+          <p>{{a.comment}}</p>
+        </ion-card-content>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>0</div>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-list>
   </div>
 </ion-content>
 <ion-footer no-padding>

@@ -11,6 +11,7 @@ import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 /**
  * Generated class for the ProfilePage page.
@@ -31,13 +32,13 @@ export class ProfilePage implements OnInit {
   obj;
   name;
   details;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
     this.retreivePics1();
     this.retreivePics();
   }
 
   ionViewDidLoad() {
-  
+
   }
   ngOnInit() {
     this.art.profile(this.details).then((data) => {
@@ -156,9 +157,29 @@ export class ProfilePage implements OnInit {
   }
 
   removeImage(key) {
-    this.art.RemoveUploadedPicture(key);
-    console.log(key);
-    this.retreivePics();
+    const confirm = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Are you sure you want to delete image?',
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Disagree clicked');
+            this.art.RemoveUploadedPicture(key);
+            console.log(key);
+            this.retreivePics();
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+
   }
 
 }
