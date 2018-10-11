@@ -67,7 +67,7 @@ export class EditProfilePage implements OnInit {
     this.art.uploadProfilePic(this.downloadurl, this.name).then(data => {
       this.art.storeToDB1(this.name).then(() => {
         console.log('added to db');
-        this.art.update(this.name, this.email, this.contact, this.bio).then((data) => {
+        this.art.update(this.name,this.email,this.contact,this.bio).then((data) => {
           this.arr.push(data);
           console.log(data);
         })

@@ -90,5 +90,6 @@ export class CategoryPage {
     }
     this.navCtrl.push(ViewPage, { obj: obj });
     console.log(obj);
+
   }
 }

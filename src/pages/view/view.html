@@ -4,9 +4,6 @@
       <ion-icon class="ico" name="arrow-back"></ion-icon>
     </button>
   </ion-fab>
-  <!-- <div class="head">
-    <img class="chosenImage" src="{{downloadurl}}" alt="">
-  </div> -->
   <div class="post">
     <img class="postedIMG" src="{{downloadurl}}" />
     <ion-item color="light" class="arter" no-lines>
@@ -16,6 +13,9 @@
       <h2 class="artistName">{{name}}</h2>
       <p id="Location">
         <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
+
+    
+
 
     </ion-item>
     <div class="title">
@@ -31,11 +31,13 @@
           <ion-col>
             <button ion-button class="statements" clear>{{numComments}} Comments</button>
           </ion-col>
+
           <ion-col class="carts">
             <button class="buy" ion-button outline (click)="BuyArt()">
               R{{price}}
             </button>
           </ion-col>
+
         </ion-row>
       </ion-grid>
     </div>
