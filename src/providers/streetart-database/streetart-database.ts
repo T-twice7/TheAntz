@@ -117,13 +117,17 @@ export class StreetartzProvider {
       })
     })
   }
-  profile() {
+  retrieve(){
+    let userID = firebase.auth().currentUser;
+    return firebase.database().ref("profiles/" + userID.uid)
+  }
+  profile(details) {
     this.arr.length = 0;
     return new Promise((pass, fail) => {
       let userID = firebase.auth().currentUser;
       firebase.database().ref("profiles/" + userID.uid).on('value', (data: any) => {
-        let username = data.val();
-        this.arr.push(username);
+        let details = data.val();
+        this.arr.push(details);
         console.log(this.arr);
       });
       pass(this.arr);
@@ -438,7 +442,7 @@ export class StreetartzProvider {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var data = data.val();
         if (data == null) {
-          this.arr2 = null;
+          // this.arr2 = null;
           const alert = this.alertCtrl.create({
             subTitle: 'No pictures are uploaded yet',
             buttons: ['OK']
