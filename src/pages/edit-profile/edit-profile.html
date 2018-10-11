@@ -1,12 +1,12 @@
 <ion-header>
-    <ion-navbar color="secondary" >
+    <ion-toolbar color="secondary" >
       <ion-title >Edit Profile</ion-title>
       <ion-buttons end>
           <button ion-button icon-only (click)="uploadPicture()" >
             <ion-icon name="checkmark" id="mark"></ion-icon>
           </button>
         </ion-buttons>
-    </ion-navbar>
+    </ion-toolbar>
   </ion-header>
   <ion-content class="card-background-page" *ngFor="let a of arr">
           <ion-card>
@@ -22,7 +22,7 @@
                 <ion-label>
                     <ion-icon name="person"></ion-icon>
                 </ion-label>
-                <ion-input type="text" value="{{name}}" [(ngModel)]="name" placeholder="enter name"></ion-input>
+                <ion-input type="text" [value]="a.name" [(ngModel)]="name" placeholder="enter name"></ion-input>
               </ion-item>
               
               
@@ -31,7 +31,7 @@
                     <ion-icon name="mail"></ion-icon>
                   
                 </ion-label>
-                <ion-input type="email" [value]="email" [(ngModel)]="email" placeholder="Email"></ion-input>
+                <ion-input type="email" [value]="a.email" [(ngModel)]="email" placeholder="Email"></ion-input>
               </ion-item>
               
             <ion-item class="item">
@@ -39,10 +39,10 @@
                     <ion-icon name="call"></ion-icon>
                   
                 </ion-label>
-                <ion-input type="number" [value]="contact" [(ngModel)]="contact" max="10" placeholder="Mobile"></ion-input>
+                <ion-input type="number" [value]="a.contact" [(ngModel)]="contact" max="10" placeholder="Mobile"></ion-input>
               </ion-item>
           <div class="item">
-                      <ion-textarea type="text" [value]="bio"  [(ngModel)]="bio" placeholder="Bio"></ion-textarea>
+                      <ion-textarea type="text" [value]="a.bio"  [(ngModel)]="bio" placeholder="Bio"></ion-textarea>
           </div>
   
           </ion-list>

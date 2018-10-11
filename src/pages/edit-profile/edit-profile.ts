@@ -31,13 +31,13 @@ export class EditProfilePage implements OnInit  {
   url = '../../assets/download.png';
   imageUrl:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
-    this.retreivePics1();
+ 
   }
   nexpage(){
   this.navCtrl.setRoot(ProfilePage);
 }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EditProfilePage');
+    this.retreivePics1();
   }
   ngOnInit() {
     this.art.profile().then((data) => {
