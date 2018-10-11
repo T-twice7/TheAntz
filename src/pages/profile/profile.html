@@ -57,6 +57,7 @@
     <ion-grid>
       <ion-row class="gal">
         <ion-col *ngFor="let a of list" col-6>
+          <button ion-button (click)="removeImage(a.key)">remove</button>
           <img class="image" [src]="a.downloadurl" imageViewer alt="">
         </ion-col>
       </ion-row>

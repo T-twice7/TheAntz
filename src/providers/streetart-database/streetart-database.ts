@@ -608,7 +608,12 @@ export class StreetartzProvider {
 
 
   RemoveUploadedPicture(key){
-    firebase.database().ref('uploads/' + key ).child(key).remove()
+    return new Promise ((accpt, rej) =>{
+      this.arr.length =0;
+    firebase.database().ref('uploads/' + key ).remove();
+    console.log(key)
+    accpt('image deleted')
+  })
   }
  
 }
