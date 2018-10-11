@@ -41,9 +41,7 @@ export class StreetartzProvider {
     return new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged((user) => {
         if (user != null) {
-
           this.condition = 1
-
         } else {
           this.condition = 0
         }
@@ -609,9 +607,9 @@ export class StreetartzProvider {
   }
 
 
-  // RemoveUploadedPicture(key){
-  //   firebase.database().ref('uploads/' + key ).remove()
-  // }
+  RemoveUploadedPicture(key){
+    firebase.database().ref('uploads/' + key ).child(key).remove()
+  }
  
 }
 
