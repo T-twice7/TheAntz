@@ -96,7 +96,7 @@ export class ViewPage {
   }
 
   GoBackToCategory() {
-    this.navCtrl.setRoot(CategoryPage);
+    this.navCtrl.pop();
   }
   // sendComment(comment) {
   //   this.art.comments(this.obj.key, this.comment).then((data) => {
