@@ -6,14 +6,27 @@
   </ion-fab>
   <div class="post">
     <img class="postedIMG" src="{{downloadurl}}" />
-    <ion-item color="light" class="arter" no-lines>
-      <ion-avatar item-start>
-        <img src="{{downloadurl1}}" />
-      </ion-avatar>
-      <h2 class="artistName">{{name}}</h2>
-      <p id="Location">
-        <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
-    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-9>
+          <ion-item color="light" class="arter" no-lines>
+            <ion-avatar item-start>
+              <img src="{{downloadurl1}}" />
+            </ion-avatar>
+            <h2 class="artistName">{{name}} <br></h2>
+            <p id="Location">
+              <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
+
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <button class="buy" ion-button outline (click)="BuyArt()">
+            R{{price}}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     <div class="title">
       <h4 class="caption">{{username}}</h4>
       <p class="statements">
@@ -21,18 +34,16 @@
       </p>
       <ion-grid>
         <ion-row>
-          <ion-col col-3>
+          <ion-col> <!--col-3 -->
             <button class="statements" ion-button clear (click)="likePic()"> {{numlikes}} Likes</button>
           </ion-col>
           <ion-col>
             <button ion-button class="statements" clear>{{numComments}} Comments</button>
           </ion-col>
-
+          <!-- 
           <ion-col class="carts">
-            <button class="buy" ion-button outline (click)="BuyArt()">
-              R{{price}}
-            </button>
-          </ion-col>
+            
+          </ion-col> -->
 
         </ion-row>
       </ion-grid>
@@ -59,7 +70,7 @@
   <ion-toolbar>
     <ion-row>
       <ion-col col-10>
-          <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
+        <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
       </ion-col>
       <ion-col>
         <button ion-button class="sendBtn" item-end icon-only large (click)="CommentPic(numComments)">

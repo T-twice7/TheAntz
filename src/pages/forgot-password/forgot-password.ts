@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { obj } from '../../app/class';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 
@@ -19,7 +19,7 @@ declare var firebase;
 })
 export class ForgotPasswordPage {
   obj = {} as obj;
-  constructor(public navCtrl: NavController,public art: StreetartzProvider, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController, public navCtrl: NavController,public art: StreetartzProvider, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -28,9 +28,29 @@ export class ForgotPasswordPage {
 
   forgotpassword(obj: obj) {
     this.art.forgotpassword(this.obj.email).then(() => {
-      alert("Check your email")
-    }, (error) => {
+              
+      const alert = this.alertCtrl.create({
+        title: 'Password request Sent',
+        subTitle: "We've sent you and email with a reset link, go to your email to recover your account." ,
+        buttons: ['OK']
+      });
+      alert.present();
 
+
+    }).catch((error) => {
+      const alert = this.alertCtrl.create({
+        subTitle: error.message,
+        buttons: [
+          {
+            text: 'ok',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+      console.log(error);
     })
   }
 

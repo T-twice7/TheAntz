@@ -137,13 +137,6 @@ export class StreetartzProvider {
     console.log(email)
     return new Promise((resolve, reject) => {
       if (email != null) {
-        const alert = this.alertCtrl.create({
-          title: 'Forgot your password?',
-          subTitle: 'Please check your Email.',
-          buttons: ['OK']
-        });
-        alert.present();
-
         firebase.auth().sendPasswordResetEmail(email);
         resolve()
       }
@@ -163,7 +156,7 @@ export class StreetartzProvider {
       duration: 3000
     });
     const toast = this.toastCtrl.create({
-      message: 'Ur image has been added!',
+      message: 'Your image has been added!',
       duration: 3000
     });
     return new Promise((accpt, rejc) => {
