@@ -28,17 +28,15 @@ export class ForgotPasswordPage {
 
   forgotpassword(obj: obj) {
     this.art.forgotpassword(this.obj.email).then(() => {
-      if(this.obj.email == null){
-        console.log('no email');
-        
-      }else{
+              
       const alert = this.alertCtrl.create({
         title: 'Password request Sent',
         subTitle: "We've sent you and email with a reset link, go to your email to recover your account." ,
         buttons: ['OK']
       });
       alert.present();
-    }
+
+
     }).catch((error) => {
       const alert = this.alertCtrl.create({
         subTitle: error.message,
@@ -55,6 +53,5 @@ export class ForgotPasswordPage {
       console.log(error);
     })
   }
-
 
 }
