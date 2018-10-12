@@ -36,6 +36,9 @@ export class ForgotPasswordPage {
       });
       alert.present();
 
+      // Take user back to login after clicking the reset password
+      this.navCtrl.pop();
+
 
     }).catch((error) => {
       const alert = this.alertCtrl.create({
