@@ -44,9 +44,4 @@ export class PopOverProfilePage{
     });
     loader.present();
   }
-    // profile2(obj: obj) {
-    //   this.art.profile(this.obj).then((data) => {
-    //     this.navCtrl.push(EditProfilePage, { obj: data });
-    //   })
-    // }
 }
