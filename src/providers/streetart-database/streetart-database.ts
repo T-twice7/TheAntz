@@ -134,20 +134,43 @@ export class StreetartzProvider {
 
   }
   forgotpassword(email) {
-    console.log(email)
     return new Promise((resolve, reject) => {
-      if (email != null) {
+      if (email != null || email !=undefined) {
         firebase.auth().sendPasswordResetEmail(email);
+        const alert = this.alertCtrl.create({
+          title: 'Password request Sent',
+          subTitle: "We've sent you and email with a reset link, go to your email to recover your account." ,
+          buttons: ['OK']
+        });
+        alert.present();
         resolve()
       }
-      else if (email == undefined || email == null) {
+      else if (email == null || email == undefined) {
         const alert = this.alertCtrl.create({
           subTitle: 'Please enter your Email.',
           buttons: ['OK']
         });
         alert.present();
-      }
+      } 
+   }).catch((error) => {
+      const alert = this.alertCtrl.create({
+        subTitle: error.message,
+        buttons: [
+          {
+            text: 'ok',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+      console.log(error);
+      
     })
+
+ 
+  
   }
   uploadPic(pic, name) {
     let loading = this.loadingCtrl.create({
@@ -540,17 +563,6 @@ export class StreetartzProvider {
 
     })
   }
-  // addNumComments(key, numComments: number) {
-  //   firebase.database().ref('comments/' + key).on('value', (data) => {
-  //     console.log(data.val());
-  //     let elements = Object.keys(data.val());
-  //     numComments = elements.length;
-  //     console.log(numComments);
-  //   })
-  //   numComments++;
-  //   return numComments;
-  // }
-
   addNumOfComments(key, numComments) {
     numComments = numComments + 1;
     return new Promise((accpt, rej) => {
@@ -611,6 +623,14 @@ export class StreetartzProvider {
       firebase.database().ref('uploads/' + key).remove();
       console.log(key)
       accpt('image deleted')
+    })
+  }
+
+
+  LicenceContract(){
+    var user = firebase.auth().currentUser
+    firebase.database().ref('contract/' ).set({
+   
     })
   }
 

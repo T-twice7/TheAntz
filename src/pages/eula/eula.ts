@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
+import { CategoryPage } from '../category/category';
+import { SignupPage } from '../signup/signup';
 /**
  * Generated class for the EulaPage page.
  *
@@ -14,12 +16,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'eula.html',
 })
 export class EulaPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+key;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public art: StreetartzProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EulaPage');
   }
-
+contract(){
+  this.art.LicenceContract();
+    this.navCtrl.setRoot(SignupPage); 
+}
 }

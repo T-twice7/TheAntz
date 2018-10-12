@@ -6,6 +6,7 @@ import { obj } from '../../app/class';
 import { ToastController } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
 import { LoadingController } from 'ionic-angular';
+import { EulaPage } from '../eula/eula';
 
 
 
@@ -26,6 +27,14 @@ export class SignupPage {
     console.log('ionViewDidLoad SignupPage');
   }
   signUp() {
+    if(this.obj.email ==null || this.obj.email == undefined){
+      const alert = this.alertCtrl.create({
+        subTitle: 'Please enter your details',
+        buttons: ['OK']
+      });
+      alert.present();
+  }
+  else{
     this.art.register(this.obj).then(() => {
       this.presentLoading();
       this.navCtrl.setRoot(CategoryPage);
@@ -33,6 +42,7 @@ export class SignupPage {
     }, (error) => {
       console.log(error.message);
     })
+  }
   }
   dismiss() {
     this.navCtrl.setRoot(LoginPage);
