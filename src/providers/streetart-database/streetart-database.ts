@@ -57,6 +57,7 @@ export class StreetartzProvider {
     loader.present();
     return new Promise((resolve, reject) => {
       firebase.auth().signOut().then(() => {
+        loader.present();
         resolve()
       }, (error) => {
         reject(error)
@@ -100,7 +101,6 @@ export class StreetartzProvider {
         resolve();
       }).catch((error) => {
         const alert = this.alertCtrl.create({
-          // title: error.code,
           subTitle: error.message,
           buttons: [
             {
@@ -261,6 +261,7 @@ export class StreetartzProvider {
         var link = url;
         firebase.database().ref('profiles/' + user.uid).update({
           downloadurl: link,
+      
         });
         accpt('success');
       }, Error => {
@@ -355,7 +356,7 @@ export class StreetartzProvider {
 
     })
   }
-  update(name, email, contact, bio) {
+  update(name, email, contact, bio,downloadurl) {
     this.arr.length = 0;
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
@@ -373,7 +374,8 @@ export class StreetartzProvider {
         name: name,
         email: email,
         contact: contact,
-        bio: bio
+        bio: bio,
+        downloadurl: downloadurl,
       });
       toast.present();
     })

@@ -147,11 +147,7 @@ export class ProfilePage implements OnInit {
   nextpage() {
     this.navCtrl.push(EditProfilePage);
   }
-  logout() {
-    this.art.logout().then(() => {
-      this.navCtrl.push(LoginPage);
-    }, (error) => { })
-  }
+
   dismissPage() {
     this.navCtrl.pop();
   }
