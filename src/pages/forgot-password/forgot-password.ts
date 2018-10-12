@@ -28,30 +28,16 @@ export class ForgotPasswordPage {
 
   forgotpassword(obj: obj) {
     this.art.forgotpassword(this.obj.email).then(() => {
-              
-      const alert = this.alertCtrl.create({
-        title: 'Password request Sent',
-        subTitle: "We've sent you and email with a reset link, go to your email to recover your account." ,
-        buttons: ['OK']
-      });
-      alert.present();
+      // if(this.obj.email !=undefined){
+      //   const alert = this.alertCtrl.create({
+      //     subTitle: 'invalid email.',
+      //     buttons: ['OK']
+      //   });
+      //   alert.present();
+      // }
+    }, (error)=>{
 
-
-    }).catch((error) => {
-      const alert = this.alertCtrl.create({
-        subTitle: error.message,
-        buttons: [
-          {
-            text: 'ok',
-            handler: data => {
-              console.log('Cancel clicked');
-            }
-          }
-        ]
-      });
-      alert.present();
-      console.log(error);
+      alert(error)
     })
   }
-
 }

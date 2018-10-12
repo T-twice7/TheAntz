@@ -84,11 +84,11 @@ export class ViewPage {
       to: this.obj.email,
       cc: 'theantz39@gmail.com',
       attachments: [
-        this.obj.pic
+        this.downloadurl
       ],
       subject: this.obj.username,
-      body: 'How are you?',
-      // isHtml: true
+      body: this.obj.pic,
+      isHtml: true
     };
     this.emailComposer.open(email);
   }
