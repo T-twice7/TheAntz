@@ -44,7 +44,7 @@ export class UploadImagePage {
   }
 
   uploadPicture(){
-    if(this.category != null || this.category != undefined){
+    if(this.category !=null || this.description !=null || this.name !=null || this.location !=null || this.price !=null){
       this.art.uploadPic(this.url,this.name).then(data =>{
         this.art.storeToDB(data, this.category,this.name,this.description,this.location,this.price).then(() =>{
           console.log('added to db');
@@ -59,7 +59,7 @@ export class UploadImagePage {
    }
    else{
     const confirm = this.alertCtrl.create({
-      message: 'Please select a category for your image',
+      message: 'Please enter all details to upload your image',
       buttons: [
         {
           text: 'Ok',
@@ -71,6 +71,7 @@ export class UploadImagePage {
     });
     confirm.present();
    }
+  
     }
     
 

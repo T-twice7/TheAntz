@@ -143,6 +143,7 @@ export class ViewPage {
       this.numComments++;
       console.log(this.numComments)
     })
+    this.comment = "";
   }
 
 }

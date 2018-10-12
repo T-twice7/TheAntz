@@ -4,6 +4,7 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { LoginPage } from '../login/login';
 import { obj } from '../../app/class';
+import { LoadingController } from 'ionic-angular';
 /**
  * Generated class for the PopOverProfilePage page.
  *
@@ -18,7 +19,7 @@ import { obj } from '../../app/class';
 })
 export class PopOverProfilePage{
 // obj;
-  constructor(public viewCrtl: ViewController,public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider) {
+  constructor(public viewCrtl: ViewController,public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider,public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -28,12 +29,21 @@ export class PopOverProfilePage{
     this.navCtrl.push(EditProfilePage);
     this.viewCrtl.dismiss();
   }
- 
-  logout(){
-    this.art.logout().then(()=>{
+  logout() {
+    this.art.logout().then(() => {
       this.navCtrl.push(LoginPage);
-    },(error)=>{})
-    }
+      this.presentLoading();
+    }, (error) => {
+      console.log(error.message);
+     })
+  }
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: 'signing out....',
+      duration: 2000
+    });
+    loader.present();
+  }
     // profile2(obj: obj) {
     //   this.art.profile(this.obj).then((data) => {
     //     this.navCtrl.push(EditProfilePage, { obj: data });
