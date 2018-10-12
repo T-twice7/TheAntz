@@ -27,7 +27,7 @@
         <ion-row>
           <ion-col col-3>
 
-            <button ion-button clear (click)="likePic()">{{numlikes}} likes</button>
+            <button ion-button clear color={{color}} (click)="likePic()">{{numlikes}} likes</button>
 
             <button class="statements" ion-button clear>12 Likes</button>
 
@@ -59,9 +59,9 @@
             </ion-card-content>
             <ion-row>
               <ion-col>
-                <button ion-button icon-start clear small  (click)="sendLikes(like.value)">
+                <button ion-button icon-start clear small  (click)="comLikes()">
                   <ion-icon name="thumbs-up"></ion-icon>
-                  <div>0</div>
+                  <div>{{numlikes}}</div>
                 </button>
               </ion-col>
             </ion-row>

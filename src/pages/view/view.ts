@@ -48,7 +48,7 @@ export class ViewPage {
 
     this.name = this.obj.name;
     this.downloadurl = this.obj.pic;
-    this.uid = this.obj.uid;
+    this.uid = this.obj
     this.key = this.obj.key;
     this.downloadurl1 = this.obj.url
     this.comments = this.obj.comments
@@ -126,14 +126,17 @@ export class ViewPage {
   }
 
 
-  likePic(key) {
+  likePic(key,obj) {
 
   if (this.obj.key) {
     this.art.likePic(this.obj.key).then((data: any) => {
       this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+
+
+      })
   this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
     
-  })
+ 
    })
    this.numlikes++;
    console.log(this.obj.name)
@@ -142,11 +145,56 @@ export class ViewPage {
 
  }
  else if (key.obj) {
-   this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
-
-   })
+   
    
  }
+
+ else{
+  this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
+    this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+    
+ 
+    })
+    this.numlikes--;
+
+   })
+
+ }
+  }
+  comLikes(key) {
+
+    if (key.obj) {
+      this.art.comLikes(this.obj.key).then((data: any) => {
+        this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+    this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+      
+    })
+     })
+     this.numlikes++;
+   })
+  
+  
+   }
+   else if (key.obj) {
+    this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
+     this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+     
+  
+     })
+     this.numlikes--;
+ 
+    })
+ 
+    
+  }
+ 
+  else{
+   this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+ 
+ 
+   })
+  }
+   
   }
   
 }

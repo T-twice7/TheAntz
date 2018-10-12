@@ -228,6 +228,7 @@ export class StreetartzProvider {
           description: description,
           comments : 0,
           likes : 0
+          
         });
         accpt('success');
       }, Error => {
@@ -631,7 +632,7 @@ export class StreetartzProvider {
   likePic(key) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
-      firebase.database().ref('likes/' + key).push(
+      firebase.database().ref('likes/' + key).child(firebase.auth().currentUser.uid).push(
         //Add like information like user_id
         {
           user_id: firebase.auth().currentUser.uid
@@ -652,11 +653,26 @@ export class StreetartzProvider {
   removeLike(key, num){
     num =  num  - 1;
     return new Promise ((accpt, rej) =>{
-      this.database.ref('uploads/' + key).push({likes: num});
+      this.database.ref('uploads/' + key).child(firebase.auth().currentUser.uid).push({likes: num});
       this.database.ref('likes/' + key).remove();
       accpt('like removed')
     })
   }
+
+  comLikes(key) {
+    var user = firebase.auth().currentUser;
+    return new Promise((accpt, rejc) => {
+      firebase.database().ref('comlikes/' + key).push(
+        //Add like information like user_id
+        {
+          user_id: firebase.auth().currentUser.uid
+        }
+      )
+      accpt('success');
+    });
+
+  }
+
 }
 
 
