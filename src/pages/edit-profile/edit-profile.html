@@ -56,7 +56,7 @@
 
 
 
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons start>
       <button ion-button clear icon-only>
@@ -81,13 +81,16 @@
       <input type="file" id="file" accept="image/*">
     </div>
     <img class="preview" [src]="url" alt="" imageViewer>
-  </div>
+  </div> -->
 
 
-<!-- <ion-header>
+<ion-header>
   <ion-toolbar color="secondary">
     <ion-title>Edit Profile</ion-title>
     <ion-buttons end>
+        <button ion-button icon-only (click)="nexpage()">
+            <ion-icon name="arrow-back" id="mark"></ion-icon>
+          </button>
       <button ion-button icon-only (click)="uploadPicture()">
         <ion-icon name="checkmark" id="mark"></ion-icon>
       </button>
@@ -97,7 +100,7 @@
 <ion-content>
 <ion-list>
       <img [src]="downloadurl">
-      <input id="file" type="file" accept="image/*" (change)="insertpic($event)"/>
+      <input id="file" type="file" accept="image/*" (change)="insertpic($event)">
     <ion-item class="item">
       <ion-label>
         <ion-icon name="person"></ion-icon>
@@ -119,4 +122,4 @@
     <ion-textarea type="text" [value]="bio" [(ngModel)]="bio" placeholder="Bio"></ion-textarea>
   </ion-list>
 
-</ion-content> -->
+</ion-content>
