@@ -104,7 +104,7 @@ export class ProfilePage implements OnInit {
             key: k
           }
           this.list.push(obj);
-          console
+          console.log(this.list)
         }
       }
       loader.dismiss();

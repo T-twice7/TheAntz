@@ -4,6 +4,8 @@ import { obj } from '../../app/class';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { CategoryPage } from '../category/category';
+
+
 /**
  * Generated class for the ViewPage page.
  *
@@ -80,17 +82,22 @@ export class ViewPage {
     this.view();
   }
   BuyArt() {
+
+
+    // this.sms.send('0719132689 ', 'Hello world!');
     let email = {
       to: this.obj.email,
       cc: 'theantz39@gmail.com',
       attachments: [
-        this.obj.pic
+        this.downloadurl
       ],
       subject: this.obj.username,
-      body: 'How are you?',
-      // isHtml: true
+      body: this.obj.pic,
+      isHtml: true
     };
     this.emailComposer.open(email);
+
+
   }
 
   GoBackToCategory() {

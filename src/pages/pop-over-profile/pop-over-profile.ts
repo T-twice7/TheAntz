@@ -40,7 +40,7 @@ export class PopOverProfilePage{
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: 'signing out....',
-      duration: 2000
+      duration: 1000
     });
     loader.present();
   }
