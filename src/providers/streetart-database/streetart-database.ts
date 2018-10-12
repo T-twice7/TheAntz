@@ -520,7 +520,7 @@ export class StreetartzProvider {
   comments(key: any, comment: any) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
-      var day = moment().format("MMM Do YY");
+      var day = moment().format('MMMM Do YYYY, h:mm:ss a');
       firebase.database().ref('comments/' + key).push({
         comment: comment,
         uid: user.uid,
@@ -546,7 +546,7 @@ export class StreetartzProvider {
             comment: CommentDetails[key].comment,
             uid: user.uid,
             url: this.url,
-            date: CommentDetails[key].date,
+            date :moment( CommentDetails[key].date,'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
             username: ""
           }
           accpt(this.keyArr);
