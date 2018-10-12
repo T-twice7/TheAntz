@@ -3,6 +3,7 @@ page-view {
         text-transform: capitalize;
       
     }
+
     #Location{
         color: grey;
         font-size: 12px;
@@ -13,16 +14,11 @@ page-view {
         font-weight: bold;
     }
 
-    ion-input{
-        border: 2px solid red;
-        padding-left: 10px;
-        padding-top: -10px;
-
-    }
+   
     .postedIMG{
         box-shadow: 0 0 1px grey;
         width: 100%;
-        max-width: 500px;
+        // max-width: 500px;
         text-align: center;
     }
     .statements{
@@ -90,7 +86,6 @@ page-view {
     .avatar{
         position: relative;
         margin-top: -100px;
-        border: 5px solid red;
     }
     .comment{
         border: 2px saturate($color: #000000, $amount: 1) solid deepskyblue;
@@ -111,12 +106,12 @@ page-view {
         margin-top: 0px;
     }
     #commentTXT{
-        border: 1px solid grey;
+        border: 1px solid rgb(194, 194, 194);
         height: 40px;
         // padding-top: -10px;
         border-radius: 40px;
         width: 100%;
-
+        padding-left: 10px;
     }
     ion-footer {
         &.footer-md::before {
@@ -197,14 +192,7 @@ page-view {
             border-radius: 50px;
             font-size: 12px;
         }
-    
-        #commentTXT{
-            border: 1px solid rgb(207, 207, 207);
-            height: 40px;
-            // padding-top: -10px;
-            border-radius: 40px;
-            width: 50%;
-        }
+
         ion-footer {
             &.footer-md::before {
                 background-image: none;

@@ -28,6 +28,7 @@ export class ForgotPasswordPage {
 
   forgotpassword(obj: obj) {
     this.art.forgotpassword(this.obj.email).then(() => {
+
       // if(this.obj.email !=undefined){
       //   const alert = this.alertCtrl.create({
       //     subTitle: 'invalid email.',
@@ -38,6 +39,7 @@ export class ForgotPasswordPage {
     }, (error)=>{
 
       alert(error)
-    })
-  }
+
+              
+
 }

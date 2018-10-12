@@ -51,10 +51,12 @@ page-upload-image {
             border-bottom-right-radius: 17.5px;
         }
         .closeBtn{
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
             // position: absolute;
-            margin-top: -15px
+            margin-top: 0px;
+            -webkit-text-stroke: 1px white;
+            
         }
         #attach{
             padding-top: 50px;
