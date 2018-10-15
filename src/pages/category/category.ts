@@ -4,7 +4,7 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { ProfilePage } from '../profile/profile';
 import { ViewPage } from '../view/view';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
@@ -25,17 +25,24 @@ export class CategoryPage {
   category: any;
   arr2 = [];
   uid: any;
-  list = [];
-  name;
   username;
   comments;
+  name;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    this.retreivePics();
+  
   }
 
   ionViewDidLoad() {
-
+    this.retreivePics();
   }
+
+
+  profile(obj: obj) {
+    this.art.profile(this.obj).then((data) => {
+      this.navCtrl.push(ViewPage, { obj: data });
+    })
+  }
+
   nextpage() {
     this.navCtrl.push(ProfilePage);
   }
@@ -53,13 +60,17 @@ export class CategoryPage {
             key: k,
             url: data[k].url,
             username: data[k].username,
+
+            likes : data[k].likes
+
             email:data[k].email,
             location: data[k].location,
             price: data[k].price,
+
           }
           this.arr2.push(obj);
-          console.log(this.arr2);
           console.log(this.category);
+          console.log(obj);
         }
       }
     });
@@ -73,11 +84,22 @@ export class CategoryPage {
     this.arr2.length = 0;
     this.art.viewPicMain(this.name,this.username).then((data: any) => {
       this.arr2 = data;
+
+      console.log(this.arr2)
+    });
+  }
+
+  pushArtistDetails(pic, name, key,url,comments,email, likes) {
+
+    console.log(key)
+
+
       console.log(this.arr2);
     });
   }
 
   pushArtistDetails(pic, name, key,url,comments,email,username,description,location,price,likes) {
+
     let obj = {
       name: name,
       pic: pic,
@@ -85,6 +107,11 @@ export class CategoryPage {
       url:url,
       comments:comments,
       email:email,
+
+      likes : likes
+    }
+    this.navCtrl.push(ViewPage, { obj: obj });
+
       username:username,
       description:description,
       location:location,
@@ -94,5 +121,56 @@ export class CategoryPage {
     this.navCtrl.push(ViewPage, { obj: obj });
     console.log(obj);
 
+
   }
 }
+
+// }
+// //  likePic=function(keyIndex){
+// //   var user = firebase.auth().currentUser;
+// //    this.uid.likePic('likes' + this.art).then(() =>{
+// //      if (this.art[keyIndex].color == 'grey'){
+// //        this.art.addNumOfLikes(this.art[keyIndex].name, this.art[keyIndex].key, this.art[keyIndex].likes).then (data =>{
+// //          this.ionViewDidLoad();
+// //          console.log(data);
+// //        })
+// //      }
+// //    else if (this.arr2[keyIndex].color == 'primary'){
+// //           this.art.removeLike(this.art[keyIndex].name, this.art[keyIndex].key, this.art[keyIndex].likes).then (data =>{
+// //            this.ionViewDidLoad();
+// //           })
+// //        }
+// //  else{
+// //   this.art.addNumOfLikes(this.art[keyIndex].name, this.art[keyIndex].key, this.art[keyIndex].likes).then (data =>{
+// //   this.ionViewDidLoad();
+
+// //   })
+// //  }
+// //   })
+// //  }
+
+// likePic(key){
+
+//   let 
+//  user = firebase.auth().currentUser;
+//  console.log(key)
+//   this.art.likePic(key).then((data: any) =>{
+//     if (this.art[key]){
+//              this.art.addNumOfLikes(this.art[key].name, this.art[key].key, this.art[key].likes).then (data =>{
+//                this.ionViewDidLoad();
+//                console.log(data);
+//              })
+    
+    
+//     console.log(data);
+//             }
+//             else{
+//                 this.art.addNumOfLikes(this.art[key], this.art[key].key, this.art[key].likes).then (data =>{
+//                 this.ionViewDidLoad();
+              
+//                 })
+//                }
+            
+// })
+// }
+

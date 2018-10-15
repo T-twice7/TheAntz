@@ -5,8 +5,12 @@ import { StreetartzProvider } from '../../providers/streetart-database/streetart
 import { obj } from '../../app/class';
 import { ToastController } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
+
+import { UploadedPage } from '../uploaded/uploaded';
+
 import { LoadingController } from 'ionic-angular';
 import { EulaPage } from '../eula/eula';
+
 
 
 
