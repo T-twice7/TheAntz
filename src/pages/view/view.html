@@ -37,11 +37,16 @@
       <ion-grid>
         <ion-row>
 
+
           <ion-col col-3>
 
             <button ion-button clear color={{color}} (click)="likePic()">{{numlikes}} likes</button>
 
         
+
+          <ion-col> <!--col-3 -->
+            <button class="statements" ion-button clear (click)="likePicture()"> {{numlikes}} Likes</button>
+
           </ion-col>
           <ion-col>
             <button ion-button class="statements" clear>{{numComments}} Comments</button>

@@ -42,6 +42,7 @@ export class StreetartzProvider {
   emailComposer;
   email;
   condition;
+  likeArr = [];
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
     // this.getuserstate();
@@ -729,28 +730,43 @@ export class StreetartzProvider {
       accpt('comment added')
     })
   }
-  likePic(key,num) {
-    var user = firebase.auth().currentUser;
-    console.log(key)
-    return new Promise((accpt, rejc) => {
-      firebase.database().ref('likes/').child(key).on('value', snapshot => {
-        if (!snapshot.hasChild(user.uid)) {
-          firebase.database().ref('uploads/' + key).update({ likes: num });
-        }
-        else {
-    
-        }
+  // likePic(key, num) {
 
-        accpt('success');
-      });
+  //   var user = firebase.auth().currentUser;
+  //   console.log(key)
+  //   return new Promise((accpt, rejc) => {
+  //     firebase.database().ref('likes/').child(key).on('value', snapshot => {
+  //       if (!snapshot.hasChild(user.uid)) {
+  //         num = num + 1;
+  //         firebase.database().ref('uploads/' + key).update({ likes: num });
+  //       }
+  //       else {
+  //         num = num - 1;
+  //         firebase.database().ref('uploads/' + key).update({ likes: num });
+  //         firebase.database().ref('likes/' + key).remove();
+
+  //       }
+  //       accpt('success');
+  //     });
+  //   })
+  // }
+  likePic(key) {
+    console.log(key);
+    var user = firebase.auth().currentUser
+    return new Promise((accpt, rejc) => {
+      firebase.database().ref('likes/' + key).push({
+        uid: user.uid
+      })
+      accpt('success');
     })
   }
-
-  viewLikes(key, viewLikes) {
+  viewLikes(key) {
+    console.log(key)
     this.keyArr.length = 0;
     return new Promise((accpt, rejc) => {
       var user = firebase.auth().currentUser
       firebase.database().ref("likes/" + key).on("value", (data: any) => {
+
         var like = data.val();
         var keys1: any = Object.keys(like);
         console.log(like);
@@ -772,7 +788,23 @@ export class StreetartzProvider {
           console.log(this.keyArr);
           accpt(this.keyArr);
 
+
+        if (data.val() != undefined) {
+          var like = data.val();
+          var keys1: any = Object.keys(like);
+          console.log(like);
+          for (var i = 0; i < keys1.length; i++) {
+            var key = keys1[i];
+            let obj = {
+              uid: user.uid,
+            }
+            this.keyArr.push(obj);
+            accpt(this.keyArr);
+            console.log(this.keyArr);
+          }
+
         }
+
       }, Error => {
         rejc(Error.message)
       })
@@ -801,7 +833,8 @@ r
       accpt('like added')
     })
   }
-  removeLike( key, num) {
+  removeLike(key, num) {
+    console.log(key)
     num = num - 1;
     return new Promise((accpt, rej) => {
       firebase.database().ref('uploads/' + key).update({ likes: num });
@@ -883,6 +916,13 @@ r
 
 
     })
+  }
+
+
+
+  returnUID() {
+    var user = firebase.auth().currentUser;
+    return user.uid;
   }
 
 }
