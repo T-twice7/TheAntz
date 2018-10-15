@@ -511,9 +511,9 @@ export class StreetartzProvider {
               this.arr2.push(obj);
             });
             accpt(this.arr2);
-            console.log(this.arr2);
+            // console.log(this.arr2);
             this.storeImgur(data[keys1[0]].downloadurl);
-            console.log(data[keys1[0]].downloadurl);
+            // console.log(data[keys1[0]].downloadurl);
           }
         }
       }, Error => {
@@ -587,7 +587,6 @@ export class StreetartzProvider {
     })
   }
   // likePic(key, num) {
-
   //   var user = firebase.auth().currentUser;
   //   console.log(key)
   //   return new Promise((accpt, rejc) => {
@@ -625,37 +624,44 @@ export class StreetartzProvider {
         if (data.val() != undefined) {
           var like = data.val();
           var keys1: any = Object.keys(like);
-          console.log(like);
+          console.log( keys1[0]);
           for (var i = 0; i < keys1.length; i++) {
-            var key = keys1[i];
-            let obj = {
-              uid: user.uid,
+            if(user.uid == like[keys1[i]].uid){
+              var key = keys1[i];
+              let obj = {
+                uid: like[keys1[i]].uid,
+                key : keys1[i]
+              }
+              this.keyArr.push(obj);
+              accpt(this.keyArr);
             }
-            this.keyArr.push(obj);
-            accpt(this.keyArr);
             console.log(this.keyArr);
           }
-        }
+        
+      }
 
       }, Error => {
         rejc(Error.message)
       })
-
+  
     })
   }
-  addNumOfLikes(key, num) {
+  addNumOfLikes(key,num) {
+    console.log(key)
     num = num + 1;
     return new Promise((accpt, rej) => {
       firebase.database().ref('uploads/' + key).update({ likes: num });
       accpt('like added')
     })
   }
-  removeLike(key, num) {
-    console.log(key)
+  removeLike(key:any, num,key1) {
+    console.log(key1)
     num = num - 1;
+    var user = firebase.auth().currentUser
+    console.log(user.uid)
     return new Promise((accpt, rej) => {
       firebase.database().ref('uploads/' + key).update({ likes: num });
-      firebase.database().ref('likes/' + key).remove();
+      firebase.database().ref('likes/' + key  + '/' + key1).remove();
       accpt('like removed')
     })
   }

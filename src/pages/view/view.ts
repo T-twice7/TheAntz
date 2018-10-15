@@ -131,27 +131,25 @@ export class ViewPage {
       console.log(this.obj.key);
       this.art.viewLikes(this.obj.key).then((data: any) => {
         this.likeArr = data;
+        let results = "";
+        let length = this.likeArr.length;
         console.log(this.likeArr)
-        var results = "";
-        var length = this.likeArr.length;
-        console.log(length)
-        for (var x = 0; x < length; x++) {
-          if (this.currentUserId == this.likeArr[x].uid) {
+          if (this.currentUserId ==   this.likeArr[0].uid) {
             results = "found";
-            break;
+    
           }
-          else {
+          else{
             results = "not found";
           }
-        }
+        
         console.log(results);
         if (results == "found") {
-          this.art.removeLike(this.obj.key, this.numlikes);
+          this.art.removeLike(this.obj.key,this.numlikes,this.likeArr[0].key);
           this.numlikes--;
           console.log(this.numlikes);
         }
         else {
-          this.art.addNumOfLikes(this.obj.key, this.numlikes);
+          this.art.addNumOfLikes(this.obj.key,this.numlikes);
           this.numlikes++;
           console.log(this.numlikes);
         }
