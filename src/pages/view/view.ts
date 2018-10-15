@@ -145,12 +145,7 @@ export class ViewPage {
 
  }
  else if (key.obj) {
-   
-   
- }
-
- else{
-  this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
+   this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
     this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
     
  
@@ -159,6 +154,11 @@ export class ViewPage {
 
    })
 
+   
+ }
+
+ else{
+ 
  }
   }
   comLikes(key) {
