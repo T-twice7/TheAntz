@@ -47,8 +47,10 @@ export class ViewPage {
   location;
   numlikes;
   viewComments;
-  viewlike
+  viewlike;
   price
+  currentUserId;
+  likeArr = [];
   obj = this.navParams.get("obj");
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
@@ -80,6 +82,8 @@ export class ViewPage {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
     this.viewcomments();
+    this.currentUserId = this.art.returnUID();
+    console.log(this.currentUserId);
   }
   BuyArt() {
     let email = {
@@ -99,7 +103,7 @@ export class ViewPage {
     this.navCtrl.pop();
   }
 
-  viewcomments(){
+  viewcomments() {
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
       console.log(data)
       var keys1: any = Object.keys(data);
@@ -122,15 +126,39 @@ export class ViewPage {
 
 
   }
-  likePic(key) {
-    this.art.likePic(this.obj.key,this.num).then((data: any) => {
-      this.art.addNumOfLikes(this.obj.key, this.numlikes).then(data => {
-        this.art.viewLikes(this.obj.key, this.viewlike).then(data => {
-        })
+  likePicture() {
+    this.art.likePic(this.obj.key).then((data: any) => {
+      console.log(this.obj.key);
+      this.art.viewLikes(this.obj.key).then((data: any) => {
+        this.likeArr = data;
+        console.log(this.likeArr)
+        var results = "";
+        var length = this.likeArr.length;
+        console.log(length)
+        for (var x = 0; x < length; x++) {
+          if (this.currentUserId == this.likeArr[x].uid) {
+            results = "found";
+            break;
+          }
+          else {
+            results = "not found";
+          }
+        }
+        console.log(results);
+        if (results == "found") {
+          this.art.removeLike(this.obj.key, this.numlikes);
+          this.numlikes--;
+          console.log(this.numlikes);
+        }
+        else {
+          this.art.addNumOfLikes(this.obj.key, this.numlikes);
+          this.numlikes++;
+          console.log(this.numlikes);
+        }
       })
-      this.numlikes++;
-      console.log(this.numlikes)
     })
+
+
   }
 
 
