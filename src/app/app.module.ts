@@ -21,9 +21,16 @@ import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { PopOverProfilePage } from '../pages/pop-over-profile/pop-over-profile';
 import { EmailComposer } from '@ionic-native/email-composer';
+
 import { UploadedPage } from '../pages/uploaded/uploaded';
 import * as firebase from 'firebase';
 
+
+
+import firebase from 'firebase';
+import { ForgotPasswordPage } from'../pages/forgot-password/forgot-password'
+import { EulaPage } from '../pages/eula/eula';
+  
 
 firebase.initializeApp({
   apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
@@ -46,7 +53,13 @@ firebase.initializeApp({
     ViewPage,
     EditProfilePage,
     PopOverProfilePage,
+
     UploadedPage
+=======
+    ForgotPasswordPage,
+    EulaPage
+  
+
  
   ],
   imports: [
@@ -66,7 +79,12 @@ firebase.initializeApp({
     ViewPage,
     EditProfilePage,
     PopOverProfilePage,
+
     UploadedPage
+
+
+    ForgotPasswordPage,
+    EulaPage
 
  
   ],

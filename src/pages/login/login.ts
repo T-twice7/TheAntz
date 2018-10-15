@@ -7,6 +7,8 @@ import { ModalController, ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
 import { ProfilePage } from '../profile/profile';
+import { ForgotPasswordPage } from'../forgot-password/forgot-password'
+import { EulaPage } from '../eula/eula';
 
 
 
@@ -66,11 +68,18 @@ export class LoginPage {
 
   
   signup() {
-    const modal = this.modalCtrl.create(SignupPage);
-    modal.present();
+  this.navCtrl.setRoot(EulaPage);
   }
 
   login(obj: obj) {
+    if(this.obj.email ==null || this.obj.email == undefined){
+        const alert = this.alertCtrl.create({
+          subTitle: 'Please enter your details',
+          buttons: ['OK']
+        });
+        alert.present();
+    }
+    else{
     this.art.login(this.obj.email, this.obj.password).then(() => {
       this.presentLoading();
       this.navCtrl.setRoot(CategoryPage);
@@ -78,7 +87,7 @@ export class LoginPage {
     }, (error) => {
       console.log(error.message);
     })
-
+  }
   }
   presentLoading() {
     const loader = this.loadingCtrl.create({
@@ -94,13 +103,10 @@ export class LoginPage {
     });
     loader.present();
   }
-  forgotpassword(obj: obj) {
-    this.art.forgotpassword(this.obj.email).then(() => {
-      alert("Check your email")
-    }, (error) => {
-
-    })
+  forgotpassword(){
+    this.navCtrl.push(ForgotPasswordPage)
   }
+
 
 
 }

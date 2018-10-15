@@ -3,7 +3,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { obj } from '../../app/class';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { EmailComposer } from '@ionic-native/email-composer';
+
 import * as firebase from 'firebase';
+
+import { CategoryPage } from '../category/category';
+
+
+
 /**
  * Generated class for the ViewPage page.
  *
@@ -32,29 +38,55 @@ export class ViewPage {
   uid: any
   PicUrl: any;
   url;
+  num;
   numComments;
   Comments = [];
   email;
   comments;
+  likes;
   like;
+
   obj: any;
   numlikes;
   viewlike;
   removelike;
+
+  username;
+  commentsLeng;
+  LikesLeng;
+  location;
+  numlikes;
+  viewComments;
+  viewlike
+  price
+  obj = this.navParams.get("obj");
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
     console.log(this.email);
 
-    this.name = this.obj.name;
+    this.username = this.obj.username;
     this.downloadurl = this.obj.pic;
     this.uid = this.obj
     this.key = this.obj.key;
     this.downloadurl1 = this.obj.url
+
     this.comments = this.obj.comments
     this.email = this.obj.email
     this.numlikes =  this.obj.likes;
     this.removelike= this.obj.likes;
+
+    this.numComments = this.obj.comments;
+    this.email = this.obj.email;
+    this.name = this.obj.name;
+    this.description = this.obj.description;
+    this.location = this.obj.location;
+    this.price = this.obj.price;
+    this.numlikes = this.obj.likes;
+
+
+
 
     this.emailComposer.isAvailable().then((available: boolean) => {
       if (available) {
@@ -63,49 +95,30 @@ export class ViewPage {
     });
 
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
-
+    this.viewcomments();
   }
-
   BuyArt() {
     let email = {
       to: this.obj.email,
       cc: 'theantz39@gmail.com',
-      bcc: ['john@doe.com', 'jane@doe.com'],
       attachments: [
-        'file://img/logo.png',
-        'res://icon.png',
-        'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-        'file://README.pdf'
+        this.downloadurl
       ],
-      subject: 'Cordova Icons',
-      body: 'How are you? Nice greetings from Leipzig',
+      subject: this.obj.username,
+      body: this.obj.pic,
       isHtml: true
     };
-
     this.emailComposer.open(email);
-    // this.art.sendEmail(email);
-    // Send a text message using default options
-
   }
 
   GoBackToCategory() {
     this.navCtrl.pop();
   }
-  sendComment(comment) {
-    this.art.comments(this.obj.key, this.comment).then((data) => {
-      this.art.addNumComments(this.obj.key, this.comments);
-      console.log(data);
-      // this.Comments.length =0;
-      this.arr2.length = 0;
-      this.view();
-    })
-  }
 
-  view() {
+  viewcomments(){
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
       console.log(data)
       var keys1: any = Object.keys(data);
@@ -119,11 +132,27 @@ export class ViewPage {
           date: data[key].date
         }
         this.arr2.push(obj);
-        console.log(data);
+        console.log(this.arr2);
       }
+      console.log("janet");
+      this.commentsLeng = this.arr2.length;
+      console.log(this.commentsLeng);
     })
 
+
   }
+  likePic(key) {
+    this.art.likePic(this.obj.key,this.num).then((data: any) => {
+      this.art.addNumOfLikes(this.obj.key, this.numlikes).then(data => {
+        this.art.viewLikes(this.obj.key, this.viewlike).then(data => {
+        })
+      })
+      this.numlikes++;
+      console.log(this.numlikes)
+    })
+  }
+
+
 
 
   likePic(key,obj) {
@@ -218,3 +247,21 @@ export class ViewPage {
 // this.ionViewDidLoad();
 // console.log(key)
 // })
+
+
+  CommentPic(key) {
+    this.art.comments(this.obj.key, this.comment).then((data: any) => {
+      this.art.addNumOfComments(this.obj.key, this.numComments).then(data => {
+        this.art.viewComments(this.obj.key, this.viewComments).then(data => {
+          this.arr2.length = 0;
+          this.viewcomments();
+        })
+      })
+      this.numComments++;
+      console.log(this.numComments)
+    })
+    this.comment = "";
+  }
+
+}
+

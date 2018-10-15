@@ -1,6 +1,8 @@
 <ion-header transparent>
   <ion-toolbar color="secondary">
-      <button ion-button clear color="light" icon-only (click)="GoBackToCategory()"><ion-icon name="arrow-back"></ion-icon></button>
+    <button ion-button clear color="light" icon-only (click)="GoBackToCategory()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
     <ion-buttons end>
       <button ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -20,29 +22,27 @@
     <div id="pic" align="center">
       <div class="photo">
         <div class="dp">
-          <ion-grid *ngFor="let item of obj">
+          <ion-grid *ngFor="let item of arr">
             <ion-row>
               <ion-col col-5 class="displayPhoto">
-                <div *ngFor="let a of obj">
-                  <img class="m" [src]="a.downloadurl" imageViewer>
+                <div>
+                  <img class="m" [src]="item.downloadurl" imageViewer>
                 </div>
               </ion-col>
               <ion-col>
                 <div class="personal-details">
-                  <p class="Caps-Lock"><b class="artist-name">{{item.name}}</b></p>
-                  <!-- bio is mixed up with skill, please fix -->
-                  <p class="Caps-Lock">{{item.bio}}</p>
-                  <p class="lowerCase">{{item.contact}}</p>
-                  <p class="Caps-Lock"> {{item.skill}}</p>
-
-                 
+                  <p class="Caps-Lock">
+                    <b class="artist-name">{{item.name}}</b>
+                  </p>
+                  <p class="lowerCase">{{item.email}}</p>
+                  <p>{{item.contact}}</p>
                 </div>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <div class="bio">
-                  {{item.email}}
+                  {{item.bio}}
                 </div>
               </ion-col>
             </ion-row>
@@ -50,24 +50,24 @@
         </div>
       </div>
     </div>
-    <div class="list">
-    </div>
+ 
+  <div class="list">
+  </div>
   </div>
   <div class="split">
-    <b class="uploads" id="theHead">UPLOADS</b>
+    <b class="uploads" id="theHead">My Artwork</b>
   </div>
   <div class="contents">
-    <ion-grid>
+
+    <ion-grid class="uploads">
       <ion-row class="gal">
         <ion-col *ngFor="let a of list" col-6>
+          <div class="remover" (click)="removeImage(a.key)">
+            <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+          </div>
           <img class="image" [src]="a.downloadurl" imageViewer alt="">
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-  <ion-fab bottom left>
-    <button id="gotoTop" ion-button color="light">
-      <ion-icon name="arrow-back"></ion-icon>
-    </button>
-  </ion-fab>
 </ion-content>

@@ -3,20 +3,24 @@ page-view {
         text-transform: capitalize;
       
     }
+
     #Location{
         color: grey;
         font-size: 12px;
+        text-transform: capitalize;
     }
-    ion-input{
-        border: 2px solid red;
-        padding-left: 10px;
-        padding-top: -10px;
+    .buy{
+        width: 100%;
+        font-size: 13px;
+        font-weight: bold;
+        margin-top: 17px;
+    }
 
-    }
+   
     .postedIMG{
         box-shadow: 0 0 1px grey;
         width: 100%;
-        max-width: 500px;
+        // max-width: 500px;
         text-align: center;
     }
     .statements{
@@ -38,7 +42,8 @@ page-view {
     .caption{
         padding-left: 10px;
         padding-right: 10px;
-        font-size: 14px;
+        font-size: 17px;
+        text-transform: capitalize;
     }
     .artistName{
         text-transform: capitalize;
@@ -83,7 +88,6 @@ page-view {
     .avatar{
         position: relative;
         margin-top: -100px;
-        border: 5px solid red;
     }
     .comment{
         border: 2px saturate($color: #000000, $amount: 1) solid deepskyblue;
@@ -101,13 +105,18 @@ page-view {
         height: 40px;
         border-radius: 50px;
         font-size: 12px;
+        margin-top: 0px;
+    }
+    .alignment{
+        text-align: center;
     }
     #commentTXT{
-        border: 1px solid grey;
+        border: 1px solid rgb(194, 194, 194);
         height: 40px;
         // padding-top: -10px;
         border-radius: 40px;
-        width: 50%;
+        width: 100%;
+        padding-left: 10px;
     }
     ion-footer {
         &.footer-md::before {
@@ -120,6 +129,16 @@ page-view {
     }
     .artistAvatar{
         background: rgba(255, 0, 0, 0)
+    }
+    .price{
+        text-align: right;
+        color:white;
+       
+    }
+    .theComments{
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
     }
     @media screen and (max-width: 320px){
         .postedIMG{
@@ -183,14 +202,7 @@ page-view {
             border-radius: 50px;
             font-size: 12px;
         }
-    
-        #commentTXT{
-            border: 1px solid rgb(207, 207, 207);
-            height: 40px;
-            // padding-top: -10px;
-            border-radius: 40px;
-            width: 50%;
-        }
+
         ion-footer {
             &.footer-md::before {
                 background-image: none;

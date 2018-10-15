@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CommentsPage } from './comments';
+import { EulaPage } from './eula';
 
 @NgModule({
   declarations: [
-    CommentsPage,
+    EulaPage,
   ],
   imports: [
-    IonicPageModule.forChild(CommentsPage),
+    IonicPageModule.forChild(EulaPage),
   ],
 })
-export class CommentsPageModule {}
+export class EulaPageModule {}

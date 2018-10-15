@@ -4,7 +4,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
-
+import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -17,8 +17,11 @@ import { CategoryPage } from '../pages/category/category';
 import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { viewParentEl } from '@angular/core/src/view/util';
+
 import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
 
+
+import { UploadImagePage } from '../pages/upload-image/upload-image';
 
 
 @Component({
@@ -48,10 +51,30 @@ export class MyApp {
       }
     })
 
+  rootPage: any ;;
+
+  pages: Array<{title: string, component: any}>;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public art: StreetartzProvider) {
+    art.checkstate().then((data:any)=>{
+      if (data ==1){
+        this.rootPage = CategoryPage;
+      }
+      else {
+        this.rootPage = SplashPage
+      }
+     })
+    this.initializeApp();
+
+
    
     this.initializeApp();
     // used for an example of ngFor and navigation
+
     
+
+   
+ 
 
  
   }

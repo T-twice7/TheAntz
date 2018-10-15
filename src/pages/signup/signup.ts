@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, NavParams,ViewController, AlertController } from 'ionic-angular';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { IonicPage, NavController, ModalController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { obj } from '../../app/class';
 import { ToastController } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
+
 import { UploadedPage } from '../uploaded/uploaded';
+
+import { LoadingController } from 'ionic-angular';
+import { EulaPage } from '../eula/eula';
+
+
 
 
 @IonicPage()
@@ -15,39 +21,61 @@ import { UploadedPage } from '../uploaded/uploaded';
 })
 export class SignupPage {
 
-  obj = {} as obj;
-  constructor(public viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, public modalCtrl: ModalController) {
+  @ViewChild('input') myInput: ElementRef
 
+  obj = {} as obj;
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
+    
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
-
-  signUp(obj: obj) { 
-      this.art.register(this.obj);
-      console.log(this.obj);
-      this.presentToast();
-      this.navCtrl.setRoot(CategoryPage);     
+  signUp() {
+    if(this.obj.email ==null || this.obj.email == undefined){
+      const alert = this.alertCtrl.create({
+        subTitle: 'Please enter your details',
+        buttons: ['OK']
+      });
+      alert.present();
   }
-
+  else{
+    this.art.register(this.obj).then(() => {
+      this.presentLoading();
+      this.navCtrl.setRoot(CategoryPage);
+      this.presentLoading1();
+    }, (error) => {
+      console.log(error.message);
+    })
+  }
+  }
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.navCtrl.setRoot(LoginPage);
   }
-
-  presentToast() {
-
-    const toast = this.toastCtrl.create({
-      message: 'successfully registered!',
-      duration: 3000
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "signing in....",
+      duration: 4000
     });
-    toast.present();
+    loader.present();
   }
-
-  presentToast1(){
-    const toast = this.toastCtrl.create({
-      message: 'Password doesnot Match!',
-      duration: 3000
+  presentLoading1() {
+    const loader = this.loadingCtrl.create({
+      content: "loading....",
+      duration: 5000
     });
-    toast.present();
+    loader.present();
   }
+  onKeyPress(event) {
+    if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 97 && event.keyCode <= 122) || event.keyCode == 32 || event.keyCode == 46) {
+      return true
+  }
+  else {
+          const toast = this.toastCtrl.create({
+        message: event.keyCode - 48 + ' is not allowed as a name',
+        duration: 2000
+      });
+      toast.present();
+       return false;
+  }  
+}
 }

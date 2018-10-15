@@ -11,6 +11,7 @@ import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 /**
  * Generated class for the ProfilePage page.
@@ -30,22 +31,37 @@ export class ProfilePage implements OnInit {
   uid1: any;
   obj;
   name;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+  details;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
     this.retreivePics1();
     this.retreivePics();
   }
 
   ionViewDidLoad() {
-    
+
   }
   ngOnInit() {
-    this.obj = this.navParams.get("obj");
-    console.log(this.obj);
-  
+    this.art.profile(this.details).then((data) => {
+      this.arr.length = 0
+      var keys: any = Object.keys(data);
+      for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        let obj = {
+          downloadurl: data[k].downloadurl,
+          name: data[k].name,
+          key: k,
+          email: data[k].email,
+          bio: data[k].bio,
+          contact: data[k].contact
+        }
+        this.arr.push(obj)
+        console.log(this.arr);
+      }
+    })
+
   }
 
-EditProfile() {
+  EditProfile() {
     this.navCtrl.push(EditProfilePage);
   }
 
@@ -57,7 +73,7 @@ EditProfile() {
     popover.present();
   }
 
- GoBackToCategory(){
+  GoBackToCategory() {
     this.navCtrl.setRoot(CategoryPage);
   }
   getUid() {
@@ -82,10 +98,13 @@ EditProfile() {
             uid: data[k].uid,
             category: data[k].category,
             downloadurl: data[k].downloadurl,
+            location: data[k].location,
+            price: data[k].price,
             name: data[k].name,
             key: k
           }
           this.list.push(obj);
+          console.log(this.list)
         }
       }
       loader.dismiss();
@@ -115,10 +134,9 @@ EditProfile() {
             downloadurl: data[k].downloadurl
           }
           this.arr.push(objt);
-          console.log()
+          console.log(this.arr)
         }
       }
-      console.log(this.arr);
       loader.dismiss();
     }, Error => {
       console.log(Error)
@@ -129,12 +147,35 @@ EditProfile() {
   nextpage() {
     this.navCtrl.push(EditProfilePage);
   }
-  logout() {
-    this.art.logout().then(() => {
-      this.navCtrl.push(LoginPage);
-    }, (error) => { })
-  }
+
   dismissPage() {
     this.navCtrl.pop();
   }
+
+  removeImage(key) {
+    const confirm = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Are you sure you want to delete image?',
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Disagree clicked');
+            this.art.RemoveUploadedPicture(key);
+            console.log(key);
+            this.retreivePics();
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+
+  }
+
 }
