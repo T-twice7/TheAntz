@@ -14,7 +14,9 @@ import { EulaPage } from '../eula/eula';
 
 
 
-declare var firebase;
+
+import firebase from 'firebase';
+import { UploadedPage } from '../uploaded/uploaded';
 
 /**
  * Generated class for the LoginPage page.
@@ -31,16 +33,40 @@ declare var firebase;
 
 
 export class LoginPage {
-  email: any;
+  email: any; 
   password: any;
   obj = {} as obj;
   errMsg;
-  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public viewCtrl: ViewController, public art: StreetartzProvider, public loadingCtrl: LoadingController) {
+  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController, public viewCtrl: ViewController,public art: StreetartzProvider,public loadingCtrl: LoadingController) {
+
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        console.log("UID: " + user.uid)
+      } else {
+        // No user is signed in.
+        console.log("Nothing Found!")
+      }
+    })
   }
   ionViewDidLoad() {
+    console.log('ionViewDidLoad LoginPage');
+  //   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then((result) => {
 
+  //     if(result){
+  //       console.log("yes")
+  //       this.navCtrl.setRoot('LoginPage');
+  //     }else{
+  //       console.log("CategoryPage");
+  //       this.navCtrl.setRoot('LoginPage');
+        
+  //     }
 
-  }
+  //   });
+   }
+
+  
   signup() {
   this.navCtrl.setRoot(EulaPage);
   }

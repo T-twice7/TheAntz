@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CategoryPage } from '../category/category';
-import { LoginPage } from '../login/login';
-
+CategoryPage
 /**
- * Generated class for the SplashPage page.
+ * Generated class for the UploadedPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,26 +11,18 @@ import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
-  selector: 'page-splash',
-  templateUrl: 'splash.html',
+  selector: 'page-uploaded',
+  templateUrl: 'uploaded.html',
 })
-export class SplashPage {
+export class UploadedPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SplashPage');
-    this.nextpage();
+    console.log('ionViewDidLoad UploadedPage');
   }
-
-  nextpage(){
-  let timer = setInterval(()=>{
-    
-    this.navCtrl.setRoot(LoginPage);
-    clearInterval(timer)
-  },8000)
+  dismiss(){
+    this.navCtrl.setRoot(CategoryPage);
   }
-
-  
 }

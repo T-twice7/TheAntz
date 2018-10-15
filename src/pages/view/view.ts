@@ -3,7 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { obj } from '../../app/class';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { EmailComposer } from '@ionic-native/email-composer';
+
+import * as firebase from 'firebase';
+
 import { CategoryPage } from '../category/category';
+
 
 
 /**
@@ -28,7 +32,7 @@ export class ViewPage {
   description;
   downloadurl1;
   downloadurl3;
-  keys2;
+  key;
   arr = [];
   arr2 = [];
   uid: any
@@ -41,6 +45,12 @@ export class ViewPage {
   comments;
   likes;
   like;
+
+  obj: any;
+  numlikes;
+  viewlike;
+  removelike;
+
   username;
   commentsLeng;
   LikesLeng;
@@ -52,6 +62,7 @@ export class ViewPage {
   currentUserId;
   likeArr = [];
   obj = this.navParams.get("obj");
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer) {
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
@@ -59,8 +70,15 @@ export class ViewPage {
 
     this.username = this.obj.username;
     this.downloadurl = this.obj.pic;
-    this.keys2 = this.obj.key;
+    this.uid = this.obj
+    this.key = this.obj.key;
     this.downloadurl1 = this.obj.url
+
+    this.comments = this.obj.comments
+    this.email = this.obj.email
+    this.numlikes =  this.obj.likes;
+    this.removelike= this.obj.likes;
+
     this.numComments = this.obj.comments;
     this.email = this.obj.email;
     this.name = this.obj.name;
@@ -68,6 +86,7 @@ export class ViewPage {
     this.location = this.obj.location;
     this.price = this.obj.price;
     this.numlikes = this.obj.likes;
+
 
 
 
@@ -164,6 +183,100 @@ export class ViewPage {
 
 
 
+  likePic(key,obj) {
+
+  if (this.obj.key) {
+    this.art.likePic(this.obj.key).then((data: any) => {
+      this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+
+
+      })
+  this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+    
+ 
+   })
+   this.numlikes++;
+   console.log(this.obj.name)
+ })
+
+
+ }
+ else if (key.obj) {
+   this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
+    this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+    
+ 
+    })
+    this.numlikes--;
+
+   })
+
+   
+ }
+
+ else{
+ 
+ }
+  }
+  comLikes(key) {
+
+    if (key.obj) {
+      this.art.comLikes(this.obj.key).then((data: any) => {
+        this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+    this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+      
+    })
+     })
+     this.numlikes++;
+   })
+  
+  
+   }
+   else if (key.obj) {
+    this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
+     this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
+     
+  
+     })
+     this.numlikes--;
+ 
+    })
+ 
+    
+  }
+ 
+  else{
+   this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
+ 
+ 
+   })
+  }
+   
+  }
+  
+}
+
+
+
+
+
+
+
+//   else if  (this.PicUrl[key]){
+//     let user = firebase.auth().currentUser;
+//     this.art.removeLike(this.PicUrl[key].name, this.PicUrl[key].key, this.PicUrl[key].likes).then (data =>{
+//      this.ionViewDidLoad();
+//      console.log(key)
+//     })
+//  }
+// else{
+//   let user = firebase.auth().currentUser;
+// this.art.addNumOfLikes(this.key.name, this.key.key, this.PicUrl.key.likes).then (data =>{
+// this.ionViewDidLoad();
+// console.log(key)
+// })
+
+
   CommentPic(key) {
     this.art.comments(this.obj.key, this.comment).then((data: any) => {
       this.art.addNumOfComments(this.obj.key, this.numComments).then(data => {
@@ -179,3 +292,4 @@ export class ViewPage {
   }
 
 }
+

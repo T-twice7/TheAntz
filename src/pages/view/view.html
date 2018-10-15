@@ -36,8 +36,17 @@
       </p>
       <ion-grid>
         <ion-row>
+
+
+          <ion-col col-3>
+
+            <button ion-button clear color={{color}} (click)="likePic()">{{numlikes}} likes</button>
+
+        
+
           <ion-col> <!--col-3 -->
             <button class="statements" ion-button clear (click)="likePicture()"> {{numlikes}} Likes</button>
+
           </ion-col>
           <ion-col>
             <button ion-button class="statements" clear>{{numComments}} Comments</button>
@@ -53,6 +62,29 @@
   </div>
   <div>
     <ion-list *ngFor="let a of arr2">
+
+        <ion-card>
+            <ion-item>
+              <ion-avatar item-start>
+          <img [src]="a.downloadurl">
+              </ion-avatar>
+              <h2 class="Caps-Lock">{{a.username}}</h2>
+              <p>{{a.date}}</p>
+            </ion-item>
+            <ion-card-content>
+              <p>{{a.comment}}</p>
+            </ion-card-content>
+            <ion-row>
+              <ion-col>
+                <button ion-button icon-start clear small  (click)="comLikes()">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  <div>{{numlikes}}</div>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+    </ion-list> 
+
       <ion-card>
         <ion-item>
           <ion-avatar item-start>
@@ -66,6 +98,7 @@
         </ion-card-content>
       </ion-card>
     </ion-list>
+
   </div>
 </ion-content>
 <ion-footer no-padding>
