@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { CategoryPage } from '../category/category';
 import { SignupPage } from '../signup/signup';
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the EulaPage page.
  *
@@ -26,5 +27,8 @@ key;
 contract(){
   this.art.LicenceContract();
     this.navCtrl.setRoot(SignupPage); 
+}
+goBack(){
+  this.navCtrl.setRoot(LoginPage)
 }
 }
