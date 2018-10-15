@@ -79,12 +79,9 @@ export class ViewPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
     console.log(this.obj);
-    this.view();
+    this.viewcomments();
   }
   BuyArt() {
-
-
-    // this.sms.send('0719132689 ', 'Hello world!');
     let email = {
       to: this.obj.email,
       cc: 'theantz39@gmail.com',
@@ -96,15 +93,13 @@ export class ViewPage {
       isHtml: true
     };
     this.emailComposer.open(email);
-
-
   }
 
   GoBackToCategory() {
     this.navCtrl.pop();
   }
 
-  view() {
+  viewcomments(){
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
       console.log(data)
       var keys1: any = Object.keys(data);
@@ -128,10 +123,9 @@ export class ViewPage {
 
   }
   likePic(key) {
-    this.art.likePic(this.obj.key).then((data: any) => {
+    this.art.likePic(this.obj.key,this.num).then((data: any) => {
       this.art.addNumOfLikes(this.obj.key, this.numlikes).then(data => {
         this.art.viewLikes(this.obj.key, this.viewlike).then(data => {
-
         })
       })
       this.numlikes++;
@@ -139,12 +133,15 @@ export class ViewPage {
     })
   }
 
+
+
+
   CommentPic(key) {
     this.art.comments(this.obj.key, this.comment).then((data: any) => {
       this.art.addNumOfComments(this.obj.key, this.numComments).then(data => {
         this.art.viewComments(this.obj.key, this.viewComments).then(data => {
           this.arr2.length = 0;
-          this.view();
+          this.viewcomments();
         })
       })
       this.numComments++;
