@@ -375,8 +375,10 @@ export class StreetartzProvider {
               price: uploads[k].price,
               url: this.url,
               username: "",
-              email: uploads[k].email
+              email: uploads[k].email              
             }
+            console.log(category);
+            
             this.arr.push(obj);
             this.viewProfileMain(chckId).then((profileData: any) => {
               obj.username = profileData.name
@@ -659,4 +661,3 @@ export class StreetartzProvider {
   }
 
 }
-
