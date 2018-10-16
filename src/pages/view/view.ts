@@ -129,31 +129,40 @@ export class ViewPage {
   likePicture() {
     this.art.likePic(this.obj.key).then((data: any) => {
       console.log(this.obj.key);
-      this.art.viewLikes(this.obj.key).then((data: any) => {
-        this.likeArr = data;
-        let results = "";
-        let length = this.likeArr.length;
-        console.log(this.likeArr)
-          if (this.currentUserId ==   this.likeArr[0].uid) {
-            results = "found";
-    
-          }
-          else{
-            results = "not found";
-          }
+      this.art.viewLikes(this.obj.key,this.numlikes).then((data: any) => {
+        // this.likeArr = data;
+        // console.log(this.likeArr);
+        // let results = "";
+        // let numlikes = this.likeArr.length;
+        // console.log(length)
+        // for (var i = 0; i < length; i++) {
+        //   if (this.currentUserId == this.likeArr[i].uid) {
+        //     results = "found";
+        //     this.art.removeLike(this.obj.key,this.numlikes,this.likeArr[i].key);
+        //     this.numlikes -1;
+        //     console.log(this.numlikes);
+        //     break;
+        //   }
+        //   else{ 
+            
+        //     results = "not found";
+        //     this.art.addNumOfLikes(this.obj.key,this.numlikes);
+        //     this.numlikes+1;
+        //     console.log(this.numlikes);
+        //   }
         
-        console.log(results);
-        if (results == "found") {
-          this.art.removeLike(this.obj.key,this.numlikes,this.likeArr[0].key);
-          this.numlikes--;
-          console.log(this.numlikes);
-        }
-        else {
-          this.art.addNumOfLikes(this.obj.key,this.numlikes);
-          this.numlikes++;
-          console.log(this.numlikes);
-        }
-      })
+        // console.log(results);
+        // if (results == "found") {
+        //   this.art.removeLike(this.obj.key,this.numlikes,this.likeArr[0].key);
+        //   this.numlikes-1;
+        //   console.log(this.numlikes);
+        // }
+        // else {
+
+       
+        })
+        // }
+      // })
     })
 
 
