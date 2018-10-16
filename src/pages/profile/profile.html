@@ -4,7 +4,7 @@
       <ion-icon name="arrow-back"></ion-icon>
     </button>
     <ion-buttons end>
-      <button ion-button (click)="presentPopover($event)">
+      <button ion-button class="threeDots" (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
@@ -58,7 +58,8 @@
     <b class="uploads" id="theHead">My Artwork</b>
   </div>
   <div class="contents">
-    <ion-grid>
+
+    <ion-grid class="uploads">
       <ion-row class="gal">
         <ion-col *ngFor="let a of list" col-6>
           <div class="remover" (click)="removeImage(a.key)">

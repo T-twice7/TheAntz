@@ -24,59 +24,59 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import firebase from 'firebase';
 import { ForgotPasswordPage } from'../pages/forgot-password/forgot-password'
 import { EulaPage } from '../pages/eula/eula';
-  
+
 firebase.initializeApp({
-  apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
-  authDomain: "streetartsdatabase.firebaseapp.com",
-  databaseURL: "https://streetartsdatabase.firebaseio.com",
-  projectId: "streetartsdatabase",
-  storageBucket: "streetartsdatabase.appspot.com",
-  messagingSenderId: "202504182684"
+ apiKey: "AIzaSyBJn72d9p4tVhdWkWsmecmKF4QjTHRXIj0",
+ authDomain: "streetartsdatabase.firebaseapp.com",
+ databaseURL: "https://streetartsdatabase.firebaseio.com",
+ projectId: "streetartsdatabase",
+ storageBucket: "streetartsdatabase.appspot.com",
+ messagingSenderId: "202504182684"
 })
 
-@NgModule({ 
-  declarations: [
-    MyApp,
-    SplashPage,
-    LoginPage,
-    SignupPage,
-    CategoryPage,
-    ProfilePage,
-    UploadImagePage,
-    ViewPage,
-    EditProfilePage,
-    PopOverProfilePage,
-    ForgotPasswordPage,
-    EulaPage
-  
- 
-  ],
-  imports: [
-    BrowserModule, HttpClientModule ,
-    IonicModule.forRoot(MyApp),
-    IonicImageViewerModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    SplashPage,
-    LoginPage,
-    SignupPage,
-    CategoryPage,
-    ProfilePage,
-    UploadImagePage,
-    ViewPage,
-    EditProfilePage,
-    PopOverProfilePage,
-    ForgotPasswordPage,
-    EulaPage
- 
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    StreetartzProvider,EmailComposer
-  ]
+@NgModule({
+ declarations: [
+   MyApp,
+   SplashPage,
+   LoginPage,
+   SignupPage,
+   CategoryPage,
+   ProfilePage,
+   UploadImagePage,
+   ViewPage,
+   EditProfilePage,
+   PopOverProfilePage,
+   ForgotPasswordPage,
+   EulaPage
+
+
+ ],
+ imports: [
+   BrowserModule, HttpClientModule ,
+   IonicModule.forRoot(MyApp),
+   IonicImageViewerModule
+ ],
+ bootstrap: [IonicApp],
+ entryComponents: [
+   MyApp,
+   SplashPage,
+   LoginPage,
+   SignupPage,
+   CategoryPage,
+   ProfilePage,
+   UploadImagePage,
+   ViewPage,
+   EditProfilePage,
+   PopOverProfilePage,
+   ForgotPasswordPage,
+   EulaPage
+
+ ],
+ providers: [
+   StatusBar,
+   SplashScreen,
+   {provide: ErrorHandler, useClass: IonicErrorHandler},
+   StreetartzProvider,EmailComposer
+ ]
 })
 export class AppModule {}

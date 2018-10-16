@@ -36,25 +36,26 @@
             <ion-option value="Photography">Photography</ion-option>
             <ion-option value="Sculpting">Sculpting</ion-option>
             <ion-option value="Painting">Painting</ion-option>
-            <ion-option value="Architecture">Architecture</ion-option>
+            <ion-option value="Fashion">Fashion/Clothing</ion-option>
             <ion-option value="Drawing">Drawing</ion-option>
             <ion-option value="General">General</ion-option>
           </ion-select>
         </ion-item>
-    
-      <br>
-      
 
-    
+        <br>
+
+
+
         <ion-input class="theItem" placeholder="Artwork Name" [(ngModel)]="name" type="text" maxlength="30"></ion-input>
-      <br>
+        <br>
         <ion-input class="theItem" placeholder="Location" type="text" [(ngModel)]="location" maxlength="20" row="4"></ion-input>
-      <br>
+        <br>
         <ion-input class="theItem" placeholder="Price (R)" [(ngModel)]="price" type="number" max="2"></ion-input>
-      <br>
-        <ion-textarea placeholder="Art Description (max 150)" [(ngModel)]="description" class="theItem" type="text" maxlength="150" row="4"></ion-textarea>
+        <br>
+        <ion-textarea placeholder="Art Description (max 150)" [(ngModel)]="description" class="theItem" type="text" maxlength="150"
+          row="4"></ion-textarea>
       </div>
-      </ion-list>
+    </ion-list>
 
     <button class="uploadBtn" ion-button full color="primary" (click)="uploadPicture()">Upload Artwork</button>
   </div>

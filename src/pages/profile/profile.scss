@@ -1,4 +1,8 @@
 page-profile {
+    .threeDots{
+        font-size: 20px;
+    }
+    color: white;
     .remover{
         margin-left: 5px;
         margin-top: 5px;
@@ -252,7 +256,8 @@ page-profile {
             box-shadow: 0px 3px 5px rgb(35,39,127);
         }
         p{
-            text-align: center;
+            // text-align: center;
+            font-family: 14px;
         }
         h3{
             text-align: right
@@ -291,13 +296,12 @@ page-profile {
         }
     
         .head{
-            box-shadow: 0px 30px 5px black;
+            // box-shadow: 0px 30px 5px black;
             padding-bottom: 10px;
         }
         .split{
-            border: 1px solid deepskyblue;
+            // border: 1px solid deepskyblue;
             height: 30px;
-            background: #eee;
             color: black;
             text-align: center;
             padding-top: 5px;
@@ -315,8 +319,18 @@ page-profile {
         ion-grid{
             width: 100%;
             max-width: 750px;
+            color: white;
         }
-    
+        .personal-details{
+            text-align: left;
+        }
+        .uploads{
+            margin: 0%;
+            padding: 0%;
+            width: 100%;
+            max-width: 550px;
+            margin: 0 auto;
+        }
     }
     
     

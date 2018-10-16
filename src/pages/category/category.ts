@@ -61,7 +61,11 @@ export class CategoryPage {
           console.log(this.arr2);
           console.log(this.category);
         }
-
+      }
+      if(this.category == 'All'){
+        this.retreivePics()
+        console.log('showing ' + this.category);
+        
       }
     })
 

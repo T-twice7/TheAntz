@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginPage } from '../../pages/login/login';
@@ -597,6 +596,7 @@ export class StreetartzProvider {
       })
       accpt('success');
     })
+
   }
 
   viewLikes(key) {
@@ -675,4 +675,3 @@ export class StreetartzProvider {
   }
 
 }
-

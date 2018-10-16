@@ -36,7 +36,10 @@ export class ForgotPasswordPage {
       //   });
       //   alert.present();
       // }
-     
-  })
+    }, (error)=>{
+      alert(error)
+    })         
+  }
+
 }
-}
+
