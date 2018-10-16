@@ -31,6 +31,7 @@ export class StreetartzProvider {
   email;
   condition;
   likeArr = [];
+  results;
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
 
@@ -584,24 +585,35 @@ export class StreetartzProvider {
       accpt('comment added')
     })
   }
-  // likePic(key, num) {
+
+  // likePic(key, num, key1) {
   //   var user = firebase.auth().currentUser;
-  //   console.log(key)
+  //   console.log(user.uid)
   //   return new Promise((accpt, rejc) => {
-  //     firebase.database().ref('likes/').child(key).on('value', snapshot => {
+  //     firebase.database().ref('likes/').child(user.uid).on('value', snapshot => {
   //       if (!snapshot.hasChild(user.uid)) {
+  //         console.log(user.uid)
   //         num = num + 1;
-  //         firebase.database().ref('uploads/' + key).update({ likes: num });
+  //         return new Promise((accpt, rej) => {
+  //           firebase.database().ref('uploads/' + key).update({ likes: num });
+  //           accpt('like added')
+  //         })
   //       }
   //       else {
   //         num = num - 1;
-  //         firebase.database().ref('uploads/' + key).update({ likes: num });
-  //         firebase.database().ref('likes/' + key).remove();
-
+  //         console.log(key1)
+  //         return new Promise((accpt, rej) => {
+  //           console.log(key);
+  //           firebase.database().ref('uploads/' + key).update({ likes: num });
+  //           firebase.database().ref('likes/' + key + '/' + key1).remove();
+  //           accpt('like removed')
+  //         })
   //       }
-  //       accpt('success');
+
   //     });
+  //     accpt('success');
   //   })
+
   // }
   likePic(key) {
     console.log(key);
@@ -610,10 +622,11 @@ export class StreetartzProvider {
       firebase.database().ref('likes/' + key).push({
         uid: user.uid
       })
+
       accpt('success');
     })
   }
-  viewLikes(key) {
+  viewLikes(key, results) {
     console.log(key)
     this.keyArr.length = 0;
     return new Promise((accpt, rejc) => {
@@ -622,67 +635,97 @@ export class StreetartzProvider {
         if (data.val() != undefined) {
           var like = data.val();
           var keys1: any = Object.keys(like);
-          console.log( keys1[0]);
-          for (var i = 0; i < keys1.length; i++) {
-            if(user.uid == like[keys1[i]].uid){
-              var key = keys1[i];
-              let obj = {
-                uid: like[keys1[i]].uid,
-                key : keys1[i]
-              }
-              this.keyArr.push(obj);
-              accpt(this.keyArr);
+          console.log(keys1[0]);
+          for (var i = 0; i < length; i++) {
+            if (user.uid == this.likeArr[i].uid) {
+              results = "found";
+
+              break;
             }
-            console.log(this.keyArr);
+
+            else {
+
+              results = "not found";
+
+            }
+          }
+            console.log(results)
           }
         
-      }
 
-      }, Error => {
-        rejc(Error.message)
-      })
-  
     })
-  }
-  addNumOfLikes(key,num) {
+  })
+}
+// viewLikes(key) {
+//   console.log(key)
+//   this.keyArr.length = 0;
+//   return new Promise((accpt, rejc) => {
+//     var user = firebase.auth().currentUser
+//     firebase.database().ref("likes/" + key).on("value", (data: any) => {
+//       if (data.val() != undefined) {
+//         var like = data.val();
+//         var keys1: any = Object.keys(like);
+//         console.log(keys1[0]);
+//         for (var i = 0; i < keys1.length; i++) {
+//           if (user.uid == like[keys1[i]].uid) {
+//             var key = keys1[i];
+//             let obj = {
+//               uid: like[keys1[i]].uid,
+//               key: keys1[i]
+//             }
+//             this.keyArr.push(obj);
+//             accpt(this.keyArr);
+//           }
+//           console.log(this.keyArr);
+//         }
+
+//       }
+
+//     }, Error => {
+//       rejc(Error.message)
+//     })
+
+//   })
+// }
+addNumOfLikes(key, num) {
+  console.log(key)
+  num = num + 1;
+  return new Promise((accpt, rej) => {
+    firebase.database().ref('uploads/' + key).update({ likes: num });
+    accpt('like added')
+  })
+}
+removeLike(key: any, num, key1) {
+  console.log(key1)
+  num = num - 1;
+  var user = firebase.auth().currentUser
+  console.log(user.uid)
+  return new Promise((accpt, rej) => {
+    firebase.database().ref('uploads/' + key).update({ likes: num });
+    firebase.database().ref('likes/' + key + '/' + key1).remove();
+    accpt('like removed')
+  })
+}
+
+
+RemoveUploadedPicture(key) {
+  return new Promise((accpt, rej) => {
+    this.arr.length = 0;
+    firebase.database().ref('uploads/' + key).remove();
     console.log(key)
-    num = num + 1;
-    return new Promise((accpt, rej) => {
-      firebase.database().ref('uploads/' + key).update({ likes: num });
-      accpt('like added')
-    })
-  }
-  removeLike(key:any, num,key1) {
-    console.log(key1)
-    num = num - 1;
-    var user = firebase.auth().currentUser
-    console.log(user.uid)
-    return new Promise((accpt, rej) => {
-      firebase.database().ref('uploads/' + key).update({ likes: num });
-      firebase.database().ref('likes/' + key  + '/' + key1).remove();
-      accpt('like removed')
-    })
-  }
+    accpt('image deleted')
+  })
+}
+LicenceContract() {
+  var user = firebase.auth().currentUser
+  firebase.database().ref('contract/').set({
 
+  })
+}
 
-  RemoveUploadedPicture(key) {
-    return new Promise((accpt, rej) => {
-      this.arr.length = 0;
-      firebase.database().ref('uploads/' + key).remove();
-      console.log(key)
-      accpt('image deleted')
-    })
-  }
-  LicenceContract() {
-    var user = firebase.auth().currentUser
-    firebase.database().ref('contract/').set({
-
-    })
-  }
-
-  returnUID() {
-    var user = firebase.auth().currentUser;
-    return user.uid;
-  }
+returnUID() {
+  var user = firebase.auth().currentUser;
+  return user.uid;
+}
 
 }
