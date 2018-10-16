@@ -28,8 +28,6 @@ declare var firebase;
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-
-
 export class LoginPage {
   email: any;
   password: any;
@@ -38,8 +36,6 @@ export class LoginPage {
   constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public viewCtrl: ViewController, public art: StreetartzProvider, public loadingCtrl: LoadingController) {
   }
   ionViewDidLoad() {
-
-
   }
   signup() {
   this.navCtrl.setRoot(EulaPage);
