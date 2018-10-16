@@ -36,8 +36,9 @@ export class CategoryPage {
   ionViewDidLoad() {
 
   }
-  nextpage() {
+ GoToProfilePage() {
     this.navCtrl.push(ProfilePage);
+
   }
   typeOfArt() {
     this.arr2.length = 0;
@@ -58,14 +59,11 @@ export class CategoryPage {
             price: data[k].price,
           }
           this.arr2.push(obj);
-          console.log(this.arr2);
-          console.log(this.category);
         }
       }
       if(this.category == 'All'){
         this.retreivePics()
-        console.log('showing ' + this.category);
-        
+     
       }
     })
 
@@ -74,7 +72,7 @@ export class CategoryPage {
     this.arr2.length = 0;
     this.art.viewPicMain(this.name,this.username).then((data: any) => {
       this.arr2 = data;
-      console.log(this.arr2);
+    
     });
   }
 
@@ -93,7 +91,8 @@ export class CategoryPage {
       likes:likes
     }
     this.navCtrl.push(ViewPage, { obj: obj });
-    console.log(obj);
 
-  }
+    }
+
+  
 }
