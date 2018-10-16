@@ -130,7 +130,7 @@ export class StreetartzProvider {
         if (data.val() == undefined) {
           this.arr2 = null;
           const alert = this.alertCtrl.create({
-            subTitle: 'No art work are uploaded yet',
+            subTitle: 'No art work is uploaded yet, go to your profile to get started.',
             buttons: ['OK']
           });
           alert.present();
@@ -276,7 +276,7 @@ export class StreetartzProvider {
     });
 
     const toast = this.toastCtrl.create({
-      message: 'picture was uploaded',
+      message: 'Your picture was uploaded',
       duration: 3000
     });
     return new Promise((accpt, rejc) => {
@@ -322,7 +322,7 @@ export class StreetartzProvider {
   viewPicGallery1() {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Please wait',
+      content: 'Please wait...',
       duration: 3000
     });
     return new Promise((accpt, rejc) => {
@@ -403,7 +403,7 @@ export class StreetartzProvider {
       duration: 3000
     });
     const toast = this.toastCtrl.create({
-      message: 'data has been updated!',
+      message: 'Your profile has been updated!',
       duration: 3000
     });
     loading.present();
@@ -472,6 +472,7 @@ export class StreetartzProvider {
     this.arr2.length = 0;
     return new Promise((accpt, rejc) => {
       firebase.database().ref("uploads").on("value", (data: any) => {
+
         if (data.val() != undefined) {
           var data = data.val();
           if (data == null) {
@@ -483,6 +484,21 @@ export class StreetartzProvider {
             alert.present();
           }
           else {
+
+        var data = data.val();
+        if (data == null) {
+          this.arr2 = null;
+          const alert = this.alertCtrl.create({
+            subTitle: 'No artwork is uploaded yet, go to your profile to get started.',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+        else {
+          var keys1: any = Object.keys(data);
+          console.log(keys1.length);
+          for (var i = 0; i < keys1.length; i++) {
+
             var keys1: any = Object.keys(data);
             for (var i = 0; i < keys1.length; i++) {
               var keys1: any = Object.keys(data);

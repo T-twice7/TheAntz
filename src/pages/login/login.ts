@@ -61,7 +61,8 @@ export class LoginPage {
   presentLoading() {
     const toast = this.toastCtrl.create({
       message: this.obj.email + 'You have logged in',
-      duration: 3000
+      duration: 2000
+
     });
     toast.present();
   }
