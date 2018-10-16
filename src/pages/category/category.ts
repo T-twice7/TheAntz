@@ -61,7 +61,7 @@ export class CategoryPage {
             url: data[k].url,
             username: data[k].username,
 
-            likes : data[k].likes
+            likes : data[k].likes,
 
             email:data[k].email,
             location: data[k].location,
@@ -89,14 +89,7 @@ export class CategoryPage {
     });
   }
 
-  pushArtistDetails(pic, name, key,url,comments,email, likes) {
-
-    console.log(key)
-
-
-      console.log(this.arr2);
-    });
-  }
+ 
 
   pushArtistDetails(pic, name, key,url,comments,email,username,description,location,price,likes) {
 
@@ -110,17 +103,8 @@ export class CategoryPage {
 
       likes : likes
     }
-    this.navCtrl.push(ViewPage, { obj: obj });
-
-      username:username,
-      description:description,
-      location:location,
-      price:price,
-      likes:likes
-    }
-    this.navCtrl.push(ViewPage, { obj: obj });
-    console.log(obj);
-
+  
+ 
 
   }
 }

@@ -27,7 +27,6 @@ import * as firebase from 'firebase';
 
 
 
-import firebase from 'firebase';
 import { ForgotPasswordPage } from'../pages/forgot-password/forgot-password'
 import { EulaPage } from '../pages/eula/eula';
   
@@ -53,14 +52,9 @@ firebase.initializeApp({
     ViewPage,
     EditProfilePage,
     PopOverProfilePage,
-
-    UploadedPage
-=======
+    UploadedPage,
     ForgotPasswordPage,
-    EulaPage
-  
-
- 
+    EulaPage 
   ],
   imports: [
     BrowserModule, HttpClientModule ,
@@ -79,14 +73,9 @@ firebase.initializeApp({
     ViewPage,
     EditProfilePage,
     PopOverProfilePage,
-
-    UploadedPage
-
-
+    UploadedPage,
     ForgotPasswordPage,
     EulaPage
-
- 
   ],
   providers: [
     StatusBar,

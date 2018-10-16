@@ -18,7 +18,6 @@ import { ViewPage } from '../pages/view/view';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { viewParentEl } from '@angular/core/src/view/util';
 
-import { StreetartzProvider } from '../providers/streetart-database/streetart-database';
 
 
 import { UploadImagePage } from '../pages/upload-image/upload-image';
@@ -31,40 +30,25 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
 
-  rootPage: any = CategoryPage  ;
+  rootPage: any ;;
    
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public art: StreetartzProvider) {
-   
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
-       
+       this.rootPage= CategoryPage;
         console.log("UID: " + user.uid)
       } else {
         // No user is signed in.
-        console.log("Nothing Found!")
+        console.log("Nothing Found!");
         this.rootPage= LoginPage
       }
     })
 
-  rootPage: any ;;
 
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public art: StreetartzProvider) {
-    art.checkstate().then((data:any)=>{
-      if (data ==1){
-        this.rootPage = CategoryPage;
-      }
-      else {
-        this.rootPage = SplashPage
-      }
-     })
-    this.initializeApp();
+  
 
 
    

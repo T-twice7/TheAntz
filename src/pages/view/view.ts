@@ -46,7 +46,7 @@ export class ViewPage {
   likes;
   like;
 
-  obj: any;
+
   numlikes;
   viewlike;
   removelike;
@@ -55,9 +55,9 @@ export class ViewPage {
   commentsLeng;
   LikesLeng;
   location;
-  numlikes;
+
   viewComments;
-  viewlike;
+ 
   price
   currentUserId;
   likeArr = [];
@@ -150,27 +150,25 @@ export class ViewPage {
       console.log(this.obj.key);
       this.art.viewLikes(this.obj.key).then((data: any) => {
         this.likeArr = data;
+        let results = "";
+        let length = this.likeArr.length;
         console.log(this.likeArr)
-        var results = "";
-        var length = this.likeArr.length;
-        console.log(length)
-        for (var x = 0; x < length; x++) {
-          if (this.currentUserId == this.likeArr[x].uid) {
+          if (this.currentUserId ==   this.likeArr[0].uid) {
             results = "found";
-            break;
+    
           }
-          else {
+          else{
             results = "not found";
           }
-        }
+        
         console.log(results);
         if (results == "found") {
-          this.art.removeLike(this.obj.key, this.numlikes);
+          this.art.removeLike(this.obj.key,this.numlikes,this.likeArr[0].key);
           this.numlikes--;
           console.log(this.numlikes);
         }
         else {
-          this.art.addNumOfLikes(this.obj.key, this.numlikes);
+          this.art.addNumOfLikes(this.obj.key,this.numlikes);
           this.numlikes++;
           console.log(this.numlikes);
         }
@@ -183,78 +181,8 @@ export class ViewPage {
 
 
 
-  likePic(key,obj) {
 
-  if (this.obj.key) {
-    this.art.likePic(this.obj.key).then((data: any) => {
-      this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
-
-
-      })
-  this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
-    
  
-   })
-   this.numlikes++;
-   console.log(this.obj.name)
- })
-
-
- }
- else if (key.obj) {
-   this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
-    this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
-    
- 
-    })
-    this.numlikes--;
-
-   })
-
-   
- }
-
- else{
- 
- }
-  }
-  comLikes(key) {
-
-    if (key.obj) {
-      this.art.comLikes(this.obj.key).then((data: any) => {
-        this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
-    this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
-      
-    })
-     })
-     this.numlikes++;
-   })
-  
-  
-   }
-   else if (key.obj) {
-    this.art.removeLike(this.obj.key, this.obj.removelike).then (data =>{
-     this.art. viewLikes(this.obj.key, this.viewlike).then (data =>{
-     
-  
-     })
-     this.numlikes--;
- 
-    })
- 
-    
-  }
- 
-  else{
-   this.art.addNumOfLikes(this.obj.key, this.numlikes).then (data =>{
- 
- 
-   })
-  }
-   
-  }
-  
-}
 
 
 
@@ -287,7 +215,7 @@ export class ViewPage {
       })
       this.numComments++;
       console.log(this.numComments)
-    })
+    }); 
     this.comment = "";
   }
 
