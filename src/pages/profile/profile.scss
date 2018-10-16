@@ -49,6 +49,10 @@ page-profile {
         // border-right: 1px solid white;
         padding-right: 16px;
     }
+    .head{
+        background: #011127;
+        min-height: 200px;
+    }
     
     @media screen and (max-width: 414px){
         .icons{
@@ -117,9 +121,7 @@ page-profile {
         h3{
             text-align: right
         }
-        .head{
-            background: #011127
-        }
+
         .list{
             color: white;
         }
