@@ -32,30 +32,13 @@ export class CategoryPage {
   comments;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.retreivePics();
-    
-    // this.reload()
+  
   }
-
   ionViewDidLoad() {
 
   }
-
-
-
-  reload(){
-    setTimeout(() => {
-      this.retreivePics();
-    
-        console.log('reloading');
-        
-    }, 50000);
-  
-  }
-
-  nextpage() {
-
+  GoToProfilePage(){
     this.navCtrl.push(ProfilePage);
-
   }
   typeOfArt() {
     this.arr2.length = 0;
@@ -91,7 +74,7 @@ export class CategoryPage {
       this.arr2 = data;
     
     });
-    this.reload();
+  
   }
 
   pushArtistDetails(pic, name, key,url,comments,email,username,description,location,price,likes) {
