@@ -128,36 +128,22 @@ export class ViewPage {
 
   }
   likePicture() {
-    this.art.likePic(this.obj.key,this.numlikes).then((data: any) => {
-      console.log(this.obj.key);
-      this.art.viewLikes(this.obj.key).then((data: any) => {
-        this.likeArr = data;
-        console.log(this.likeArr);
-        let results = "";
-        let numlikes = this.likeArr.length;
-        console.log(length)
-        for (var i = 0; i < length; i++) {
-          if (this.currentUserId == this.likeArr[i].uid) {
-            results = "found";
-            this.art.removeLike(this.obj.key, this.numlikes, this.likeArr[i].key);
-            this.numlikes - 1;
-            console.log(this.numlikes);
-            break;
-          }
-          else {
-
-            results = "not found";
-            this.art.addNumOfLikes(this.obj.key, this.numlikes);
-            this.numlikes + 1;
-            console.log(this.numlikes);
-          }
-          console.log(results);
-         
-        }
-      })
-    })
-
-
+   // this.art.likePic(this.obj.key)
+   this.art.viewLikes(this.obj.key).then(data =>{
+     console.log(data)
+     if (data == "not found"){
+      this.art.likePic(this.obj.key);
+      this.art.addNumOfLikes(this.obj.key, this.numlikes);
+      this.numlikes ++;
+       }
+     
+     else {
+      this.art.removeLike(this.obj.key, this.numlikes,data);
+      this.numlikes --;
+     }
+   })
+   
+ 
   }
 
   CommentPic(key) {
