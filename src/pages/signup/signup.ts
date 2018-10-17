@@ -30,7 +30,7 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
-  signUp() {
+  signUp(obj:obj) {
     if(this.obj.email ==null || this.obj.email == undefined)
     {
       const alert = this.alertCtrl.create({
@@ -47,24 +47,13 @@ export class SignupPage {
     alert.present();
 
   }
-  else if (this.obj.password ==null || this.obj.password == undefined){
-    const alert = this.alertCtrl.create({
-      subTitle: 'Please enter your password.',
-      buttons: ['OK']
-    });
-    alert.present();
-
-  
-  }
-
-  else if (this.obj.password.length < 6 || this.obj.password == undefined){
+  else if (this.obj.password.length < 6 || this.obj.password ==null ){
     const alert = this.alertCtrl.create({
       subTitle: 'Please enter minimum of 6 characters.',
       buttons: ['OK']
     });
     alert.present();
 
-  
   }
   else{
     this.art.register(this.obj).then(() => {

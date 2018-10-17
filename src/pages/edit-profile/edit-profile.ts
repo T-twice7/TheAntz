@@ -34,7 +34,7 @@ export class EditProfilePage implements OnInit {
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
 
   }
-  nexpage() {
+  GoToProfile(){
     this.navCtrl.setRoot(ProfilePage);
   }
   ionViewDidLoad() {
@@ -70,7 +70,7 @@ export class EditProfilePage implements OnInit {
           this.arr.push(data);
           console.log(data);
         })
-        this.navCtrl.push(ProfilePage);
+        // this.navCtrl.setRoot(ProfilePage);
       },
         Error => {
           console.log(Error)

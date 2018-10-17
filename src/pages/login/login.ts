@@ -41,7 +41,7 @@ export class LoginPage {
   }
 
   login(obj: obj) {
-    if (this.obj.email == null || this.obj.email == undefined) {
+    if (this.obj.email == null || this.obj.password == undefined) {
       const alert = this.alertCtrl.create({
         subTitle: 'Please enter your details',
         buttons: ['OK']

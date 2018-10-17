@@ -71,10 +71,10 @@ export class CategoryPage {
   retreivePics() {
     this.arr2.length = 0;
     this.art.viewPicMain(this.name,this.username).then((data: any) => {
+      console.log(data);
       this.arr2 = data;
-    
+      console.log(this.arr2);
     });
-  
   }
 
   pushArtistDetails(pic, name, key,url,comments,email,username,description,location,price,likes) {
