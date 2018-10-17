@@ -66,7 +66,7 @@ export class StreetartzProvider {
     });
 
   }
-  register(obj: obj) {
+  register(obj:obj) {
     return firebase.auth().createUserWithEmailAndPassword(this.obj.email, this.obj.password).then((newUser) => {
       var user = firebase.auth().currentUser
       firebase.database().ref("profiles/" + user.uid).set({
