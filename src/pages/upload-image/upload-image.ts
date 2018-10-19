@@ -25,6 +25,7 @@ export class UploadImagePage {
   location;
   price;
   downloadurl;
+  d;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public view: ViewController, public alertCtrl: AlertController) {
   }
 
@@ -35,7 +36,6 @@ export class UploadImagePage {
   insertvid(event: any) {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
-
       reader.onload = (event: any) => {
         this.url = event.target.result;
       }
@@ -46,10 +46,11 @@ export class UploadImagePage {
 
   uploadPicture() {
     if (this.category == undefined || this.category == null,
-      this.name == undefined  || this.name == null ,
+      this.name == undefined || this.name == null,
       this.description == undefined || this.description == null,
-      this.location == undefined ||this.location == null,
-      this.price == undefined || this.price == null) {
+      this.location == undefined || this.location == null,
+      this.price == undefined || this.price == null,
+      this.url == undefined || this.url == null ) {
       const confirm = this.alertCtrl.create({
         title: "Fields Missing",
         subTitle: "Please make sure that all the fields are filled.",
@@ -63,19 +64,84 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else { 
-        this.art.uploadPic(this.url, this.name).then(data => {
-          this.art.storeToDB(data, this.category, this.name, this.description, this.location, this.price).then(() => {
-            this.navCtrl.setRoot(ProfilePage);
+    else if(this.category == null || this.category == undefined){
+      const confirm = this.alertCtrl.create({
+        subTitle: "please  select category",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
           },
-            Error => {
-              console.log(Error)
-            })
-        }, Error => {
-          console.log(Error)
-        })
-      }
-    
+        ]
+      });
+      confirm.present();
+    }
+    else if(this.name == null || this.name == undefined){
+      const confirm = this.alertCtrl.create({
+        subTitle: "please the name of the image",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
+          },
+        ]
+      });
+      confirm.present();
+    }
+    else if(this.description == null || this.description == undefined){
+      const confirm = this.alertCtrl.create({
+        subTitle: "please enter the description of your Image",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
+          },
+        ]
+      });
+      confirm.present();
+    }
+    else if(this.location == null || this.location == undefined){
+      const confirm = this.alertCtrl.create({
+        subTitle: "please type your location",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
+          },
+        ]
+      });
+      confirm.present();
+    }
+    else if(this.price == null || this.price == undefined){
+      const confirm = this.alertCtrl.create({
+        subTitle: "please enter the price of the picture",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
+          },
+        ]
+      });
+      confirm.present();
+    }
+    else {
+      this.art.uploadPic(this.url).then(data => {
+        this.art.storeToDB(data, this.category, this.name, this.description, this.location, this.price).then(() => {
+          this.navCtrl.setRoot(ProfilePage);
+        },
+          Error => {
+            console.log(Error)
+          })
+      }, Error => {
+        console.log(Error)
+      })
+    }
+
   }
 
 

@@ -33,7 +33,7 @@ export class MyApp {
        this.rootPage = CategoryPage;
      }
      else {
-       this.rootPage = SplashPage
+       this.rootPage = LoginPage
      }
     })
    this.initializeApp();

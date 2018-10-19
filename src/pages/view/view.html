@@ -1,21 +1,19 @@
-<ion-header>
-  <ion-toolbar color="secondary">
-    <ion-buttons left>
-      <button ion-button clear icon-only color="light" (click)="GoBackToCategory()">
-        <ion-icon class="ico" name="arrow-back"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
+  <ion-fab left class="theWidth">
+    <div class="secondary">
+      <ion-buttons left>
+        <button ion-button clear icon-only color="light" (click)="GoBackToCategory()">
+          <ion-icon class="ico" name="arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div>
+  </ion-fab>
 
   <div class="post">
     <div class="theImage">
-
       <img class="postedIMG" src="{{downloadurl}}" />
     </div>
-
     <ion-grid>
       <ion-row>
         <ion-col col-9>
@@ -28,14 +26,12 @@
             </h2>
             <p id="Location">
               <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
-
           </ion-item>
         </ion-col>
         <ion-col col-3>
           <p class="thePrices">
             R{{price}}
           </p>
-
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -54,8 +50,8 @@
             <button ion-button class="statements" clear>{{numComments}} Comments</button>
           </ion-col>
           <ion-col>
-            <button class="statements" block outline ion-button  (click)="BuyArt()">
-               <p> <ion-icon ios="ios-basket" md="md-basket"></ion-icon>   ORDER</p> 
+            <button class="statements" block outline ion-button (click)="BuyArt()">
+              <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon> ORDER
             </button>
           </ion-col>
         </ion-row>

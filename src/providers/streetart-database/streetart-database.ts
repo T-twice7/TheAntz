@@ -165,8 +165,8 @@ export class StreetartzProvider {
       alert.present();
     })
   }
-  uploadPic(pic, name) {
-    var d = Date.now();
+  uploadPic(pic) {
+    var name = Date.now();
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: 'Please wait',
@@ -174,7 +174,7 @@ export class StreetartzProvider {
     });
     return new Promise((accpt, rejc) => {
       loading.present();
-      firebase.storage().ref(d + name).putString(pic, 'data_url').then(() => {
+      firebase.storage().ref(name + "jpg").putString(pic, 'data_url').then(() => {
         accpt(name);
       }, Error => {
         rejc(Error.message)
@@ -182,8 +182,9 @@ export class StreetartzProvider {
     })
   }
   storeToDB(name, category, picName, description, location, price) {
+    var d = Date.now();
     return new Promise((accpt, rejc) => {
-      var storageRef = firebase.storage().ref(name);
+      var storageRef = firebase.storage().ref(name + "jpg");
       storageRef.getDownloadURL().then(url => {
         var user = firebase.auth().currentUser;
         var link = url;
@@ -210,6 +211,7 @@ export class StreetartzProvider {
       var user = firebase.auth().currentUser
       firebase.database().ref("uploads").on("value", (data: any) => {
         var DisplayData = data.val();
+        console.log(DisplayData)
         if (DisplayData == null) {
           this.arr2 = null;
           const alert = this.alertCtrl.create({
@@ -230,7 +232,6 @@ export class StreetartzProvider {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var a = data.val();
         if (a !== null) {
-
         }
         accpt(user.uid);
       }, Error => {
@@ -317,13 +318,8 @@ export class StreetartzProvider {
       this.arr.length = 0;
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
-        if (data == null) {
+        if (data == null || data == undefined) {
           this.arr2 = null;
-          const alert = this.alertCtrl.create({
-            subTitle: 'No artwork in this category yet',
-            buttons: ['OK']
-          });
-          alert.present();
         }
         else {
           var keys2: any = Object.keys(uploads);
@@ -441,7 +437,7 @@ export class StreetartzProvider {
     return new Promise((accpt, rejc) => {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var data = data.val();
-        if (data == null) {
+        if (data == null || data == undefined) {
           this.arr2 = null;
         }
         else {
@@ -621,7 +617,6 @@ export class StreetartzProvider {
     return new Promise((accpt, rej) => {
       this.arr.length = 0;
       firebase.database().ref('uploads/' + key).remove();
-      console.log(key)
       accpt('image deleted')
     })
   }

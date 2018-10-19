@@ -98,7 +98,7 @@ export class ViewPage implements OnInit {
         this.downloadurl
       ],
       subject: this.obj.username,
-      body: this.obj.pic,
+      body: "Greetings, <br> I would like to place an order for this image. <br> click <a href='" + this.obj.pic + "'>" + "here" +"</a> to view the image.",
       isHtml: true
     };
     this.emailComposer.open(email);
