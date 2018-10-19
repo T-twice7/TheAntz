@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { StreetartzProvider } from '../../providers/streetart-database/streetart-database';
 import { LoadingController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
@@ -31,10 +31,10 @@ export class EditProfilePage implements OnInit {
   details
   downloadurl
   imageUrl: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public loadingCtrl: LoadingController, public toastCtrl: ToastController,public alertCtrl: AlertController) {
 
   }
-  GoToProfile(){
+  GoToProfile() {
     this.navCtrl.setRoot(ProfilePage);
   }
   ionViewDidLoad() {
@@ -64,18 +64,27 @@ export class EditProfilePage implements OnInit {
   }
   uploadPicture() {
     this.arr.length = 0;
-    this.art.uploadProfilePic(this.downloadurl, this.name).then(data => {
+    if (this.contact.length < 11) {
+      this.art.uploadProfilePic(this.downloadurl, this.name).then(data => {
         console.log('added to db');
-        this.art.update(this.name,this.email,this.contact,this.bio,this.downloadurl).then((data) => {
+        this.art.update(this.name, this.email, this.contact, this.bio, this.downloadurl).then((data) => {
           this.arr.push(data);
-          console.log(data);
+          console.log(this.contact);
         })
-        // this.navCtrl.setRoot(ProfilePage);
+        this.navCtrl.push(ProfilePage);
       },
         Error => {
           console.log(Error)
         })
-   
+    }
+    else {
+      const alert = this.alertCtrl.create({
+        title: "Oops!",
+        subTitle: "Please make sure that your mobile number is correct.",
+        buttons: ['OK']
+      });
+      alert.present();
+    }
   }
   getUid1() {
     this.art.getUserID().then(data => {
@@ -98,7 +107,7 @@ export class EditProfilePage implements OnInit {
             downloadurl: data[k].downloadurl
           }
           this.arr.push(objt);
-         
+
         }
       }
       loader.dismiss();

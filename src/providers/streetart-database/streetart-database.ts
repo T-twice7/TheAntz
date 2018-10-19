@@ -7,6 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 import moment from 'moment';
+import { dateDataSortValue } from 'ionic-angular/util/datetime-util';
 /*
   Generated class for the StreetartzProvider provider.
   See https://angular.io/guide/dependency-injection for more info on providers
@@ -30,11 +31,11 @@ export class StreetartzProvider {
   username;
   emailComposer;
   email;
+  password
   condition;
   likeArr = [];
   constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     console.log('Hello StreetartzProvider Provider');
-
   }
   checkstate() {
     return new Promise((resolve, reject) => {
@@ -49,15 +50,8 @@ export class StreetartzProvider {
     })
   }
   logout() {
-    const loader = this.loadingCtrl.create({
-      spinner: 'bubbles',
-      content: 'signing out....',
-      duration: 3000
-    });
-    loader.present();
     return new Promise((resolve, reject) => {
       firebase.auth().signOut().then(() => {
-        loader.present();
         resolve()
       }, (error) => {
         reject(error)
@@ -66,13 +60,13 @@ export class StreetartzProvider {
     });
 
   }
-  register(obj:obj) {
-    return firebase.auth().createUserWithEmailAndPassword(this.obj.email, this.obj.password).then((newUser) => {
+  register(email, password, name) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
       var user = firebase.auth().currentUser
       firebase.database().ref("profiles/" + user.uid).set({
-        name: obj.name,
-        email: obj.email,
-        password: obj.password,
+        name: name,
+        email: email,
+        password: password,
         contact: "",
         downloadurl: '../../assets/download.png',
         bio: "You have not yet inserted a description about your skills and abilities, update profile to get started.",
@@ -92,9 +86,7 @@ export class StreetartzProvider {
       alert.present();
       console.log(error);
     })
-
   }
-
   login(email, password) {
     return new Promise((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
@@ -112,7 +104,6 @@ export class StreetartzProvider {
           ]
         });
         alert.present();
-        console.log(error);
       })
     })
   }
@@ -131,26 +122,33 @@ export class StreetartzProvider {
       })
       pass(this.arr);
     })
-
   }
   forgotpassword(email) {
     return new Promise((resolve, reject) => {
-      if (email != null || email != undefined) {
-        firebase.auth().sendPasswordResetEmail(email);
-        const alert = this.alertCtrl.create({
-          title: 'Password request Sent',
-          subTitle: "We've sent you and email with a reset link, go to your email to recover your account.",
-          buttons: ['OK']
-        });
-        alert.present();
-        resolve()
-      }
-      else if (email == null || email == undefined) {
+      if (email == null || email == undefined  ) {
         const alert = this.alertCtrl.create({
           subTitle: 'Please enter your Email.',
           buttons: ['OK']
         });
         alert.present();
+      }
+      else if (email != null || email != undefined) {
+        firebase.auth().sendPasswordResetEmail(email).then(() =>{
+          const alert = this.alertCtrl.create({
+            title: 'Password request Sent',
+            subTitle: "We've sent you and email with a reset link, go to your email to recover your account.",
+            buttons: ['OK']
+          });
+          alert.present();
+          resolve()
+        }, Error =>{
+          const alert = this.alertCtrl.create({
+            subTitle: Error.message,
+            buttons: ['OK']
+          });
+          alert.present();
+          resolve()
+        });
       }
     }).catch((error) => {
       const alert = this.alertCtrl.create({
@@ -165,28 +163,19 @@ export class StreetartzProvider {
         ]
       });
       alert.present();
-      console.log(error);
-
     })
-
-
-
   }
   uploadPic(pic, name) {
+    var d = Date.now();
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: 'Please wait',
       duration: 3000
     });
-    const toast = this.toastCtrl.create({
-      message: 'Your image has been added!',
-      duration: 3000
-    });
     return new Promise((accpt, rejc) => {
       loading.present();
-      firebase.storage().ref(name).putString(pic, 'data_url').then(() => {
+      firebase.storage().ref(d + name).putString(pic, 'data_url').then(() => {
         accpt(name);
-        toast.present();
       }, Error => {
         rejc(Error.message)
       })
@@ -196,7 +185,6 @@ export class StreetartzProvider {
     return new Promise((accpt, rejc) => {
       var storageRef = firebase.storage().ref(name);
       storageRef.getDownloadURL().then(url => {
-        console.log(url)
         var user = firebase.auth().currentUser;
         var link = url;
         firebase.database().ref('uploads/').push({
@@ -218,13 +206,7 @@ export class StreetartzProvider {
     })
   }
   viewPicGallery() {
-    // let loading = this.loadingCtrl.create({
-    //   spinner: 'bubbles',
-    //   content: 'Please wait',
-    //   duration: 3000
-    // });
     return new Promise((accpt, rejc) => {
-      // loading.present();
       var user = firebase.auth().currentUser
       firebase.database().ref("uploads").on("value", (data: any) => {
         var DisplayData = data.val();
@@ -237,7 +219,6 @@ export class StreetartzProvider {
           alert.present();
         }
         accpt(DisplayData);
-        console.log(DisplayData);
       }, Error => {
         rejc(Error.message)
       })
@@ -283,7 +264,6 @@ export class StreetartzProvider {
         var link = url;
         firebase.database().ref('profiles/' + user.uid).update({
           downloadurl: link,
-
         });
         accpt('success');
       }, Error => {
@@ -294,7 +274,6 @@ export class StreetartzProvider {
   }
   storeImgur(url) {
     this.url = url;
-    console.log(url);
   }
 
 
@@ -303,13 +282,7 @@ export class StreetartzProvider {
     console.log(this.obj.name);
   }
   viewPicGallery1() {
-    // let loading = this.loadingCtrl.create({
-    //   spinner: 'bubbles',
-    //   content: 'Please wait',
-    //   duration: 3000
-    // });
     return new Promise((accpt, rejc) => {
-      // loading.present();
       var user = firebase.auth().currentUser
       firebase.database().ref("profiles").on("value", (data: any) => {
         var b = data.val();
@@ -344,38 +317,49 @@ export class StreetartzProvider {
       this.arr.length = 0;
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
-        console.log(uploads);
-        var keys2: any = Object.keys(uploads);
-        for (var i = 0; i < keys2.length; i++) {
-          var k = keys2[i];
-          var chckId = uploads[k].uid;
-          if (category == uploads[k].category) {
-            let obj = {
-              uid: uploads[k].uid,
-              name: uploads[k].name,
-              category: uploads[k].category,
-              downloadurl: uploads[k].downloadurl,
-              location: uploads[k].location,
-              price: uploads[k].price,
-              url: this.url,
-              username: "",
-              email: uploads[k].email
+        if (data == null) {
+          this.arr2 = null;
+          const alert = this.alertCtrl.create({
+            subTitle: 'No artwork in this category yet',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+        else {
+          var keys2: any = Object.keys(uploads);
+          for (var i = 0; i < keys2.length; i++) {
+            var k = keys2[i];
+            var chckId = uploads[k].uid;
+            if (category == uploads[k].category) {
+              let obj = {
+                uid: uploads[k].uid,
+                name: uploads[k].name,
+                category: uploads[k].category,
+                downloadurl: uploads[k].downloadurl,
+                location: uploads[k].location,
+                price: uploads[k].price,
+                url: this.url,
+                username: "",
+                email: uploads[k].email
+              }
+              this.arr.push(obj);
+              this.viewProfileMain(chckId).then((profileData: any) => {
+                obj.username = profileData.name
+                obj.url = profileData.downloadurl
+                obj.email = profileData.email
+              });
+              pass(this.arr);
             }
-            this.arr.push(obj);
-            this.viewProfileMain(chckId).then((profileData: any) => {
-              obj.username = profileData.name
-              obj.url = profileData.downloadurl
-              obj.email = profileData.email
-            });
-            pass(this.arr);
-            console.log(this.url);
+            else if (uploads[k].category == undefined || uploads[k].category == null) {
+              const alert = this.alertCtrl.create({
+                subTitle: 'this category is not yet avaliable',
+                buttons: ['OK']
+              });
+              alert.present();
+            }
           }
-
-
         }
       }), pass(this.arr);
-
-
     })
   }
   update(name, email, contact, bio, downloadurl) {
@@ -409,7 +393,7 @@ export class StreetartzProvider {
         let uploads = data.val();
         console.log(uploads);
         if (data == null) {
-
+          this.arr = null;
         }
         else {
           var keys: any = Object.keys(uploads);
@@ -459,15 +443,10 @@ export class StreetartzProvider {
         var data = data.val();
         if (data == null) {
           this.arr2 = null;
-          const alert = this.alertCtrl.create({
-            subTitle: 'No artwork is uploaded yet, go to your profile to get started.',
-            buttons: ['OK']
-          });
-          alert.present();
         }
         else {
           var keys1: any = Object.keys(data);
-          console.log(keys1.length);
+          this.arr2.length = 0;
           for (var i = 0; i < keys1.length; i++) {
             var keys1: any = Object.keys(data);
             for (var i = 0; i < keys1.length; i++) {
@@ -497,17 +476,14 @@ export class StreetartzProvider {
               });
               accpt(this.arr2);
               this.storeImgur(data[keys1[0]].downloadurl);
-              console.log(this.arr2)
             }
-          
-        }
+          }
         }
       }, Error => {
         rejc(Error.message)
       })
     })
   }
-
   viewProfileMain(userid: string) {
     return new Promise((accpt, rejc) => {
       firebase.database().ref("profiles/" + userid).on("value", (data: any) => {
@@ -518,10 +494,6 @@ export class StreetartzProvider {
       })
     })
   }
-
-
-
-
   comments(key: any, comment: any) {
     var user = firebase.auth().currentUser;
     return new Promise((accpt, rejc) => {
@@ -542,13 +514,8 @@ export class StreetartzProvider {
       var user = firebase.auth().currentUser
       firebase.database().ref("comments/" + key).on("value", (data: any) => {
         var CommentDetails = data.val();
-        if (data == null) {
+        if (data.val() == null) {
           this.arr2 = null;
-          const alert = this.alertCtrl.create({
-            subTitle: 'No artwork is uploaded yet, go to your profile to get started.',
-            buttons: ['OK']
-          });
-          alert.present();
         }
         else {
           var keys1: any = Object.keys(CommentDetails);
@@ -585,25 +552,6 @@ export class StreetartzProvider {
       accpt('comment added')
     })
   }
-  // likePic(key, num) {
-  //   var user = firebase.auth().currentUser;
-  //   console.log(key)
-  //   return new Promise((accpt, rejc) => {
-  //     firebase.database().ref('likes/').child(key).on('value', snapshot => {
-  //       if (!snapshot.hasChild(user.uid)) {
-  //         num = num + 1;
-  //         firebase.database().ref('uploads/' + key).update({ likes: num });
-  //       }
-  //       else {
-  //         num = num - 1;
-  //         firebase.database().ref('uploads/' + key).update({ likes: num });
-  //         firebase.database().ref('likes/' + key).remove();
-
-  //       }
-  //       accpt('success');
-  //     });
-  //   })
-  // }
   likePic(key) {
     console.log(key);
     var user = firebase.auth().currentUser
