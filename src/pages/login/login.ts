@@ -38,9 +38,9 @@ export class LoginPage {
   signup() {
     this.navCtrl.setRoot(EulaPage);
   }
-
   login() {
-    if (this.email == null || this.email == undefined, this.password == null || this.password == undefined) {
+    if (this.email == null || this.email == undefined,
+       this.password == null || this.password == undefined) {
       const alert = this.alertCtrl.create({
         title: "Oh no! ",
         subTitle: "Please enter your email and password to login.",
@@ -65,7 +65,7 @@ export class LoginPage {
       alert.present();
     }
     else {
-      this.art.login(this.email, this.password).then(() => {
+      this.art.login(this.email,this.password).then(() => {
         this.presentLoading1();
         this.navCtrl.setRoot(CategoryPage);
       }, (error) => {

@@ -61,32 +61,35 @@ export class StreetartzProvider {
 
   }
   register(email, password, name) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
-      var user = firebase.auth().currentUser
-      firebase.database().ref("profiles/" + user.uid).set({
-        name: name,
-        email: email,
-        password: password,
-        contact: "",
-        downloadurl: '../../assets/download.png',
-        bio: "You have not yet inserted a description about your skills and abilities, update profile to get started.",
-      })
-    }).catch((error) => {
-      const alert = this.alertCtrl.create({
-        subTitle: error.message,
-        buttons: [
-          {
-            text: 'ok',
-            handler: data => {
-              console.log('Cancel clicked');
+    return new Promise((resolve , reject)=>{
+      return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
+        var user = firebase.auth().currentUser
+        firebase.database().ref("profiles/" + user.uid).set({
+          name: name,
+          email: email,
+          contact: "",
+          downloadurl: '../../assets/download.png',
+          bio: "You have not yet inserted a description about your skills and abilities, update profile to get started.",
+        })
+        resolve() ;
+      }).catch((error) => {
+        const alert = this.alertCtrl.create({
+          subTitle: error.message,
+          buttons: [
+            {
+              text: 'ok',
+              handler: data => {
+                console.log('Cancel clicked');
+              }
             }
-          }
-        ]
-      });
-      alert.present();
-      console.log(error);
+          ]
+        });
+        alert.present();
+        console.log(error);
+      })
     })
   }
+  
   login(email, password) {
     return new Promise((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
@@ -441,7 +444,6 @@ export class StreetartzProvider {
         }
         else {
           var keys1: any = Object.keys(data);
-          this.arr2.length = 0;
           for (var i = 0; i < keys1.length; i++) {
             var keys1: any = Object.keys(data);
             for (var i = 0; i < keys1.length; i++) {

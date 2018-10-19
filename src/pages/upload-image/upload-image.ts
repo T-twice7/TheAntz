@@ -43,14 +43,20 @@ export class UploadImagePage {
       console.log(reader.onload);
     }
   }
-
+  omit_special_char(event)
+  {   
+     var k;  
+     k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+     return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
+  }
   uploadPicture() {
+
     if (this.category == undefined || this.category == null,
       this.name == undefined || this.name == null,
       this.description == undefined || this.description == null,
       this.location == undefined || this.location == null,
       this.price == undefined || this.price == null,
-      this.url == undefined || this.url == null ) {
+      this.url == '../../assets/default.jpg') {
       const confirm = this.alertCtrl.create({
         title: "Fields Missing",
         subTitle: "Please make sure that all the fields are filled.",
@@ -64,9 +70,10 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else if(this.category == null || this.category == undefined){
+    else if (this.url == '../../assets/default.jpg') {
       const confirm = this.alertCtrl.create({
-        subTitle: "please  select category",
+        title: "No Photo",
+        subTitle: "Please upload your photo to continue.",
         buttons: [
           {
             text: 'Ok',
@@ -77,9 +84,10 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else if(this.name == null || this.name == undefined){
+    else if (this.name ==null || this.name == undefined) {
       const confirm = this.alertCtrl.create({
-        subTitle: "please the name of the image",
+        title: "Artwork Name Missing",
+        subTitle: "Please enter a name for your artwork to continue..",
         buttons: [
           {
             text: 'Ok',
@@ -90,9 +98,10 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else if(this.description == null || this.description == undefined){
+    else if (this.category ==null || this.category == undefined) {
       const confirm = this.alertCtrl.create({
-        subTitle: "please enter the description of your Image",
+        title: "Category Not Chosen",
+        subTitle: "Please choose a category to continue..",
         buttons: [
           {
             text: 'Ok',
@@ -103,9 +112,10 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else if(this.location == null || this.location == undefined){
+    else if (this.description == undefined || this.description == null) {
       const confirm = this.alertCtrl.create({
-        subTitle: "please type your location",
+        title: "No Description",
+        subTitle: "Please type in your description to continue..",
         buttons: [
           {
             text: 'Ok',
@@ -116,9 +126,38 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else if(this.price == null || this.price == undefined){
+    else if (this.location == undefined || this.location == null) {
       const confirm = this.alertCtrl.create({
-        subTitle: "please enter the price of the picture",
+        title: "Oops",
+        subTitle: "It looks like you didn't enter your location...",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
+          },
+        ]
+      });
+      confirm.present();
+    }
+    else if (this.price == undefined || this.price == null) {
+      const confirm = this.alertCtrl.create({
+        title: "price",
+        subTitle: "Please upload your photo to continue..",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
+          },
+        ]
+      });
+      confirm.present();
+    }
+    else if (this.price.length > 9) {
+      const confirm = this.alertCtrl.create({
+        title: "Price Too Long",
+        subTitle: "Price cannot exceed 999 999 999",
         buttons: [
           {
             text: 'Ok',
@@ -141,6 +180,8 @@ export class UploadImagePage {
         console.log(Error)
       })
     }
+
+
 
   }
 
