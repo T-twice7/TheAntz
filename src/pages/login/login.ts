@@ -76,7 +76,7 @@ export class LoginPage {
   presentLoading1() {
     const loader = this.loadingCtrl.create({
       content: "loading....",
-      duration: 3000
+      duration: 7000
     });
     loader.present();
   }

@@ -95,7 +95,7 @@ export class StreetartzProvider {
       let loading = this.loadingCtrl.create({
         spinner: 'bubbles',
         content: 'Sign in....',
-        duration: 3000
+        duration: 4000
       });
       loading.present();
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {

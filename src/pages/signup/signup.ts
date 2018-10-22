@@ -78,7 +78,7 @@ export class SignupPage {
   presentLoading1() {
     const loader = this.loadingCtrl.create({
       content: "loading....",
-      duration: 8000
+      duration: 4000
     });
     loader.present();
   }
