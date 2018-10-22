@@ -62,6 +62,12 @@ export class StreetartzProvider {
   }
   register(email, password, name) {
     return new Promise((resolve , reject)=>{
+        let loading = this.loadingCtrl.create({
+          spinner: 'bubbles',
+          content: 'Sign in....',
+          duration: 4000
+        });
+        loading.present();
       return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
         var user = firebase.auth().currentUser
         firebase.database().ref("profiles/" + user.uid).set({
@@ -467,6 +473,7 @@ export class StreetartzProvider {
                 url: this.url,
               }
               this.arr2.push(obj);
+              console.log(this.arr2);
               this.viewProfileMain(chckId).then((profileData: any) => {
                 obj.username = profileData.name
                 obj.email = profileData.email

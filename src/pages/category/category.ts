@@ -40,9 +40,9 @@ export class CategoryPage {
   GoToProfilePage() {
     this.navCtrl.push(ProfilePage);
   }
-  // ngOnInit(){
-  //   this.retreivePics();
-  // }
+  ngOnInit(){
+    this.retreivePics();
+  }
   // ionViewWillEnter() {
   //   this.retreivePics();
   // }
