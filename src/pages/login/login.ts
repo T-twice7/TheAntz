@@ -48,7 +48,7 @@ export class LoginPage {
       });
       alert.present();
     }
-    else if (this.email == null || this.email == undefined) {
+    else if (this.email == null || this.email == undefined || this.email == "") {
       const alert = this.alertCtrl.create({
         title: "No Email",
         subTitle: "It looks like you didn't enter your email address.",
@@ -56,7 +56,7 @@ export class LoginPage {
       });
       alert.present();
     }
-    else if (this.password == null || this.password == undefined) {
+    else if (this.password == null || this.password == undefined || this.email =="") {
       const alert = this.alertCtrl.create({
         title: "No Password",
         subTitle: "You have not entered your password. Please enter your password",

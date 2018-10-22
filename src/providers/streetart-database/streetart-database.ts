@@ -92,6 +92,12 @@ export class StreetartzProvider {
   
   login(email, password) {
     return new Promise((resolve, reject) => {
+      let loading = this.loadingCtrl.create({
+        spinner: 'bubbles',
+        content: 'Sign in....',
+        duration: 3000
+      });
+      loading.present();
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
         resolve();
       }).catch((error) => {
