@@ -19,7 +19,7 @@ import { CategoryPage } from '../category/category';
   templateUrl: 'view.html',
 })
 
-export class ViewPage implements OnInit {
+export class ViewPage implements OnInit{
   comment: any;
   data: any;
   name;
@@ -71,6 +71,8 @@ export class ViewPage implements OnInit {
     this.numlikes = this.obj.likes;
 
 
+        this.Retrivecomments();
+
 
 
 
@@ -111,7 +113,6 @@ export class ViewPage implements OnInit {
   Retrivecomments() {
     this.art.viewComments(this.obj.key, this.comment).then((data) => {
       if (data == null || data == undefined) {
-
       }
       else {
         this.CommentArr.length = 0;

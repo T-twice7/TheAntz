@@ -325,10 +325,9 @@ export class StreetartzProvider {
       this.arr.length = 0;
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
-        if (this.arr2  == null ||this.arr2  == undefined) {
-          this.arr2 = null;
+        if (this.arr  == null ||this.arr  == undefined) {
+          this.arr = null;
           console.log('empty');
-     
         }
         else {
           var keys2: any = Object.keys(uploads);

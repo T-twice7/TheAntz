@@ -32,17 +32,17 @@ export class CategoryPage {
   username;
   comments;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-   
+       this.retreivePics();
   }
-  ionViewDidLoad() {
-    this.retreivePics();
-  }
+  // ionViewDidLoad() {
+  //   this.retreivePics();
+  // }
   GoToProfilePage() {
     this.navCtrl.push(ProfilePage);
   }
-  ngOnInit(){
-    this.retreivePics();
-  }
+  // ngOnInit(){
+  //   this.retreivePics();
+  // }
   // ionViewWillEnter() {
   //   this.retreivePics();
   // }
