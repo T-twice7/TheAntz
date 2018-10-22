@@ -430,7 +430,6 @@ export class StreetartzProvider {
     })
   }
   viewPicMain(name,username) {
-    // this.arr2.length = 0;
     return new Promise((accpt, rejc) => {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var data = data.val();
@@ -438,6 +437,7 @@ export class StreetartzProvider {
           this.arr2 = null;
         }
         else {
+           this.arr2.length = 0;
           var keys1: any = Object.keys(data);
           for (var i = 0; i < keys1.length; i++) {
             var keys1: any = Object.keys(data);

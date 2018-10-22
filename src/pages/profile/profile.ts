@@ -43,10 +43,6 @@ export class ProfilePage {
       this.arr.push(details);
     })
   }
-
-
-
-
   ionViewDidLoad() {
 
   }
