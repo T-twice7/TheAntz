@@ -22,7 +22,7 @@ import { ToastController } from 'ionic-angular';
   selector: 'page-category',
   templateUrl: 'category.html',
 })
-export class CategoryPage implements OnInit{
+export class CategoryPage {
   obj = {} as obj
   category: any;
   categoryArr = [];
@@ -32,30 +32,25 @@ export class CategoryPage implements OnInit{
   username;
   comments;
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-
+    this.retreivePics();
+  }
+  ionViewDidLoad() {
 
   }
-  // ionViewDidLoad() {
-  //   this.retreivePics();
-  // }
   GoToProfilePage() {
     this.navCtrl.push(ProfilePage);
   }
-  ngOnInit(){
-    this.retreivePics();
-  }
-  ionViewWillEnter() {
-    this.retreivePics();
-  }
+  // ngOnInit(){
+  //   this.retreivePics();
+  // }
+  // ionViewWillEnter() {
+  //   this.retreivePics();
+  // }
   typeOfArt() {
     this.categoryArr.length = 0;
     this.art.selectCategory(this.category).then((data) => {
-      if (this.category == undefined) {
-        const alert = this.alertCtrl.create({
-          subTitle: 'this category is not yet avaliable',
-          buttons: ['OK']
-        });
-        alert.present();
+      if (this.category == undefined || this.category == null) {
+        console.log('empty')
       }
       else {
         var keys: any = Object.keys(data);
@@ -86,8 +81,9 @@ export class CategoryPage implements OnInit{
   }
   retreivePics() {
     this.categoryArr.length = 0;
-    this.art.viewPicMain(this.name, this.username).then((data: any) => {
-      this.categoryArr = data;
+    this.art.viewPicMain(this.name,this.username).then((data: any) => {
+    this.categoryArr = data;
+
     });
   }
   pushArtistDetails(pic, name, key, url, comments, email, username, description, location, price, likes) {

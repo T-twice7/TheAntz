@@ -154,10 +154,10 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else if (this.price.length > 9) {
+    else if (this.price.length > 4) {
       const confirm = this.alertCtrl.create({
         title: "Price Too Long",
-        subTitle: "Price cannot exceed 999 999 999",
+        subTitle: "Price cannot exceed 9999",
         buttons: [
           {
             text: 'Ok',

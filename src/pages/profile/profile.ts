@@ -55,7 +55,7 @@ export class ProfilePage {
     this.navCtrl.push(EditProfilePage);
   }
 
-  upload(){
+  upload() {
     const modal = this.modalCtrl.create(UploadImagePage);
     modal.present();
   }
@@ -77,6 +77,10 @@ export class ProfilePage {
     this.list.length = 0;
     this.getUid();
     this.art.viewPicGallery().then(data => {
+      if (data == null || data == undefined) {
+        console.log('no data');
+      }
+      else {
         var keys: any = Object.keys(data);
         for (var i = 0; i < keys.length; i++) {
           var k = keys[i];
@@ -95,7 +99,7 @@ export class ProfilePage {
 
           }
         }
-      
+      }
     }, Error => {
       console.log(Error)
     });

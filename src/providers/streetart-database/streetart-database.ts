@@ -214,15 +214,6 @@ export class StreetartzProvider {
       var user = firebase.auth().currentUser
       firebase.database().ref("uploads").on("value", (data: any) => {
         var DisplayData = data.val();
-        console.log(DisplayData)
-        if (DisplayData == null) {
-          this.arr2 = null;
-          const alert = this.alertCtrl.create({
-            subTitle: 'You have no art work yet',
-            buttons: ['OK']
-          });
-          alert.present();
-        }
         accpt(DisplayData);
       }, Error => {
         rejc(Error.message)
@@ -317,12 +308,15 @@ export class StreetartzProvider {
     })
   }
   selectCategory(category) {
+    this.arr.length = 0;
     return new Promise((pass, fail) => {
       this.arr.length = 0;
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
-        if (data == null || data == undefined) {
+        if (this.arr2  == null ||this.arr2  == undefined) {
           this.arr2 = null;
+          console.log('empty');
+     
         }
         else {
           var keys2: any = Object.keys(uploads);
@@ -435,11 +429,12 @@ export class StreetartzProvider {
       })
     })
   }
-  viewPicMain(name, username) {
+  viewPicMain(name,username) {
+    // this.arr2.length = 0;
     return new Promise((accpt, rejc) => {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var data = data.val();
-        if (data == null || data == undefined) {
+        if (this.arr2  == null) {
           this.arr2 = null;
         }
         else {

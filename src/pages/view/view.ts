@@ -56,7 +56,7 @@ export class ViewPage implements OnInit {
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, private emailComposer: EmailComposer, public alertCtrl: AlertController) {
     this.obj = this.navParams.get("obj");
     console.log("this is my index");
-    console.log(this.email);
+    console.log(this.obj.email);
 
     this.username = this.obj.username;
     this.downloadurl = this.obj.pic;
@@ -98,14 +98,14 @@ export class ViewPage implements OnInit {
         this.downloadurl
       ],
       subject: this.obj.username,
-      body: "Greetings, <br> I would like to place an order for this image. <br> click <a href='" + this.obj.pic + "'>" + "here" +"</a> to view the image.",
+      body: "Greetings, <br> I would like to place an order for this image. <br> click <a href='" + this.obj.pic + "'>" +  this.obj.pic +"</a> to view the image.",
       isHtml: true
     };
     this.emailComposer.open(email);
   }
 
   GoBackToCategory() {
-    this.navCtrl.setRoot(CategoryPage);
+    this.navCtrl.pop();
   }
 
   Retrivecomments() {
