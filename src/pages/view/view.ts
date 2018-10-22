@@ -129,7 +129,7 @@ export class ViewPage implements OnInit {
           this.CommentArr.push(obj);
           console.log(this.CommentArr);
         }
-        this.commentsLeng = this.CommentArr.length;
+        this.commentsLeng = this.CommentArr.length
       }
 
     })
