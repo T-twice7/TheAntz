@@ -71,7 +71,7 @@ export class EditProfilePage implements OnInit {
           this.arr.push(data);
           console.log(this.contact);
         })
-        this.navCtrl.push(ProfilePage);
+        this.navCtrl.setRoot(ProfilePage);
       },
         Error => {
           console.log(Error)

@@ -70,20 +70,7 @@ export class UploadImagePage {
       });
       confirm.present();
     }
-    else if (this.url == '../../assets/default.jpg') {
-      const confirm = this.alertCtrl.create({
-        title: "No Photo",
-        subTitle: "Please upload your photo to continue.",
-        buttons: [
-          {
-            text: 'Ok',
-            handler: () => {
-            }
-          },
-        ]
-      });
-      confirm.present();
-    }
+ 
     else if (this.name ==null || this.name == undefined) {
       const confirm = this.alertCtrl.create({
         title: "Artwork Name Missing",
@@ -158,6 +145,20 @@ export class UploadImagePage {
       const confirm = this.alertCtrl.create({
         title: "Price Too Long",
         subTitle: "Price cannot exceed 9999",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+            }
+          },
+        ]
+      });
+      confirm.present();
+    }
+    else if (this.url == '../../assets/default.jpg') {
+      const confirm = this.alertCtrl.create({
+        title: "No Photo",
+        subTitle: "Please upload your photo to continue.",
         buttons: [
           {
             text: 'Ok',
