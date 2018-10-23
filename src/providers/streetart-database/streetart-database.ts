@@ -99,6 +99,10 @@ export class StreetartzProvider {
   
   login(email, password) {
     return new Promise((resolve, reject) => {
+      if(this.email == undefined || this.password == undefined){
+        console.log('no found');
+      }
+      else{
       let loading = this.loadingCtrl.create({
         spinner: 'bubbles',
         content: 'Sign in....',
@@ -121,6 +125,7 @@ export class StreetartzProvider {
         });
         alert.present();
       })
+    }
     })
   }
   retrieve() {
