@@ -29,6 +29,7 @@ export class StreetartzProvider {
   name;
   url;
   username;
+  selectCategoryArr=[];
   emailComposer;
   email;
   password
@@ -321,16 +322,15 @@ export class StreetartzProvider {
     })
   }
   selectCategory(category) {
-    this.arr.length = 0;
     return new Promise((pass, fail) => {
-      this.arr.length = 0;
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
-        if (this.arr  == null ||this.arr  == undefined) {
-          this.arr = null;
+        if (data  == null || data  == undefined) {
+          this.selectCategoryArr = null;
           console.log('empty');
         }
         else {
+          this.selectCategoryArr.length = 0;
           var keys2: any = Object.keys(uploads);
           for (var i = 0; i < keys2.length; i++) {
             var k = keys2[i];
@@ -340,20 +340,21 @@ export class StreetartzProvider {
                 uid: uploads[k].uid,
                 name: uploads[k].name,
                 category: uploads[k].category,
+                comments: uploads[k].comments,
                 downloadurl: uploads[k].downloadurl,
                 location: uploads[k].location,
                 price: uploads[k].price,
+                likes: uploads[k].likes,
                 url: this.url,
                 username: "",
                 email: uploads[k].email
               }
-              this.arr.push(obj);
+              this.selectCategoryArr.push(obj);
               this.viewProfileMain(chckId).then((profileData: any) => {
                 obj.username = profileData.name
                 obj.url = profileData.downloadurl
                 obj.email = profileData.email
               });
-              pass(this.arr);
             }
             else if (uploads[k].category == undefined || uploads[k].category == null) {
               const alert = this.alertCtrl.create({
@@ -364,7 +365,7 @@ export class StreetartzProvider {
             }
           }
         }
-      }), pass(this.arr);
+      }), pass(this.selectCategoryArr);
     })
   }
   update(name, email, contact, bio, downloadurl) {
@@ -445,11 +446,11 @@ export class StreetartzProvider {
     return new Promise((accpt, rejc) => {
       firebase.database().ref("uploads").on("value", (data: any) => {
         var data = data.val();
-        if (this.arr2  == null) {
+        if (data  == null || data == undefined) {
           this.arr2 = null;
         }
         else {
-           this.arr2.length = 0;
+          this.arr2.length = 0;
           var keys1: any = Object.keys(data);
           for (var i = 0; i < keys1.length; i++) {
             var keys1: any = Object.keys(data);

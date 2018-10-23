@@ -34,26 +34,14 @@ export class CategoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
        this.retreivePics();
   }
-  ionViewDidLoad() {
-    this.retreivePics();
-  }
   GoToProfilePage() {
     this.navCtrl.push(ProfilePage);
   }
-  // ngOnInit(){
-  //   this.retreivePics();
-  // }
-  // ionViewWillEnter() {
-  //   this.retreivePics();
-  // }
   typeOfArt() {
     this.categoryArr.length = 0;
     this.art.selectCategory(this.category).then((data) => {
       if (this.category == undefined || this.category == null) {
         console.log('empty')
-      }
-      else if (this.category == "All") {
-        this.retreivePics()
       }
       else {
         var keys: any = Object.keys(data);
@@ -66,7 +54,9 @@ export class CategoryPage {
               name: data[k].name,
               key: k,
               url: data[k].url,
+              comments: data[k].comments,
               username: data[k].username,
+              likes: data[k].likes,
               email: data[k].email,
               location: data[k].location,
               price: data[k].price,
@@ -75,7 +65,9 @@ export class CategoryPage {
           }
         }
       }
-    
+      if (this.category == "All") {
+        this.retreivePics()
+      }
     })
 
   }
