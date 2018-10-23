@@ -100,7 +100,11 @@ export class StreetartzProvider {
   login(email, password) {
     return new Promise((resolve, reject) => {
       if(this.email == undefined || this.password == undefined){
-        console.log('no found');
+        const alert = this.alertCtrl.create({
+          subTitle: "This email is not registered, please sign up to continue.",
+          buttons: ['OK']
+        });
+        alert.present();
       }
       else{
       let loading = this.loadingCtrl.create({
@@ -330,7 +334,7 @@ export class StreetartzProvider {
     return new Promise((pass, fail) => {
       firebase.database().ref("uploads").on('value', (data: any) => {
         let uploads = data.val();
-        if (data  == null || data  == undefined) {
+        if (  this.selectCategoryArr  == null ||   this.selectCategoryArr  == undefined) {
           this.selectCategoryArr = null;
           console.log('empty');
         }
