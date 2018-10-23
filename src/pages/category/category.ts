@@ -34,9 +34,9 @@ export class CategoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
        this.retreivePics();
   }
-  // ionViewDidLoad() {
-  //   this.retreivePics();
-  // }
+  ionViewDidLoad() {
+    this.retreivePics();
+  }
   GoToProfilePage() {
     this.navCtrl.push(ProfilePage);
   }
@@ -51,6 +51,9 @@ export class CategoryPage {
     this.art.selectCategory(this.category).then((data) => {
       if (this.category == undefined || this.category == null) {
         console.log('empty')
+      }
+      else if (this.category == "All") {
+        this.retreivePics()
       }
       else {
         var keys: any = Object.keys(data);
@@ -72,10 +75,7 @@ export class CategoryPage {
           }
         }
       }
-      if (this.category == 'All') {
-        this.retreivePics()
-
-      }
+    
     })
 
   }

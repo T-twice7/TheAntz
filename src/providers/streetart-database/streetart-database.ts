@@ -153,6 +153,7 @@ export class StreetartzProvider {
             title: 'Password request Sent',
             subTitle: "We've sent you and email with a reset link, go to your email to recover your account.",
             buttons: ['OK']
+            
           });
           alert.present();
           resolve()
