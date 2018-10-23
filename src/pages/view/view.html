@@ -1,76 +1,91 @@
+
 <ion-content>
-  <ion-fab top left>
-    <button ion-button clear icon-only color="light" (click)="GoBackToCategory()">
-      <ion-icon class="ico" name="arrow-back"></ion-icon>
-    </button>
+  <ion-fab left class="theWidth">
+    <div class="secondary">
+      <ion-buttons left>
+        <button ion-button clear icon-only color="light" (click)="GoBackToCategory()">
+          <ion-icon class="ico" name="arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div>
   </ion-fab>
-  <!-- <div class="head">
-    <img class="chosenImage" src="{{downloadurl}}" alt="">
-  </div> -->
+
   <div class="post">
-    <img class="postedIMG" src="{{downloadurl}}"/>
-    <ion-item color="light" class="arter" no-lines>
-      <ion-avatar item-start>
-        <img src="{{downloadurl1}}" />
-      </ion-avatar>
-      <h2 class="artistName">{{name}}</h2>
-    </ion-item>
+    <div class="theImage">
+      <img class="postedIMG" src="{{downloadurl}}" />
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-9>
+          <ion-item color="light" class="arter" no-lines>
+            <ion-avatar item-start>
+              <img src="{{downloadurl1}}" />
+            </ion-avatar>
+            <h2 class="artistName">{{name}}
+              <br>
+            </h2>
+            <p id="Location">
+              <ion-icon ios="ios-pin" md="md-pin"></ion-icon> {{location}}</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <p class="thePrices">
+            R{{price}}
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     <div class="title">
-     
-        <h4 class="caption">Caption Text</h4>
-      <p class="statements">
-        This is the short description of the photograph above. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-        eos?
+      <h4 class="caption">{{username}}</h4>
+      <p class="statementa">
+        {{description}}
       </p>
       <ion-grid>
         <ion-row>
-          <ion-col col-3>
-            <button ion-button clear>12 likes</button>
+          <ion-col>
+            <button class="statements" ion-button clear (click)="likePicture()"> {{numlikes}} Likes</button>
           </ion-col>
           <ion-col>
-            <button ion-button clear>500 comments</button>
+            <button ion-button class="statements" clear>{{numComments}} Comments</button>
           </ion-col>
-                  <ion-fab right class="cart">
-              <button ion-fab mini>
-                <img class="pay" src="../../assets/icon/basket.svg" alt="">
-              </button>
-            </ion-fab>    
+          <ion-col>
+            <button class="statements" block outline ion-button (click)="BuyArt()">
+              <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon> ORDER
+            </button>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </div>
   </div>
   <div>
-    <ion-list *ngFor="let a of arr2">
-        <ion-card>
-            <ion-item>
-              <ion-avatar item-start>
-                <img src="{{a.url}}">
-              </ion-avatar>
-              <h2>{{a.username}}</h2>
-              <p>November 5, 1955</p>
-            </ion-item>
-            <ion-card-content>
-              <p>{{a.comment}}</p>
-            </ion-card-content>
-            <ion-row>
-              <ion-col>
-                <button ion-button icon-start clear small>
-                  <ion-icon name="thumbs-up"></ion-icon>
-                  <div>0</div>
-                </button>
-              </ion-col>
-            </ion-row>
-          </ion-card>
-    </ion-list> 
+    <ion-list *ngFor="let a of CommentArr">
+      <ion-card>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="a.downloadurl">
+          </ion-avatar>
+          <h2 class="Caps-Lock">{{a.username}}</h2>
+          <p>{{a.date}}</p>
+        </ion-item>
+        <ion-card-content>
+          <p>{{a.comment}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
   </div>
 </ion-content>
 <ion-footer no-padding>
   <ion-toolbar>
-    <ion-item class="footItem" no-lines>
-      <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
-      <button ion-button class="sendBtn" item-end icon-only large (click)="sendComment()">
-        <ion-icon name="send"></ion-icon>
-      </button>
-    </ion-item>
+    <ion-row>
+      <ion-col col-10>
+        <ion-input type="text" [(ngModel)]="comment" placeholder="Comment" id="commentTXT"></ion-input>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button class="sendBtn" item-end icon-only large (click)="CommentPic(numComments)">
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-footer>

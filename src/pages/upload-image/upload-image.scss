@@ -1,366 +1,100 @@
 page-upload-image {
-    div.scroll-content{
-        // background: linear-gradient(rgb(1, 15, 41),rgb(1, 15, 41));
-        display: block;
+    .image{
+        // border: 2px solid red;
+        text-align: center;
+        width: 180px;
+        margin: 0 auto;
     }
-   
-    .card-background-page {
-        padding-left: 8vw;
-        // top: 7%;
-        ion-card {
-            
-            position: relative;
-            background-color: transparent;
-            margin: 0%;
-          text-align: center;
-          height: 30vh;
-          width: 75vw;
-        }
-        img{
-            height: 30vh;
-            width: 75vw; 
-        }
-      label{
-          top:83%;
-          left: 88%;
-          font-size: 5vh;
-          text-shadow: 0 0 1px white;
-          position: absolute;
-          margin: 0%;
-          color: black;
-                 width: 3vw;     
-      }
-       
-      }
-  
-    @media screen and (min-width: 360px){
-        @media screen and (max-width: 640px ){
-            .fab{ 
-                background-color: transparent;
-                ion-icon{
-                    color: white;
-                    font-size: 220%;
-                    font-weight: bolder;
-                }
-            }
-            #file{
-               margin: 0%;
-               font-size: 80%;
-               text-align: right;
-               margin-left: 22%;
-               background-color: transparent;
-             color: white;
-           }
-            .preview{
-               display: flex;
-               flex-direction: column;
-               justify-content: center;
-               align-items: center;
-           
-               img{
-                   width: 55vw;
-                   margin-top: 2vh;
-                   margin-right: 13.5vw;
-                   box-shadow: 0 0 1px #010e1f;
-                   background-image: url('../../assets/art/sk.jpg');
-                   background-size: cover;
-               }
-               label{
-                   color: rgb(206, 205, 205);
-                   background: linear-gradient(#dfab53,#010e1fd0);
-                   width: 55vw;
-               text-align: center;
-               }
-            }
-            .buttoon{
-               background: linear-gradient(#dfab53,#010e1fd0);
-               width: 150px;
-               text-align: center;
-            }
-            .section{
-                // position: fixed;
-               padding: 5%;
-               margin: 2%;
-               margin-top:3vh;
-               ion-label{
-                   color: rgb(231, 161, 68);
-               }
-               ion-select{
-                   color: aliceblue;
-               }
-               ion-item{
-                box-shadow: 0 0 2px black;
-                // background: linear-gradient(rgb(8, 39, 75),rgba(1, 20, 41, 0.89));
-                // background-color: #010e1f;
-            }
-            ion-textarea{
-                // background: linear-gradient(rgb(8, 39, 75),rgba(1, 20, 41, 0.89));
-                box-shadow: 0 0 2px black;
-                // background-color: #010e1f;
-                color: aliceblue;
-            }
-           
-               input{
-                   color: aliceblue;
-               }
-            }
-            .btn{
-                border-radius: 5px;
-            }   
-        }
+    #tit{
+        margin-left: -20px;
     }
-    @media screen and (min-width: 411px){
-        @media screen and (max-width: 731px ){
-            // div.scroll-content{
-            //     background: linear-gradient(#420538,#010e1fbb);
-            // }
-            .fab{ 
-                background-color: transparent;
-                ion-icon{
-                    color: white;
-                    font-size: 220%;
-                    font-weight: bolder;
-                }
-            }
-            .preview{
-               display: flex;
-               flex-direction: column;
-               justify-content: center;
-               align-items: center;
-           
-               img{
-                   margin-left: 13.5vw;
-                   width: 55vw;
-                   margin-top: 2vh;
-                   box-shadow: 0 0 1px #010e1f;
-                   background-image: url('../../assets/art/sk.jpg');
-                   background-size: cover;
-               }
-               label{
-                   color: rgb(206, 205, 205);
-                   background: linear-gradient(#dfab53,#010e1fd0);
-                   width: 55vw;
-               text-align: center;
-               }
-            }
-            .section{
-                // position: fixed;
-               padding: 5%;
-               margin: 2%;
-               margin-top:3vh;
-               ion-label{
-                   color: rgb(231, 161, 68);
-               }
-               ion-select{
-                   color: aliceblue;
-               }
-               ion-item{
-                box-shadow: 0 0 2px black;
-                // background: linear-gradient(rgb(8, 39, 75),rgba(1, 20, 41, 0.89));
-                // background-color: #010e1f;
-            }
-            ion-textarea{
-                // background: linear-gradient(rgb(8, 39, 75),rgba(1, 20, 41, 0.89));
-                box-shadow: 0 0 2px black;
-                // background-color: #010e1f;
-                color: aliceblue;
-            }
-           
-               input{
-                   color: aliceblue;
-               }
-            }
-            .btn{
-                border-radius: 5px;
-            }
-        }
+    #insert{
+        display: none;
     }
-    @media screen and (min-width: 320px){
-        @media screen and (max-width: 640px ){
-            .fab{ 
-                background-color: transparent;
-                ion-icon{
-                    color: white;
-                    font-size: 220%;
-                    font-weight: bolder;
-                }
-            }
-            #file{
-               margin: 0%;
-               font-size: 80%;
-               text-align: right;
-               margin-left: 22%;
-               background-color: transparent;
-             color: white;
-           }
-            .preview{
-               display: flex;
-               flex-direction: column;
-               justify-content: center;
-               align-items: center;
-           
-               img{
-                   width: 55vw;
-                   margin-top: 2vh;
-                   box-shadow: 0 0 1px #010e1f;
-                   background-image: url('../../assets/art/sk.jpg');
-                   background-size: cover;
-               }
-               label{
-                   color: rgb(206, 205, 205);
-                   background: linear-gradient(#dfab53,#010e1fd0);
-                   width: 55vw;
-               text-align: center;
-               }
-            }
-            .buttoon{
-               background: linear-gradient(#dfab53,#010e1fd0);
-               width: 150px;
-               text-align: center;
-            }
-            .section{
-                // position: fixed;
-               padding: 5%;
-               margin: 2%;
-               margin-top:3vh;
-               ion-label{
-                   color: rgb(8, 39, 75);
-               }
-               ion-select{
-                   color: rgb(8, 39, 75);
-               }
-               ion-item{
-                   margin: 0%;
-                   box-shadow:inset 0 0 3px rgb(8, 39, 75);
-                   background: linear-gradient(white,rgb(189, 185, 185));
-                //    border-top-left-radius: 50px;
-                //    border-top-right-radius:50px;
-                //    border-bottom-right-radius:50px;
-                //    border-bottom-left-radius: 50px;
-            }
-            ion-textarea{
-                margin: 0%;
-                background: linear-gradient(white,rgb(189, 185, 185));
-                box-shadow: 0 0 3px rgb(8, 39, 75);
-                // background-color: #010e1f;
-                color: rgb(8, 39, 75);
-            }
-           
-               input{
-                   color: rgb(8, 39, 75);
-               }
-            }
-            .btn{
-                border-radius: 5px;
-            }
-        }
+    .btn{
+        width: 35px;
+        height: 35px;
+        color: white;
+        // border-radius: 30px;
+        background: #fab335;
+        position: absolute;
+        margin-left: 145px;
+        margin-top: 145px;
+        transition: 300ms;
+        box-shadow: 0 3px 150px grey;
+        z-index: 1;
     }
-    @media screen and (min-width: 640px){
-        @media screen and (max-width: 1100px ){
-            .fab{ 
-                background-color: transparent;
-                ion-icon{
-                    color: white;
-                    font-size: 220%;
-                    font-weight: bolder;
-                }
-            }
-            #file{
-               margin: 0%;
-               font-size: 80%;
-               text-align: right;
-               margin-left: 22%;
-               background-color: transparent;
-             color: white;
-           }
-           .card-background-page {
-            padding-left: 11vw;
-            ion-card {
-                // margin-left: 10%;
-                position: relative;
-                background-color: transparent;
-                margin: 0%;
-              text-align: center;
-              height: 40vh;
-              width: 75vw;
-            }
-            img{
-                height: 40vh;
-                width: 75vw; 
-            }
-          label{
-              top: 86%;
-              left: 88%;
-              position: absolute;
-              margin: 0%;
-              font-size: 5.5vh;
-              color: black;
-                             
-                     width: 10vw;
-                     height: 3vh;
-                     text-shadow: 0 0 1px white;
-                    // height: 7vh;      
-          }
+    .btn:active{
+        width: 35px;
+        height: 35px;
+        color: white;
+        // border-radius: 30px;
+        background: #ffa200;
+        position: absolute;
+        margin-left: 145px;
+        margin-top: 145px;
+    }
+    .theItem{
+        border: 1px solid grey;
+        padding-left: 10px;
+        background: #011127;
+        color: #fab335;
+        
+    }
+    .preview{
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        margin: 0 auto;
+        border-bottom-right-radius: 17.5px;
+    }
+    .closeBtn{
+        font-size: 20px;
+        font-weight: bold;
+        // position: absolute;
+        margin-top: 0px;
+        // -webkit-text-stroke: 1px white;
+        
+    }
+    #attach{
+        padding-top: 50px;
+        font-size: 25px;
+    }
+    .cat{
+        // border: 1px solid grey;
+        margin-top: 10px;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    // ion-item{
+    //     width: 100%;
+    //     max-width: 500px;
+    //     margin: 0 auto
+    // }
+    ion-label{
+        width: 20px;
+        font-size: 15px;
+    }
+    .uploadBtn{
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    @media screen and (min-width: 550px){
+        .container{
+            background: linear-gradient(#011127, #01112700);
         }
-           
-            .buttoon{
-               background: linear-gradient(#dfab53,#010e1fd0);
-               width: 150px;
-               text-align: center;
-            }
-            .section{
-               padding: 5%;
-               margin: 2%;
-               margin-top:6vh;
-               width: 70vw;
-               margin-left: 13.5vw;
-            //    height: 20vh;
-               ion-label{
-                   color: rgb(8, 39, 75);
-                   font-weight: bolder;
-                //    color: rgb(231, 161, 68);
-                //    height: 3vh;
-                font-size: 2vh;
-               }
-               ion-select{
-                   color: rgb(8, 39, 75);
-                   font-weight: bolder;
-                   font-size: 2vh;
-                //    height: 2vh;
-               }
-               ion-item{
-
-                   margin: 0%;
-                height: 7vh;
-                   box-shadow:inset 0 0 2px black;
-                   background: linear-gradient(white,rgb(189, 185, 185));
-                // border-top-left-radius: 50px;
-                // border-top-right-radius:50px;
-                // border-bottom-right-radius:50px;
-                // border-bottom-left-radius: 50px;
-               }
-               ion-textarea{
-                margin: 0%;
-                font-size: 2vh;
-                height: 9vh;
-                   box-shadow:inset 0 0 2px black;
-                   background: linear-gradient(white,rgb(189, 185, 185));
-                   color: rgb(8, 39, 75);
-               }
-           
-               input{
-                   color: rgb(8, 39, 75);
-                   font-size: 2vh;
-               }
-            }
-            .btn{
-                // margin: 2%;
-                border-radius: 5px;
-                width: 60vw;
-                margin-left: 18.5vw;
-                font-size: 2vh;
-                
-            }
+        .container{
+            padding-top: 50%;
         }
+        .body{
+            transform: translateY(-30%)
+        }
+    ion-item{
+        width: 100%;
+        max-width: 500px;
+        float: center
+    }
     }
 }

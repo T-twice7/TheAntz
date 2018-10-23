@@ -63,6 +63,8 @@ import { LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { AlertController } from 'ionic-angular';
+;
 import firebase from 'firebase';
 /**
  * Generated class for the ProfilePage page.
@@ -75,41 +77,42 @@ import firebase from 'firebase';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage {
   list = [];
   arr = [];
   uid: any;
   uid1: any;
   obj;
   name;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-    this.retreivePics1();
+  details;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public art: StreetartzProvider, public modalCtrl: ModalController, public popoverCtrl: PopoverController, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
     this.retreivePics();
-  }
 
+    let userID = firebase.auth().currentUser;
+    firebase.database().ref("profiles/" + userID.uid).on('value', (data: any) => {
+      this.arr.length = 0
+      let details = data.val();
+      this.arr.push(details);
+    })
+  }
   ionViewDidLoad() {
-    
-  }
-  ngOnInit() {
-    this.obj = this.navParams.get("obj");
-    console.log(this.obj);
-  
+
   }
 
-EditProfile() {
+  EditProfile() {
     this.navCtrl.push(EditProfilePage);
   }
 
   upload() {
-    this.navCtrl.push(UploadImagePage);
+    const modal = this.modalCtrl.create(UploadImagePage);
+    modal.present();
   }
   presentPopover() {
     const popover = this.popoverCtrl.create(PopOverProfilePage);
     popover.present();
   }
 
-  nextpage1() {
+  GoBackToCategory() {
     this.navCtrl.setRoot(CategoryPage);
   }
   getUid() {
@@ -122,25 +125,29 @@ EditProfile() {
     this.list.length = 0;
     this.getUid();
     this.art.viewPicGallery().then(data => {
-      var loader = this.loadingCtrl.create({
-        content: "please wait...",
-        duration: 6000
-      });
-      var keys: any = Object.keys(data);
-      for (var i = 0; i < keys.length; i++) {
-        var k = keys[i];
-        if (this.uid == data[k].uid) {
-          let obj = {
-            uid: data[k].uid,
-            category: data[k].category,
-            downloadurl: data[k].downloadurl,
-            name: data[k].name,
-            key: k
+      if (data == null || data == undefined) {
+        console.log('no data');
+      }
+      else {
+        var keys: any = Object.keys(data);
+        for (var i = 0; i < keys.length; i++) {
+          var k = keys[i];
+          if (this.uid == data[k].uid) {
+            let obj = {
+              uid: data[k].uid,
+              category: data[k].category,
+              downloadurl: data[k].downloadurl,
+              location: data[k].location,
+              price: data[k].price,
+              name: data[k].name,
+              key: k
+            }
+            this.list.push(obj);
+            console.log(this.list);
+
           }
-          this.list.push(obj);
         }
       }
-      loader.dismiss();
     }, Error => {
       console.log(Error)
     });
@@ -155,10 +162,6 @@ EditProfile() {
     this.arr.length = 0;
     this.getUid1();
     this.art.viewPicGallery1().then(data => {
-      var loader = this.loadingCtrl.create({
-        content: "please wait...",
-        duration: 6000
-      });
       var keys: any = Object.keys(data);
       for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
@@ -167,11 +170,9 @@ EditProfile() {
             downloadurl: data[k].downloadurl
           }
           this.arr.push(objt);
-          console.log()
         }
       }
-      console.log(this.arr);
-      loader.dismiss();
+
     }, Error => {
       console.log(Error)
     });
@@ -181,12 +182,32 @@ EditProfile() {
   nextpage() {
     this.navCtrl.push(EditProfilePage);
   }
-  logout() {
-    this.art.logout().then(() => {
-      this.navCtrl.push(LoginPage);
-    }, (error) => { })
-  }
+
   dismissPage() {
     this.navCtrl.pop();
   }
+
+  removeImage(key) {
+    const confirm = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Are you sure you want to delete image?',
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.art.RemoveUploadedPicture(key);
+            this.retreivePics();
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    confirm.present();
+
+  }
+
 }
